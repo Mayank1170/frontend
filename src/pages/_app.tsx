@@ -1,15 +1,30 @@
 import "@/styles/globals.css";
+
+import DefaultLayout from "@/layouts/DefaultLayout";
+
+import { AppPropsWithLayout } from "@/types/custom-next";
+import { NextComponentType } from "next";
+import type { AppInitialProps } from "next/app";
+import { AppContextType } from "next/dist/shared/lib/utils";
+
 import { pilatExtended } from "@/utils/fonts";
-import classNames from "classnames";
-import type { AppProps } from "next/app";
 import { Red_Hat_Display } from "next/font/google";
 
 const redhat = Red_Hat_Display({ subsets: ["latin"] });
 
-export default function App({ Component, pageProps }: AppProps) {
+const MyApp: NextComponentType<
+  AppContextType,
+  AppInitialProps,
+  AppPropsWithLayout
+> = ({ Component, pageProps }: { Component: any; pageProps: any }) => {
+  const getLayout =
+    Component.getLayout ??
+    ((page: any) => <DefaultLayout>{page}</DefaultLayout>);
+  const pageComponent = getLayout(<Component {...pageProps} />);
+
   return (
     <>
-     <style jsx global>
+      <style jsx global>
         {`
           :root {
             --redhat-font: ${redhat.style.fontFamily};
@@ -17,8 +32,9 @@ export default function App({ Component, pageProps }: AppProps) {
           }
         `}
       </style>
-      <Component {...pageProps} />
+      {pageComponent}
     </>
-    
   );
-}
+};
+
+export default MyApp;

@@ -1,8 +1,11 @@
-export default function Home() {
+import { NextPageWithLayout } from "@/types/custom-next";
+
+const Home: NextPageWithLayout = () => {
   return (
-    <div className="font-redhat">
-      <h1 className="font-pilat">Hello world</h1>
-      <p>nice something here</p>
+    <div>
+      {/* <h1>Home Page</h1> */}
     </div>
   );
 }
+
+export default Home;
