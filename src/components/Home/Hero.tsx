@@ -9,7 +9,8 @@ export const Hero: React.FC = () => {
       className="bg-auto flex flex-col min-h-screen w-screen overflow-x-hidden bg-[url('/images/hero-bg.svg')]"
       style={{
         backgroundPositionX: "70%",
-        backgroundPositionY: "center",
+        // backgroundPositionY: "center",
+        backgroundSize: "100%",
 
       }}
     >
