@@ -8,8 +8,9 @@ export const Hero: React.FC = () => {
     <div
       className="bg-auto flex flex-col min-h-screen w-screen overflow-x-hidden bg-[url('/images/hero-bg.svg')]"
       style={{
-        backgroundPositionX: "center",
+        backgroundPositionX: "70%",
         backgroundPositionY: "center",
+
       }}
     >
       <div className="h-screen relative w-screen overflow-hidden">
