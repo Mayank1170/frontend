@@ -1,7 +1,6 @@
 import { NextPageWithLayout } from "@/types/custom-next";
 
-import { Content, Hero } from "@/components/Home";
-import { Footer } from "@/components/Home/Footer";
+import { Content, Hero, Footer } from "@/components/Home";
 
 const Home: NextPageWithLayout = () => {
   return (
@@ -11,7 +10,6 @@ const Home: NextPageWithLayout = () => {
         // backgroundPositionX: "10%%",
         // backgroundPositionY: "-5%",
         backgroundSize: "contain",
-
       }}
     >
       <Hero />
