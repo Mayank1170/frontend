@@ -5,9 +5,7 @@ import Offers from "./Offers";
 
 export const Hero: React.FC = () => {
   return (
-    <div
-      className="bg-auto flex flex-col min-h-screen w-screen overflow-x-hidden "
-    >
+    <div className="bg-auto flex flex-col min-h-screen w-screen overflow-x-hidden ">
       <div className="h-screen relative w-screen overflow-hidden">
         <Navbar />
         <div className="w-screen flex justify-center items-center px-10 mt-14 relative">
@@ -27,42 +25,41 @@ export const Hero: React.FC = () => {
                 </h1>
               </div>
 
-              <div className="description">
-                <div
-                  className="rounded-[24px] max-w-[800px] py-8 px-8 pr-32 mt-10 relative flex items-center border-gradient-right bg-gradient-to-r from-white to-transparent "
+              <div
+                className="w-[80%]  rounded-[24px] max-w-[800px] py-8 px-8 pr-32 mt-10 relative flex items-center border border-gray-300/30"
+                style={{
+                  background:
+                    "linear-gradient(92.18deg, rgba(255, 255, 255, 0.182) 0%, rgba(255, 255, 255, 0.13) 100%)",
+                }}
+                
+              >
+                <p className="text-[20px]">
+                  We let you trade without worrying about unexpected price
+                  changes and MEV attacks
+                </p>
+                <button
+                  className="group rounded-full p-2 absolute -right-5"
                   style={{
+                    // linear gradient white to transparent
                     background:
                       "linear-gradient(92.18deg, rgba(255, 255, 255, 0.182) 0%, rgba(255, 255, 255, 0.13) 100%)",
                   }}
                 >
-                  <p className="text-[20px]">
-                    We let you trade without worrying about unexpected price
-                    changes and MEV attacks
-                  </p>
-                  <button
-                    className="group rounded-full p-2 absolute -right-5"
+                  <div
+                    className="group-hover:opacity-75 transition-opacity ease-in-out duration-100 rounded-full flex items-center justify-center h-[30px] w-[30px]"
                     style={{
-                      // linear gradient white to transparent
                       background:
-                        "linear-gradient(92.18deg, rgba(255, 255, 255, 0.182) 0%, rgba(255, 255, 255, 0.13) 100%)",
+                        "linear-gradient(95.16deg, #3BB078 0%, #8FBFA8 100%)",
                     }}
                   >
-                    <div
-                      className="group-hover:opacity-75 transition-opacity ease-in-out duration-100 rounded-full flex items-center justify-center h-[30px] w-[30px]"
-                      style={{
-                        background:
-                          "linear-gradient(95.16deg, #3BB078 0%, #8FBFA8 100%)",
-                      }}
-                    >
-                      <Image
-                        src="/images/play.svg"
-                        height={10}
-                        width={10}
-                        alt="play icon"
-                      />
-                    </div>
-                  </button>
-                </div>
+                    <Image
+                      src="/images/play.svg"
+                      height={10}
+                      width={10}
+                      alt="play icon"
+                    />
+                  </div>
+                </button>
               </div>
             </div>
             <button
