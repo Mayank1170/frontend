@@ -6,13 +6,7 @@ import Offers from "./Offers";
 export const Hero: React.FC = () => {
   return (
     <div
-      className="bg-auto flex flex-col min-h-screen w-screen overflow-x-hidden bg-[url('/images/hero-bg.svg')]"
-      style={{
-        backgroundPositionX: "70%",
-        // backgroundPositionY: "center",
-        backgroundSize: "100%",
-
-      }}
+      className="bg-auto flex flex-col min-h-screen w-screen overflow-x-hidden "
     >
       <div className="h-screen relative w-screen overflow-hidden">
         <Navbar />
@@ -91,7 +85,7 @@ export const Hero: React.FC = () => {
             width={978 * 0.6}
             height={626 * 0.6}
             alt="trading view image"
-            className="absolute right-0 top-[40px] z-0"
+            className="absolute right-4 top-[40px] z-0"
           />
         </div>
       </div>
