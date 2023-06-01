@@ -17,7 +17,7 @@ export const Hero: React.FC = () => {
       <div className="h-screen relative w-screen overflow-hidden">
         <Navbar />
         <div className="w-screen flex justify-center items-center px-10 mt-14 relative">
-          <div className="max-w-[1180px] w-full pt-20 relative z-10 flex justify-between">
+          <div className="max-w-[1350px] w-full pt-20 relative z-10 flex justify-between">
             <div className="">
               <div>
                 <h1

@@ -52,7 +52,7 @@ const Feature: React.FC<FeatureProps> = ({
   return (
     <div className="w-screen flex justify-center min-h-screen">
       <div
-        className={classNames("flex items-center max-w-[1180px] w-full", {
+        className={classNames("flex items-center max-w-[1350px] w-full", {
           "justify-end": isInverted,
         })}
       >

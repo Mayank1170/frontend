@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
     <nav className="flex items-center justify-center pt-10 px-10 w-screen">
       <div
         id="nav-content"
-        className="flex justify-between items-center max-w-[1180px] w-full"
+        className="flex justify-between items-center max-w-[1350px] w-full"
       >
         <div id="nav-links" className="flex items-center gap-x-[46px]">
           <Logo />
