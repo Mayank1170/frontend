@@ -36,7 +36,7 @@ const Offers: React.FC = () => {
   const [cards, setCards] = useState(offers);
 
   return (
-    <div className="flex gap-x-8 mt-10">
+    <div className="flex gap-x-8 mt-8">
       <section>
         {cards.map((card) => (
           <Offer {...card} key={card.id} />
