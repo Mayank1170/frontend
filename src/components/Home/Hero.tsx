@@ -21,7 +21,7 @@ export const Hero: React.FC = () => {
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  The Era <br /> of No-Slipage <br /> on Solana
+                  The Era <br /> of No-Slippage <br /> on Solana
                 </h1>
               </div>
 

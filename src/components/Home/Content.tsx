@@ -18,7 +18,7 @@ const features: Omit<FeatureProps, "index">[] = [
     image: "/images/features/liquidity.png",
   },
   {
-    title: <>Flexibilit of CLOB, <br /> Efficiency of AMM</>,
+    title: <>Flexibility of CLOB, <br /> Efficiency of AMM</>,
     description: "Place your trades with absolutely no-slippage and MEV attacks. You are rest assured.",
     image: "/images/features/flexibility.png"
   }
