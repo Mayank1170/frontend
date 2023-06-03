@@ -2,7 +2,7 @@ import Link from "next/link";
 import Logo from "../icons/Logo";
 import ArrowRight from "../icons/ArrowRight";
 
-const Navbar: React.FC = () => {
+const Header: React.FC = () => {
   return (
     <nav className="flex items-center justify-center pt-10 px-10 w-screen">
       <div
@@ -32,16 +32,16 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
         </div>
-        <button
+        <Link href="/trade"
           id="launch-app-btn"
           className="flex items-center bg-[#3BB0782B] hover:bg-[#3bb0774a] ease-in-out transition-colors duration-200 rounded-[24px] gap-x-[9px] px-8 py-4 group"
         >
           <span className="text-[18px] font-bold">Launch app</span>
           <ArrowRight  className="group-hover:translate-x-1 transition-transform duration-150 ease-out"/>
-        </button>
+        </Link>
       </div>
     </nav>
   );
 };
 
-export default Navbar;
+export default Header;

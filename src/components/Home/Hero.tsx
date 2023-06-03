@@ -1,13 +1,13 @@
-import Navbar from "@/components/Navbar";
 import ArrowRight from "@/components/icons/ArrowRight";
 import Image from "next/image";
 import Offers from "./Offers";
+import Header from "./Header";
 
 export const Hero: React.FC = () => {
   return (
     <div className="bg-auto flex flex-col min-h-screen w-screen overflow-x-hidden ">
       <div className="h-screen relative w-screen overflow-hidden">
-        <Navbar />
+        <Header />
         <div className="w-screen flex justify-center items-center px-10 mt-14 relative">
           <div className="max-w-[1350px] w-full pt-20 relative z-10 flex justify-between">
             <div className="">
