@@ -14,7 +14,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({
   return (
     <div
       className={classNames(
-        "font-redhat bg-[#060606] text-white min-h-screen mt-0",
+        "font-redhat bg-[#060606] text-white min-h-screen mt-0 h-screen overflow-y-scroll overflow-x-hidden",
         className
       )}
       {...props}
