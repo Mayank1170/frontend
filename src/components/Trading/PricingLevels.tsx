@@ -3,7 +3,7 @@ import Image from "next/image";
 export const PricingLevels: React.FC = () => {
   return (
     <div
-      className="flex items-center border border-white/25 rounded-[20px] h-[200px] gap-x-10 max-w-[1100px]"
+      className="flex items-center border border-white/20 rounded-[20px] h-[200px] gap-x-10 max-w-[1100px]"
       style={{
         background:
           "linear-gradient(301.33deg, rgba(0, 0, 0, 0.192) 0%, rgba(255, 255, 255, 0.096) 100%)",

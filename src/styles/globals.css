@@ -12,14 +12,11 @@
   display: none; /* Chrome, Safari, and Opera */
 }
 
-
 .inner {
   position: relative;
   width: 100%;
   overflow: hidden;
-  
 }
-
 
 section {
   display: flex;
@@ -35,4 +32,8 @@ section {
   100% {
     transform: translate(-100%);
   }
+}
+
+input:focus, select:focus {
+  outline: none;
 }
