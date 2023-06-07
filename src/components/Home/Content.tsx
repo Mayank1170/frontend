@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 const features: Omit<FeatureProps, "index">[] = [
@@ -13,17 +14,26 @@ const features: Omit<FeatureProps, "index">[] = [
     image: "/images/features/zero-slippage.png",
   },
   {
-    title: <>Provide Liquidity <br /> Profitably</>,
-    description: "Sustainable levels of concentrated liquidity promise potentially higher fees and improved capital efficiency for LPs",
+    title: (
+      <>
+        Provide Liquidity <br /> Profitably
+      </>
+    ),
+    description:
+      "Sustainable levels of concentrated liquidity promise potentially higher fees and improved capital efficiency for LPs",
     image: "/images/features/liquidity.png",
   },
   {
-    title: <>Flexibility of CLOB, <br /> Efficiency of AMM</>,
-    description: "Place your trades with absolutely no-slippage and MEV attacks. You are rest assured.",
-    image: "/images/features/flexibility.png"
-  }
+    title: (
+      <>
+        Flexibility of CLOB, <br /> Efficiency of AMM
+      </>
+    ),
+    description:
+      "Place your trades with absolutely no-slippage and MEV attacks. You are rest assured.",
+    image: "/images/features/flexibility.png",
+  },
 ];
-
 
 export const Content: React.FC = () => {
   return (
@@ -50,19 +60,28 @@ const Feature: React.FC<FeatureProps> = ({
 }) => {
   const isInverted = index % 2 !== 0;
   return (
-    <div className="w-screen flex justify-center min-h-screen">
+    <motion.div
+      className="w-screen flex justify-center min-h-screen"
+      initial={{ opacity: 0, y: "150px" }}
+      whileInView={{ opacity: 1, y: "0px" }}
+      transition={{ duration: 2 }}
+      viewport={{ once: true, margin: "10000px 0px 0px 0px", amount: "some" }}
+    >
       <div
         className={classNames("flex items-center max-w-[1350px] w-full", {
           "justify-end": isInverted,
         })}
       >
         <div className="max-w-[400px] w-full flex flex-col items-center relative">
-          <div className={
-            classNames("absolute font-pilat text-[130px] font-extrabold opacity-10 -top-[130px]", {
-              "right-0": isInverted,
-              "left-0": !isInverted,
-            })
-          }>
+          <div
+            className={classNames(
+              "absolute font-pilat text-[130px] font-extrabold opacity-10 -top-[130px]",
+              {
+                "right-0": isInverted,
+                "left-0": !isInverted,
+              }
+            )}
+          >
             0{index + 1}
           </div>
           <div className="flex flex-col gap-y-5">
@@ -79,11 +98,15 @@ const Feature: React.FC<FeatureProps> = ({
             Learn More
           </button>
         </div>
-        <img src={image} alt={description} className={classNames("absolute", {
-          "right-0": !isInverted,
-          "left-0": isInverted,
-        })} />
+        <img
+          src={image}
+          alt={description}
+          className={classNames("absolute", {
+            "right-0": !isInverted,
+            "left-0": isInverted,
+          })}
+        />
       </div>
-    </div>
+    </motion.div>
   );
 };
