@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const Navbar: React.FC = () => {
   return (
-    <nav className="flex items-center justify-between pt-10 px-10 w-screen">
+    <nav className="flex items-center justify-between pt-10 px-10 w-screen relative z-10" >
       <div className="flex items-center gap-x-10">
         <Logo />
         <NavLinks />
@@ -31,8 +31,8 @@ const navLinks: NavLink[] = [
     href: "/dashboard",
   },
   {
-    label: "Docs",
-    href: "/docs",
+    label: "Swap",
+    href: "/swap",
   },
   {
     label: "Pools",
