@@ -69,7 +69,7 @@ const OHLCDataItem: React.FC<OHLCDataItemProps> = ({ name, value, max }) => {
   return (
     <div className="flex flex-col justify-between h-full pt-10 gap-y-8">
       <div className="font-pilat">
-        <h3 className="font-bold text-3xl">{numberWithCommas(value)}</h3>
+        <h3 className="font-bold text-xl 2xl:text-3xl">{numberWithCommas(value)}</h3>
         <p>{name}</p>
       </div>
       <div
