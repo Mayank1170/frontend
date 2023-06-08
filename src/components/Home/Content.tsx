@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRef } from "react";
 
 const features: Omit<FeatureProps, "index">[] = [
   {
@@ -58,14 +59,12 @@ const Feature: React.FC<FeatureProps> = ({
   index,
   image,
 }) => {
+  const ref = useRef<HTMLDivElement>(null);
   const isInverted = index % 2 !== 0;
   return (
-    <motion.div
+    <div
       className="w-screen flex justify-center min-h-screen"
-      initial={{ opacity: 0, y: "150px" }}
-      whileInView={{ opacity: 1, y: "0px" }}
-      transition={{ duration: 2 }}
-      viewport={{ once: true, margin: "10000px 0px 0px 0px", amount: "some" }}
+      // viewport={{ once: true, margin: "10000px 0px 0px 0px", amount: "some" }}
     >
       <div
         className={classNames("flex items-center max-w-[1350px] w-full", {
@@ -73,7 +72,10 @@ const Feature: React.FC<FeatureProps> = ({
         })}
       >
         <div className="max-w-[400px] w-full flex flex-col items-center relative">
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: "50px" }}
+            whileInView={{ opacity: 0.1, y: "0px" }}
+            transition={{ duration: 1.5, delay: 0.5 }}
             className={classNames(
               "absolute font-pilat text-[130px] font-extrabold opacity-10 -top-[130px]",
               {
@@ -83,30 +85,44 @@ const Feature: React.FC<FeatureProps> = ({
             )}
           >
             0{index + 1}
-          </div>
-          <div className="flex flex-col gap-y-5">
+          </motion.div>
+          <motion.div
+            className="flex flex-col gap-y-5"
+            initial={{ opacity: 0, y: "100px" }}
+            whileInView={{ opacity: 1, y: "0px" }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            // viewport={{ once: true, root: ref }}
+          >
             <h3 className="font-bold text-[34px] font-pilat">{title}</h3>
             <p className="opacity-50">{description}</p>
-          </div>
-          <button
-            className="z-10 relative rounded-full flex mt-10 gap-x-4 items-center px-16 py-5 text-xl font-bold"
+          </motion.div>
+          <motion.button
+            className="z-10 rounded-full flex mt-10 gap-x-4 items-center px-16 py-5 text-xl font-bold"
             style={{
               boxShadow: "0px 4px 100px 40px rgba(59, 176, 120, 0.4)",
               background: "linear-gradient(95.16deg, #3BB078 0%, #8FBFA8 100%)",
             }}
+            initial={{ opacity: 0, y: "120px" }}
+            whileInView={{ opacity: [0, 0.3, 1], y: "0px" }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            // viewport={{ once: true, root: ref }}
           >
             Learn More
-          </button>
+          </motion.button>
         </div>
-        <img
+        <motion.img
           src={image}
           alt={description}
           className={classNames("absolute", {
             "right-0": !isInverted,
             "left-0": isInverted,
           })}
+          initial={{ opacity: 0, y: "150px" }}
+          whileInView={{ opacity: 1, y: "0px" }}
+          transition={{ duration: 2, ease: "easeInOut" }}
+          // viewport={{ once: true, root: ref }}
         />
       </div>
-    </motion.div>
+    </div>
   );
 };
