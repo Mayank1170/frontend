@@ -7,7 +7,7 @@ import Select, { components } from "react-select";
 
 const SwapPage: NextPageWithLayout = () => {
   return (
-    <div className="mt-40 w-screen flex items-center flex-col justify-center">
+    <div className="mt-20 w-screen flex items-center flex-col justify-center">
       <Image
         src={"/images/swap-bg.svg"}
         fill={true}
