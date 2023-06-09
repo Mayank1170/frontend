@@ -1,3 +1,4 @@
+import { numberWithCommas } from "@/utils/numbers";
 import Image from "next/image";
 
 export const PricingLevels: React.FC = () => {
@@ -83,6 +84,3 @@ const OHLCDataItem: React.FC<OHLCDataItemProps> = ({ name, value, max }) => {
 };
 
 
-const numberWithCommas = (x: number) => {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}

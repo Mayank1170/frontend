@@ -21,9 +21,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({
     >
       <Navbar />
       <main className="mt-14 flex justify-center px-12">
-        <div className="max-w-[1600px]">
-        {children}
-        </div>
+        <div className="max-w-[1600px] w-full">{children}</div>
       </main>
     </div>
   );
