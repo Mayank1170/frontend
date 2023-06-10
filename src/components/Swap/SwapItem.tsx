@@ -35,7 +35,7 @@ export const SwapItem: React.FC<SwapItemProps> = ({
   const [symbol, setSymbol] = useState<string>(defaultSymbol.value);
 
   return (
-    <div className="bg-white/10 rounded-2xl py-7 px-5 flex items-center justify-between w-full">
+    <div className="bg-white/10 rounded-2xl py-4 px-5 flex items-center justify-between w-full">
       <div>
         <h3 className="text-4xl font-bold">{value}</h3>
         <p className="text-white/40 text-[14px] mt-1">${usdValue}</p>
@@ -49,7 +49,7 @@ export const SwapItem: React.FC<SwapItemProps> = ({
         {balance && (
           <p className="text-white/40 text-[14px] font-semibold">
             Balance:
-            {balance}
+            {balance}{" "}
             <span className="text-[#80FEE3]">Max</span>
           </p>
         )}

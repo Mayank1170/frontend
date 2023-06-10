@@ -1,3 +1,4 @@
+import { usePoolsStore } from "@/store/usePoolsStore";
 import { numberWithCommas } from "@/utils/numbers";
 import Image from "next/image";
 
@@ -9,6 +10,7 @@ export interface PoolCardProps {
   volume: number;
   liquidity: number;
   apr: number;
+  id: string;
 }
 
 export const PoolCard: React.FC<PoolCardProps> = ({
@@ -18,8 +20,10 @@ export const PoolCard: React.FC<PoolCardProps> = ({
   fees,
   volume,
   liquidity,
+  id,
   apr,
 }) => {
+  const [setCurrentPool] = usePoolsStore((state) => [state.setCurrentPool]);
   return (
     <div
       className="rounded-2xl border border-[#7AD0A74D] flex flex-col items-center w-[370px] px-8 pb-5 pt-8 relative"
@@ -76,6 +80,9 @@ export const PoolCard: React.FC<PoolCardProps> = ({
 
         style={{
           background: "linear-gradient(275.16deg, #3BB078 0%, #59B689 100%)",
+        }}
+        onClick={() => {
+          setCurrentPool(id);
         }}
       >
         Deposit
