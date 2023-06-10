@@ -1,8 +1,12 @@
 import Image from "next/image";
 import { useState } from "react";
 import ArrowRight from "../icons/ArrowRight";
+import { RangeSlider } from "./Slider";
+
+const options = [0, 25, 50, 75, 100];
 
 export const TradeControls: React.FC = () => {
+  const [leverage, setLeverage] = useState(0);
   return (
     <div
       style={{
@@ -23,7 +27,9 @@ export const TradeControls: React.FC = () => {
         </div>
         <Inputs />
       </div>
-      <Leverage />
+      <h3 className="text-[24px] font-semibold mb-2">Leverage</h3>
+      <RangeSlider step={25} min={0} max={100} marks={25} value={leverage} onChange={v => setLeverage(v)} />
+      <Leverage value={leverage} setValue={setLeverage} options={options} />
       <hr className="w-full border-t border-t-white/10 mt-12 mb-6" />
       <Prices />
     </div>
@@ -93,25 +99,31 @@ const Inputs = () => {
   );
 };
 
-const leverageOptions = ["0X", "25X", "50X", "75X", "100X"];
+interface LeverageInputProps {
+  value: number;
+  setValue: (value: number) => void;
+  options: number[];
+}
 
-const Leverage: React.FC = () => {
-  const [leverage, setLeverage] = useState(0);
+const Leverage: React.FC<LeverageInputProps> = ({
+  value,
+  setValue,
+  options,
+}) => {
   return (
     <div>
-      <h3 className="text-[24px] font-semibold mb-2">Leverage</h3>
       <div className="flex flex-wrap gap-x-2">
-        {leverageOptions.map((option, index) => (
+        {options.map((leverage) => (
           <button
-            key={index}
+            key={leverage}
             className={`w-[80px] h-[40px] rounded-[10px] border-[0.5px] border-white/20 transition duration-200 ${
-              leverage === index
+              value === leverage
                 ? "bg-white/40 ring-2 ring-white/70"
                 : "bg-white/20"
             }`}
-            onClick={() => setLeverage(index)}
+            onClick={() => setValue(leverage)}
           >
-            {option}
+            {leverage}X
           </button>
         ))}
       </div>
