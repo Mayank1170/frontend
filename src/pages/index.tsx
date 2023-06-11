@@ -1,6 +1,7 @@
 import { NextPageWithLayout } from "@/types/custom-next";
 
 import { Content, Hero, Footer } from "@/components/Home";
+import Image from "next/image";
 
 const Home: NextPageWithLayout = () => {
   return (
@@ -27,6 +28,19 @@ const Home: NextPageWithLayout = () => {
           }}
         />
         <Content />
+        <div className="w-screen flex flex-col items-center">
+          <div className="w-full max-w-[1350px]">
+            <h3 className="text-5xl font-pilat mb-10 max-w-[1200px] w-full">
+              Product Roadmap
+            </h3>
+          </div>
+          <Image
+            src="/images/spedx-roadmap.png"
+            width={1920}
+            height={600}
+            alt="roadmap"
+          />
+        </div>
 
         <hr className="max-w-[1200px] mx-auto my-[60px] opacity-30" />
 

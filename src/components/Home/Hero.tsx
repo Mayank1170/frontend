@@ -63,7 +63,7 @@ export const Hero: React.FC = () => {
               </div>
             </div>
             <button
-              className="z-10 relative px-[25px] py-4 rounded-[18px] group flex mt-auto mb-20 gap-x-4 items-center"
+              className="z-10 relative px-[25px] py-4 rounded-[18px] group flex mt-auto mb-20 gap-x-4 items-center right-32 top-8"
               style={{
                 boxShadow: "0px 4px 100px 40px rgba(59, 176, 120, 0.4)",
                 background:
@@ -78,11 +78,11 @@ export const Hero: React.FC = () => {
           </div>
 
           <Image
-            src="/images/hero-trading-view.png"
+            src="/images/trading-view.png"
             width={978 * 0.6}
             height={626 * 0.6}
             alt="trading view image"
-            className="absolute right-4 top-[40px] z-0"
+            className="absolute right-0 top-[40px] z-0"
           />
         </div>
       </div>

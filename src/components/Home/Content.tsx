@@ -123,6 +123,7 @@ const Feature: React.FC<FeatureProps> = ({
           // viewport={{ once: true, root: ref }}
         />
       </div>
+    
     </div>
   );
 };

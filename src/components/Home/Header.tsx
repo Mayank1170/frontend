@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Logo from "../icons/Logo";
 import ArrowRight from "../icons/ArrowRight";
+import Image from "next/image";
 
 const Header: React.FC = () => {
   return (
@@ -34,10 +35,10 @@ const Header: React.FC = () => {
         </div>
         <Link href="/trade"
           id="launch-app-btn"
-          className="flex items-center bg-[#3BB0782B] hover:bg-[#3bb0774a] ease-in-out transition-colors duration-200 rounded-[24px] gap-x-[9px] px-8 py-4 group"
+          className="flex items-center bg-[#3BB0782B] hover:bg-[#3bb0774a] ease-in-out transition-colors duration-200 rounded-2xl gap-x-2 px-8 py-4 group"
         >
-          <span className="text-[18px] font-bold">Launch app</span>
-          <ArrowRight  className="group-hover:translate-x-1 transition-transform duration-150 ease-out"/>
+          <span className="text-[18px] font-bold">Join Discord</span>
+          <Image src="/images/icons/discord.svg" height={16} width={20} alt="discord" />
         </Link>
       </div>
     </nav>
