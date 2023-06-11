@@ -5,7 +5,7 @@ import Header from "./Header";
 
 export const Hero: React.FC = () => {
   return (
-    <div className="bg-auto flex flex-col min-h-screen w-screen overflow-x-hidden ">
+    <div className="bg-auto flex flex-col min-h-screen w-screen overflow-x-hidden relative">
       <div className="h-screen relative w-screen overflow-hidden">
         <Header />
         <div className="w-screen flex justify-center items-center px-10 mt-14 relative">
@@ -63,7 +63,7 @@ export const Hero: React.FC = () => {
               </div>
             </div>
             <button
-              className="z-10 relative px-[25px] py-4 rounded-[18px] group flex mt-auto mb-20 gap-x-4 items-center right-32 top-8"
+              className="z-10 relative px-[25px] py-4 rounded-[18px] group flex mt-auto mb-20 gap-x-4 items-center right-10 top-8"
               style={{
                 boxShadow: "0px 4px 100px 40px rgba(59, 176, 120, 0.4)",
                 background:

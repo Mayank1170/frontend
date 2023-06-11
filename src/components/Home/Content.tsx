@@ -13,6 +13,18 @@ const features: Omit<FeatureProps, "index">[] = [
     description:
       "Place your trades with absolutely no-slippage and MEV attacks. You are rest assured.",
     image: "/images/features/zero-slippage.png",
+    floatingImage: (
+      <motion.img
+        initial={{ opacity: 0, x: "-50px" }}
+        whileInView={{ opacity: 1, x: "0px" }}
+        transition={{ duration: 2, delay: 1, ease: "easeInOut" }}
+        className="absolute z-10 right-44 top-[530px]"
+        src="/images/zero-slippage-floating.png"
+        width={673}
+        height={331}
+        alt="floating image zero slippage"
+      />
+    ),
   },
   {
     title: (
@@ -23,6 +35,17 @@ const features: Omit<FeatureProps, "index">[] = [
     description:
       "Sustainable levels of concentrated liquidity promise potentially higher fees and improved capital efficiency for LPs",
     image: "/images/features/liquidity.png",
+    floatingImage: (
+      <motion.img
+        initial={{ opacity: 0, x: "50px" }}
+        whileInView={{ opacity: 1, x: "0px" }}
+        transition={{ duration: 2, delay: 1, ease: "easeInOut" }}
+        className="absolute z-10 left-[300px] top-[340px]"
+        src="/images/pools-card.png"
+        width={454}
+        height={581}
+        alt="floating image pools card"
+      />)
   },
   {
     title: (
@@ -33,6 +56,17 @@ const features: Omit<FeatureProps, "index">[] = [
     description:
       "Place your trades with absolutely no-slippage and MEV attacks. You are rest assured.",
     image: "/images/features/flexibility.png",
+    floatingImage: (
+      <motion.img
+        initial={{ opacity: 0, x: "50px" }}
+        whileInView={{ opacity: 1, x: "0px" }}
+        transition={{ duration: 2, delay: 1, ease: "easeInOut" }}
+        className="absolute z-10 right-[300px] top-[440px]"
+        src="/images/trading-card.png"
+        width={500}
+        height={500}
+        alt="floating image pools card"
+      />)
   },
 ];
 
@@ -51,6 +85,7 @@ interface FeatureProps {
   description: string;
   index: number;
   image: string;
+  floatingImage?: React.ReactNode;
 }
 
 const Feature: React.FC<FeatureProps> = ({
@@ -58,12 +93,13 @@ const Feature: React.FC<FeatureProps> = ({
   description,
   index,
   image,
+  floatingImage,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInverted = index % 2 !== 0;
   return (
     <div
-      className="w-screen flex justify-center min-h-screen"
+      className="w-screen flex justify-center min-h-screen relative"
       // viewport={{ once: true, margin: "10000px 0px 0px 0px", amount: "some" }}
     >
       <div
@@ -122,8 +158,8 @@ const Feature: React.FC<FeatureProps> = ({
           transition={{ duration: 2, ease: "easeInOut" }}
           // viewport={{ once: true, root: ref }}
         />
+        {floatingImage}
       </div>
-    
     </div>
   );
 };
