@@ -4,14 +4,22 @@ import Image from "next/image";
 export const PricingLevels: React.FC = () => {
   return (
     <div
-      className="flex items-center border border-white/20 rounded-[20px] h-[200px] gap-x-10 max-w-[1100px]"
+      className="flex items-center border border-white/20 rounded-[20px] h-[200px] gap-x-10 w-full"
       style={{
         background:
           "linear-gradient(301.33deg, rgba(0, 0, 0, 0.192) 0%, rgba(255, 255, 255, 0.096) 100%)",
       }}
     >
       <GeneralInfo />
-      <OHLCData />
+      <div
+        style={{
+          background: "linear-gradient(95.16deg, #3BB078 0%, #76B999 100%)",
+        }}
+        className="rounded-[16px] h-full flex-1 px-12 flex gap-x-10"
+      >
+        <OHLCData />
+        <AdditionalInfo />
+      </div>
     </div>
   );
 };
@@ -46,12 +54,7 @@ const GeneralInfo: React.FC = () => {
 
 const OHLCData: React.FC = () => {
   return (
-    <div
-      className="grid grid-cols-4 rounded-[16px] h-full flex-1 gap-x-10 px-12"
-      style={{
-        background: "linear-gradient(95.16deg, #3BB078 0%, #76B999 100%)",
-      }}
-    >
+    <div className="grid grid-cols-4  gap-x-10 h-full">
       <OHLCDataItem name="Open" value={16800} max={16900} />
       <OHLCDataItem name="Close" value={16500} max={16900} />
       <OHLCDataItem name="High" value={16900} max={16900} />
@@ -70,17 +73,57 @@ const OHLCDataItem: React.FC<OHLCDataItemProps> = ({ name, value, max }) => {
   return (
     <div className="flex flex-col justify-between h-full pt-10 gap-y-8">
       <div className="font-pilat">
-        <h3 className="font-bold text-xl 2xl:text-3xl">{numberWithCommas(value)}</h3>
-        <p>{name}</p>
+        <h3 className="font-bold text-lg 2xl:text-2xl text-black/60">
+          {numberWithCommas(value)}
+        </h3>
+        <p className="text-black/40">{name}</p>
       </div>
       <div
         className="bg-black/25 rounded-t-[20px] w-full"
         style={{
-          height: `${(value/max) * 100}%`,
+          height: `${(value / max) * 100}%`,
         }}
       />
     </div>
   );
 };
 
+const AdditionalInfo: React.FC = () => {
+  return (
+    <div className="flex h-full gap-x-8 pt-10">
+      <div className="flex flex-col gap-y-6">
+        <AdditionalInfoItem value="$19.1695" name="Index Price" />
+        <AdditionalInfoItem value="$2.77M" name="24H Volume" />
+      </div>
+      <div className="flex flex-col gap-y-6">
+        <AdditionalInfoItem value="-0.00083% in 35:14" name="Predicted Funding Rate" />
+        <AdditionalInfoItem value="-0.00017%" name="24H Avg Funding" />
+      </div>
+      <div className="flex flex-col gap-y-6">
+        <AdditionalInfoItem value="90.1k/200K SOL" name="Open Interest" />
+        <button className="rounded-lg px-5 py-2 text-[14px] hover:opacity-80 ease-in-out duration-200 transition-opacity" style={{
+          background: "rgba(77, 74, 74, 0.4)"
+        }}>
+          View More Details 
+        </button>
+      </div>
+    </div>
+  );
+};
 
+interface AdditionalInfoItemProps {
+  value: string;
+  name: string;
+}
+
+const AdditionalInfoItem: React.FC<AdditionalInfoItemProps> = ({
+  value,
+  name,
+}) => {
+  return (
+    <div className="flex flex-col">
+      <p className="text-black/60 text-[20px] font-bold">{value}</p>
+      <p className="text-[14px] text-black/40">{name}</p>
+    </div>
+  );
+};
