@@ -161,7 +161,7 @@ export const WalletForm: React.FC = () => {
                 <div className="opacity-90 text-white text-[28px] font-medium">Fund your Account</div>
               </button>
             </div>
-            <p className="text-[16px] text-white font-bold px-8">You'll need SOL in your wallet for transaction fees and collateral in your spedX Account for trades. Only deposit funds using the Solana network.</p>
+            <p className="text-[16px] text-white font-bold px-8">You&apos;ll need SOL in your wallet for transaction fees and collateral in your spedX Account for trades. Only deposit funds using the Solana network.</p>
             <div className="text-[16px] text-white font-medium px-8">Deposit SOL to Your Wallet</div>
             <div className="px-8 w-full">
               <hr className="w-full opacity-30 border-t-2" />
