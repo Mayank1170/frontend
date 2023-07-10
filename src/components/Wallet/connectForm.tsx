@@ -213,7 +213,9 @@ export const WalletForm: React.FC = () => {
   };
 
   return (
-    <div className="min-h-[83vh] relative bg-[#181818] bg-opacity-[56%] rounded-3xl border border-[#4CFFFF] border-opacity-20 shadow-xl shadow-teal-500">
+    <div className="min-h-[83vh] relative bg-[#181818] bg-opacity-[56%] rounded-3xl border border-[#4CFFFF] border-opacity-20" style={{
+      boxShadow: "16px 16px #00FFA363"
+    }}>
       <div className="pt-8 pl-10">
         <TopBars activeBars={activeBars} />
       </div>
