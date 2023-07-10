@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export const ConnectWallet: React.FC = () => {
   return (
@@ -25,14 +26,16 @@ export const ConnectWallet: React.FC = () => {
         <div className="text-white/50 mb-8 ">
           Connect your Solana wallet to deposit funds and start trading
         </div>
-        <button
-          className="rounded-xl px-8 py-2"
-          style={{
-            background: "linear-gradient(275.16deg, #3BB078 0%, #59B689 100%)",
-          }}
-        >
-          Connect Wallet
-        </button>
+        <Link href="/connectWallet">
+          <button
+            className="rounded-xl px-8 py-2"
+            style={{
+              background: "linear-gradient(275.16deg, #3BB078 0%, #59B689 100%)",
+            }}
+          >
+            Connect Wallet
+          </button>
+        </Link>
       </div>
     </div>
   );
