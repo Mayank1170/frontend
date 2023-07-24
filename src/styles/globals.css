@@ -12,6 +12,27 @@
   display: none; /* Chrome, Safari, and Opera */
 }
 
+.halo-effect {
+  position: relative;
+}
+
+.halo-effect:before {
+  content: "";
+  position: absolute;
+  top: -6%; 
+  left: -6%; 
+  right: -1%; 
+  bottom: -6%; 
+  background-color: #3db079; 
+  opacity: 0; /* Initially set the opacity to 0, so the halo is invisible */
+  filter: blur(20px); 
+  z-index: -1;
+  transition: opacity 0.2s ease; /* Add a transition effect for smooth visibility change */
+}
+
+.halo-effect:hover:before {
+  opacity: 0.4; 
+}
 
 .scroll-container {
   width: 100%;
