@@ -61,7 +61,7 @@ const marketValue: MarketDataProps[] = [
     textColor: "red",
   }, {
     id: 1,
-    priceValue : 300.1,
+    priceValue : 18661.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
     textColor: "red",
@@ -81,7 +81,6 @@ const marketValue: MarketDataProps[] = [
     textColor: "red",
   }
 ]
-// const SpreadList : 
 export const TradeValue: React.FC = () => {
   return (
     <div>
@@ -90,6 +89,26 @@ export const TradeValue: React.FC = () => {
     </div>
   );
 };
+ 
+marketValue.sort((a, b) => a.priceValue - b.priceValue);
+
+const MarketDataContainer: React.FC = () => {
+  return (
+    <div>
+      {marketValue.map((data) => (
+        <MarketData
+          key={data.id}
+          priceValue={data.priceValue}
+          sizeValue={data.sizeValue}
+          totalValue={data.totalValue}
+          textColor={data.textColor}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default MarketDataContainer;
 
 const OrderBook: React.FC = () => {
   return (
@@ -106,7 +125,7 @@ const OrderBook: React.FC = () => {
           </div>
           <div
             className="space-y-1"
-            style={{ maxHeight: "200px", overflowY: "scroll" }}
+            style={{ maxHeight: "200px", overflowY: "scroll", scrollbarWidth: 'none' }}
           >
             {marketValue.slice(0, 100).map((item, index) => (
               <MarketData key={item.id} {...item} />
@@ -124,7 +143,7 @@ const OrderBook: React.FC = () => {
           </div>
           <div
             className="space-y-1"
-            style={{ maxHeight: "200px", overflowY: "scroll" }}
+            style={{ maxHeight: "200px", overflowY: "scroll", scrollbarWidth: 'none' }}
           >
             {marketValue.slice(0, 100).map((item, index) => (
               <SpreadData key={item.id} {...item} />
@@ -137,7 +156,7 @@ const OrderBook: React.FC = () => {
 };
 
 interface MarketDataProps {
-  id: number;
+  id?: number;
   priceValue : number;
   sizeValue: number;
   totalValue: number;
