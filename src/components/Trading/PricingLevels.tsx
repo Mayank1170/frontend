@@ -51,7 +51,7 @@ const GeneralInfo: React.FC = () => {
 
 const OHLCData: React.FC = () => {
   return (
-    <div className="grid grid-cols-4  gap-x-10 h-full">
+    <div className="grid grid-cols-4 gap-x-10 h-full font-sans">
       <OHLCDataItem name="Open" value={16800} max={16900} />
       <OHLCDataItem name="Close" value={16500} max={16900} />
       <OHLCDataItem name="High" value={16900} max={16900} />

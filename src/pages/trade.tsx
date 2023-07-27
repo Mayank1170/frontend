@@ -16,12 +16,12 @@ const TradeingPage: NextPageWithLayout = () => {
           <PricingLevels/>
         </div>
           <div className="grid grid-flow-col gap-5">
-          <div className="col-span-12">
+          <div className="col-span-5">
             <Chart/>
           </div>
             <TradeValue/>
         </div>
-         <div className="row-span-3 ">
+         <div className="row-span-4 ">
             <div className="flex flex-col gap-y-3">
             <TradeControls />
             <Market />

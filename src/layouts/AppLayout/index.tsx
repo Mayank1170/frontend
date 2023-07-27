@@ -20,7 +20,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({
       {...props}
     >
       <Navbar />
-      <main className="mt-14 flex justify-center px-12">
+      <main className="mt-14 flex justify-center px-6">
         <div className="max-w-[100%] w-full">{children}</div>
       </main>
     </div>
