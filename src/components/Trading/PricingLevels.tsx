@@ -4,7 +4,7 @@ import Image from "next/image";
 export const PricingLevels: React.FC = () => {
   return (
     <div
-      className="flex items-center border border-white/20 rounded-[20px] h-[200px] gap-x-10 w-full"
+      className="flex items-center border border-white/20 rounded-[10px] h-[200px] gap-x-5 w-full"
       style={{
         background:
           "linear-gradient(301.33deg, rgba(0, 0, 0, 0.192) 0%, rgba(255, 255, 255, 0.096) 100%)",
@@ -12,9 +12,6 @@ export const PricingLevels: React.FC = () => {
     >
       <GeneralInfo />
       <div
-        style={{
-          background: "linear-gradient(95.16deg, #3BB078 0%, #76B999 100%)",
-        }}
         className="rounded-[16px] h-full flex-1 px-12 flex gap-x-10"
       >
         <OHLCData />
@@ -27,10 +24,10 @@ export const PricingLevels: React.FC = () => {
 const GeneralInfo: React.FC = () => {
   return (
     <div className="flex flex-col gap-y-5 ml-10">
-      <div className="flex items-center gap-x-4">
+      <div className="w-[200px] h-[60px] flex items-center gap-x-4">
         <Image src="/images/btc.png" width={48} height={48} alt={"bitcoin"} />
-        <div>
-          <h3 className="text-3xl font-bold">BTC-USD</h3>
+        <div >
+          <h3 className="text-3xl font-bold font-sans">BTC-USD</h3>
           <p className="opacity-[86]">Bitcoin</p>
         </div>
       </div>
@@ -73,13 +70,13 @@ const OHLCDataItem: React.FC<OHLCDataItemProps> = ({ name, value, max }) => {
   return (
     <div className="flex flex-col justify-between h-full pt-10 gap-y-8">
       <div className="font-pilat">
-        <h3 className="font-bold text-lg 2xl:text-2xl text-black/60">
+        <h3 className="font-bold text-lg 2xl:text-xl text-white/70">
           {numberWithCommas(value)}
         </h3>
-        <p className="text-black/40">{name}</p>
+        <p className="text-white/70">{name}</p>
       </div>
       <div
-        className="bg-black/25 rounded-t-[20px] w-full"
+        className="bg-emerald-800 rounded-t-[8px] w-[7https://v4.testnet.dydx.exchange/#/trade/ETH-USD0%]"
         style={{
           height: `${(value / max) * 100}%`,
         }}
@@ -122,8 +119,8 @@ const AdditionalInfoItem: React.FC<AdditionalInfoItemProps> = ({
 }) => {
   return (
     <div className="flex flex-col">
-      <p className="text-black/60 text-[20px] font-bold">{value}</p>
-      <p className="text-[14px] text-black/40">{name}</p>
+      <p className="text-white/60 text-[15px] font-bold font-sans">{value}</p>
+      <p className="text-[14px] text-white/40">{name}</p>
     </div>
   );
 };
