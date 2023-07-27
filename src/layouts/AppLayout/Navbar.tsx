@@ -145,13 +145,14 @@ const Controls: React.FC = () => {
       </div>
     </div>
       :
-      
-        <div className="flex rounded-2xl bg-[#3db079] halo-effect hover:before:bg-[#3db079]">
+      <div className="flex rounded-2xl bg-[#3db079] halo-effect hover:before:bg-[#3db079]">
+        <Link href="/connectWallet">
           <button className="flex px-6 py-4">
             <div className="text-[16px] font-bold whitespace-nowrap">Connect Wallet</div>
           </button>
-        </div>
-      
+        </Link>
+      </div>
+
   );
 };
 

@@ -17,7 +17,6 @@
 }
 
 .halo-effect:before {
-  content: "";
   position: absolute;
   top: -6%; 
   left: -6%; 
