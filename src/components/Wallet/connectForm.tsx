@@ -4,19 +4,43 @@ import Image from 'next/image';
 import LottieAnimation from '@/utils/lottieAnimation';
 import animationData from '../../../public/images/lottie/loading.json';
 
-const TopBars: React.FC<{ activeBars: number }> = ({ activeBars }) => {
+
+const ProgressBar: React.FC<{ activeBars: number }> = ({ activeBars }) => {
   const totalBars = 4;
+  const barWidth = 80;
+  const gapWidth = 10;
+  const totalGapWidth = (totalBars - 1) * gapWidth;
+
+  const totalBarsWidth = totalBars * barWidth;
+  const totalWidthWithGaps = totalBarsWidth + totalGapWidth;
+  const individualWidth = totalBarsWidth / totalBars;
+  const widthPercentage = (individualWidth / totalWidthWithGaps) * 100;
+
+  const remainingWidth = 100 - totalBars * widthPercentage;
 
   return (
-    <div className="ml-3 mt-1 sm:ml-4 sm:mt-2 md:ml-6 md:mt-3 lg:ml-8 lg:mt-4 absolute justify-start items-start gap-4 inline-flex">
-      {Array.from({ length: totalBars }).map((_, index) => (
-        <div
-          key={index}
-          className={`w-[80px] sm:w-[90px] md:w-[100px] lg:w-[110px] h-2 relative rounded-[94px] ${
-            index < activeBars ? 'bg-gradient-to-r from-cyan-300 via-teal-200 to-teal-400' : 'bg-white bg-opacity-[10%]'
-          }`}
-        />
-      ))}
+    <div className="ml-3 mt-1 sm:ml-4 sm:mt-2 md:ml-6 md:mt-3 lg:ml-8 lg:mt-4 flex">
+      {Array.from({ length: totalBars }).map((_, index) => {
+        const isActive = index < activeBars;
+        const marginLeft = index === 0 ? 0 : `${gapWidth}px`;
+        const marginRight = index !== totalBars - 1 ? `${gapWidth}px` : 0;
+        const barColor = isActive ? '#2AC3A4' : 'rgba(255, 255, 255, 0.1)';
+
+        return (
+          <div
+            key={index}
+            className="h-2 rounded-[94px] fill-animation"
+            style={{
+              width: `${widthPercentage}%`,
+              marginLeft,
+              marginRight,
+              backgroundColor: barColor, 
+              transition: 'background-color 0.3s linear',
+            }}
+          />
+        );
+      })}
+      <div style={{ width: `${remainingWidth}%` }} />
     </div>
   );
 };
@@ -54,17 +78,17 @@ export const WalletForm: React.FC = () => {
     switch (activeForm) {
       case 1:
         return (
-          <div className="ml-2 mt-2 sm:m-4 md:m-8 lg:m-12 flex-col justify-start items-start gap-8 pt-5 inline-flex">
+          <div className="sm:m-4 md:m-8 lg:m-12 flex-col justify-start items-start gap-8 pt-5 inline-flex">
             <div className="flex relative">
               <button onClick={() => router.back()} className="flex items-center gap-4">
                 <Image src="/images/icons/go-back.svg" alt="Go back Button" width="45" height="45" />
                 <div className="opacity-90 text-white text-[28px] font-medium whitespace-nowrap">How would you like to connect to Spedx?</div>
               </button>
             </div>
-            <div className="w-[523px] h-[64px] py-4 rounded-lg mx-[4vh] gap-3 inline-flex bg-white bg-opacity-[10%] hover:shadow-teal-500 hover:shadow-md">
+            <div className="w-[523px] h-[64px] py-4 rounded-lg mx-[4vh] gap-3 inline-flex bg-white bg-opacity-[10%] duration-150 hover:transition-all hover:shadow-teal-500 hover:shadow-md">
               <button className="w-full opacity-[60%] text-white text-[23px] font-normal justify-center items-center" onClick={() => { handleFormChange(2); setActiveBars(2) }}>Connect with Solana wallet</button>
             </div>
-            <div className="w-[523px] h-[64px] py-4 rounded-lg mx-[4vh] gap-3 inline-flex bg-white bg-opacity-[10%] hover:shadow-teal-500 hover:shadow-md">
+            <div className="w-[523px] h-[64px] py-4 rounded-lg mx-[4vh] gap-3 inline-flex bg-white bg-opacity-[10%] duration-150 hover:transition-all hover:shadow-teal-500 hover:shadow-md">
               <button className="w-full opacity-[60%] text-white text-[23px] font-normal justify-center items-center" onClick={() => { handleFormChange(3); setActiveBars(2) }}>Get started with email</button>
             </div>
           </div>
@@ -108,7 +132,7 @@ export const WalletForm: React.FC = () => {
                     <div className="w-[126px] h-[126px] absolute transform translate-x-1/3 -translate-y-1/2">
                       <LottieAnimation animationData={animationData} />
                     </div>
-                    <Image src="/images/spedx.png" alt="spedx logo"width={35} height={28} />
+                    <Image src="/images/spedx.png" alt="spedx logo" width={35} height={28} />
                   </div>
                 </div>
               </div>
@@ -123,29 +147,41 @@ export const WalletForm: React.FC = () => {
               </div>
               <div className="w-[523px] px-[50px] pb-4 rounded-lg overflow-y-auto">
                 <div className="scroll-container">
-                  <ul className="space-y-4 max-h-[300px]">
+                  <ul className="space-y-4 max-h-[45vh]">
                     {WalletOptions.sort((a, b) => {
                       if (a.detected && !b.detected) return -1;
                       if (!a.detected && b.detected) return 1;
                       return a.name.localeCompare(b.name);
                     }).map((option) => (
-                      <div key={option.name} className="flex-grow m-1 mr-5 rounded-lg ring-white ring-1 ring-opacity-20 hover:shadow-teal-500 hover:shadow-sm">
-                        <button onClick={() => {
-                          setWallet(option.name); setModal(true); setTimeout(() => {
-                            {/* Note that this will not pause when user clicks on cancel button. Handle appropriately */}
-                            setActiveForm(4);
-                            setActiveBars(3);
-                            setModal(false);
-                          }, 5000);
-                        }}> {/* Simulate user logging into their wallets */}
+                      <div
+                        key={option.name}
+                        className="flex-grow m-1 mr-5 rounded-lg ring-white ring-1 ring-opacity-20 duration-150 hover:transition-all hover:shadow-teal-500 hover:shadow-sm"
+                      >
+                        <div
+                          onClick={() => {
+                            setWallet(option.name);
+                            setModal(true);
+                            setTimeout(() => {
+                              // Note that this will not pause when the user clicks on the cancel button. Handle appropriately
+                              setActiveForm(4);
+                              setActiveBars(3);
+                              setModal(false);
+                            }, 5000);
+                          }}
+                          className="cursor-pointer"
+                        >
+                          {/* Simulate user logging into their wallets */}
                           <li className="flex items-center gap-3 p-2">
                             <Image src={option.icon} alt={option.name} width={22} height={22} />
                             <div className="text-white text-[16px] text-opacity-60">{option.name}</div>
-                            {option.detected && <span className="text-white text-sm text-opacity-20">(Detected)</span>}
+                            {option.detected && (
+                              <span className="text-white text-sm text-opacity-20">(Detected)</span>
+                            )}
                           </li>
-                        </button>
+                        </div>
                       </div>
                     ))}
+                    <div className="pt-[1px]"></div>
                   </ul>
                 </div>
               </div>
@@ -156,7 +192,7 @@ export const WalletForm: React.FC = () => {
         return (
           <div className="ml-2 mt-2 sm:m-4 md:m-8 lg:m-12 flex-col justify-start items-start gap-8 pt-5 inline-flex">
             <div className="flex relative">
-              <button onClick={() => {handleFormChange(2); setActiveBars(2);}} className="flex items-center gap-4">
+              <button onClick={() => { handleFormChange(2); setActiveBars(2); }} className="flex items-center gap-4">
                 <Image src="/images/icons/go-back.svg" alt="Go back Button" width="45" height="45" />
                 <div className="opacity-90 text-white text-[28px] font-medium">Fund your Account</div>
               </button>
@@ -187,7 +223,7 @@ export const WalletForm: React.FC = () => {
             <div>
               <div className="text-[16px] text-[#757575] font-medium px-8">Deposit Collateral to Drift</div>
               <button className="mx-8 mt-4">
-                <div className="w-[521px] h-[48px] relative bg-white bg-opacity-10 rounded-lg justify-center items-center inline-flex hover:shadow-teal-500 hover:shadow-md">
+                <div className="w-[521px] h-[48px] relative bg-white bg-opacity-10 rounded-lg justify-center items-center inline-flex duration-150 hover:transition-all hover:shadow-teal-500 hover:shadow-md">
                   <div className="justify-start items-center gap-2 flex">
                     <div className="justify-center items-center gap-[330px] flex">
                       <div className="text-white text-[16px] font-normal">Confirm Deposit</div>
@@ -196,7 +232,7 @@ export const WalletForm: React.FC = () => {
                 </div>
               </button>
               <button className="mx-8 mt-4">
-                <div className="w-[521px] h-[48px] relative rounded-lg border border-white border-opacity-30 justify-center items-center inline-flex hover:shadow-teal-500 hover:shadow-md">
+                <div className="w-[521px] h-[48px] relative rounded-lg border border-white border-opacity-30 justify-center items-center inline-flex duration-150 hover:transition-all hover:shadow-teal-500 hover:shadow-md">
                   <div className="justify-start items-center gap-2 flex">
                     <div className="justify-center items-center gap-[330px] flex">
                       <div className="text-white text-[16px] font-normal">Deposit Later</div>
@@ -213,11 +249,11 @@ export const WalletForm: React.FC = () => {
   };
 
   return (
-    <div className="min-h-[83vh] relative bg-[#181818] bg-opacity-[56%] rounded-3xl border border-[#4CFFFF] border-opacity-20" style={{
+    <div className="min-h-[83vh] w-[97vh] relative bg-[#181818] bg-opacity-[56%] rounded-3xl border border-[#4CFFFF] border-opacity-20" style={{
       boxShadow: "16px 16px #00FFA363"
     }}>
-      <div className="pt-8 pl-10">
-        <TopBars activeBars={activeBars} />
+      <div className="pt-8 pl-10 -mb-5">
+        <ProgressBar activeBars={activeBars} />
       </div>
       {renderFormContent()}
     </div>

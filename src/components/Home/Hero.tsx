@@ -2,6 +2,7 @@ import ArrowRight from "@/components/icons/ArrowRight";
 import Image from "next/image";
 import Offers from "./Offers";
 import Header from "./Header";
+import Link from "next/link";
 
 export const Hero: React.FC = () => {
   return (
@@ -31,7 +32,7 @@ export const Hero: React.FC = () => {
                   background:
                     "linear-gradient(92.18deg, rgba(255, 255, 255, 0.182) 0%, rgba(255, 255, 255, 0.13) 100%)",
                 }}
-                
+
               >
                 <p className="text-[20px]">
                   We let you trade without worrying about unexpected price
@@ -62,7 +63,7 @@ export const Hero: React.FC = () => {
                 </button>
               </div>
             </div>
-            <button
+            {/* <button
               className="z-10 relative px-[25px] py-4 rounded-[18px] group flex mt-auto mb-20 gap-x-4 items-center right-10 top-8"
               style={{
                 boxShadow: "0px 4px 100px 40px rgba(59, 176, 120, 0.4)",
@@ -74,7 +75,18 @@ export const Hero: React.FC = () => {
                 Launch app
               </span>
               <ArrowRight className="group-hover:translate-x-1 transition-transform duration-150 ease-out" />
-            </button>
+            </button> */}
+            <div className="flex rounded-2xl bg-[#3db079] halo-effect hover:before:bg-[#3db079] relative px-[25px] py-4 mt-auto mb-20 gap-x-4 right-10 top-8" style={{
+                boxShadow: "0px 4px 100px 40px rgba(59, 176, 120, 0.4)",
+                background:
+                  "linear-gradient(95.16deg, #3BB078 0%, #8FBFA8 100%)",
+              }}>
+              <Link href="/connectWallet">
+                <button className="flex px-2 py-1">
+                  <div className="text-[16px] font-bold whitespace-nowrap">Connect Wallet</div>
+                </button>
+              </Link>
+            </div>
           </div>
 
           <Image
