@@ -1,4 +1,159 @@
+import { useState } from "react";
+
 const marketValue: MarketDataProps[] = [
+  {
+    id: 1,
+    priceValue : 691.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "green",
+  },
+  {
+    id: 1,
+    priceValue : 18661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  }, {
+    id: 1,
+    priceValue : 18661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  }, {
+    id: 1,
+    priceValue : 18661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  }, {
+    id: 1,
+    priceValue : 18661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  },
+  {
+    id: 1,
+    priceValue : 161.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  },
+  {
+    id: 1,
+    priceValue : 461.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "Green",
+  },
+  {
+    id: 1,
+    priceValue : 200.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  },
+  {
+    id: 1,
+    priceValue : 15661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  },
+  {
+    id: 1,
+    priceValue : 321.7,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "green",
+  },
+  {
+    id: 1,
+    priceValue : 321.7,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "green",
+  }, {
+    id: 1,
+    priceValue : 321.7,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "green",
+  }, {
+    id: 1,
+    priceValue : 321.7,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "green",
+  },
+   {
+    id: 1,
+    priceValue : 18661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  },
+  {
+    id: 1,
+    priceValue : 18661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  },{
+    id: 1,
+    priceValue : 18661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  },{
+    id: 1,
+    priceValue : 18661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  },{
+    id: 1,
+    priceValue : 18661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  }, {
+    id: 1,
+    priceValue : 18661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  }, {
+    id: 1,
+    priceValue : 18661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  }, {
+    id: 1,
+    priceValue : 18661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  },
+   {
+    id: 1,
+    priceValue : 18661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "green",
+  },
+  {
+    id: 1,
+    priceValue : 61.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  }
+]
+
+const spreadValue: SpreadDataProps[] = [
   {
     id: 1,
     priceValue : 691.1,
@@ -14,6 +169,31 @@ const marketValue: MarketDataProps[] = [
     textColor: "red",
   },
   {
+    id: 1,
+    priceValue : 461.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "Green",
+  },
+  {
+    id: 1,
+    priceValue : 461.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "Green",
+  },{
+    id: 1,
+    priceValue : 461.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "Green",
+  },{
+    id: 1,
+    priceValue : 461.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "Green",
+  },{
     id: 1,
     priceValue : 461.1,
     sizeValue : 6.3450,
@@ -47,13 +227,46 @@ const marketValue: MarketDataProps[] = [
     sizeValue : 6.3450,
     totalValue: 58.5670,
     textColor: "red",
-  }, {
+  },
+  {
     id: 1,
     priceValue : 18661.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
     textColor: "red",
-  }, {
+  },{
+    id: 1,
+    priceValue : 18661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  },{
+    id: 1,
+    priceValue : 18661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  },{
+    id: 1,
+    priceValue : 18661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  },{
+    id: 1,
+    priceValue : 18661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  }, 
+  {
+    id: 1,
+    priceValue : 18661.1,
+    sizeValue : 6.3450,
+    totalValue: 58.5670,
+    textColor: "red",
+  },
+   {
     id: 1,
     priceValue : 18661.1,
     sizeValue : 6.3450,
@@ -81,16 +294,18 @@ const marketValue: MarketDataProps[] = [
     textColor: "red",
   }
 ]
+
+
 export const TradeValue: React.FC = () => {
   return (
     <div>
-      <OrderBook />
-      <RecentTrades/>
+      <NavLinks/>
     </div>
   );
 };
  
-marketValue.sort((a, b) => a.priceValue - b.priceValue);
+marketValue.sort((a, b) => b.priceValue - a.priceValue);
+spreadValue.sort((a, b) => a.priceValue - b.priceValue);
 
 const MarketDataContainer: React.FC = () => {
   return (
@@ -107,34 +322,83 @@ const MarketDataContainer: React.FC = () => {
     </div>
   );
 };
-
 export default MarketDataContainer;
+
+export const SpreadDataContainer: React.FC = () => {
+  return (
+    <div>
+      {spreadValue.map((data) => (
+        <SpreadData
+          key={data.id}
+          priceValue={data.priceValue}
+          sizeValue={data.sizeValue}
+          totalValue={data.totalValue}
+          textColor={data.textColor}
+        />
+      ))}
+    </div>
+  );
+};
+
+
+export const NavLinks: React.FC = () => {
+  const [activeComponent, setActiveComponent] = useState<'orderBook' | 'recentTrades'>('orderBook');
+
+  const handleButtonClick = (componentName: 'orderBook' | 'recentTrades') => {
+    setActiveComponent(componentName);
+  };
+
+  
+  return (
+    <div>
+      <button
+        className={`w-[50%]  font-medium h-[50px] rounded-tl-lg ${
+          activeComponent === 'orderBook' ? 'bg-[#67B38F] text-gray-950' : 'bg-[#202020] text-white'
+        }`}
+        onClick={() => handleButtonClick('orderBook')}
+      >
+        Books
+      </button>
+      <button
+        className={`w-[50%] text-white font-medium h-[50px] rounded-tr-lg ${
+          activeComponent === 'recentTrades' ? 'bg-[#67B38F] text-gray-950' : 'bg-[#202020] text-white'
+        }`}
+        onClick={() => handleButtonClick('recentTrades')}
+      >
+        Trade
+      </button>
+      {activeComponent === 'orderBook' ? <OrderBook /> : <RecentTrades />}
+    </div>
+  );
+};
+
+
 
 const OrderBook: React.FC = () => {
   return (
-    <div className="bg-neutral-800 py-3 mt-0 w-[100%] rounded-t-[10px] border-[0.5px] border-white/20 border-b-[2.5px] border-b-white/20">
+    <div className="bg-neutral-800 py-3 mt-0 w-[100%] border-[0.5px] border-white/20 rounded-b-lg border-b-white/20">
       <div>
-        <div className="flex items-center gap-x-4 ml-4 mb-4">
-          <h3 className="font-bold text-2xl font-sans">Order Book</h3>
-        </div>
+        {/* <div className="flex items-center gap-x-4 ml-4 mb-4">
+          <h3 className="font-bold text-2xl font-redhat">Order Book</h3>
+        </div> */}
         <div>
-          <div className="flex flex-row justify-between font-sans opacity-50 px-3">
+          <div className="flex flex-row justify-between font-redhat opacity-50 px-3">
             <h3 className="text-[15px]">Price</h3>
             <h3 className="text-[15px]">Size (ETH)</h3>
             <h3 className="text-[15px]">Total(ETH)</h3>
           </div>
           <div
             className="space-y-1"
-            style={{ maxHeight: "200px", overflowY: "scroll", scrollbarWidth: 'none' }}
+            style={{ maxHeight: "374px", overflowY: "scroll", scrollbarWidth: 'none' }}
           >
             {marketValue.slice(0, 100).map((item, index) => (
               <MarketData key={item.id} {...item} />
             ))}
           </div>
         </div>
-        <div>
+        <div >
           <div
-            className="flex flex-row justify-between font-sans mt-2 px-3"
+            className="flex flex-row justify-between font-redhat mt-2 px-3"
             style={{ background: "rgba(255,255,255,0.12)" }}
           >
             <h3 className="text-[15px]">Spread</h3>
@@ -143,9 +407,9 @@ const OrderBook: React.FC = () => {
           </div>
           <div
             className="space-y-1"
-            style={{ maxHeight: "200px", overflowY: "scroll", scrollbarWidth: 'none' }}
+            style={{ maxHeight: "374px", overflowY: "scroll", scrollbarWidth: 'none' }}
           >
-            {marketValue.slice(0, 100).map((item, index) => (
+            {spreadValue.slice(0, 100).map((item, index) => (
               <SpreadData key={item.id} {...item} />
             ))}
           </div>
@@ -187,15 +451,22 @@ const MarketData: React.FC<MarketDataProps> = ({
       }}
     ></div>
       <div className="flex flex-row justify-between px-3 w-[100%] relative">
-        <p className="font-sans text-red-400 text-[12.87px] ">{priceValue}</p>
-        <p className="text-white text-[12.87px] font-sans">{sizeValue}</p>
-        <p className="text-[12.87px] text-white font-sans">{totalValue}</p>
+        <p className="font-redhat text-red-400 text-[12.87px] ">{priceValue}</p>
+        <p className="text-white text-[12.87px] font-redhat">{sizeValue}</p>
+        <p className="text-[12.87px] text-white font-redhat">{totalValue}</p>
     </div>
   </div>
   );
 };
 
-const SpreadData: React.FC<MarketDataProps> = ({
+interface SpreadDataProps {
+  id?: number;
+  priceValue : number;
+  sizeValue: number;
+  totalValue: number;
+  textColor: string;
+}
+const SpreadData: React.FC<SpreadDataProps> = ({
   priceValue,
   sizeValue,
   totalValue,
@@ -215,9 +486,9 @@ const SpreadData: React.FC<MarketDataProps> = ({
         opacity: 0.4,
       }}></div>
     <div className='flex flex-row justify-between px-3'>
-      <p className="font-sans text-[12.87px] text-[#8EF884]">{priceValue}</p>
-      <p className="text-white text-[12.87px] font-sans">{sizeValue}</p>
-      <p className="text-[12.87px] text-white font-sans">{totalValue}</p>
+      <p className="font-redhat text-[12.87px] text-[#8EF884]">{priceValue}</p>
+      <p className="text-white text-[12.87px] font-redhat">{sizeValue}</p>
+      <p className="text-[12.87px] text-white font-redhat">{totalValue}</p>
     </div>
     </div>
   )
@@ -230,10 +501,10 @@ const RecentTrades: React.FC = () => {
       <div>
       <div className="flex items-center gap-x-4 ml-4 mb-4">
          
-          <h3 className="font-bold text-2xl font-sans">Recent Trades</h3>
+          <h3 className="font-bold text-2xl font-redhat">Recent Trades</h3>
         </div>
       <div>
-        <div className='flex flex-row justify-between font-sans opacity-50 px-3'>
+        <div className='flex flex-row justify-between font-redhat opacity-50 px-3'>
           <h3 className="text-[15px]">Price</h3>
           <h3 className="text-[15px]" >Size (ETH)</h3>
           <h3 className="text-[15px]">Total(ETH)</h3>
@@ -258,9 +529,9 @@ const RecentTradeData: React.FC<MarketDataProps> = ({
   return (
     <div className="mt-2 rounded-md">
       <div className='flex flex-row justify-between px-3'>
-      <p className="font-sans text-[12.87px]" style={{color: textColor}}>{priceValue}</p>
-      <p className="text-white text-[12.87px] font-sans">{totalValue}</p>
-      <p className="text-[12.87px] text-white font-sans">{totalValue}</p>
+      <p className="font-redhat text-[12.87px]" style={{color: textColor}}>{priceValue}</p>
+      <p className="text-white text-[12.87px] font-redhat">{totalValue}</p>
+      <p className="text-[12.87px] text-white font-redhat">{totalValue}</p>
       </div>
     </div>
   )
