@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Logo from "../../components/icons/Logo";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import classNames from "classnames";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";

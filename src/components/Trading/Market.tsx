@@ -38,18 +38,18 @@ export const Market: React.FC = () => {
         background:
           "linear-gradient(149.5deg, rgba(255, 255, 255, 0.135) 0%, rgba(255, 255, 255, 0.0165) 100%)",
       }}
-      className="p-8 flex-1 w-[100%] h-[100] rounded-[10px] border-[0.5px] border-white/20 font-sans"
+      className="p-8 flex-1 w-[100%] h-[100%] rounded-[10px] border-[0.5px] border-white/20 font-redhat"
     >
       <div className="flex items-center gap-x-4 mb-5">
         <Image
           src="/images/icons/market.svg"
-          height={36}
+          height={40}
           width={36}
           alt="trade"
         />
         <h3 className="font-bold text-2xl">Market</h3>
       </div>
-      <div className="flex flex-col gap-y-4">
+      <div className="flex h-full flex-col gap-y-4">
         {marketData.map((item, index) => (
           <MarketItem key={item.id} {...item} />
         ))}

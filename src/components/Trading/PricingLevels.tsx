@@ -24,11 +24,10 @@ export const PricingLevels: React.FC = () => {
 const GeneralInfo: React.FC = () => {
   return (
     <div className="flex flex-col gap-y-5 ml-10">
-      <div className="w-[200px] h-[60px] flex items-center gap-x-4">
+      <div className="w-[230px] h-[77px] flex items-center justify-center gap-x-4 bg-gray-500 p-3 rounded-lg bg-gradient-to-b from-stone-900/70 to-stone-950/80">
         <Image src="/images/btc.png" width={48} height={48} alt={"bitcoin"} />
         <div >
-          <h3 className="text-3xl font-bold font-sans">BTC-USD</h3>
-          <p className="opacity-[86]">Bitcoin</p>
+          <h3 className="text-2xl font-redhat">SOL-PERP</h3>
         </div>
       </div>
       <div className="flex gap-x-5">
@@ -51,7 +50,7 @@ const GeneralInfo: React.FC = () => {
 
 const OHLCData: React.FC = () => {
   return (
-    <div className="grid grid-cols-4 gap-x-10 h-full font-sans">
+    <div className="grid grid-cols-4 gap-x-10 h-full font-redhat text-[8.72px]">
       <OHLCDataItem name="Open" value={16800} max={16900} />
       <OHLCDataItem name="Close" value={16500} max={16900} />
       <OHLCDataItem name="High" value={16900} max={16900} />
@@ -70,13 +69,13 @@ const OHLCDataItem: React.FC<OHLCDataItemProps> = ({ name, value, max }) => {
   return (
     <div className="flex flex-col justify-between h-full pt-10 gap-y-8">
       <div className="font-pilat">
-        <h3 className="font-bold text-lg 2xl:text-xl text-white/70">
+        <h3 className="font-bold text-md 2xl:text-lg text-white/70">
           {numberWithCommas(value)}
         </h3>
         <p className="text-white/70">{name}</p>
       </div>
       <div
-        className="bg-emerald-800 rounded-t-[8px] w-[7https://v4.testnet.dydx.exchange/#/trade/ETH-USD0%]"
+        className="bg-gradient-to-r from-emerald-700 to-emerald-300 rounded-t-[8px] w-[70%]"
         style={{
           height: `${(value / max) * 100}%`,
         }}
@@ -119,7 +118,7 @@ const AdditionalInfoItem: React.FC<AdditionalInfoItemProps> = ({
 }) => {
   return (
     <div className="flex flex-col">
-      <p className="text-white/60 text-[15px] font-bold font-sans">{value}</p>
+      <p className="text-white/60 text-[15px] font-bold font-redhat">{value}</p>
       <p className="text-[14px] text-white/40">{name}</p>
     </div>
   );
