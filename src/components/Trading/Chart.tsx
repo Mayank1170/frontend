@@ -1,34 +1,106 @@
-import { useEffect, useState } from "react";
-import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
+// import { useEffect, useState } from "react";
+// import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
+
+// export const Chart: React.FC = () => {
+//   const [loaded, setLoaded] = useState(false);
+
+//   useEffect(() => {
+//     setLoaded(true);
+//   }, []);
+
+//   return (
+//     <div
+  //       style={{
+  //         height: "93%",
+  //         width: "100%",
+  //       }}
+  //       className="rounded-[10px] border-[0.5px] border-white/20 overflow-hidden mt-0"
+//     >
+//       {loaded && (
+//         <AdvancedRealTimeChart
+//           allow_symbol_change={false}
+//           hide_top_toolbar={true}
+//           hide_side_toolbar={true}
+//           // hide_legend={true}
+//           symbol="BTC"
+//           height={600}
+//           width={1000}
+//           theme="dark"
+//           autosize
+//         />
+//       )}
+//     </div>
+//   );
+// };
+
+
+
+
+import React, { useEffect, useRef } from 'react';
+
+let tvScriptLoadingPromise: Promise<Event> | null = null;
+
+declare global {
+  interface Window {
+    TradingView: any; // You can use a more specific type if available
+  }
+}
 
 export const Chart: React.FC = () => {
-  const [loaded, setLoaded] = useState(false);
+  const onLoadScriptRef = useRef<(() => void) | null>();
 
   useEffect(() => {
-    setLoaded(true);
+    onLoadScriptRef.current = createWidget;
+
+    if (!tvScriptLoadingPromise) {
+      tvScriptLoadingPromise = new Promise((resolve) => {
+        const script = document.createElement('script');
+        script.id = 'tradingview-widget-loading-script';
+        script.src = 'https://s3.tradingview.com/tv.js';
+        script.type = 'text/javascript';
+        script.onload = resolve;
+
+        document.head.appendChild(script);
+      });
+    }
+
+    tvScriptLoadingPromise.then(() => onLoadScriptRef.current && onLoadScriptRef.current());
+
+    return () => {
+      onLoadScriptRef.current = null;
+    };
+
+    function createWidget() {
+      if (document.getElementById('tradingview_8255e') && window.TradingView) {
+        new window.TradingView.widget({
+          autosize: true,
+          symbol: 'NASDAQ:AAPL',
+          interval: 'D',
+          timezone: 'America/Caracas',
+          theme: 'dark',
+          style: '9',
+          locale: 'en',
+          toolbar_bg: '#f1f3f6',
+          enable_publishing: false,
+          withdateranges: true,
+          hide_side_toolbar: false,
+          allow_symbol_change: true,
+          container_id: 'tradingview_8255e',
+        });
+      }
+    }
   }, []);
 
   return (
-    <div
-      style={{
-        height: "93%",
-        width: "100%",
-      }}
-      className="rounded-[10px] border-[0.5px] border-white/20 overflow-hidden mt-0"
-    >
-      {loaded && (
-        <AdvancedRealTimeChart
-          allow_symbol_change={false}
-          hide_top_toolbar={true}
-          hide_side_toolbar={true}
-          // hide_legend={true}
-          symbol="BTC"
-          height={600}
-          width={1000}
-          theme="dark"
-          autosize
-        />
-      )}
-    </div>
+    <div style={{
+               height: "93%",
+               width: "100%",
+             }}
+             className="rounded-[10px] border-[0.5px] border-white/20 overflow-hidden mt-0" id="tradingview_8255e">
+      </div>
   );
 };
+
+
+
+
