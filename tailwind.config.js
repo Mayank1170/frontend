@@ -23,6 +23,7 @@ module.exports = {
   },
 
   plugins: [
+    require('tailwind-scrollbar-hide'),
     function ({ addUtilities }) {
       const newUtilities = {
         ".border-gradient-right": {

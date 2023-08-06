@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 const marketValue: MarketDataProps[] = [
   {
     id: 1,
@@ -296,6 +297,8 @@ const spreadValue: SpreadDataProps[] = [
 ]
 
 
+
+
 export const TradeValue: React.FC = () => {
   return (
     <div>
@@ -388,9 +391,10 @@ const OrderBook: React.FC = () => {
             <h3 className="text-[15px]">Total(ETH)</h3>
           </div>
           <div
-            className="space-y-1"
-            style={{ maxHeight: "374px", overflowY: "scroll", scrollbarWidth: 'none' }}
-          >
+            className="space-y-1 flex flex-col whitespace-nowrap  scrollbar-hide"
+            style={{ maxHeight: "374px", overflowY: "scroll" }}
+            >
+          
             {marketValue.slice(0, 100).map((item, index) => (
               <MarketData key={item.id} {...item} />
             ))}
@@ -406,7 +410,7 @@ const OrderBook: React.FC = () => {
             <h3 className="text-[15px]">0.06%</h3>
           </div>
           <div
-            className="space-y-1"
+            className="space-y-1  scrollbar-hide"
             style={{ maxHeight: "374px", overflowY: "scroll", scrollbarWidth: 'none' }}
           >
             {spreadValue.slice(0, 100).map((item, index) => (

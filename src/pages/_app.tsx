@@ -1,7 +1,6 @@
 import "@/styles/globals.css";
 
 
-
 import { AppPropsWithLayout } from "@/types/custom-next";
 import { NextComponentType } from "next";
 import type { AppInitialProps } from "next/app";
