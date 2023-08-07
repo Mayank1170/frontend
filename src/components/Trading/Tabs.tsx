@@ -32,15 +32,15 @@ export const Tabs: React.FC = () => {
         }`}>Details</button>
         </div>
         <div className="flex flex-row space-x-2">
-         <div className="flex w-10 h-10  text-3xl  bg-white/10 rounded-lg border border-white/20 justify-center items-center">
+         <div className="flex w-10 h-10  text-3xl  bg-[#202020] rounded-lg border border-white/20 justify-center items-center">
           <button>+</button>
          </div>
-         <div className="flex w-24 h-10 bg-white/10 rounded-lg border border-white/20 items-center justify-center ">
+         <div className="flex w-24 h-10 bg-[#202020] rounded-lg border border-white/20 items-center justify-center ">
           <div className="flex flex-row items-center justify-center space-x-2">
           <h1>0.1%</h1>
           </div>
          </div>
-         <div className="flex w-10 h-10 text-3xl bg-white/10 justify-center items-center rounded-lg border border-white/20 ">
+         <div className="flex w-10 h-10 text-3xl bg-[#202020] justify-center items-center rounded-lg border border-white/20 ">
           <button>-</button>
          </div>
     </div>

@@ -5,19 +5,38 @@ import classNames from "classnames";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import SearchModal from "./SearchModal";
 
 const Navbar: React.FC = () => {
+
+  const [showMyModal, setShowMyModal] = useState(true);
+
+
+  const handleSearchClick = () => {
+    setShowMyModal(true);
+  };
+  const handleOnClose  = () => {
+  setShowMyModal(false)
+  }
+
   return (
-    <nav className="flex items-center justify-between pt-10 px-10 w-screen relative z-10" >
-      <div className="flex items-center gap-x-10">
-        <Logo />
-        <NavLinks />
-      </div>
-      <div className="flex items-center gap-x-16">
-        <Search />
-        <Controls/>
-      </div>
-    </nav>
+    <div>
+      <nav className="flex items-center justify-between pt-10 px-10 w-screen relative z-10" >
+        <div className="flex items-center gap-x-10">
+          <Logo />
+          <NavLinks />
+        </div>
+        <div className="flex items-center gap-x-16">
+          <Search
+            onClick={handleSearchClick}
+          />
+          <Controls />
+        </div>
+        <SearchModal onClick={handleOnClose} visible={showMyModal} />
+
+      </nav>
+
+    </div>
   );
 };
 
@@ -98,13 +117,15 @@ const NavLinks: React.FC = () => {
   );
 };
 
-const Search: React.FC = () => {
+const Search: React.FC<{onClick: ()=> void}> = ({onClick}) => {
+
   return (
     <div
       className="flex items-center w-[410px] h-[68px] rounded-2xl py-[18px] px-[26px] gap-x-3"
       style={{
         background: "rgba(217, 217, 217, 0.15)",
       }}
+      onClick={onClick}
     >
       <Image
         src="/images/icons/search.svg"
