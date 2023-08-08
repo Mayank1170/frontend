@@ -121,23 +121,13 @@ const Search: React.FC<{onClick: ()=> void}> = ({onClick}) => {
 
   return (
     <div
-      className="flex items-center w-[410px] h-[68px] rounded-2xl py-[18px] px-[26px] gap-x-3"
+      className="flex items-center justify-center w-[200px] h-[68px] rounded-2xl py-[18px] px-[26px] gap-x-3"
       style={{
         background: "rgba(217, 217, 217, 0.15)",
       }}
       onClick={onClick}
     >
-      <Image
-        src="/images/icons/search.svg"
-        width={32}
-        height={32}
-        alt="search"
-      />
-      <input
-        type="text"
-        className="bg-transparent outline-none text-white font-semibold w-full flex-1 placeholder:text-white/30"
-        placeholder="Search"
-      />
+     <h1 className="font-bold text-lg font-redhat text-gray-200">Manage Balance</h1>
     </div>
   );
 };
