@@ -9,14 +9,14 @@ import SearchModal from "./SearchModal";
 
 const Navbar: React.FC = () => {
 
-  const [showMyModal, setShowMyModal] = useState(true);
+  const [showMyModal, setShowMyModal] = useState(false);
 
 
   const handleSearchClick = () => {
-    setShowMyModal(true);
+    setShowMyModal(false);
   };
   const handleOnClose  = () => {
-  setShowMyModal(false)
+  setShowMyModal(true)
   }
 
   return (
@@ -28,11 +28,11 @@ const Navbar: React.FC = () => {
         </div>
         <div className="flex items-center gap-x-16">
           <Search
-            onClick={handleSearchClick}
+            onClick={handleOnClose}
           />
           <Controls />
         </div>
-        <SearchModal onClick={handleOnClose} visible={showMyModal} />
+        <SearchModal onClick={handleSearchClick} visible={showMyModal} />
 
       </nav>
 
