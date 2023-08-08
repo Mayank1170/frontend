@@ -22,7 +22,7 @@ const GeneralInfo: React.FC = () => {
   return (
     <div className="flex flex-col gap-y-5 ml-10">
       <div className="w-[230px] h-[77px] flex items-center justify-center gap-x-4 p-3 rounded-lg bg-gradient-to-b from-zinc-700/70 to-zinc-800/80">
-        <Image src="/images/Solana.png" width={48} height={48} alt={"bitcoin"} />
+        <Image src="/images/Solana.png" width={48} height={48} alt={"Solana"} />
         <div >
           <h3 className="text-2xl font-redhat">SOL-PERP</h3>
         </div>
