@@ -121,7 +121,7 @@ const Search: React.FC<{onClick: ()=> void}> = ({onClick}) => {
 
   return (
     <div
-      className="flex items-center justify-center w-[200px] h-[68px] rounded-2xl py-[18px] px-[26px] gap-x-3"
+      className="flex items-center justify-center w-[200px] h-[68px] rounded-2xl py-[18px] px-[26px] gap-x-3 cursor-pointer" 
       style={{
         background: "rgba(217, 217, 217, 0.15)",
       }}
