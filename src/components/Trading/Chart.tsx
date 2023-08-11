@@ -74,7 +74,7 @@ export const Chart: React.FC = () => {
       if (document.getElementById('tradingview_8255e') && window.TradingView) {
         new window.TradingView.widget({
           autosize: true,
-          symbol: 'NASDAQ:AAPL',
+          symbol: 'BINANCE:SOLUSDT',
           interval: 'D',
           timezone: 'America/Caracas',
           theme: 'dark',

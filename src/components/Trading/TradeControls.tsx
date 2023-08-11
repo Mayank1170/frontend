@@ -9,11 +9,8 @@ export const TradeControls: React.FC = () => {
   const [leverage, setLeverage] = useState(0);
   return (
     <div
-      style={{
-        background:
-          "linear-gradient(149.5deg, rgba(255, 255, 255, 0.135) 0%, rgba(255, 255, 255, 0.0165) 100%)",
-      }}
-      className="p-8 flex-1 w-[100%] h-[100%] rounded-[10px] border-[0.5px] border-white/20"
+      
+      className="p-8 bg-[#202020] flex-1 w-[100%] h-[100%] rounded-[10px] border-[0.5px] border-white/20"
     >
       <div className="mb-6 font-redhat">
         <div className="flex items-center gap-x-4 mb-8">
