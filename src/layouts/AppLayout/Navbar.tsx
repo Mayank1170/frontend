@@ -37,6 +37,7 @@ const Navbar: React.FC = () => {
       </nav>
 
     </div>
+
   );
 };
 
@@ -133,8 +134,9 @@ const Search: React.FC<{onClick: ()=> void}> = ({onClick}) => {
 };
 
 const Controls: React.FC = () => {
+  const walletConnected = false;
   return (
-    <div className="rounded-2xl grid grid-cols-2 items-center justify-items-center" style={{
+    walletConnected ? <div className="rounded-2xl grid grid-cols-2 items-center justify-items-center" style={{
       background: "rgba(217, 217, 217, 0.15)",
     }}>
       <Image
@@ -154,6 +156,15 @@ const Controls: React.FC = () => {
         />
       </div>
     </div>
+      :
+      <div className="flex rounded-2xl bg-[#3db079] halo-effect hover:before:bg-[#3db079]">
+        <Link href="/connectWallet">
+          <button className="flex px-6 py-4">
+            <div className="text-[16px] font-bold whitespace-nowrap">Connect Wallet</div>
+          </button>
+        </Link>
+      </div>
+
   );
 };
 
