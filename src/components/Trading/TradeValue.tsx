@@ -402,7 +402,7 @@ const OrderBook: React.FC = () => {
         </div>
         <div >
           <div
-            className="flex flex-row justify-between font-redhat mt-2 px-3"
+            className="flex flex-row justify-between items-center h-7 font-redhat mt-2 px-3"
             style={{ background: "rgba(255,255,255,0.12)" }}
           >
             <h3 className="text-[15px]">Spread</h3>
