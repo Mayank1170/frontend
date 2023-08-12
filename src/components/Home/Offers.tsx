@@ -4,23 +4,23 @@ import { useEffect, useRef, useState } from "react";
 const offers: OfferProps[] = [
   {
     icon: "/images/offers/zero-slippage.svg",
-    title: "Zero Slippage",
+    title: "Deep Liquidity",
     id: 1,
   },
   {
     icon: "/images/offers/lp-profit.svg",
-    title: "Tailored for LP profitability",
+    title: "Perpetuals and Spot Trading",
     id: 2,
   },
   {
     icon: "/images/offers/min-price.svg",
-    title: "Minimum price impact",
+    title: "Upto 30x leverage",
     id: 3,
   },
 
   {
     icon: "/images/offers/assured-safety.svg",
-    title: "Assured safety of LP funds",
+    title: "Optimal Execution Assurance",
     id: 4,
   },
   {

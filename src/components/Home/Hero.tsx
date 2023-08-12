@@ -22,7 +22,7 @@ export const Hero: React.FC = () => {
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  The Era <br /> of No-Slippage <br /> on Solana
+                  Exchange<br />Infrastructure <br/> that Scales 
                 </h1>
               </div>
 
@@ -35,8 +35,7 @@ export const Hero: React.FC = () => {
 
               >
                 <p className="text-[20px]">
-                  We let you trade without worrying about unexpected price
-                  changes and MEV attacks
+                 We build trading infrastructure for the masses
                 </p>
                 <button
                   className="group rounded-full p-2 absolute -right-5"

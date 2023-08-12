@@ -7,11 +7,11 @@ const features: Omit<FeatureProps, "index">[] = [
   {
     title: (
       <>
-        Experience Zero- <br /> Slippage Trading
+        Deep Liquidity <br /> across Markets
       </>
     ),
     description:
-      "Place your trades with absolutely no-slippage and MEV attacks. You are rest assured.",
+      "We have bootstrapped liquidity across perpetuals and spot markets, supporting trading of diverse range of assets.",
     image: "/images/features/zero-slippage.png",
     floatingImage: (
       <motion.img
@@ -29,11 +29,11 @@ const features: Omit<FeatureProps, "index">[] = [
   {
     title: (
       <>
-        Provide Liquidity <br /> Profitably
+        Industry-grade  <br /> Risk Management
       </>
     ),
     description:
-      "Sustainable levels of concentrated liquidity promise potentially higher fees and improved capital efficiency for LPs",
+      "We care for user assets and use advanced risk management procedures to safeguard assets from exploits at all times.",
     image: "/images/features/liquidity.png",
     floatingImage: (
       <motion.img
@@ -50,11 +50,11 @@ const features: Omit<FeatureProps, "index">[] = [
   {
     title: (
       <>
-        Flexibility of CLOB, <br /> Efficiency of AMM
+        Yield opportunities <br /> 
       </>
     ),
     description:
-      "Place your trades with absolutely no-slippage and MEV attacks. You are rest assured.",
+      "Our backstop liquidity market maker(BLMM) and Insurance Fund open up secure yield earning opportunities for retail users. See docs for learn more",
     image: "/images/features/flexibility.png",
     floatingImage: (
       <motion.img
