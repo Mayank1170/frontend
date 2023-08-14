@@ -78,13 +78,13 @@ const NavLinks: React.FC = () => {
   console.log(currentLink);
 
   return (
-    <div className="flex bg-[#373737] rounded-2xl relative">
+    <div className="flex bg-[#373737] rounded-lg relative">
       {links.map((link, index) => (
         <Link
           href={link.href}
           key={link.label}
           className={classNames(
-            "w-[116px] h-14 rounded-2xl flex items-center justify-center relative z-10 transition-colors duration-200 ease-in-out font-semibold",
+            "w-[116px] h-14 rounded-lg flex items-center justify-center relative z-10 transition-colors duration-200 ease-in-out font-semibold",
             {
               "text-black":
                 link.href === currentLink?.href &&
@@ -104,7 +104,7 @@ const NavLinks: React.FC = () => {
       ))}
       <motion.div
         id="active-icon"
-        className={classNames("h-full w-[116px] absolute rounded-2xl bg-white")}
+        className={classNames("h-full w-[116px] absolute rounded-lg bg-white")}
         animate={{
           x: activeIndex * 116,
           opacity: activeIndex !== currentLinkIndex ? 0.5 : 1,

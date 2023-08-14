@@ -392,7 +392,7 @@ const OrderBook: React.FC = () => {
           </div>
           <div
             className="space-y-1 flex flex-col whitespace-nowrap  scrollbar-hide"
-            style={{ maxHeight: "374px", overflowY: "scroll" }}
+            style={{ maxHeight: "361px", overflowY: "scroll" }}
             >
           
             {marketValue.slice(0, 100).map((item, index) => (
@@ -411,7 +411,7 @@ const OrderBook: React.FC = () => {
           </div>
           <div
             className="space-y-1  scrollbar-hide"
-            style={{ maxHeight: "374px", overflowY: "scroll", scrollbarWidth: 'none' }}
+            style={{ maxHeight: "361px", overflowY: "scroll", scrollbarWidth: 'none' }}
           >
             {spreadValue.slice(0, 100).map((item, index) => (
               <SpreadData key={item.id} {...item} />
