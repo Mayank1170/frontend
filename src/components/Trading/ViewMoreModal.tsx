@@ -13,7 +13,8 @@ export const ViewMoreModal:React.FC<ViewMoreModalProps> = ({ isOpen, onClose }) 
         return null;
       }
       const handleOnClose = (e: React.MouseEvent<HTMLDivElement>) => {
-        if(e.target.id === 'container' )
+        const target = e.target as HTMLDivElement;
+        if(target.id === 'container' )
         onClose()
       }
     
