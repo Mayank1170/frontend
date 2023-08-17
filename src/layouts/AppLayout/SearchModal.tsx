@@ -10,7 +10,8 @@ interface SearchModalProps {
 
 const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
     const handleOnClose = (e: React.MouseEvent<HTMLDivElement>) => {
-        if(e.target.id === 'container')
+        const target = e.target as HTMLDivElement;
+        if(target.id === 'container')
         onClick();
     }
     const [activeComponent, setActiveComponent] = useState<'Deposit' | 'Withdraw' | 'Borrow'>('Deposit');
