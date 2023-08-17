@@ -80,9 +80,9 @@ export const Hero: React.FC = () => {
                 background:
                   "linear-gradient(95.16deg, #3BB078 0%, #8FBFA8 100%)",
               }}>
-              <Link href="/connectWallet">
+              <Link href="/trade">
                 <button className="flex px-2 py-1">
-                  <div className="text-[16px] font-bold whitespace-nowrap">Connect Wallet</div>
+                  <div className="text-[18px] font-bold whitespace-nowrap">Launch App</div>
                 </button>
               </Link>
             </div>

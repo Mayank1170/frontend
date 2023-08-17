@@ -133,7 +133,7 @@ const Feature: React.FC<FeatureProps> = ({
             <p className="opacity-50">{description}</p>
           </motion.div>
           <motion.button
-            className="z-10 rounded-full flex mt-10 gap-x-4 items-center px-16 py-5 text-xl font-bold"
+            className="z-10 rounded-2xl flex mt-10 gap-x-4 items-center px-16 py-5 text-xl font-bold"
             style={{
               boxShadow: "0px 4px 100px 40px rgba(59, 176, 120, 0.4)",
               background: "linear-gradient(95.16deg, #3BB078 0%, #8FBFA8 100%)",

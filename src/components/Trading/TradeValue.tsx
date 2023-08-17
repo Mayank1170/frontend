@@ -295,10 +295,6 @@ const spreadValue: SpreadDataProps[] = [
     textColor: "red",
   }
 ]
-
-
-
-
 export const TradeValue: React.FC = () => {
   return (
     <div>
@@ -377,7 +373,7 @@ export const NavLinks: React.FC = () => {
 
 
 
-const OrderBook: React.FC = () => {
+export const OrderBook: React.FC = () => {
   return (
     <div className="bg-neutral-800 py-3 mt-0 w-[100%] border-[0.5px] border-white/20 rounded-b-lg border-b-white/20">
       <div>
@@ -411,7 +407,7 @@ const OrderBook: React.FC = () => {
           </div>
           <div
             className="space-y-1  scrollbar-hide"
-            style={{ maxHeight: "361px", overflowY: "scroll", scrollbarWidth: 'none' }}
+            style={{ maxHeight: "360px", overflowY: "scroll", scrollbarWidth: 'none' }}
           >
             {spreadValue.slice(0, 100).map((item, index) => (
               <SpreadData key={item.id} {...item} />
@@ -499,7 +495,7 @@ const SpreadData: React.FC<SpreadDataProps> = ({
 }
 
 
-const RecentTrades: React.FC = () => {
+export const RecentTrades: React.FC = () => {
   return ( 
     <div  className="bg-neutral-800 py-3 mt-0 w-[100%] rounded-b-[10px] border-[0.5px] border-white/20">
       <div>

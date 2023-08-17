@@ -122,13 +122,13 @@ const Search: React.FC<{onClick: ()=> void}> = ({onClick}) => {
 
   return (
     <div
-      className="flex items-center justify-center w-[200px] h-[68px] rounded-2xl py-[18px] px-[26px] gap-x-3 cursor-pointer" 
+      className="flex items-center justify-center w-[100%] h-[68px] rounded-2xl py-[18px] px-[26px] gap-x-3 cursor-pointer" 
       style={{
-        background: "rgba(217, 217, 217, 0.15)",
+        background: "rgb(60,60,60)",
       }}
       onClick={onClick}
     >
-     <h1 className="font-bold text-lg font-redhat text-gray-200">Manage Balance</h1>
+     <h1 className="font-redhat font-bold text-lg font-redhat text-white">Manage Balances</h1>
     </div>
   );
 };
