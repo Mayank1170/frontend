@@ -78,13 +78,13 @@ const NavLinks: React.FC = () => {
   console.log(currentLink);
 
   return (
-    <div className="flex bg-[#373737] rounded-2xl relative">
+    <div className="flex bg-[#373737] rounded-lg relative">
       {links.map((link, index) => (
         <Link
           href={link.href}
           key={link.label}
           className={classNames(
-            "w-[116px] h-14 rounded-2xl flex items-center justify-center relative z-10 transition-colors duration-200 ease-in-out font-semibold",
+            "w-[116px] h-14 rounded-lg flex items-center justify-center relative z-10 transition-colors duration-200 ease-in-out font-semibold",
             {
               "text-black":
                 link.href === currentLink?.href &&
@@ -104,7 +104,7 @@ const NavLinks: React.FC = () => {
       ))}
       <motion.div
         id="active-icon"
-        className={classNames("h-full w-[116px] absolute rounded-2xl bg-white")}
+        className={classNames("h-full w-[116px] absolute rounded-lg bg-white")}
         animate={{
           x: activeIndex * 116,
           opacity: activeIndex !== currentLinkIndex ? 0.5 : 1,
@@ -122,13 +122,13 @@ const Search: React.FC<{onClick: ()=> void}> = ({onClick}) => {
 
   return (
     <div
-      className="flex items-center justify-center w-[200px] h-[68px] rounded-2xl py-[18px] px-[26px] gap-x-3 cursor-pointer" 
+      className="flex items-center justify-center w-[100%] h-[68px] rounded-2xl py-[18px] px-[26px] gap-x-3 cursor-pointer" 
       style={{
-        background: "rgba(217, 217, 217, 0.15)",
+        background: "rgb(60,60,60)",
       }}
       onClick={onClick}
     >
-     <h1 className="font-bold text-lg font-redhat text-gray-200">Manage Balance</h1>
+     <h1 className="font-redhat font-bold text-lg font-redhat text-white">Manage Balances</h1>
     </div>
   );
 };

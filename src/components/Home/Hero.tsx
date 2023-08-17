@@ -27,7 +27,7 @@ export const Hero: React.FC = () => {
               </div>
 
               <div
-                className="w-[80%]  rounded-[24px] max-w-[800px] py-8 px-8 pr-32 mt-10 relative flex items-center border border-gray-300/30"
+                className="w-[100%]  rounded-[24px] max-w-[800px] py-8 px-8 pr-32 mt-10 relative flex items-center border border-gray-300/30"
                 style={{
                   background:
                     "linear-gradient(92.18deg, rgba(255, 255, 255, 0.182) 0%, rgba(255, 255, 255, 0.13) 100%)",
@@ -75,14 +75,14 @@ export const Hero: React.FC = () => {
               </span>
               <ArrowRight className="group-hover:translate-x-1 transition-transform duration-150 ease-out" />
             </button> */}
-            <div className="flex rounded-2xl bg-[#3db079] halo-effect hover:before:bg-[#3db079] relative px-[25px] py-4 mt-auto mb-20 gap-x-4 right-10 top-8" style={{
+            <div className="flex rounded-2xl bg-[#3db079] halo-effect hover:before:bg-[#3db079] relative px-[25px] py-4 mt-auto mb-20 gap-x-4 right-10 top-14" style={{
                 boxShadow: "0px 4px 100px 40px rgba(59, 176, 120, 0.4)",
                 background:
                   "linear-gradient(95.16deg, #3BB078 0%, #8FBFA8 100%)",
               }}>
-              <Link href="/connectWallet">
+              <Link href="/trade">
                 <button className="flex px-2 py-1">
-                  <div className="text-[16px] font-bold whitespace-nowrap">Connect Wallet</div>
+                  <div className="text-[18px] font-bold whitespace-nowrap">Launch App</div>
                 </button>
               </Link>
             </div>

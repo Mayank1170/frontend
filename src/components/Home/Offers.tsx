@@ -14,18 +14,18 @@ const offers: OfferProps[] = [
   },
   {
     icon: "/images/offers/min-price.svg",
-    title: "Upto 30x leverage",
+    title: "Upto 50x Leverage",
     id: 3,
   },
 
   {
     icon: "/images/offers/assured-safety.svg",
-    title: "Optimal Execution Assurance",
+    title: "Top-Notch Order Execution",
     id: 4,
   },
   {
     icon: "/images/offers/optimal-cap.svg",
-    title: "Optimal capital efficiency",
+    title: "Optimal Capital Efficiency",
     id: 5,
   },
 ];

@@ -33,7 +33,7 @@ const Header: React.FC = () => {
             </Link>
           </div>
         </div>
-        <Link href="/trade"
+        <Link href="https://discord.gg/Hrf8P6rbyA"
           id="launch-app-btn"
           className="flex items-center bg-[#3BB0782B] hover:bg-[#3bb0774a] ease-in-out transition-colors duration-200 rounded-2xl gap-x-2 px-8 py-4 group"
         >

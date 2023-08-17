@@ -8,7 +8,7 @@ declare global {
   }
 }
 
-export const Chart: React.FC = () => {
+export const ChartTwo: React.FC = () => {
   const onLoadScriptRef = useRef<(() => void) | null>();
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export const Chart: React.FC = () => {
           withdateranges: true,
           hide_side_toolbar: false,
           allow_symbol_change: true,
-          container_id: 'tradingview_8255e',
+          container_id: 'tradingview',
         });
       }
     }
@@ -55,10 +55,10 @@ export const Chart: React.FC = () => {
 
   return (
     <div style={{
-               height: "700px",
+               height: "100%",
                width: "100%",
              }}
-             className="rounded-[10px] border-[0.5px] border-white/20 overflow-hidden mt-0" id="tradingview_8255e">
+             className="rounded-[10px] border-[0.5px] border-white/20 overflow-hidden mt-0" id="tradingview">
       </div>
   );
 };

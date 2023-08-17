@@ -58,7 +58,7 @@ const Inputs = () => {
       </div>
       <div id="Order Type" className="flex flex-col gap-y-1 font-redhat">
         <label htmlFor="order-type" className="opacity-70">
-          Order Type
+          Order TypeBuy
         </label>
         <select
           name="order-type"

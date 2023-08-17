@@ -9,15 +9,16 @@ interface SearchModalProps {
 
 
 const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
-    const handleOnClose = () => {
-        onClick()
+    const handleOnClose = (e: React.MouseEvent<HTMLDivElement>) => {
+        if(e.target.id === 'container')
+        onClick();
     }
     const [activeComponent, setActiveComponent] = useState<'Deposit' | 'Withdraw' | 'Borrow'>('Deposit');
 
 
     if (!visible) return null;
     return (
-        <div onClick={handleOnClose} className="fixed inset-0 bg-[black] bg-opacity-30 backdrop-blur-sm h-full flex justify-center items-center text-black">
+        <div id='container' onClick={handleOnClose} className="fixed inset-0 bg-[black] bg-opacity-30 backdrop-blur-sm h-full flex justify-center items-center text-black">
             <div className="bg-[#181818] px-5  border border-white/20 rounded-[10px]">
                 <div className='text-white text-xl font-bold px-2 py-7'>
                     Manage Balances
