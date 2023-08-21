@@ -26,7 +26,7 @@ const TradeingPage: NextPageWithLayout = () => {
   return (
     
 <div className="flex flex-row space-x-4">
-<div className="w-full h-full flex flex-col space-y-4">
+<div className="w-full h-full flex flex-col space-y-2">
 
 <div><PricingLevels onOpenModal={openModal}/></div>
 <div className=""><Navigator/></div>
@@ -40,7 +40,7 @@ const TradeingPage: NextPageWithLayout = () => {
 </div>
 
 </div>
-<div className="w-[30%] flex flex-col space-y-4 hidden xl:inline">
+<div className="w-[30%] flex-col space-y-4 hidden xl:inline">
   <div><TradeControls /></div>
   <div><Market /></div>
 

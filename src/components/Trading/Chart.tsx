@@ -55,7 +55,7 @@ export const Chart: React.FC = () => {
 
   return (
     <div style={{
-               height: "700px",
+               height: "100%",
                width: "100%",
              }}
              className="rounded-[10px] border-[0.5px] border-white/20 overflow-hidden mt-0" id="tradingview_8255e">

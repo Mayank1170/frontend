@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
 
   return (
     <div>
-      <nav className="flex items-center justify-between pt-10 px-10 w-screen relative z-10" >
+      <nav className="flex items-center justify-between pt-4 px-10 w-screen relative z-10" >
         <div className="flex items-center gap-x-10">
           <Logo />
           <NavLinks />
