@@ -2,8 +2,8 @@ import { numberWithCommas } from "@/utils/numbers";
 import {ViewMoreModal} from "./ViewMoreModal";
 import Image from "next/image";
 import { useState } from 'react'
-import {AiOutlineCaretDown} from 'react-icons/ai'
-import {AiOutlineCaretUp} from 'react-icons/ai'
+import {AiOutlineDown} from 'react-icons/ai'
+import {AiOutlineUp} from 'react-icons/ai'
 
 
 interface PricingLevelProps {
@@ -13,15 +13,15 @@ interface PricingLevelProps {
 export const PricingLevels: React.FC<PricingLevelProps> = ({onOpenModal}) => {
   return (
     <div
-      className="flex bg-[#202020] justify-between items-center border border-white/20 rounded-[10px] h-[200px] gap-x-5"    
+      className="flex bg-[#202020] lg:gap-x-12 justify-between pr-8 items-center rounded-lg border border-white border-opacity-30  border-white/20 h-48"    
     >
       <div className="">
       <GeneralInfo />
       </div>
-      <div className="rounded-[16px] h-full px-12 flex gap-x-10 right-0">
+      <div className=" h-full ">
       <OHLCData />
-        <AdditionalInfo onOpenModal={onOpenModal} />
       </div>
+      <AdditionalInfo onOpenModal={onOpenModal} />
     </div>
   );
 };
@@ -32,15 +32,16 @@ const GeneralInfo: React.FC = () => {
   return (
     <div className="flex flex-col gap-y-5 ml-10">
       <button onClick={()=> setIsOpen((prev)=> !prev)}>
-          <div className="sm:h-[77px] h-fit py-3 px-2 sm:w-[100%] w-[100%] flex items-center justify-center rounded-lg2 bg-gradient-to-b from-zinc-700/70 to-zinc-800/80">
+          <div className="flex flex-row w-full py-4 px-5 items-center justify-center rounded bg-gradient-to-b from-zinc-700/70 to-zinc-800/80 gap-2">
             <Image src="/images/Solana.png" width={100} height={100} alt={"Solana"} className="w-8 h-8"/>
             <div >
               <h3 className="sm:text-[25px] text-[15px] font-redhat">SOL-PERP</h3>
             </div>
             {!isOpen ? (
-              <AiOutlineCaretDown className='h-8'/>
+              <AiOutlineDown
+ className='h-8'/>
             ) : (
-              <AiOutlineCaretUp className='h-8'/>
+              <AiOutlineUp className='h-8'/>
             )}
           </div>        
       </button>
@@ -64,7 +65,7 @@ const GeneralInfo: React.FC = () => {
 
 const OHLCData: React.FC = () => {
   return (
-    <div className="grid grid-cols-4 gap-x-10 h-full font-redhat hidden 2xl:grid text-[8.72px]">
+    <div className=" grid-cols-4 gap-x-10 h-full font-redhat hidden 2xl:grid text-[8.72px]">
       <OHLCDataItem name="Open" value={16800} max={16900} />
       <OHLCDataItem name="Close" value={3000} max={16900} />
       <OHLCDataItem name="High" value={16900} max={16900} />
@@ -89,7 +90,7 @@ const OHLCDataItem: React.FC<OHLCDataItemProps> = ({ name, value, max }) => {
         <p className="text-white/90">{name}</p>
       </div>
       <div
-        className="bg-[#274738] rounded-t-[8px] w-[70%]"
+        className="bg-[#274738] rounded-t-[8px] w-20"
         style={{
           height: `${(value / max) * 100}%`,
         }}
