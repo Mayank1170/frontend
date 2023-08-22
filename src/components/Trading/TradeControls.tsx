@@ -7,6 +7,20 @@ const options = [0, 25, 50, 75, 100];
 
 export const TradeControls: React.FC = () => {
   const [leverage, setLeverage] = useState(0);
+
+  const [isBuyClicked, setIsBuyClicked] = useState(false);
+  const [isSellClicked, setIsSellClicked] = useState(false);
+
+  const handleBuyClick = () => {
+    setIsBuyClicked(true);
+    setIsSellClicked(false);
+  };
+
+  const handleSellClick = () => {
+    setIsBuyClicked(false);
+    setIsSellClicked(true);
+  };
+
   return (
     <div
       
@@ -25,9 +39,23 @@ export const TradeControls: React.FC = () => {
         <Inputs />
       </div>
       <div className="space-y-4">
-      <div className="space-x-1.5 flex flex-row">
-        <button className="w-[100%] h-10 bg-[#39FFA0]/20 border-2 rounded-md border-green-500 text-green-400 font-redhat font-bold">Buy / Long</button>
-        <button className="w-[100%] h-10 bg-[#3E2B2B] border-2 rounded-md border-[#FF5D5D] text-[#FF5D5D] font-redhat font-bold">Sell / Short</button>
+      <div className="space-x-1.5 flex flex-row bg-zinc-800 rounded-lg p-3">
+      <button
+        onClick={handleBuyClick}
+        className={`w-[100%] h-10 ${
+          isBuyClicked ? 'bg-[#39FFA0]/20 border-green-500 text-green-400' : 'bg-[#373737] border-zinc-500 text-zinc-500'
+        } border-2 rounded-md border-green-500  font-redhat font-bold transition-colors duration-300`}
+      >
+        Buy / Long
+      </button>
+      <button
+        onClick={handleSellClick}
+        className={`w-[100%] h-10 ${
+          isSellClicked ? 'bg-[#3E2B2B] border-[#FF5D5D]' : 'bg-[#373737]  border-zinc-500 text-zinc-500'
+        } border-2 rounded-md border-[#FF5D5D] text-[#FF5D5D] font-redhat font-bold transition-colors duration-300`}
+      >
+        Sell / Short
+      </button>
       </div>
       <div className="flex flex-row justify-between content-center items-center">
       <h3 className="text-[20px] font-semibold font-redhat">Accesible Leverage</h3>
@@ -58,7 +86,7 @@ const Inputs = () => {
       </div>
       <div id="Order Type" className="flex flex-col gap-y-1 font-redhat">
         <label htmlFor="order-type" className="opacity-70">
-          Order TypeBuy
+          Order Type
         </label>
         <select
           name="order-type"
