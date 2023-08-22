@@ -35,7 +35,7 @@ const TradeingPage: NextPageWithLayout = () => {
 <div className="justify-between hidden xl:inline"><Tabs/></div>
 <div className="w-full h-[100%] hidden xl:inline"><ChartTwo/></div>
 </div>
-<div className="w-[30%] mt-3 hidden xl:inline"> <TradeValue/></div>
+<div className="w-[30%] mt-2 hidden xl:inline"> <TradeValue/></div>
 
 </div>
 

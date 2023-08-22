@@ -13,13 +13,13 @@ interface PricingLevelProps {
 export const PricingLevels: React.FC<PricingLevelProps> = ({onOpenModal}) => {
   return (
     <div
-      className="flex bg-[#202020] lg:gap-x-12 justify-between pr-8 items-center rounded-lg border border-white border-opacity-30  border-white/20 h-48"    
+      className="flex bg-[#202020] lg:gap-x-12 justify-between pr-8 items-center rounded-lg border border-white border-opacity-30  border-white/20 h-fit"    
     >
       <div className="">
       <GeneralInfo />
       </div>
       <div className=" h-full ">
-      <OHLCData />
+      {/* <OHLCData /> */}
       </div>
       <AdditionalInfo onOpenModal={onOpenModal} />
     </div>
@@ -30,10 +30,10 @@ const GeneralInfo: React.FC = () => {
 
     const [isOpen, setIsOpen] = useState(false)
   return (
-    <div className="flex flex-col gap-y-5 ml-10">
+    <div className="flex flex-row gap-x-8 ml-0 my-2">                          {/* flex-col => flex-row  and y=> x*/}
       <button onClick={()=> setIsOpen((prev)=> !prev)}>
-          <div className="flex flex-row w-full py-4 px-5 items-center justify-center rounded bg-gradient-to-b from-zinc-700/70 to-zinc-800/80 gap-2">
-            <Image src="/images/Solana.png" width={100} height={100} alt={"Solana"} className="w-8 h-8"/>
+          <div className="flex flex-row w-full p-3 items-center justify-center rounded gap-2">
+            <Image src="/images/Solana.png" width={100} height={100} alt={"Solana"} className="w-12 h-12"/>
             <div >
               <h3 className="sm:text-[25px] text-[15px] font-redhat">SOL-PERP</h3>
             </div>
@@ -45,7 +45,7 @@ const GeneralInfo: React.FC = () => {
             )}
           </div>        
       </button>
-      <div className="flex gap-x-5">
+      <div className="flex gap-x-5 my-4">
         <div className="bg-[#39FFA0]/20 flex items-center gap-x-1 px-2 py-1 rounded-lg">
           <Image
             src="/images/icons/arrow-up.svg"
@@ -106,21 +106,21 @@ interface AdditionalInfoProps {
 const AdditionalInfo: React.FC<AdditionalInfoProps> = ({onOpenModal}) => {
   return (
     <div className="flex h-full gap-x-8 items-center justify-between">
-      <div className="lg:flex flex-col gap-y-6 hidden">
+      <div className="lg:flex flex-row gap-x-6 hidden">                 {/* flex-col => flex-row     and   y => x*/}
       <AdditionalInfoItem value="19.5142" name="Mark Price" />
        
         <AdditionalInfoItem value="$2.77M" name="24H Volume" />
       </div>
-      <div className="lg:flex flex-col gap-y-6 hidden">
+      <div className="lg:flex flex-row gap-x-6 hidden">                  {/* flex-col => flex-row    and   y => x*/}
       <AdditionalInfoItem value="$19.1695" name="Index Price" />
         <AdditionalInfoItem value="-0.00083% in 35:14" name="Predicted Funding Rate" />
    
       </div>
-      <div className="flex flex-col gap-y-6">
+      <div className="flex flex-row gap-x-6 items-center">                             {/* flex-col => flex-row    and   y => x*/}
         <div className="hidden lg:flex">
         <AdditionalInfoItem value="90.1k/200K SOL" name="Open Interest" />
         </div>
-        <button onClick={onOpenModal} className="rounded-lg px-3 py-2 text-[14px] hover:opacity-80 ease-in-out duration-200 transition-opacity" style={{
+        <button onClick={onOpenModal} className="flex rounded-lg px-3 py-0 h-[40px] text-[14px] items-center justify-center hover:opacity-80 ease-in-out duration-200 transition-opacity" style={{
           background: "rgba(77, 74, 74, 0.4)"
         }}>
           View More Details 

@@ -11,7 +11,7 @@ export const Navigator: React.FC = () => {
       setActiveComponent(componentName);
     };
     return (
-        <div className="flex flex-col  h-[calc(100vh-330px)] w-[100%] xl:hidden space-y-4 ">
+        <div className="flex flex-col  h-[calc(100vh-230px)] w-[100%] xl:hidden space-y-4 ">
       <div className="flex flex-row justify-between bg-[#1C1C1C] rounded-lg border border-white/20 ">
 
         <button className={`rounded-lg w-[100%] px-7 py-3.5 font-medium ${activeComponent === 'Chart' ? 'bg-gradient-to-r from-emerald-600 to-emerald-300  text-gray-950 ' : 'bg-[#1C1C1C] text-white'
