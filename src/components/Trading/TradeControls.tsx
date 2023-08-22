@@ -8,7 +8,7 @@ const options = [0, 25, 50, 75, 100];
 export const TradeControls: React.FC = () => {
   const [leverage, setLeverage] = useState(0);
 
-  const [isBuyClicked, setIsBuyClicked] = useState(false);
+  const [isBuyClicked, setIsBuyClicked] = useState(true);
   const [isSellClicked, setIsSellClicked] = useState(false);
 
   const handleBuyClick = () => {
@@ -23,7 +23,7 @@ export const TradeControls: React.FC = () => {
 
   return (
     <div
-      
+
       className="p-8 bg-[#202020] flex-1 w-[100%] h-[100%] rounded-[10px] border-[0.5px] border-white/20"
     >
       <div className="mb-6 font-redhat">
@@ -39,33 +39,42 @@ export const TradeControls: React.FC = () => {
         <Inputs />
       </div>
       <div className="space-y-4">
-      <div className="space-x-1.5 flex flex-row bg-zinc-800 rounded-lg p-3">
-      <button
-        onClick={handleBuyClick}
-        className={`w-[100%] h-10 ${
-          isBuyClicked ? 'bg-[#39FFA0]/20 border-green-500 text-green-400' : 'bg-[#373737] border-zinc-500 text-zinc-500'
-        } border-2 rounded-md border-green-500  font-redhat font-bold transition-colors duration-300`}
-      >
-        Buy / Long
-      </button>
-      <button
-        onClick={handleSellClick}
-        className={`w-[100%] h-10 ${
-          isSellClicked ? 'bg-[#3E2B2B] border-[#FF5D5D]' : 'bg-[#373737]  border-zinc-500 text-zinc-500'
-        } border-2 rounded-md border-[#FF5D5D] text-[#FF5D5D] font-redhat font-bold transition-colors duration-300`}
-      >
-        Sell / Short
-      </button>
-      </div>
-      <div className="flex flex-row justify-between content-center items-center">
-      <h3 className="text-[20px] font-semibold font-redhat">Accesible Leverage</h3>
-      <div className="flex justify-center items-center bg-black w-28 h-8 text-white border-2 rounded-md border-green-500">
-    <h1 className="m-0">200,000$</h1>
-</div>
-      </div>
+        <div className="space-x-1.5 flex flex-row bg-zinc-800 rounded-lg p-3 ml-[-13px]">
+          <button
+            onClick={handleBuyClick}
+            className={`w-[100%] h-10 ${isBuyClicked ? 'bg-[#39FFA0]/20 border-green-400  text-emerald-500' : 'bg-[#373737] border-zinc-500 text-zinc-500'
+              } border-2 rounded-md border-green-500 font-redhat font-bold transition-colors duration-300`}
+          >
+            Buy / Long
+          </button>
+          <button
+            onClick={handleSellClick}
+            className={`w-[100%] h-10 ${isSellClicked ? 'bg-[#3E2B2B] border-[#FF5D5D] text-red-400' : 'bg-[#373737]  border-zinc-500 text-zinc-500'
+              } border-2 rounded-md border-[#FF5D5D]  font-redhat font-bold transition-colors duration-300`}
+          >
+            Sell / Short
+          </button>
+        </div>
+        <div className="flex flex-row justify-between content-center items-center">
+          <h3 className="text-[20px] font-semibold font-redhat">Accesible Leverage</h3>
+          <div className="flex justify-center items-center bg-black w-28 h-8 text-white border-2 rounded-md border-green-500">
+            <h1 className="m-0">200,000$</h1>
+          </div>
+        </div>
       </div>
       <hr className="w-full border-t border-t-white/10 mt-6 mb-6" />
       <Prices />
+      <div
+          className={`flex flex-row justify-center content-center items-center ${
+            isBuyClicked
+              ? ' bg-gradient-to-r from-green-500 to-emerald-300'
+              : isSellClicked
+              ?  'bg-gradient-to-r from-red-400 to-rose-400'
+              : ''
+          } p-3 mt-5 rounded-md font-semibold text-black`}
+        >
+          {isBuyClicked ? 'Long ~3.44845 SOL-PERP' : isSellClicked ? 'Short ~3.44845 SOL-PERP' : ''}
+        </div>
     </div>
   );
 };
@@ -149,11 +158,10 @@ const Leverage: React.FC<LeverageInputProps> = ({
         {options.map((leverage) => (
           <button
             key={leverage}
-            className={`w-[80px] h-[40px] rounded-[10px] border-[0.5px] border-white/20 transition duration-200 ${
-              value === leverage
+            className={`w-[80px] h-[40px] rounded-[10px] border-[0.5px] border-white/20 transition duration-200 ${value === leverage
                 ? "bg-white/40 ring-2 ring-white/70"
                 : "bg-white/20"
-            }`}
+              }`}
             onClick={() => setValue(leverage)}
           >
             {leverage}X
