@@ -7,150 +7,150 @@ const marketValue: MarketDataProps[] = [
     priceValue : 691.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "green",
+    textColor: "#8EF884",
   },
   {
     id: 1,
     priceValue : 18661.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "red",
+    textColor: "#FF5D5D",
   }, {
     id: 1,
     priceValue : 18661.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "red",
+    textColor: "#FF5D5D",
   }, {
     id: 1,
     priceValue : 18661.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "red",
+    textColor: "#FF5D5D",
   }, {
     id: 1,
     priceValue : 18661.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "red",
+    textColor: "#FF5D5D",
   },
   {
     id: 1,
     priceValue : 161.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "red",
+    textColor: "#FF5D5D",
   },
   {
     id: 1,
     priceValue : 461.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "Green",
+    textColor: "#8EF884",
   },
   {
     id: 1,
     priceValue : 200.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "red",
+    textColor: "#FF5D5D",
   },
   {
     id: 1,
     priceValue : 15661.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "red",
+    textColor: "#FF5D5D",
   },
   {
     id: 1,
     priceValue : 321.7,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "green",
+    textColor: "#8EF884",
   },
   {
     id: 1,
     priceValue : 321.7,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "green",
+    textColor: "#8EF884",
   }, {
     id: 1,
     priceValue : 321.7,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "green",
+    textColor: "#8EF884",
   }, {
     id: 1,
     priceValue : 321.7,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "green",
+    textColor: "#8EF884",
   },
    {
     id: 1,
     priceValue : 18661.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "red",
+    textColor: "#FF5D5D",
   },
   {
     id: 1,
     priceValue : 18661.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "red",
+    textColor: "#FF5D5D",
   },{
     id: 1,
     priceValue : 18661.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "red",
+    textColor: "#FF5D5D",
   },{
     id: 1,
     priceValue : 18661.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "red",
+    textColor: "#FF5D5D",
   },{
     id: 1,
     priceValue : 18661.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "red",
+    textColor: "#FF5D5D",
   }, {
     id: 1,
     priceValue : 18661.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "red",
+    textColor: "#FF5D5D",
   }, {
     id: 1,
     priceValue : 18661.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "red",
+    textColor: "#FF5D5D",
   }, {
     id: 1,
     priceValue : 18661.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "red",
+    textColor: "#FF5D5D",
   },
    {
     id: 1,
     priceValue : 18661.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "green",
+    textColor: "#8EF884",
   },
   {
     id: 1,
     priceValue : 61.1,
     sizeValue : 6.3450,
     totalValue: 58.5670,
-    textColor: "red",
+    textColor: "#FF5D5D",
   }
 ]
 
@@ -377,9 +377,6 @@ export const OrderBook: React.FC = () => {
   return (
     <div className="bg-neutral-800 py-3 mt-0 w-[100%] border-[0.5px] border-white/20 rounded-b-lg border-b-white/20">
       <div>
-        {/* <div className="flex items-center gap-x-4 ml-4 mb-4">
-          <h3 className="font-bold text-2xl font-redhat">Order Book</h3>
-        </div> */}
         <div>
           <div className="flex flex-row justify-between font-redhat opacity-50 px-3">
             <h3 className="text-[15px]">Price</h3>
@@ -499,10 +496,6 @@ export const RecentTrades: React.FC = () => {
   return ( 
     <div  className="bg-neutral-800 py-3 mt-0 w-[100%] rounded-b-[10px] border-[0.5px] border-white/20">
       <div>
-      <div className="flex items-center gap-x-4 ml-4 mb-4">
-         
-          <h3 className="font-bold text-2xl font-redhat">Recent Trades</h3>
-        </div>
       <div>
         <div className='flex flex-row justify-between font-redhat opacity-50 px-3'>
           <h3 className="text-[15px]">Price</h3>
