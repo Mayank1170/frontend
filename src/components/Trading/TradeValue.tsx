@@ -375,34 +375,31 @@ export const OrderBook: React.FC = () => {
   return (
     <div className="bg-neutral-800 pt-3 mt-0 w-[100%] border-[0.5px] border-white/20 rounded-b-lg border-b-white/20">
       <div className="xl:h-[calc(100vh-286px)] h-[calc(100vh-339px)] overflow-y-hidden place-content-evenly	">
-        <div>
-          <div className="flex flex-row justify-between font-redhat opacity-50 px-3">
+        <div className="h-[50%] overflow-scroll scrollbar-hide">
+          <div className="sticky z-50 top-0 flex flex-row justify-between font-redhat px-3 pb-1 items-center bg-neutral-800">
             <h3 className="text-[15px]">Price</h3>
             <h3 className="text-[15px]">Size (ETH)</h3>
             <h3 className="text-[15px]">Total(ETH)</h3>
           </div>
           <div
-            className="space-y-1 flex flex-col whitespace-nowrap  scrollbar-hide"
-            style={{ maxHeight: "362px", overflowY: "scroll" }}
-          >
+            className="space-y-1 flex flex-col">
 
             {marketValue.slice(0, 100).map((item, index) => (
               <MarketData key={item.id} {...item} />
             ))}
           </div>
         </div>
-        <div >
+        <div className="flex flex-col h-[50%] overflow-scroll scrollbar-hide">
           <div
-            className="flex flex-row justify-between items-center h-7 font-redhat px-3"
-            style={{ background: "rgba(255,255,255,0.12)" }}
-          >
+            className="sticky h-12 z-50 top-0 flex flex-row justify-between items-center font-redhat px-3"
+            style={{ background: "rgba(255,255,255,0.12)" }}>
             <h3 className="text-[15px]">Spread</h3>
             <h3 className="text-[15px]">1.3</h3>
             <h3 className="text-[15px]">0.06%</h3>
           </div>
           <div
-            className="space-y-1  scrollbar-hide"
-            style={{ maxHeight: "362px", overflowY: "scroll", scrollbarWidth: 'none' }}
+            className="space-y-1 scrollbar-hide"
+            style={{ overflowY: "scroll", scrollbarWidth: 'none' }}
           >
             {spreadValue.slice(0, 100).map((item, index) => (
               <SpreadData key={item.id} {...item} />
@@ -485,7 +482,9 @@ const SpreadData: React.FC<SpreadDataProps> = ({priceValue, sizeValue, totalValu
 export const RecentTrades: React.FC = () => {
   return (
     <div className="bg-neutral-800 py-3 mt-0 w-[100%] rounded-b-[10px] border-[0.5px] border-white/20">
-      <div className="xl:h-[calc(100vh-299px)]  h-[calc(100vh-352px)] ">
+      <div className="xl:h-[calc(100vh-299px)]  h-[calc(100vh-352px)]  scrollbar-hide"
+        style={{ overflowY: "scroll", scrollbarWidth: 'none' }}
+      >
         <div>
           <div className='flex flex-row justify-between font-redhat opacity-50 px-3'>
             <h3 className="text-[15px]">Price</h3>
