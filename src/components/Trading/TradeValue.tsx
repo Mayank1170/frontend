@@ -375,8 +375,8 @@ export const OrderBook: React.FC = () => {
   return (
     <div className="bg-neutral-800 pt-3 mt-0 w-[100%] border-[0.5px] border-white/20 rounded-b-lg border-b-white/20">
       <div className="xl:h-[calc(100vh-286px)] h-[calc(100vh-339px)] overflow-y-hidden place-content-evenly	">
-        <div className="h-[50%] overflow-scroll scrollbar-hide">
-          <div className="sticky z-50 top-0 flex flex-row justify-between font-redhat px-3 pb-1 items-center bg-neutral-800">
+        <div className="flex flex-col h-[50%] overflow-scroll scrollbar-hide">
+          <div className="sticky z-[1] top-0 flex flex-row justify-between font-redhat px-3 pb-1 items-center bg-neutral-800">
             <h3 className="text-[15px]">Price</h3>
             <h3 className="text-[15px]">Size (ETH)</h3>
             <h3 className="text-[15px]">Total(ETH)</h3>
@@ -391,7 +391,7 @@ export const OrderBook: React.FC = () => {
         </div>
         <div className="flex flex-col h-[50%] overflow-scroll scrollbar-hide">
           <div
-            className="sticky h-12 z-50 top-0 flex flex-row justify-between items-center font-redhat px-3"
+            className="sticky h-12 top-0 flex flex-row justify-between items-center font-redhat px-3"
             style={{ background: "rgba(255,255,255,0.12)" }}>
             <h3 className="text-[15px]">Spread</h3>
             <h3 className="text-[15px]">1.3</h3>

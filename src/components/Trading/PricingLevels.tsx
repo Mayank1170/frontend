@@ -45,7 +45,7 @@ const GeneralInfo: React.FC = () => {
           )}
         </div>
       </button>
-      <div className="flex gap-x-5 my-4">
+      <div className="md:flex hidden gap-x-5 my-4">
         <div className="bg-[#39FFA0]/20 flex items-center gap-x-1 px-2 py-1 rounded-lg">
           <Image
             src="/images/icons/arrow-up.svg"
