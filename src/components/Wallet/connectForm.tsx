@@ -361,96 +361,155 @@ export const WalletForm: React.FC = () => {
                   height="45"
                 />
                 <div className="opacity-90 text-white text-[28px] font-medium">
-                  Fund your Account
+                  {balance && balance > 0.1
+                    ? "Wallet Connected Successfully!"
+                    : "Fund your Account"}
                 </div>
               </button>
             </div>
-            <p className="text-[16px] text-white font-bold px-8">
-              You&apos;ll need SOL in your wallet for transaction fees and
-              collateral in your spedX Account for trades. Only deposit funds
-              using the Solana network.
-            </p>
-            <div className="text-[16px] text-white font-medium px-8">
-              Deposit SOL to Your Wallet
-            </div>
-            <div className="w-full px-8">
-              <hr className="w-full border-t-2 opacity-30" />
-            </div>
-            <p className="text-[16px] text-white font-medium opacity-70 px-8">
-              We recommend having a minimum of 0.035 SOL in your wallet. Below
-              is Your Wallet Address:
-            </p>
-            <div className="flex relative left-[35%]">
-              <Image
-                src="/images/qrcode-placeholder.png"
-                width={176}
-                height={176}
-                alt={"qr code placeholder"}
-              />
-            </div>
-            <div className="flex flex-col">
-              <div className="text-[16px] text-[#757575] font-medium px-8">
-                Your Wallet Address
-              </div>
-              <div className="w-[521px] h-[48px] py-4 mt-4 rounded-lg mx-[4vh] gap-3 inline-flex bg-white bg-opacity-[8%] flex items-center justify-between">
-                <div className="text-[16px] text-white pl-4">
-                  {publicKey?.toBase58()}
-                </div>
-                <button
-                  className="flex items-center ml-2"
-                  onClick={() => {
-                    navigator.clipboard.writeText(publicKey?.toBase58()!);
-                  }}
-                >
-                  <div className="text-[15px] text-white text-opacity-60 mr-2">
-                    Copy
-                  </div>
-                  <div className="pr-4">
-                    <Image
-                      src="/images/icons/copy.svg"
-                      width={24}
-                      height={24}
-                      alt="copy button icon"
-                    />
-                  </div>
-                </button>
-              </div>
-              <div className="w-[521px] h-[48px] py-4 mt-2 rounded-lg mx-[4vh] gap-3 inline-flex bg-white bg-opacity-[8%] flex items-center justify-between">
-                <div className="text-[16px] text-white pl-4">
-                  Wallet Balance
-                </div>
-                <div className="text-[15px] text-white text-opacity-60 pr-4">
-                  {balance} SOL
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="text-[16px] text-[#757575] font-medium px-8">
-                Deposit Collateral to Drift
-              </div>
-              <button className="mx-8 mt-4">
-                <div className="w-[521px] h-[48px] relative bg-white bg-opacity-10 rounded-lg justify-center items-center inline-flex duration-150 hover:transition-all hover:shadow-teal-500 hover:shadow-md">
-                  <div className="flex items-center justify-start gap-2">
-                    <div className="justify-center items-center gap-[330px] flex">
-                      <div className="text-white text-[16px] font-normal">
-                        Confirm Deposit
+            {balance && balance > 0.1 ? (
+              <>
+                <p className="text-[16px] text-white px-8">
+                  Congrats! You have officially connected your wallet to SpedX!
+                  You can now start depositing funds and start trading.
+                </p>
+
+                <p className="text-[16px] text-white px-8">
+                  Some things you can do on SpedX
+                  <ul className="text-[16px] text-white px-8 list-disc">
+                    <li>Start depositing and earn yield</li>
+                    <li>Trade perpetuals and spot assets</li>
+
+                    <li>
+                      Add liquidity to our market maker and earn risk-free yield
+                    </li>
+                    <li>
+                      Deposit funds into our liquidator client and earn yield on
+                      every liquidation
+                    </li>
+                    <li>
+                      Make the protocol safer by depositing to the Insurance
+                      Fund.
+                    </li>
+                  </ul>
+                </p>
+
+                <div>
+                  <button className="mx-8 mt-4">
+                    <div className="w-[521px] h-[48px] relative bg-white bg-opacity-10 rounded-lg justify-center items-center inline-flex duration-150 hover:transition-all hover:shadow-teal-500 hover:shadow-md">
+                      <div className="flex items-center justify-start gap-2">
+                        <div className="justify-center items-center gap-[330px] flex">
+                          <div className="text-white text-[16px] font-normal">
+                            Deposit your first $$$ and start trading!
+                          </div>
+                        </div>
                       </div>
+                    </div>
+                  </button>
+
+                  <button className="mx-8 mt-4">
+                    <div className="w-[521px] h-[48px] relative bg-white bg-opacity-10 rounded-lg justify-center items-center inline-flex duration-150 hover:transition-all hover:shadow-teal-500 hover:shadow-md">
+                      <div className="flex items-center justify-start gap-2">
+                        <div className="justify-center items-center gap-[330px] flex">
+                          <div className="text-white text-[16px] font-normal">
+                            Earn yield through our aggregated yield avenue
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <p className="text-[16px] text-white font-bold px-8">
+                  You&apos;ll need SOL in your wallet for transaction fees and
+                  collateral in your spedX Account for trades. Only deposit
+                  funds using the Solana network.
+                </p>
+                <div className="text-[16px] text-white font-medium px-8">
+                  Deposit SOL to Your Wallet
+                </div>
+                <div className="w-full px-8">
+                  <hr className="w-full border-t-2 opacity-30" />
+                </div>
+                <p className="text-[16px] text-white font-medium opacity-70 px-8">
+                  We recommend having a minimum of 0.035 SOL in your wallet.
+                  Below is Your Wallet Address:
+                </p>
+                <div className="flex relative left-[35%]">
+                  <Image
+                    src="/images/qrcode-placeholder.png"
+                    width={176}
+                    height={176}
+                    alt={"qr code placeholder"}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <div className="text-[16px] text-[#757575] font-medium px-8">
+                    Your Wallet Address
+                  </div>
+                  <div className="w-[521px] h-[48px] py-4 mt-4 rounded-lg mx-[4vh] gap-3 inline-flex bg-white bg-opacity-[8%] flex items-center justify-between">
+                    <div className="text-[16px] text-white pl-4">
+                      {publicKey?.toBase58()}
+                    </div>
+                    <button
+                      className="flex items-center ml-2"
+                      onClick={() => {
+                        navigator.clipboard.writeText(publicKey?.toBase58()!);
+                      }}
+                    >
+                      <div className="text-[15px] text-white text-opacity-60 mr-2">
+                        Copy
+                      </div>
+                      <div className="pr-4">
+                        <Image
+                          src="/images/icons/copy.svg"
+                          width={24}
+                          height={24}
+                          alt="copy button icon"
+                        />
+                      </div>
+                    </button>
+                  </div>
+                  <div className="w-[521px] h-[48px] py-4 mt-2 rounded-lg mx-[4vh] gap-3 inline-flex bg-white bg-opacity-[8%] flex items-center justify-between">
+                    <div className="text-[16px] text-white pl-4">
+                      Wallet Balance
+                    </div>
+                    <div className="text-[15px] text-white text-opacity-60 pr-4">
+                      {balance} SOL
                     </div>
                   </div>
                 </div>
-              </button>
-              <button className="mx-8 mt-4">
-                <div className="w-[521px] h-[48px] relative rounded-lg border border-white border-opacity-30 justify-center items-center inline-flex duration-150 hover:transition-all hover:shadow-teal-500 hover:shadow-md">
-                  <div className="flex items-center justify-start gap-2">
-                    <div className="justify-center items-center gap-[330px] flex">
-                      <div className="text-white text-[16px] font-normal">
-                        Deposit Later
+                <div>
+                  <div className="text-[16px] text-[#757575] font-medium px-8">
+                    Deposit Collateral to Drift
+                  </div>
+                  <button className="mx-8 mt-4">
+                    <div className="w-[521px] h-[48px] relative bg-white bg-opacity-10 rounded-lg justify-center items-center inline-flex duration-150 hover:transition-all hover:shadow-teal-500 hover:shadow-md">
+                      <div className="flex items-center justify-start gap-2">
+                        <div className="justify-center items-center gap-[330px] flex">
+                          <div className="text-white text-[16px] font-normal">
+                            Confirm Deposit
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </button>
+                  <button className="mx-8 mt-4">
+                    <div className="w-[521px] h-[48px] relative rounded-lg border border-white border-opacity-30 justify-center items-center inline-flex duration-150 hover:transition-all hover:shadow-teal-500 hover:shadow-md">
+                      <div className="flex items-center justify-start gap-2">
+                        <div className="justify-center items-center gap-[330px] flex">
+                          <div className="text-white text-[16px] font-normal">
+                            Deposit Later
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
                 </div>
-              </button>
-            </div>
+              </>
+            )}
           </div>
         );
       default:
