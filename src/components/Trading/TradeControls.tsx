@@ -110,23 +110,23 @@ const Inputs = () => {
         <label htmlFor="price" className="opacity-70 ">
           Price (USD)
         </label>
-        <div className="flex items-center gap-x-2 bg-[#FFFFFF26] rounded-lg px-4 py-2 w-full border border-white/20">
+        <div className="flex items-center justify-center bg-[#FFFFFF26] rounded-lg px-4 py-2 w-full border border-white/20">
           <input
             type="string"
             name="price"
             id="price"
-            className="flex-1 bg-transparent w-[4.5rem]"
+            className="flex-1 px-2 bg-transparent w-[4.5rem]"
           />
           <span>USD</span>
         </div>
       </div>
       <div id="crypto-input">
-        <div className="flex items-center gap-x-2 bg-[#FFFFFF26] rounded-lg px-4 py-2 w-full border border-white/20 font-redhat">
+        <div className="flex items-center justify-center bg-[#FFFFFF26] rounded-lg px-4 py-2 w-full border border-white/20 font-redhat">
           <input
             type="string"
             name="crypto"
             id="crypto"
-            className="bg-transparent p-0 w-20"
+            className="bg-transparent px-2 w-20"
           />
           <Image
             src="/images/btc.png"
