@@ -64,8 +64,8 @@ export const TradeControls: React.FC = () => {
       </div>
       <hr className="w-full border-t border-t-white/10 mt-6 mb-6" />
       <Prices />
-      <div
-          className={`flex flex-row justify-center content-center items-center ${
+      <button
+          className={`flex flex-row w-full justify-center content-center items-center ${
             isBuyClicked
               ? ' bg-gradient-to-r from-green-500 to-emerald-300'
               : isSellClicked
@@ -74,7 +74,7 @@ export const TradeControls: React.FC = () => {
           } p-3 mt-5 rounded-md font-semibold text-black`}
         >
           {isBuyClicked ? 'Long ~3.44845 SOL-PERP' : isSellClicked ? 'Short ~3.44845 SOL-PERP' : ''}
-        </div>
+        </button>
     </div>
   );
 };
