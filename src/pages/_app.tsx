@@ -28,7 +28,7 @@ const MyApp: NextComponentType<
     Component.getLayout ?? ((page: any) => <AppLayout>{page}</AppLayout>);
   const pageComponent = getLayout(<Component {...pageProps} />);
 
-  const endpoint = useMemo(() => clusterApiUrl("devnet"), []);
+  const endpoint = useMemo(() => "https://solana-mainnet.rpc.extrnode.com", []);
 
   return (
     <>

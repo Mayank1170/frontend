@@ -196,9 +196,7 @@ export const WalletForm: React.FC = () => {
                       Connecting...
                     </div>
                     <div className="opacity-40 text-white text-[16px] font-normal">
-                      {/* Please connect your {wallet}{" "}
-                      {wallet.includes("Wallet") ? "" : "Wallet"} */}
-                      Please approve the connection request in your wallet
+                      Please connect your {wallet?.adapter.name} wallet
                     </div>
                   </div>
                   <div className="absolute pt-5 right-5">
@@ -331,14 +329,14 @@ export const WalletForm: React.FC = () => {
                 </div>
               </div>
             </div>
-            <button
+            {/* <button
               onClick={async () => {
                 await disconnect();
                 console.log("disconnected");
               }}
             >
               disconnect
-            </button>
+            </button> */}
           </div>
         );
       case 4:
@@ -369,13 +367,15 @@ export const WalletForm: React.FC = () => {
             </div>
             {balance && balance > 0.1 ? (
               <>
-                <p className="text-[16px] text-white px-8">
+                <p className="text-[20px] text-white px-8">
                   Congrats! You have officially connected your wallet to SpedX!
                   You can now start depositing funds and start trading.
                 </p>
 
-                <p className="text-[16px] text-white px-8">
-                  Some things you can do on SpedX
+                <div className="text-[16px] text-white px-8">
+                  <p className="text-[20px] mb-2">
+                    Some things you can do on SpedX:
+                  </p>
                   <ul className="text-[16px] text-white px-8 list-disc">
                     <li>Start depositing and earn yield</li>
                     <li>Trade perpetuals and spot assets</li>
@@ -392,10 +392,15 @@ export const WalletForm: React.FC = () => {
                       Fund.
                     </li>
                   </ul>
-                </p>
+                </div>
 
                 <div>
-                  <button className="mx-8 mt-4">
+                  <button
+                    className="mx-8 mt-4"
+                    onClick={() => {
+                      router.push("/trade");
+                    }}
+                  >
                     <div className="w-[521px] h-[48px] relative bg-white bg-opacity-10 rounded-lg justify-center items-center inline-flex duration-150 hover:transition-all hover:shadow-teal-500 hover:shadow-md">
                       <div className="flex items-center justify-start gap-2">
                         <div className="justify-center items-center gap-[330px] flex">
@@ -407,7 +412,12 @@ export const WalletForm: React.FC = () => {
                     </div>
                   </button>
 
-                  <button className="mx-8 mt-4">
+                  <button
+                    className="mx-8 mt-4"
+                    onClick={() => {
+                      router.push("/pools");
+                    }}
+                  >
                     <div className="w-[521px] h-[48px] relative bg-white bg-opacity-10 rounded-lg justify-center items-center inline-flex duration-150 hover:transition-all hover:shadow-teal-500 hover:shadow-md">
                       <div className="flex items-center justify-start gap-2">
                         <div className="justify-center items-center gap-[330px] flex">
