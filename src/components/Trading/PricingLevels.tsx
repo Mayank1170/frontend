@@ -2,8 +2,8 @@ import { numberWithCommas } from "@/utils/numbers";
 import { ViewMoreModal } from "./ViewMoreModal";
 import Image from "next/image";
 import { useState } from 'react'
-import { AiOutlineDown } from 'react-icons/ai'
-import { AiOutlineUp } from 'react-icons/ai'
+import { BiChevronDown } from 'react-icons/bi'
+import { BiChevronUp } from 'react-icons/bi'
 
 
 interface PricingLevelProps {
@@ -13,13 +13,13 @@ interface PricingLevelProps {
 export const PricingLevels: React.FC<PricingLevelProps> = ({ onOpenModal }) => {
   return (
     <div
-      className="flex bg-[#202020] lg:gap-x-12 justify-between pr-8 items-center rounded-lg border border-white border-opacity-30  border-white/20 h-fit"
+      className="flex bg-[#202020] xl:justify-evenly justify-between pr-8 items-center rounded-lg border border-white border-opacity-30  border-white/20 h-fit"
     >
       <div className="">
         <GeneralInfo />
       </div>
       <div className=" h-full ">
-        {/* <OHLCData /> */}
+        <ExtraInfo />
       </div>
       <AdditionalInfo onOpenModal={onOpenModal} />
     </div>
@@ -30,23 +30,30 @@ const GeneralInfo: React.FC = () => {
 
   const [isOpen, setIsOpen] = useState(false)
   return (
-    <div className="flex flex-row gap-x-8 ml-0 my-2">                          {/* flex-col => flex-row  and y=> x*/}
+    <div className="flex flex-row  ml-0 my-2">                          {/* flex-col => flex-row  and y=> x*/}
       <button onClick={() => setIsOpen((prev) => !prev)}>
         <div className="flex flex-row w-full p-3 items-center justify-center rounded gap-2">
           <Image src="/images/Solana.png" width={100} height={100} alt={"Solana"} className="w-12 h-12 xl:flex hidden" />
           <div >
-            <h3 className="sm:text-[25px] text-[15px] font-redhat">SOL-PERP</h3>
+            <h3 className="sm:text-[25px] text-[15px] font-redhat ">SOL-PERP</h3>
           </div>
           {!isOpen ? (
-            <AiOutlineDown
-              className='h-8' />
+            <BiChevronDown
+              className='h-[25px] w-[25px]' />
           ) : (
-            <AiOutlineUp className='h-8' />
+            <BiChevronUp className='h-[25px] w-[25px]' />
           )}
         </div>
       </button>
-      <div className="md:flex hidden gap-x-5 my-4">
-        <div className="bg-[#39FFA0]/20 flex items-center gap-x-1 px-2 py-1 rounded-lg">
+    </div>
+  );
+};
+
+const ExtraInfo: React.FC = () => {
+  return (
+    <div>
+      <div className="xl:flex hidden gap-x-5 my-4">
+        <div className="bg-[#39FFA0]/20 w-[100px] flex items-center gap-x-1 px-2 py-1 rounded-lg">
           <Image
             src="/images/icons/arrow-up.svg"
             width={21}
@@ -60,8 +67,8 @@ const GeneralInfo: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const OHLCData: React.FC = () => {
   return (
@@ -107,7 +114,7 @@ const AdditionalInfo: React.FC<AdditionalInfoProps> = ({ onOpenModal }) => {
   return (
     <div className="flex h-full gap-x-8 items-center justify-between">
       <div className="flex flex-row gap-x-6">
-        
+
         <div >               {/* flex-col => flex-row     and   y => x*/}
           <AdditionalInfoItem value="19.5142" name="Mark Price" />
         </div>
@@ -124,7 +131,7 @@ const AdditionalInfo: React.FC<AdditionalInfoProps> = ({ onOpenModal }) => {
         <div className="hidden xl:flex">
           <AdditionalInfoItem value="90.1k/200K SOL" name="Open Interest" />
         </div>
-        <button onClick={onOpenModal} className="xl:flex hidden rounded-lg px-3 py-0 h-[40px] text-[14px] items-center justify-center hover:opacity-80 ease-in-out duration-200 transition-opacity" style={{
+        <button onClick={onOpenModal} className="xl:flex w-fit h-fit hidden rounded-lg px-3 py-3 text-[14px] items-center justify-center hover:opacity-80 ease-in-out duration-200 transition-opacity" style={{
           background: "rgba(77, 74, 74, 0.4)"
         }}>
           View More Details
