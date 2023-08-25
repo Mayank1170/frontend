@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
-import { useWallet } from "@solana/wallet-adapter-react";
+import { useWallet, useConnection } from "@solana/wallet-adapter-react";
 import Image from "next/image";
+import { useAsyncMemo } from "use-async-memo";
+import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import LottieAnimation from "@/utils/lottieAnimation";
 import animationData from "../../../public/images/lottie/loading.json";
 
@@ -76,6 +78,14 @@ export const WalletForm: React.FC = () => {
   const [modal, setModal] = useState(false);
 
   const { publicKey, select, wallets, wallet, disconnect } = useWallet();
+  const { connection } = useConnection();
+
+  const balance = useAsyncMemo(async () => {
+    if (!publicKey) {
+      return;
+    }
+    return (await connection.getBalance(publicKey)) / LAMPORTS_PER_SOL;
+  }, [publicKey, connection]);
 
   // const walletAddress = "7QLm...Pe73";
   // const walletBalance = "0.00295 SOL";
@@ -205,8 +215,8 @@ export const WalletForm: React.FC = () => {
                     <div>
                       <div className="left-[13px] top-0 absolute">
                         <Image
-                          src={wallet?.adapter.icon}
-                          alt={wallet?.adapter.name}
+                          src={wallet?.adapter.icon as string}
+                          alt={wallet?.adapter.name as string}
                           width={23}
                           height={16}
                         />
@@ -410,9 +420,7 @@ export const WalletForm: React.FC = () => {
                   Wallet Balance
                 </div>
                 <div className="text-[15px] text-white text-opacity-60 pr-4">
-                  {/* {walletBalance} */}
-                  wallet balance function that fetches real balance needs to be
-                  implemented
+                  {balance} SOL
                 </div>
               </div>
             </div>

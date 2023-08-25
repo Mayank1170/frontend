@@ -3338,6 +3338,11 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
+use-async-memo@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/use-async-memo/-/use-async-memo-1.2.4.tgz#3122eea51645ee56b9ed699eaafcd74af0ad77b0"
+  integrity sha512-J4RLCD/Gxh3VYRldO6xLLYuqwyOfXhFOqlVNCAAA+kvhE2DNsUB6YLJKvSJ8GCS3aiSiI8jJ/AvI7GYWCa/Djw==
+
 use-isomorphic-layout-effect@^1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/use-isomorphic-layout-effect/-/use-isomorphic-layout-effect-1.1.2.tgz"
