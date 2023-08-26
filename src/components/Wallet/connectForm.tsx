@@ -434,20 +434,20 @@ export const WalletForm: React.FC = () => {
               </>
             ) : (
               <>
-                <p className="text-[16px] text-white font-bold px-8">
+                <p className="text-[20px] text-white font-bold px-8">
                   You&apos;ll need SOL in your wallet for transaction fees and
                   collateral in your spedX Account for trades. Only deposit
                   funds using the Solana network.
                 </p>
-                <div className="text-[16px] text-white font-medium px-8">
+                <div className="text-[20px] text-white font-medium px-8">
                   Deposit SOL to Your Wallet
                 </div>
                 <div className="w-full px-8">
                   <hr className="w-full border-t-2 opacity-30" />
                 </div>
-                <p className="text-[16px] text-white font-medium opacity-70 px-8">
-                  We recommend having a minimum of 0.035 SOL in your wallet.
-                  Below is Your Wallet Address:
+                <p className="text-[20px] text-white font-medium opacity-70 px-8">
+                  We recommend having a minimum of 0.1 SOL in your wallet. Below
+                  is Your Wallet Address:
                 </p>
                 <div className="flex relative left-[35%]">
                   <Image
