@@ -12,6 +12,13 @@ import {
 import "@solana/wallet-adapter-react-ui/styles.css";
 import { clusterApiUrl } from "@solana/web3.js";
 import { useMemo } from "react";
+import {
+  PhantomWalletAdapter,
+  BackpackWalletAdapter,
+  GlowWalletAdapter,
+  SolflareWalletAdapter,
+  BraveWalletAdapter,
+} from "@solana/wallet-adapter-wallets";
 
 import { pilatExtended } from "@/utils/fonts";
 import { Red_Hat_Display } from "next/font/google";
@@ -30,10 +37,21 @@ const MyApp: NextComponentType<
 
   const endpoint = useMemo(() => "https://solana-mainnet.rpc.extrnode.com", []);
 
+  const wallets = useMemo(
+    () => [
+      new PhantomWalletAdapter(),
+      new SolflareWalletAdapter(),
+      new BraveWalletAdapter(),
+      new GlowWalletAdapter(),
+      new BackpackWalletAdapter(),
+    ],
+    []
+  );
+
   return (
     <>
       <ConnectionProvider endpoint={endpoint}>
-        <WalletProvider wallets={[]} autoConnect>
+        <WalletProvider wallets={wallets} autoConnect>
           <style jsx global>
             {`
               :root {

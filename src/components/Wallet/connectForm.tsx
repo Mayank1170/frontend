@@ -105,6 +105,18 @@ export const WalletForm: React.FC = () => {
     [wallets]
   );
 
+  const notDetectedWallets = useMemo(
+    () =>
+      wallets.filter(
+        (wallet) =>
+          !(
+            wallet.readyState === "Installed" ||
+            wallet.readyState === "Loadable"
+          )
+      ),
+    [availableWallets]
+  );
+
   useEffect(() => {
     if (publicKey) {
       setActiveBars(3);
@@ -175,6 +187,7 @@ export const WalletForm: React.FC = () => {
               <div className="fixed inset-0 z-50 flex flex-col items-center justify-center backdrop-filter backdrop-blur-sm">
                 <div
                   className="w-[799px] h-[421px] relative rounded-2xl ring-teal-500 ring-1 ring-opacity-5"
+                  allets
                   style={{ backgroundImage: "url('/images/modal-bg.png')" }}
                 >
                   <div className="left-[221.50px] top-[49px] absolute justify-start items-center gap-[9px] inline-flex">
@@ -264,71 +277,54 @@ export const WalletForm: React.FC = () => {
                 <div className="scroll-container">
                   <ul className="space-y-4 max-h-[45vh]">
                     {availableWallets.map((option) => (
-                      <div
+                      <button
                         key={option.adapter.name}
-                        className="flex-grow m-1 mr-5 duration-150 rounded-lg ring-white ring-1 ring-opacity-20 hover:transition-all hover:shadow-teal-500 hover:shadow-sm"
+                        className="flex-grow w-[90%] m-1 mr-5 duration-150 rounded-lg ring-white ring-1 ring-opacity-20 hover:transition-all hover:shadow-teal-500 hover:shadow-sm relative"
+                        onClick={() => {
+                          select(option.adapter.name);
+                          setModal(true);
+                        }}
                       >
-                        <div
-                          onClick={(e) => {
-                            setModal(true);
-                            // try {
-                            select(option.adapter.name);
-                            // } catch (e) {
-                            //   setModal(false);
-                            // }
-                            // if (!e.defaultPrevented) {
-                            //   connect()
-                            //     .then(() => {
-                            //       console.log("Connected!");
-                            //       setActiveForm(4);
-                            //       setActiveBars(3);
-                            //     })
-                            //     .catch((e) => {
-                            //       console.error(e);
-                            //     })
-                            //     .finally(() => {
-                            //       setModal(false);
-                            //     });
-                            // }
-                            // setTimeout(() => {
-                            //   // Note that this will not pause when the user clicks on the cancel button. Handle appropriately
-                            //   select(option.adapter.name);
-                            //   if (!e.defaultPrevented) {
-                            //     connect()
-                            //       .then(() => {
-                            //         console.log("Connected!");
-                            //       })
-                            //       .catch((e) => {
-                            //         console.error(e);
-                            //       });
+                        <p className="absolute px-2 py-1 text-xs text-white rounded-full -top-2 -right-6 bg-white/10 backdrop-blur-md">
+                          Detected
+                        </p>
 
-                            //     setModal(false);
-                            //   }
-                            //   setActiveForm(4);
-                            //   setActiveBars(3);
-                            // }, 5000);
-                          }}
-                          className="cursor-pointer"
-                        >
-                          {/* Simulate user logging into their wallets */}
-                          <li className="flex items-center gap-4 px-4 py-3">
-                            <Image
-                              src={option.adapter.icon}
-                              alt={option.adapter.name}
-                              width={28}
-                              height={28}
-                            />
-                            <div className="text-white text-[20px] text-opacity-60">
-                              {option.adapter.name}
-                            </div>
-                            {/* {option.detected && (
-                              <span className="text-sm text-white text-opacity-20">
-                                (Detected)
-                              </span>
-                            )} */}
-                          </li>
-                        </div>
-                      </div>
+                        <li className="flex items-center gap-4 px-4 py-3">
+                          <Image
+                            src={option.adapter.icon}
+                            alt={option.adapter.name}
+                            width={28}
+                            height={28}
+                          />
+                          <div className="text-white text-[20px] text-opacity-60">
+                            {option.adapter.name}
+                          </div>
+                        </li>
+                      </button>
+                    ))}
+
+                    {notDetectedWallets.map((option) => (
+                      <button
+                        key={option.adapter.name}
+                        className="flex-grow w-[90%] m-1 mr-5 duration-150 rounded-lg ring-white ring-1 ring-opacity-20 hover:transition-all relative cursor-not-allowed bg-opacity-60"
+                        disabled
+                      >
+                        <p className="absolute px-2 py-1 text-xs text-white rounded-full -top-2 -right-6 bg-white/10 backdrop-blur-md">
+                          Not Installed
+                        </p>
+
+                        <li className="flex items-center gap-4 px-4 py-3">
+                          <Image
+                            src={option.adapter.icon}
+                            alt={option.adapter.name}
+                            width={28}
+                            height={28}
+                          />
+                          <div className="text-white text-[20px] text-opacity-60">
+                            {option.adapter.name}
+                          </div>
+                        </li>
+                      </button>
                     ))}
                     <div className="pt-[1px]"></div>
                   </ul>
