@@ -90,6 +90,12 @@ export const WalletForm: React.FC = () => {
   // const walletAddress = "7QLm...Pe73";
   // const walletBalance = "0.00295 SOL";
 
+  useEffect(() => {
+    if (!wallet && modal) {
+      setModal(false);
+    }
+  }, [modal, wallet]);
+
   const availableWallets = useMemo(
     () =>
       wallets.filter(
@@ -265,11 +271,11 @@ export const WalletForm: React.FC = () => {
                         <div
                           onClick={(e) => {
                             setModal(true);
-                            try {
-                              select(option.adapter.name);
-                            } catch (e) {
-                              setModal(false);
-                            }
+                            // try {
+                            select(option.adapter.name);
+                            // } catch (e) {
+                            //   setModal(false);
+                            // }
                             // if (!e.defaultPrevented) {
                             //   connect()
                             //     .then(() => {
@@ -305,14 +311,14 @@ export const WalletForm: React.FC = () => {
                           className="cursor-pointer"
                         >
                           {/* Simulate user logging into their wallets */}
-                          <li className="flex items-center gap-3 p-2">
+                          <li className="flex items-center gap-4 px-4 py-3">
                             <Image
                               src={option.adapter.icon}
                               alt={option.adapter.name}
-                              width={22}
-                              height={22}
+                              width={28}
+                              height={28}
                             />
-                            <div className="text-white text-[16px] text-opacity-60">
+                            <div className="text-white text-[20px] text-opacity-60">
                               {option.adapter.name}
                             </div>
                             {/* {option.detected && (
