@@ -52,7 +52,7 @@ const GeneralInfo: React.FC = () => {
           />
           <p className="text-[#39FFA0]">+6.5%</p>
         </div>
-        <div className="bg-[#FFFFFF26] flex items-center px-4 py-1 rounded-lg">
+        <div className="bg-[#FFFFFF26] flex items-center px-3 py-1 rounded-lg">
           +112
         </div>
       </div>
@@ -107,7 +107,7 @@ const AdditionalInfo: React.FC<AdditionalInfoProps> = ({ onOpenModal }) => {
       <div className="xl:flex  px-2 hidden"><AdditionalInfoItem value="$2.77M" name="24H Volume" /></div>
       <div className="xl:flex  hidden"><AdditionalInfoItem value="$19.1695" name="Index Price" /></div>
       <div className="xl:flex px-2  hidden"><AdditionalInfoItem value="-0.00083% in 35:14" name="Predicted Funding Rate" /></div>
-      <div className="hidden pr-1 xl:flex"><AdditionalInfoItem value="90.1k/200K SOL" name="Open Interest" /></div>
+      <div className="hidden pr-2 xl:flex"><AdditionalInfoItem value="90.1k/200K SOL" name="Open Interest" /></div>
       <button onClick={onOpenModal} className="xl:flex w-fit h-fit hidden rounded-lg px-2 py-3 xl:text-[11px] text-[14px] items-center justify-center hover:opacity-80 ease-in-out duration-200 transition-opacity" style={{
           background: "rgba(77, 74, 74, 0.4)"
         }}>
