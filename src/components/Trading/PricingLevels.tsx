@@ -68,6 +68,7 @@ const AdditionalInfo: React.FC<AdditionalInfoProps> = ({ onOpenModal }) => {
   return (
     <div className="flex h-full items-center xl:mr-0 mr-5 2xl:gap-x-6  justify-end xl:justify-between">
       <div className="flex flex-row"><AdditionalInfoItem value="19.5142" name="Mark Price" /></div>
+    
       <div className="xl:flex  px-2 hidden"><AdditionalInfoItem value="$2.77M" name="24H Volume" /></div>
       <div className="xl:flex  hidden"><AdditionalInfoItem value="$19.1695" name="Index Price" /></div>
       <div className="xl:flex px-2  hidden"><AdditionalInfoItem value="-0.00083% in 35:14" name="Predicted Funding Rate" /></div>
