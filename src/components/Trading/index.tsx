@@ -5,6 +5,5 @@ export { ViewMoreModal } from "./ViewMoreModal"
 export { Market } from "./Market";
 export { Tabs } from "./Tabs";
 export { Navigator } from './Navigator';
-export { DepthChart } from './DepthChart'
 export { ChartTwo } from "./ChartTwo";
 export { Tables } from "./Tables";
