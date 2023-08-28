@@ -38,7 +38,7 @@ const GeneralInfo: React.FC = () => {
             <BiChevronDown
               className='h-[25px] w-[25px] xl:h-[15px] xl:w-[15px]' />
           ) : (
-            <BiChevronUp className='h-[25px] w-[25px]' />
+            <BiChevronUp className='h-[25px] w-[25px]  xl:h-[15px] xl:w-[15px]' />
           )}
         </div>
       </button>
@@ -60,50 +60,15 @@ const GeneralInfo: React.FC = () => {
   )
 }
 
-// const OHLCData: React.FC = () => {
-//   return (
-//     <div className=" grid-cols-4 gap-x-10 h-full font-redhat hidden 2xl:grid text-[8.72px]">
-//       <OHLCDataItem name="Open" value={16800} max={16900} />
-//       <OHLCDataItem name="Close" value={3000} max={16900} />
-//       <OHLCDataItem name="High" value={16900} max={16900} />
-//       <OHLCDataItem name="Low" value={7000} max={16900} />
-//     </div>
-//   );
-// };
-
-// interface OHLCDataItemProps {
-//   name: string;
-//   value: number;
-//   max: number;
-// }
-
-// const OHLCDataItem: React.FC<OHLCDataItemProps> = ({ name, value, max }) => {
-//   return (
-//     <div className="flex flex-col justify-between h-full pt-10 gap-y-8">
-//       <div className="font-pilat">
-//         <h3 className="font-bold text-md 2xl:text-lg text-white/90">
-//           {numberWithCommas(value)}
-//         </h3>
-//         <p className="text-white/90">{name}</p>
-//       </div>
-//       <div
-//         className="bg-[#274738] rounded-t-[8px] w-20"
-//         style={{
-//           height: `${(value / max) * 100}%`,
-//         }}
-//       />
-//     </div>
-//   );
-// };
-
 interface AdditionalInfoProps {
   onOpenModal: () => void; // Prop received from PricingLevels
 }
 
 const AdditionalInfo: React.FC<AdditionalInfoProps> = ({ onOpenModal }) => {
   return (
-    <div className="flex h-full items-center xl:mr-0 mr-5 justify-end xl:justify-between">
-      <div className="flex flex-row xl:pr:[30px]"><AdditionalInfoItem value="19.5142" name="Mark Price" /></div>
+    <div className="flex h-full items-center xl:mr-0 mr-5 2xl:gap-x-6  justify-end xl:justify-between">
+      <div className="flex flex-row"><AdditionalInfoItem value="19.5142" name="Mark Price" /></div>
+    
       <div className="xl:flex  px-2 hidden"><AdditionalInfoItem value="$2.77M" name="24H Volume" /></div>
       <div className="xl:flex  hidden"><AdditionalInfoItem value="$19.1695" name="Index Price" /></div>
       <div className="xl:flex px-2  hidden"><AdditionalInfoItem value="-0.00083% in 35:14" name="Predicted Funding Rate" /></div>
@@ -128,7 +93,7 @@ const AdditionalInfoItem: React.FC<AdditionalInfoItemProps> = ({
 }) => {
   return (
     <div className="flex flex-col">
-      <p className="text-white/80 2xl:text-[20px] xl:text-[13px] text-[25px] font-bold font-redhat">{value}</p>
+      <p className="text-white/80  xl:text-[13px] text-[25px] font-bold font-redhat">{value}</p>
       <p className="text-[14px] text-white/40">{name}</p>
     </div>
   );

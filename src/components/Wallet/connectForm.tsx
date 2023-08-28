@@ -187,7 +187,6 @@ export const WalletForm: React.FC = () => {
               <div className="fixed inset-0 z-50 flex flex-col items-center justify-center backdrop-filter backdrop-blur-sm">
                 <div
                   className="w-[799px] h-[421px] relative rounded-2xl ring-teal-500 ring-1 ring-opacity-5"
-                  
                   style={{ backgroundImage: "url('/images/modal-bg.png')" }}
                 >
                   <div className="left-[221.50px] top-[49px] absolute justify-start items-center gap-[9px] inline-flex">
