@@ -65,3 +65,4 @@ export const DepthChart: React.FC = () => {
     </div>
   );
 };
+
