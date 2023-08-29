@@ -81,7 +81,7 @@ export const TradeControls: React.FC = () => {
 
 const Inputs = () => {
   return (
-    <div className="grid grid-cols-2 grid-rows-2 max-w-[300px] gap-x-6 gap-y-4 items-end">
+    <div className="grid grid-cols-2 grid-rows-2 w-full gap-x-6 gap-y-4 items-end">
       <div id="quantity-input" className="flex flex-col gap-y-1">
         <label htmlFor="quantity" className="opacity-70">
           Quantity
@@ -90,7 +90,7 @@ const Inputs = () => {
           type="string"
           name="quantity"
           id="quantity"
-          className="w-full bg-[#FFFFFF26] rounded-lg px-4 py-2 border border-white/20"
+          className="w-full bg-[#FFFFFF26] rounded px-4 py-2 border border-white/20"
         />
       </div>
       <div id="Order Type" className="flex flex-col gap-y-1 font-redhat">
@@ -100,7 +100,7 @@ const Inputs = () => {
         <select
           name="order-type"
           id="order-type"
-          className="w-full bg-[#FFFFFF26] rounded-lg px-4 py-2 border border-white/20 "
+          className="w-full bg-[#FFFFFF26] rounded px-4 py-2 border border-white/20 "
         >
           <option value="market">Market</option>
           <option value="limit">Limit</option>
@@ -108,10 +108,11 @@ const Inputs = () => {
       </div>
       <div id="price-usd" className="flex flex-col gap-y-1 font-redhat">
         <label htmlFor="price" className="opacity-70 ">
-          Price (USD)
+          Price 
         </label>
         <div className="flex items-center justify-center bg-[#FFFFFF26] rounded-lg px-4 py-2 w-full border border-white/20">
           <input
+            placeholder="16,800"
             type="string"
             name="price"
             id="price"
@@ -126,14 +127,14 @@ const Inputs = () => {
             type="string"
             name="crypto"
             id="crypto"
-            className="bg-transparent px-2 w-20"
+            className="flex-1 w-[4.5rem] bg-transparent px-2 w-20"
           />
           <Image
             src="/images/btc.png"
             width={24}
             height={24}
             alt="bitcoin"
-            className=""
+            className="mr-2"
           />
         </div>
       </div>
