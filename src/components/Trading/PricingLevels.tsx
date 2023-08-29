@@ -36,9 +36,9 @@ const GeneralInfo: React.FC = () => {
           </div>
           {!isOpen ? (
             <BiChevronDown
-              className='h-[25px] w-[25px] xl:h-[15px] xl:w-[15px]' />
+              className='h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]' />
           ) : (
-            <BiChevronUp className='h-[25px] w-[25px]  xl:h-[15px] xl:w-[15px]' />
+            <BiChevronUp className='h-[25px] w-[25px]  xl:h-[17px] xl:w-[17px]' />
           )}
         </div>
       </button>
@@ -92,7 +92,7 @@ const AdditionalInfoItem: React.FC<AdditionalInfoItemProps> = ({
 }) => {
   return (
     <div className="flex flex-col">
-      <p className="text-white/80  xl:text-[13px] text-[25px] font-bold font-redhat">{value}</p>
+      <p className="text-white/80  xl:text-[15px] 2xl:text-[18px] text-[25px] font-bold font-redhat">{value}</p>
       <p className="text-[14px] text-white/40">{name}</p>
     </div>
   );
