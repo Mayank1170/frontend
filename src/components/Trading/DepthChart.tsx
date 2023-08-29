@@ -13,7 +13,7 @@ export const DepthChart: React.FC = () => {
         labels: ['', '', '', '', ''],
         datasets: [
           {
-            label: 'Green Area',
+            // label: 'Green Area',
             data: [30, 25, 0, null, null].slice(0, 3), 
             backgroundColor: createLinearGradient(ctx, ['rgba(40, 192, 120, 0.6)', 'rgba(40, 192, 120, 0.02)']),
             borderColor: 'rgba(75, 192, 192, 1)',
@@ -21,7 +21,7 @@ export const DepthChart: React.FC = () => {
             fill: "start"
           },
           {
-            label: 'Red Area',
+            // label: 'Red Area',
             data: [null, null, 0, 22, 25],
             backgroundColor: createLinearGradient(ctx, ['rgba(255, 93, 93, 0.8)', 'rgba(255, 93, 93, 0.02)']),
             borderColor: 'rgba(255, 0, 0, 1)',
@@ -46,6 +46,11 @@ export const DepthChart: React.FC = () => {
               beginAtZero: true,
             },
           },
+           plugins: {
+            legend: {
+              display: false, // Hide the legend (which includes buttons)
+            },
+          },
         },
       });
       chartInstanceRef.current = newChartInstance;
@@ -60,8 +65,8 @@ export const DepthChart: React.FC = () => {
   };
 
   return (
-    <div className='w-full h-full'>
-      <canvas ref={chartRef} className=''></canvas>
-    </div>
+    <div className='rounded-full w-full aspect-w-4 aspect-h-3 sm:aspect-w-16 sm:aspect-h-9 md:aspect-w-16 md:aspect-h-9 lg:aspect-w-16 lg:aspect-h-9 xl:aspect-w-16 xl:aspect-h-9'>
+    <canvas ref={chartRef} className='w-full h-full'></canvas>
+  </div>
   );
 };
