@@ -84,7 +84,7 @@ export const WalletForm: React.FC = () => {
     if (!publicKey) {
       return;
     }
-    return (await connection.getBalance(publicKey)) / LAMPORTS_PER_SOL;
+    return (await connection.getBalance(publicKey)) // LAMPORTS_PER_SOL;
   }, [publicKey, connection]);
 
   // const walletAddress = "7QLm...Pe73";
@@ -114,7 +114,7 @@ export const WalletForm: React.FC = () => {
             wallet.readyState === "Loadable"
           )
       ),
-    [availableWallets]
+    [wallets]
   );
 
   useEffect(() => {
