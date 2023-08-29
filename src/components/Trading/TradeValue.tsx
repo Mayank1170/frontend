@@ -438,9 +438,9 @@ const MarketData: React.FC<MarketDataProps> = ({priceValue, sizeValue, totalValu
           opacity: 0.4,
         }}
       ></div>
-      <div className="flex flex-row justify-between px-3 w-[100%] relative">
-        <p className="font-redhat text-red-400 text-[12.87px] ">{priceValue}</p>
-        <p className="text-white text-[12.87px] font-redhat">{sizeValue}</p>
+      <div className="flex flex-row w-full justify-between px-3 w-[100%] relative">
+        <p className="font-redhat w-[33.333333%] text-red-400 text-[12.87px] ">{priceValue}</p>
+        <p className="text-white  w-[33.333333%] text-[12.87px] font-redhat">{sizeValue}</p>
         <p className="text-[12.87px] text-white font-redhat">{totalValue}</p>
       </div>
     </div>
@@ -469,9 +469,9 @@ const SpreadData: React.FC<SpreadDataProps> = ({priceValue, sizeValue, totalValu
           width: calculateBackgroundWidth(priceValue),
           opacity: 0.4,
         }}></div>
-      <div className='flex flex-row justify-between px-3'>
-        <p className="font-redhat text-[12.87px] text-[#8EF884]">{priceValue}</p>
-        <p className="text-white text-[12.87px] font-redhat">{sizeValue}</p>
+      <div className='flex flex-row w-full justify-between px-3'>
+        <p className="font-redhat w-[33.333333%] text-[12.87px] text-[#8EF884]">{priceValue}</p>
+        <p className="text-white w-[33.333333%] text-[12.87px] font-redhat">{sizeValue}</p>
         <p className="text-[12.87px] text-white font-redhat">{totalValue}</p>
       </div>
     </div>
@@ -505,10 +505,10 @@ export const RecentTrades: React.FC = () => {
 
 const RecentTradeData: React.FC<MarketDataProps> = ({ priceValue, totalValue, textColor }) => {
   return (
-    <div className="mt-2 rounded-md">
+    <div className="mt-2 w-full rounded-md">
       <div className='flex flex-row justify-between px-3'>
-        <p className="font-redhat text-[12.87px]" style={{ color: textColor }}>{priceValue}</p>
-        <p className="text-white text-[12.87px] font-redhat">{totalValue}</p>
+        <p className="font-redhat  w-[33.333333%] text-[12.87px]" style={{ color: textColor }}>{priceValue}</p>
+        <p className="text-white  w-[33.333333%] text-[12.87px] font-redhat">{totalValue}</p>
         <p className="text-[12.87px] text-white font-redhat">{totalValue}</p>
       </div>
     </div>
