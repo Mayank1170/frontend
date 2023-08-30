@@ -2,6 +2,8 @@ import Image from "next/image";
 import { useState } from "react";
 import ArrowRight from "../icons/ArrowRight";
 import { RangeSlider } from "./Slider";
+import { BiChevronDown } from 'react-icons/bi'
+import { BiChevronUp } from 'react-icons/bi'
 
 const options = [0, 25, 50, 75, 100];
 
@@ -20,14 +22,17 @@ export const TradeControls: React.FC = () => {
     setIsBuyClicked(false);
     setIsSellClicked(true);
   };
+  const [isOpen, setIsOpen] = useState(false)
+
+
 
   return (
     <div
 
-      className="p-8 bg-[#202020] flex-1 w-[100%] h-[100%] rounded-[10px] border-[0.5px] border-white/20"
+      className="p-6 bg-[#202020] flex-1 w-[100%] h-[100%] rounded-[10px] border-[0.5px] border-white/20"
     >
       <div className="mb-6 font-redhat">
-        <div className="flex items-center gap-x-4 mb-8">
+        <div className="flex items-center gap-x-4 mb-5">
           <Image
             src="/images/icons/trade.svg"
             height={42}
@@ -39,24 +44,70 @@ export const TradeControls: React.FC = () => {
         <Inputs />
       </div>
       <div className="space-y-4">
-        <div className="space-x-1.5 flex flex-row bg-zinc-800 rounded-lg p-3 ml-[-13px]">
-          <button
-            onClick={handleBuyClick}
-            className={`w-[100%] h-10 ${isBuyClicked ? 'bg-[#39FFA0]/20 border-green-400  text-emerald-500' : 'bg-[#373737] border-zinc-500 text-zinc-500'
-              } border-2 rounded-md border-green-500 font-redhat font-bold transition-colors duration-300`}
-          >
-            Buy / Long
-          </button>
-          <button
-            onClick={handleSellClick}
-            className={`w-[100%] h-10 ${isSellClicked ? 'bg-[#3E2B2B] border-[#FF5D5D] text-red-400' : 'bg-[#373737]  border-zinc-500 text-zinc-500'
-              } border-2 rounded-md border-[#FF5D5D]  font-redhat font-bold transition-colors duration-300`}
-          >
-            Sell / Short
+        <div className="space-y-1">
+          <div className="space-x-1.5 flex flex-row bg-zinc-800 rounded-lg p-3 mx-[-13px]">
+            <button
+              onClick={handleBuyClick}
+              className={`w-[100%] h-10 ${isBuyClicked ? 'bg-[#39FFA0]/20 border-green-400  text-emerald-500' : 'bg-[#373737] border-zinc-500 text-zinc-500'
+                } border-2 rounded-md border-green-500 font-redhat font-bold transition-colors duration-300`}
+            >
+              Buy / Long
+            </button>
+            <button
+              onClick={handleSellClick}
+              className={`w-[100%] h-10 ${isSellClicked ? 'bg-[#3E2B2B] border-[#FF5D5D] text-red-400' : 'bg-[#373737]  border-zinc-500 text-zinc-500'
+                } border-2 rounded-md border-[#FF5D5D]  font-redhat font-bold transition-colors duration-300`}
+            >
+              Sell / Short
+            </button>
+          </div>
+          <div className="flex flex-row w-full justify-between">
+            <button className="flex flex-row gap-x-2 items-center ">
+              <h1 className="text-2xl font-bold text-white opacity-70">+</h1>
+              <h1 className="text-xs font-semibold text-gray-400">Add Cover Orders</h1>
+            </button>
+            <button className="flex flex-row gap-x-2 items-center">
+              <h1 className="text-2xl font-bold text-white opacity-70">+</h1>
+              <h1 className="text-xs font-semibold text-gray-400">Add Iceberg Orders</h1>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <button onClick={() => setIsOpen((prev) => !prev)} className="opacity-40 text-white text-xs font-semibold"><div className="flex flex-row ">Slippage Tolerance (Infinite)   {!isOpen ? (
+            <BiChevronDown
+              className='h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]' />
+          ) : (
+            <BiChevronUp className='h-[25px] w-[25px]  xl:h-[17px] xl:w-[17px]' />
+          )}
+          </div>
+          {isOpen && (
+            <div className="flex flex-row gap-x-1 mt-2"   onClick={(e) => {
+              e.stopPropagation();
+            }}>
+              <div className="flex justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[100px] h-8 text-white hover:border-2 rounded-md hover:border-emerald-500 ">
+                <h1 className="m-0">0</h1>
+                <h1>%</h1>
+              </div>
+              <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-16 h-8  text-white rounded-md hover:border-2  hover:border-emerald-500">
+                <h1 className="m-0">0.1 %</h1>
+              </div>
+              <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[72px] h-8 text-white hover:border-2 rounded-md hover:border-emerald-500">
+                <h1 className="m-0">0.5 %</h1>
+              </div>
+              <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[49px] h-8 text-white hover:border-2 rounded-md hover:border-emerald-500">
+                <h1 className="m-0">1 %</h1>
+              </div>
+              <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[42px] h-8 text-white hover:border-2 rounded-md hover:border-emerald-500">
+                <h1 className="m-0">1 %</h1>
+              </div>
+            </div>
+          )}
           </button>
         </div>
+
         <div className="flex flex-row justify-between content-center items-center">
-          <h3 className="text-[20px] font-semibold font-redhat">Accesible Leverage</h3>
+          <h3 className="text-base font-semibold font-redhat">Req. Initial Margin</h3>
           <div className="flex justify-center items-center bg-black w-28 h-8 text-white border-2 rounded-md border-green-500">
             <h1 className="m-0">200,000$</h1>
           </div>
@@ -65,16 +116,15 @@ export const TradeControls: React.FC = () => {
       <hr className="w-full border-t border-t-white/10 mt-6 mb-6" />
       <Prices />
       <button
-          className={`flex flex-row w-full justify-center content-center items-center ${
-            isBuyClicked
-              ? ' bg-gradient-to-r from-green-500 to-emerald-300'
-              : isSellClicked
-              ?  'bg-gradient-to-r from-red-400 to-rose-400'
+        className={`flex flex-row w-full justify-center content-center items-center ${isBuyClicked
+            ? ' bg-gradient-to-r from-green-500 to-emerald-300'
+            : isSellClicked
+              ? 'bg-gradient-to-r from-red-400 to-rose-400'
               : ''
           } p-3 mt-5 rounded-md font-semibold text-black`}
-        >
-          {isBuyClicked ? 'Long ~3.44845 SOL-PERP' : isSellClicked ? 'Short ~3.44845 SOL-PERP' : ''}
-        </button>
+      >
+        {isBuyClicked ? 'Long ~3.44845 SOL-PERP' : isSellClicked ? 'Short ~3.44845 SOL-PERP' : ''}
+      </button>
     </div>
   );
 };
@@ -108,9 +158,9 @@ const Inputs = () => {
       </div>
       <div id="price-usd" className="flex flex-col gap-y-1 font-redhat">
         <label htmlFor="price" className="opacity-70 ">
-          Price 
+          Price
         </label>
-        <div className="flex items-center justify-center bg-[#FFFFFF26] rounded-lg px-4 py-2 w-full border border-white/20">
+        <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-full border border-white/20">
           <input
             placeholder="16,800"
             type="string"
@@ -122,12 +172,12 @@ const Inputs = () => {
         </div>
       </div>
       <div id="crypto-input">
-        <div className="flex items-center justify-center bg-[#FFFFFF26] rounded-lg px-4 py-2 w-full border border-white/20 font-redhat">
+        <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-full border border-white/20 font-redhat">
           <input
             type="string"
             name="crypto"
             id="crypto"
-            className="flex-1 w-[4.5rem] bg-transparent px-2 w-20"
+            className="flex-1 bg-transparent px-2 w-20"
           />
           <Image
             src="/images/btc.png"
@@ -160,8 +210,8 @@ const Leverage: React.FC<LeverageInputProps> = ({
           <button
             key={leverage}
             className={`w-[80px] h-[40px] rounded-[10px] border-[0.5px] border-white/20 transition duration-200 ${value === leverage
-                ? "bg-white/40 ring-2 ring-white/70"
-                : "bg-white/20"
+              ? "bg-white/40 ring-2 ring-white/70"
+              : "bg-white/20"
               }`}
             onClick={() => setValue(leverage)}
           >
@@ -175,33 +225,46 @@ const Leverage: React.FC<LeverageInputProps> = ({
 
 const Prices: React.FC = () => {
   return (
-    <div className="w-full flex flex-col gap-y-4 font-redhat">
-      <div className="flex justify-between">
-        <p className="text-white/70">Est. Entry Price</p>
-        <p className="text-white/80 text-right">$40.6123</p>
+    <div className="w-full flex flex-col gap-y-4 font-redhat bg-neutral-700 bg-opacity-60 p-3 rounded-lg">
+      <div className="flex flex-row w-full justify-between">
+        <div className="flex flex-col w-[50%]">
+          <p className="text-white text-[13px] font-semibold">Trade Value</p>
+          <p className="text-white text-[10px] font-semibold">$ 40.6123</p>
+        </div>
+        <div className="flex flex-col w-[50%]">
+          <p className="text-white text-[13px] font-semibold">Liquidation Price</p>
+          <p className="text-white text-[10px] font-semibold">0%</p>
+        </div>
       </div>
-      <div className="flex justify-between">
-        <p className="text-white/70">Est. Price impact</p>
-        <p className="text-white/80 text-right">0%</p>
+      <div className="flex flex-row justify-between">
+        <div className="flex flex-col w-[50%]">
+          <p className="text-white text-[13px] font-semibold">Maintenance</p>
+          <p className="text-white text-[10px] font-semibold">$ 40.6123</p>
+        </div>
+        <div className="flex flex-col w-[50%]">
+          <p className="text-white text-[13px] font-semibold">Est. Leverage</p>
+          <p className="text-white text-[10px] font-semibold">0%</p>
+        </div>
       </div>
-      <div className="flex justify-between">
-        <p className="text-white/70">Est. Liquidation Price</p>
-        <p className="text-white/80 text-right flex gap-x-2">
-          None <ArrowRight /> 18.43%
-        </p>
+      <div className="flex flex-row justify-between">
+        <div className="flex flex-col w-[50%]">
+          <p className="text-white text-[13px] font-semibold">Est. Entry Price</p>
+          <p className="text-white text-[10px] font-semibold">$ 40.6123</p>
+        </div>
+        <div className="flex flex-col w-[50%]">
+          <p className="text-white text-[13px] font-semibold">Est. Price Impact</p>
+          <p className="text-white text-[10px] font-semibold">0%</p>
+        </div>
       </div>
-      <div className="flex justify-between">
-        <p className="text-white/70">Acct. Leverage</p>
-        <p className="text-white/80 text-right flex gap-x-2">
-          0X
-          <ArrowRight /> 8X
-        </p>
-      </div>
-      <div className="flex justify-between">
-        <p className="text-white/70">Position</p>
-        <p className="text-white/80 text-right flex gap-x-2">
-          0 <ArrowRight /> 0.16002 LONG
-        </p>
+      <div className="flex flex-row justify-between">
+        <div className="flex flex-col w-[50%]">
+          <p className="text-white text-[13px] font-semibold">Order</p>
+          <p className="text-white text-[10px] font-semibold">$ 40.6123</p>
+        </div>
+        <div className="flex flex-col w-[50%]">
+          <p className="text-white text-[13px] font-semibold">Initial Margin</p>
+          <p className="text-white text-[10px] font-semibold">0%</p>
+        </div>
       </div>
     </div>
   );
