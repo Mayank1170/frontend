@@ -109,7 +109,7 @@ export const TradeControls: React.FC = () => {
         <div className="flex flex-row justify-between content-center items-center">
           <h3 className="text-base font-semibold font-redhat">Req. Initial Margin</h3>
           <div className="flex justify-center items-center bg-black w-28 h-8 text-white border-2 rounded-md border-green-500">
-            <h1 className="m-0">200,000$</h1>
+            <h1 className="m-0">200,000 $</h1>
           </div>
         </div>
       </div>
@@ -226,45 +226,49 @@ const Leverage: React.FC<LeverageInputProps> = ({
 const Prices: React.FC = () => {
   return (
     <div className="w-full flex flex-col gap-y-4 font-redhat bg-neutral-700 bg-opacity-60 p-3 rounded-lg">
-      <div className="flex flex-row w-full justify-between">
+        <div className="flex flex-row justify-between gap-x-2">
         <div className="flex flex-col w-[50%]">
-          <p className="text-white text-[13px] font-semibold">Trade Value</p>
-          <p className="text-white text-[10px] font-semibold">$ 40.6123</p>
+          <p className="text-white text-[13px] font-semibold">Initial Margin</p>
+          <p className="text-white text-[10px] font-semibold">$ 200K</p>
         </div>
         <div className="flex flex-col w-[50%]">
-          <p className="text-white text-[13px] font-semibold">Liquidation Price</p>
-          <p className="text-white text-[10px] font-semibold">0%</p>
-        </div>
-      </div>
-      <div className="flex flex-row justify-between">
-        <div className="flex flex-col w-[50%]">
-          <p className="text-white text-[13px] font-semibold">Maintenance</p>
-          <p className="text-white text-[10px] font-semibold">$ 40.6123</p>
-        </div>
-        <div className="flex flex-col w-[50%]">
-          <p className="text-white text-[13px] font-semibold">Est. Leverage</p>
-          <p className="text-white text-[10px] font-semibold">0%</p>
+          <p className="text-white text-[13px] font-semibold">Margin</p>
+          <p className="text-white text-[10px] font-semibold">$ 100K</p>
         </div>
       </div>
-      <div className="flex flex-row justify-between">
-        <div className="flex flex-col w-[50%]">
+      <div className="flex flex-row w-full justify-between gap-x-2">
+      <div className="flex flex-col w-[50%]">
           <p className="text-white text-[13px] font-semibold">Est. Entry Price</p>
-          <p className="text-white text-[10px] font-semibold">$ 40.6123</p>
+          <p className="text-white text-[10px] font-semibold">21</p>
         </div>
         <div className="flex flex-col w-[50%]">
           <p className="text-white text-[13px] font-semibold">Est. Price Impact</p>
-          <p className="text-white text-[10px] font-semibold">0%</p>
+          <p className="text-white text-[10px] font-semibold">{`<0.01%`}</p>
         </div>
+       
       </div>
-      <div className="flex flex-row justify-between">
-        <div className="flex flex-col w-[50%]">
-          <p className="text-white text-[13px] font-semibold">Order</p>
-          <p className="text-white text-[10px] font-semibold">$ 40.6123</p>
+   
+      <div className="flex flex-row justify-between gap-x-2">
+      <div className="flex flex-col w-[50%]">
+          <p className="text-white text-[13px] font-semibold">Est. Liquidation Price</p>
+          <p className="text-white text-[10px] font-semibold">19.88</p>
         </div>
         <div className="flex flex-col w-[50%]">
-          <p className="text-white text-[13px] font-semibold">Initial Margin</p>
-          <p className="text-white text-[10px] font-semibold">0%</p>
+          <p className="text-white text-[13px] font-semibold">Est. Leverage</p>
+          <p className="text-white text-[10px] font-semibold">1.05x</p>
         </div>
+       
+      </div>
+      <div className="flex flex-row justify-between gap-x-2">
+      <div className="flex flex-col w-[50%]">
+          <p className="text-white text-[13px] font-semibold">Est. Order Size</p>
+          <p className="text-white text-[10px] font-semibold">10,000</p>
+        </div>
+        <div className="flex flex-col w-[50%]">
+          <p className="text-white text-[13px] font-semibold">Est. Order Value</p>
+          <p className="text-white text-[10px] font-semibold">210K</p>
+        </div>
+       
       </div>
     </div>
   );
