@@ -24,8 +24,6 @@ export const TradeControls: React.FC = () => {
   };
   const [isOpen, setIsOpen] = useState(false)
 
-
-
   return (
     <div
 
@@ -74,35 +72,38 @@ export const TradeControls: React.FC = () => {
         </div>
 
         <div>
-          <button onClick={() => setIsOpen((prev) => !prev)} className="opacity-40 text-white text-xs font-semibold"><div className="flex flex-row ">Slippage Tolerance (Infinite)   {!isOpen ? (
-            <BiChevronDown
-              className='h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]' />
-          ) : (
-            <BiChevronUp className='h-[25px] w-[25px]  xl:h-[17px] xl:w-[17px]' />
-          )}
-          </div>
-          {isOpen && (
-            <div className="flex flex-row gap-x-1 mt-2"   onClick={(e) => {
-              e.stopPropagation();
-            }}>
-              <div className="flex justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[100px] h-8 text-white hover:border-2 rounded-md hover:border-emerald-500 ">
-                <h1 className="m-0">0</h1>
-                <h1>%</h1>
-              </div>
-              <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-16 h-8  text-white rounded-md hover:border-2  hover:border-emerald-500">
-                <h1 className="m-0">0.1 %</h1>
-              </div>
-              <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[72px] h-8 text-white hover:border-2 rounded-md hover:border-emerald-500">
-                <h1 className="m-0">0.5 %</h1>
-              </div>
-              <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[49px] h-8 text-white hover:border-2 rounded-md hover:border-emerald-500">
-                <h1 className="m-0">1 %</h1>
-              </div>
-              <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[42px] h-8 text-white hover:border-2 rounded-md hover:border-emerald-500">
-                <h1 className="m-0">1 %</h1>
-              </div>
+          <button onClick={() => setIsOpen((prev) => !prev)} className="w-full opacity-40 text-white text-xs font-semibold">
+            <div className="flex flex-row ">Slippage Tolerance (Infinite)   {!isOpen ? (
+              <BiChevronDown
+                className='h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]' />
+            ) : (
+              <BiChevronUp className='h-[25px] w-[25px]  xl:h-[17px] xl:w-[17px]' />
+            )}
             </div>
-          )}
+            {isOpen && (
+              <div className="flex flex-row gap-x-1 mt-2" onClick={(e) => {
+                e.stopPropagation();
+              }}>
+                <div className="w-full flex flex-row justify-evenly">
+                  <div className="flex justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[80px] h-8 text-white hover:border-2 rounded-md hover:border-emerald-500 ">
+                    <h1 className="m-0">0</h1>
+                    <h1>%</h1>
+                  </div>
+                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-12 h-8  text-white rounded-md hover:border-2  hover:border-emerald-500">
+                    <h1 className="m-0">0.1 %</h1>
+                  </div>
+                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[45px] h-8 text-white hover:border-2 rounded-md hover:border-emerald-500">
+                    <h1 className="m-0">0.5 %</h1>
+                  </div>
+                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[37px] h-8 text-white hover:border-2 rounded-md hover:border-emerald-500">
+                    <h1 className="m-0">1 %</h1>
+                  </div>
+                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[37px] h-8 text-white hover:border-2 rounded-md hover:border-emerald-500">
+                    <h1 className="m-0">1 %</h1>
+                  </div>
+                </div>
+              </div>
+            )}
           </button>
         </div>
 
@@ -117,10 +118,10 @@ export const TradeControls: React.FC = () => {
       <Prices />
       <button
         className={`flex flex-row w-full justify-center content-center items-center ${isBuyClicked
-            ? ' bg-gradient-to-r from-green-500 to-emerald-300'
-            : isSellClicked
-              ? 'bg-gradient-to-r from-red-400 to-rose-400'
-              : ''
+          ? ' bg-gradient-to-r from-green-500 to-emerald-300'
+          : isSellClicked
+            ? 'bg-gradient-to-r from-red-400 to-rose-400'
+            : ''
           } p-3 mt-5 rounded-md font-semibold text-black`}
       >
         {isBuyClicked ? 'Long ~3.44845 SOL-PERP' : isSellClicked ? 'Short ~3.44845 SOL-PERP' : ''}
@@ -226,7 +227,7 @@ const Leverage: React.FC<LeverageInputProps> = ({
 const Prices: React.FC = () => {
   return (
     <div className="w-full flex flex-col gap-y-4 font-redhat bg-neutral-700 bg-opacity-60 p-3 rounded-lg">
-        <div className="flex flex-row justify-between gap-x-2">
+      <div className="flex flex-row justify-between gap-x-2">
         <div className="flex flex-col w-[50%]">
           <p className="text-white text-[13px] font-semibold">Initial Margin</p>
           <p className="text-white text-[10px] font-semibold">$ 200K</p>
@@ -237,7 +238,7 @@ const Prices: React.FC = () => {
         </div>
       </div>
       <div className="flex flex-row w-full justify-between gap-x-2">
-      <div className="flex flex-col w-[50%]">
+        <div className="flex flex-col w-[50%]">
           <p className="text-white text-[13px] font-semibold">Est. Entry Price</p>
           <p className="text-white text-[10px] font-semibold">21</p>
         </div>
@@ -245,11 +246,11 @@ const Prices: React.FC = () => {
           <p className="text-white text-[13px] font-semibold">Est. Price Impact</p>
           <p className="text-white text-[10px] font-semibold">{`<0.01%`}</p>
         </div>
-       
+
       </div>
-   
+
       <div className="flex flex-row justify-between gap-x-2">
-      <div className="flex flex-col w-[50%]">
+        <div className="flex flex-col w-[50%]">
           <p className="text-white text-[13px] font-semibold">Est. Liquidation Price</p>
           <p className="text-white text-[10px] font-semibold">19.88</p>
         </div>
@@ -257,10 +258,10 @@ const Prices: React.FC = () => {
           <p className="text-white text-[13px] font-semibold">Est. Leverage</p>
           <p className="text-white text-[10px] font-semibold">1.05x</p>
         </div>
-       
+
       </div>
       <div className="flex flex-row justify-between gap-x-2">
-      <div className="flex flex-col w-[50%]">
+        <div className="flex flex-col w-[50%]">
           <p className="text-white text-[13px] font-semibold">Est. Order Size</p>
           <p className="text-white text-[10px] font-semibold">10,000</p>
         </div>
@@ -268,7 +269,7 @@ const Prices: React.FC = () => {
           <p className="text-white text-[13px] font-semibold">Est. Order Value</p>
           <p className="text-white text-[10px] font-semibold">210K</p>
         </div>
-       
+
       </div>
     </div>
   );
