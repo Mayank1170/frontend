@@ -44,14 +44,13 @@ const TradeingPage: NextPageWithLayout = () => {
             <div className="justify-between hidden xl:inline"><Tabs onTabChange={onTabChange}/></div>
             <div className="w-full h-[100%] hidden xl:inline">
               {selectedTab === 'Price' ? (
-                <ChartTwo /> // Render ChartTwo.tsx when Price tab is selected
+                <ChartTwo /> 
               ) : (
-                <DepthChart /> // Render DepthChart.tsx when Depth tab is selected
+                <DepthChart /> 
               )}
             </div>
           </div>
           <div className="w-[30%] mt-2 hidden xl:inline"> <TradeValue /></div>
-
         </div>
 
       </div>
