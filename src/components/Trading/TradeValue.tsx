@@ -11,6 +11,34 @@ const marketValue: MarketDataProps[] = [
   },
   {
     id: 1,
+    priceValue: 691.1,
+    sizeValue: 6.3450,
+    totalValue: 58.5670,
+    textColor: "#8EF884",
+  },
+  {
+    id: 1,
+    priceValue: 691.1,
+    sizeValue: 6.3450,
+    totalValue: 58.5670,
+    textColor: "#8EF884",
+  },
+    {
+    id: 1,
+    priceValue: 691.1,
+    sizeValue: 6.3450,
+    totalValue: 58.5670,
+    textColor: "#8EF884",
+  },
+  {
+    id: 1,
+    priceValue: 691.1,
+    sizeValue: 6.3450,
+    totalValue: 58.5670,
+    textColor: "#8EF884",
+  },
+  {
+    id: 1,
     priceValue: 18661.1,
     sizeValue: 6.3450,
     totalValue: 58.5670,
@@ -57,6 +85,41 @@ const marketValue: MarketDataProps[] = [
   },
   {
     id: 1,
+    priceValue: 200.1,
+    sizeValue: 6.3450,
+    totalValue: 58.5670,
+    textColor: "#FF5D5D",
+  },
+  {
+    id: 1,
+    priceValue: 200.1,
+    sizeValue: 6.3450,
+    totalValue: 58.5670,
+    textColor: "#FF5D5D",
+  },
+  {
+    id: 1,
+    priceValue: 200.1,
+    sizeValue: 6.3450,
+    totalValue: 58.5670,
+    textColor: "#FF5D5D",
+  },
+  {
+    id: 1,
+    priceValue: 200.1,
+    sizeValue: 6.3450,
+    totalValue: 58.5670,
+    textColor: "#FF5D5D",
+  },
+  {
+    id: 1,
+    priceValue: 200.1,
+    sizeValue: 6.3450,
+    totalValue: 58.5670,
+    textColor: "#FF5D5D",
+  },
+  {
+    id: 1,
     priceValue: 15661.1,
     sizeValue: 6.3450,
     totalValue: 58.5670,
@@ -90,6 +153,26 @@ const marketValue: MarketDataProps[] = [
   },
   {
     id: 1,
+    priceValue: 321.7,
+    sizeValue: 6.3450,
+    totalValue: 58.5670,
+    textColor: "#8EF884",
+  }, {
+    id: 1,
+    priceValue: 321.7,
+    sizeValue: 6.3450,
+    totalValue: 58.5670,
+    textColor: "#8EF884",
+  },
+  {
+    id: 1,
+    priceValue: 321.7,
+    sizeValue: 6.3450,
+    totalValue: 58.5670,
+    textColor: "#8EF884",
+  },
+  {
+    id: 1,
     priceValue: 18661.1,
     sizeValue: 6.3450,
     totalValue: 58.5670,
@@ -107,7 +190,22 @@ const marketValue: MarketDataProps[] = [
     sizeValue: 6.3450,
     totalValue: 58.5670,
     textColor: "#FF5D5D",
-  }, {
+  },
+  {
+    id: 1,
+    priceValue: 18661.1,
+    sizeValue: 6.3450,
+    totalValue: 58.5670,
+    textColor: "#FF5D5D",
+  },
+  {
+    id: 1,
+    priceValue: 18661.1,
+    sizeValue: 6.3450,
+    totalValue: 58.5670,
+    textColor: "#FF5D5D",
+  },
+  {
     id: 1,
     priceValue: 18661.1,
     sizeValue: 6.3450,
@@ -486,7 +584,7 @@ export const RecentTrades: React.FC = () => {
         style={{ overflowY: "scroll", scrollbarWidth: 'none' }}
       >
         <div>
-          <div className='flex flex-row justify-between font-redhat opacity-50 px-3'>
+        <div className="sticky z-[1] top-0 flex flex-row justify-between font-redhat px-3 pb-1 items-center bg-neutral-800">
             <h3 className="text-[15px]">Price</h3>
             <h3 className="text-[15px]" >Size (ETH)</h3>
             <h3 className="text-[15px]">Total(ETH)</h3>

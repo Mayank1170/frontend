@@ -4,6 +4,8 @@ import ArrowRight from "../icons/ArrowRight";
 import { RangeSlider } from "./Slider";
 import { BiChevronDown } from 'react-icons/bi'
 import { BiChevronUp } from 'react-icons/bi'
+import { ImSpinner3 } from 'react-icons/im'
+import { AiOutlineClose } from 'react-icons/ai'
 
 const options = [0, 25, 50, 75, 100];
 
@@ -23,11 +25,15 @@ export const TradeControls: React.FC = () => {
     setIsSellClicked(true);
   };
   const [isOpen, setIsOpen] = useState(false)
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const handlePopupToggle = () => {
+    setIsPopupVisible(!isPopupVisible);
+  };
 
   return (
     <div
 
-      className="p-6 bg-[#202020] flex-1 w-[100%] h-[100%] rounded-[10px] border-[0.5px] border-white/20"
+      className=" p-6 bg-[#202020] flex-1 w-[100%] h-[100%] rounded-[10px] border-[0.5px] border-white/20"
     >
       <div className="mb-6 font-redhat">
         <div className="flex items-center gap-x-4 mb-5">
@@ -117,15 +123,34 @@ export const TradeControls: React.FC = () => {
       <hr className="w-full border-t border-t-white/10 mt-6 mb-6" />
       <Prices />
       <button
-        className={`flex flex-row w-full justify-center content-center items-center ${isBuyClicked
+
+        className={`flex relative flex-row w-full justify-center content-center items-center ${isBuyClicked
           ? ' bg-gradient-to-r from-green-500 to-emerald-300'
           : isSellClicked
             ? 'bg-gradient-to-r from-red-400 to-rose-400'
             : ''
           } p-3 mt-5 rounded-md font-semibold text-black`}
       >
-        {isBuyClicked ? 'Long ~3.44845 SOL-PERP' : isSellClicked ? 'Short ~3.44845 SOL-PERP' : ''}
+        <div onClick={handlePopupToggle}>
+          {isBuyClicked ? 'Long ~3.44845 SOL-PERP' : isSellClicked ? 'Short ~3.44845 SOL-PERP' : ''}
+        </div>
+        {isPopupVisible && (
+          <div className="fleex justify-start w-[calc(100%-20px)] top-[-70px] right-[2px] pb-3 bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
+            <div className="flex flex-row p-6 rounded-md justify-between items-center">
+              <div className="flex flex-row items-center gap-x-[3px]">
+                <div className="text-blue-500 text-sm animate-spin"> <ImSpinner3 /></div>
+                <p className="text-white text-[13px] font-semibold">Placing market order</p>
+              </div>
+              <div className="text-white text-sm"><AiOutlineClose/></div>
+            </div>
+            <div className="w-[100%] flex flex-col items-center">
+              <h1 className="text-white opacity-80 text-[10px]">Long 0.75249 SOL-PERP</h1>
+              <h2 className="text-white opacity-80 text-[10px]">Awaiting Confirmation</h2>
+            </div>
+          </div>
+        )}
       </button>
+
     </div>
   );
 };
@@ -133,17 +158,7 @@ export const TradeControls: React.FC = () => {
 const Inputs = () => {
   return (
     <div className="grid grid-cols-2 grid-rows-2 w-full gap-x-6 gap-y-4 items-end">
-      <div id="quantity-input" className="flex flex-col gap-y-1">
-        <label htmlFor="quantity" className="opacity-70">
-          Quantity
-        </label>
-        <input
-          type="string"
-          name="quantity"
-          id="quantity"
-          className="w-full bg-[#FFFFFF26] rounded px-4 py-2 border border-white/20"
-        />
-      </div>
+
       <div id="Order Type" className="flex flex-col gap-y-1 font-redhat">
         <label htmlFor="order-type" className="opacity-70">
           Order Type
@@ -171,6 +186,17 @@ const Inputs = () => {
           />
           <span>USD</span>
         </div>
+      </div>
+      <div id="quantity-input" className="flex flex-col gap-y-1">
+        <label htmlFor="quantity" className="opacity-70">
+          Quantity
+        </label>
+        <input
+          type="string"
+          name="quantity"
+          id="quantity"
+          className="w-full bg-[#FFFFFF26] rounded px-4 py-2 border border-white/20"
+        />
       </div>
       <div id="crypto-input">
         <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-full border border-white/20 font-redhat">
