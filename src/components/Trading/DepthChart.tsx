@@ -87,7 +87,7 @@ export const DepthChart: React.FC = () => {
   };
 
   return (
-    <div className="w-[calc(100%-5px)] h-[calc(100vh-285px)] bg-neutral-900  rounded-[10px] border-[0.5px] border-white/20 overflow-hidden mt-0 ">
+    <div className="w-[calc(100%-5px)] h-[calc(100vh-285px)] bg-neutral-900  rounded-[10px] border-[0.5px] border-white/20 overflow-hidden pt-8 ">
       <canvas className='w-full h-full' ref={chartRef}></canvas>
     </div>
   );
