@@ -42,9 +42,12 @@ export const TradeControls: React.FC = () => {
     }
   })
 
-  const popupContent = orderStatus === "Order filled"
+  const popupContent = orderStatus === "Order Filled"
   ? "Long 0.7 SOL-PERP with an average fill price $21.659"
   : "Long 0.75249 SOL-PERP";
+  
+  const ConfirmationMessage = orderStatus=== "Order Filled"
+  ? "" : "Awaiting Confirmation"
 
   const popupIcon = showCheckmark ? <AiFillCheckCircle className="text-green-500 rounded-full " /> : <ImSpinner3 className="text-blue-500 text-sm animate-spin"/>;
 
@@ -164,8 +167,8 @@ export const TradeControls: React.FC = () => {
               <div className="text-white text-sm"><AiOutlineClose/></div>
             </div>
             <div className="w-[100%] flex flex-col justify-start items-center">
-              <h1 className="text-white opacity-80 text-[10px] pl-0">{popupContent}</h1>
-              <h2 className="text-white opacity-80 text-[10px]">Awaiting Confirmation</h2>
+              <h1 className="text-white w-[90%] opacity-80 text-[10px] pl-0">{popupContent}</h1>
+              <h2 className="text-white opacity-80 text-[10px]">{ConfirmationMessage}</h2>
             </div>
           </div>
         )}
