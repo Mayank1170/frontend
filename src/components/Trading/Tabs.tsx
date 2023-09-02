@@ -29,7 +29,7 @@ export const Tabs: React.FC<TabsProps> = ({ onTabChange }) => {
           }`}>Details</button>
       </div>
       <div className="flex flex-row space-x-2">
-        <div className="flex w-10 h-10  text-3xl  bg-[#202020] rounded-lg border border-white/20 justify-center items-center">
+        <div className="flex w-10 h-10 text-3xl  bg-[#202020] justify-center items-center rounded-lg border border-white/20">
           <button>+</button>
         </div>
         <div className="flex w-24 h-10 bg-[#202020] rounded-lg border border-white/20 items-center justify-center ">
@@ -37,7 +37,7 @@ export const Tabs: React.FC<TabsProps> = ({ onTabChange }) => {
             <h1>0.1%</h1>
           </div>
         </div>
-        <div className="flex w-10 h-10 text-3xl bg-[#202020] justify-center items-center rounded-lg border border-white/20 ">
+        <div className="flex w-10 h-10 pb-1 text-3xl bg-[#202020] justify-center items-center rounded-lg border border-white/20 ">
           <button>-</button>
         </div>
       </div>

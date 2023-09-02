@@ -471,7 +471,7 @@ export const NavLinks: React.FC = () => {
 
 export const OrderBook: React.FC = () => {
   return (
-    <div className="bg-neutral-800 pt-3 mt-0 w-[100%] border-[0.5px] border-white/20 xl:rounded-b-lg xl:rounded-t-[0px] rounded-lg border-b-white/20">
+    <div className="bg-neutral-800 pt-3 mt-0 w-[100%] border-[0.5px] border-white/20 xl:rounded-b-md xl:rounded-t-[0px] rounded-md border-b-white/20">
       <div className="xl:h-[calc(100vh-286px)] h-[calc(100vh-339px)] overflow-y-hidden place-content-evenly	">
         <div className="flex flex-col h-[50%] overflow-scroll scrollbar-hide">
           <div className="sticky z-[1] top-0 flex flex-row justify-between font-redhat px-3 pb-1 items-center bg-neutral-800">
@@ -561,7 +561,7 @@ const SpreadData: React.FC<SpreadDataProps> = ({priceValue, sizeValue, totalValu
   };
   return (
     <div className="w-full relative">
-      <div className="absolute bg-green-900  rounded-md"
+      <div className="absolute bg-green-900 rounded-md"
         style={{
           height: 20,
           width: calculateBackgroundWidth(priceValue),
@@ -579,8 +579,8 @@ const SpreadData: React.FC<SpreadDataProps> = ({priceValue, sizeValue, totalValu
 
 export const RecentTrades: React.FC = () => {
   return (
-    <div className="bg-neutral-800 py-3 mt-0 w-[100%] rounded-[10px] xl:rounded-b-[10px] xl:rounded-t-[0px] border-[0.5px] border-white/20">
-      <div className="xl:h-[calc(100vh-299px)]  h-[calc(100vh-352px)]  scrollbar-hide"
+    <div className="bg-neutral-800 py-3 mt-0 w-[100%] rounded-md xl:rounded-md xl:rounded-t-[0px] border-[0.5px] border-white/20">
+      <div className="xl:h-[calc(100vh-298px)]  h-[calc(100vh-352px)]  scrollbar-hide"
         style={{ overflowY: "scroll", scrollbarWidth: 'none' }}
       >
         <div>
