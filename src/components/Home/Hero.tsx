@@ -75,17 +75,18 @@ export const Hero: React.FC = () => {
               </span>
               <ArrowRight className="group-hover:translate-x-1 transition-transform duration-150 ease-out" />
             </button> */}
+             <Link href="/trade">
             <div className="flex rounded-2xl bg-[#3db079] halo-effect hover:before:bg-[#3db079] relative px-[25px] py-4 mt-auto mb-20 gap-x-4 right-10 top-14" style={{
                 boxShadow: "0px 4px 100px 40px rgba(59, 176, 120, 0.4)",
                 background:
                   "linear-gradient(95.16deg, #3BB078 0%, #8FBFA8 100%)",
               }}>
-              <Link href="/trade">
+             
                 <button className="flex px-2 py-1">
                   <div className="text-[18px] font-bold whitespace-nowrap">Launch App</div>
                 </button>
-              </Link>
             </div>
+            </Link>
           </div>
 
           <Image

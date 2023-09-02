@@ -1,11 +1,12 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ArrowRight from "../icons/ArrowRight";
 import { RangeSlider } from "./Slider";
 import { BiChevronDown } from 'react-icons/bi'
 import { BiChevronUp } from 'react-icons/bi'
 import { ImSpinner3 } from 'react-icons/im'
 import { AiOutlineClose } from 'react-icons/ai'
+import { AiFillCheckCircle } from 'react-icons/ai'
 
 const options = [0, 25, 50, 75, 100];
 
@@ -25,10 +26,28 @@ export const TradeControls: React.FC = () => {
     setIsSellClicked(true);
   };
   const [isOpen, setIsOpen] = useState(false)
+  const [orderStatus, setOrderStatus] = useState("Placing market order");
+  const [showCheckmark, setShowCheckmark] = useState(false);
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const handlePopupToggle = () => {
     setIsPopupVisible(!isPopupVisible);
   };
+
+  useEffect(()=>{
+    if(isPopupVisible){
+      setTimeout(()=> {
+        setOrderStatus("Order Filled")
+        setShowCheckmark(true)
+      }, 2000)
+    }
+  })
+
+  const popupContent = orderStatus === "Order filled"
+  ? "Long 0.7 SOL-PERP with an average fill price $21.659"
+  : "Long 0.75249 SOL-PERP";
+
+  const popupIcon = showCheckmark ? <AiFillCheckCircle className="text-green-500 rounded-full " /> : <ImSpinner3 className="text-blue-500 text-sm animate-spin"/>;
+
 
   return (
     <div
@@ -47,7 +66,7 @@ export const TradeControls: React.FC = () => {
         </div>
         <Inputs />
       </div>
-      <div className="space-y-4">
+      <div className="">
         <div className="space-y-1">
           <div className="space-x-1.5 flex flex-row bg-zinc-800 rounded-lg p-3 mx-[-13px]">
             <button
@@ -76,14 +95,14 @@ export const TradeControls: React.FC = () => {
             </button>
           </div>
         </div>
-
+<div className="space-y-2">
         <div>
           <button onClick={() => setIsOpen((prev) => !prev)} className="w-full opacity-40 text-white text-xs font-semibold">
             <div className="flex flex-row ">Slippage Tolerance (Infinite)   {!isOpen ? (
               <BiChevronDown
                 className='h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]' />
             ) : (
-              <BiChevronUp className='h-[25px] w-[25px]  xl:h-[17px] xl:w-[17px]' />
+              <BiChevronUp className='h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]' />
             )}
             </div>
             {isOpen && (
@@ -91,20 +110,20 @@ export const TradeControls: React.FC = () => {
                 e.stopPropagation();
               }}>
                 <div className="w-full flex flex-row justify-evenly">
-                  <div className="flex justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[80px] h-8 text-white hover:border-2 rounded-md hover:border-emerald-500 ">
+                  <div className="flex justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[30%] h-8 text-white hover:border-2 rounded-sm hover:border-emerald-500 ">
                     <h1 className="m-0">0</h1>
                     <h1>%</h1>
                   </div>
-                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-12 h-8  text-white rounded-md hover:border-2  hover:border-emerald-500">
+                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-8  text-white rounded-sm hover:border-2  hover:border-emerald-500">
                     <h1 className="m-0">0.1 %</h1>
                   </div>
-                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[45px] h-8 text-white hover:border-2 rounded-md hover:border-emerald-500">
+                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-8 text-white hover:border-2 rounded-sm hover:border-emerald-500">
                     <h1 className="m-0">0.5 %</h1>
                   </div>
-                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[37px] h-8 text-white hover:border-2 rounded-md hover:border-emerald-500">
+                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-8 text-white hover:border-2 rounded-sm hover:border-emerald-500">
                     <h1 className="m-0">1 %</h1>
                   </div>
-                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[37px] h-8 text-white hover:border-2 rounded-md hover:border-emerald-500">
+                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-8 text-white hover:border-2 rounded-sm hover:border-emerald-500">
                     <h1 className="m-0">1 %</h1>
                   </div>
                 </div>
@@ -119,11 +138,12 @@ export const TradeControls: React.FC = () => {
             <h1 className="m-0">200,000 $</h1>
           </div>
         </div>
+        </div>
       </div>
       <hr className="w-full border-t border-t-white/10 mt-6 mb-6" />
       <Prices />
       <button
-
+        onClick={handlePopupToggle}
         className={`flex relative flex-row w-full justify-center content-center items-center ${isBuyClicked
           ? ' bg-gradient-to-r from-green-500 to-emerald-300'
           : isSellClicked
@@ -131,20 +151,20 @@ export const TradeControls: React.FC = () => {
             : ''
           } p-3 mt-5 rounded-md font-semibold text-black`}
       >
-        <div onClick={handlePopupToggle}>
+        <div >
           {isBuyClicked ? 'Long ~3.44845 SOL-PERP' : isSellClicked ? 'Short ~3.44845 SOL-PERP' : ''}
         </div>
         {isPopupVisible && (
-          <div className="fleex justify-start w-[calc(100%-20px)] top-[-70px] right-[2px] pb-3 bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
-            <div className="flex flex-row p-6 rounded-md justify-between items-center">
-              <div className="flex flex-row items-center gap-x-[3px]">
-                <div className="text-blue-500 text-sm animate-spin"> <ImSpinner3 /></div>
-                <p className="text-white text-[13px] font-semibold">Placing market order</p>
+          <div className="flex flex-col w-[calc(100%-20px)] top-[-70px] right-[2px] pb-3 bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
+            <div className="flex flex-row px-6 py-4 rounded-md justify-between items-center">
+              <div className="flex flex-row items-center gap-x-[5px]">
+                <div>{popupIcon}</div>
+                <p className="text-white text-[13px] font-semibold">{orderStatus}</p>
               </div>
               <div className="text-white text-sm"><AiOutlineClose/></div>
             </div>
-            <div className="w-[100%] flex flex-col items-center">
-              <h1 className="text-white opacity-80 text-[10px]">Long 0.75249 SOL-PERP</h1>
+            <div className="w-[100%] flex flex-col justify-start items-center">
+              <h1 className="text-white opacity-80 text-[10px] pl-0">{popupContent}</h1>
               <h2 className="text-white opacity-80 text-[10px]">Awaiting Confirmation</h2>
             </div>
           </div>
