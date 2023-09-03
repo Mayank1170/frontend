@@ -38,16 +38,16 @@ export const DepthChart: React.FC = () => {
         type: 'line',
         data: data,
         options: {
-          // responsive: true,
           maintainAspectRatio: false,
           aspectRatio: 3,
           scales: {
             x: {
-              beginAtZero: false,
+              beginAtZero: true,
+              
             },
             y: {
+              position: 'right',
               stacked: false,
-              // beginAtZero: true,
               grid: {
                 display: false,
                 color: "rgba(255,99,132,0.2)"
@@ -87,8 +87,8 @@ export const DepthChart: React.FC = () => {
   };
 
   return (
-    <div className="w-[calc(100%-5px)] h-[calc(100vh-285px)] bg-neutral-900  rounded-[10px] border-[0.5px] border-white/20 overflow-hidden pt-8 ">
-      <canvas className='w-full h-full' ref={chartRef}></canvas>
+    <div className="relative w-full h-full bg-neutral-900  rounded-[10px] border-[0.5px] border-white/20 overflow-hidden">
+      <canvas className='absolute top-0 left-0 inset-0 mt-8 w-full h-full' ref={chartRef}></canvas>
     </div>
   );
 };
