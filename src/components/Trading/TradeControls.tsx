@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { motion } from 'framer-motion'
 import { useState, useEffect, ChangeEvent } from "react";
 import ArrowRight from "../icons/ArrowRight";
 import { RangeSlider } from "./Slider";
@@ -38,7 +39,7 @@ export const TradeControls: React.FC = () => {
       setTimeout(() => {
         setOrderStatus("Order Filled")
         setShowCheckmark(true)
-      }, 9000)
+      }, 5000)
     }
   })
 
@@ -50,6 +51,8 @@ export const TradeControls: React.FC = () => {
     ? "" : "Awaiting Confirmation"
 
   const popupIcon = showCheckmark ? <AiFillCheckCircle className="text-green-400 rounded-full " /> : <ImSpinner3 className="text-blue-500 text-sm animate-spin" />;
+  const [toggle1, setToggle1] = useState<boolean>(false);
+  const [toggle2, setToggle2] = useState<boolean>(false);
 
 
   return (
@@ -70,7 +73,7 @@ export const TradeControls: React.FC = () => {
         <Inputs />
       </div>
       <div className="">
-        <div className="space-y-1">
+        <div className="space-y-2">
           <div className="space-x-1.5 flex flex-row bg-zinc-800 rounded-lg p-3 mx-[-13px]">
             <button
               onClick={handleBuyClick}
@@ -87,6 +90,27 @@ export const TradeControls: React.FC = () => {
               Sell / Short
             </button>
           </div>
+          <div className="flex flex-col space-y-1">
+          <div className="flex flex-row space-x-4">
+            <div className="flex flex-row gap-x-2 items-center">
+              <div className="text-[14px] font-semibold">Reduce Only</div>
+              <div onClick={() => setToggle1(!toggle1)} className={`flex h-[24px] w-12 cursor-pointer rounded-full border border-black
+           ${toggle1 ? "justify-start bg-gray-300/80" : "justify-end bg-[#3db079]"} p-[1px]`}>
+                <motion.div className={`h-5 w-5 rounded-full ${toggle1 ? "bg-white" : "bg-white"}`}
+                  layout transition={{ type: "spring", stiffness: 700, damping: 30 }} />
+              </div>
+            </div>
+            <div className="flex flex-row gap-x-2 items-center">
+              <div className="text-[14px] font-semibold">Post</div>
+              <div onClick={() => setToggle2(!toggle2)} className={`flex h-[24px] w-12 cursor-pointer rounded-full border border-black
+           ${toggle2 ? "justify-start bg-gray-300/80" : "justify-end bg-[#3db079]"} p-[1px]`}>
+                <motion.div className={`h-5 w-5 rounded-full ${toggle2 ? "bg-white" : "bg-white"}`}
+                  layout transition={{ type: "spring", stiffness: 700, damping: 30 }} />
+              </div>
+            </div>
+          </div>
+
+
           <div className="flex flex-row w-full justify-between">
             <button className="flex flex-row gap-x-2 items-center ">
               <h1 className="text-2xl font-bold text-white text-opacity-70">+</h1>
@@ -96,6 +120,7 @@ export const TradeControls: React.FC = () => {
               <h1 className="text-2xl font-bold text-white text-opacity-70">+</h1>
               <h1 className="text-xs font-semibold text-gray-400">Add Iceberg Orders</h1>
             </button>
+          </div>
           </div>
         </div>
         <div className="space-y-2">
@@ -190,7 +215,7 @@ const Inputs = () => {
     'Take-Profit',
     'Take-Profit-Limit',
   ];
-  const handleChange = ( option: string) => {
+  const handleChange = (option: string) => {
     setSelectedOption(option);
     setIsOpen(true);
   };
@@ -205,7 +230,7 @@ const Inputs = () => {
           <div onClick={() => setIsOpen((prev) => !prev)} className="relative flex flex-col justiffity-between w-full bg-[#FFFFFF26] rounded  py-2 border border-white/20">
             <div className="flex flex-row justify-between px-2">
               <div className="flex font-semibold items-center text-[11px]">
-              {selectedOption}
+                {selectedOption}
               </div>
               {!isOpen ? (
                 <BiChevronDown className="h-[25px] w-[25px]" />
@@ -219,8 +244,8 @@ const Inputs = () => {
               <div className="flex flex-col w-full h-fit gap-y-2 absolute top-[50px] bg-neutral-700 bg-opacity-100 items-start pl-3 rounded-md border border-white border-opacity-25">
                 {options.map((option) => (
                   <div
-                  key={option}
-                  onClick={() => handleChange(option)}
+                    key={option}
+                    onClick={() => handleChange(option)}
                     className="w-full text-white/90 text-[12.89px] hover:text-[13px] font-medium hover:text-white cursor-pointer"
                   >
                     <div className="h-2"></div>
