@@ -38,7 +38,7 @@ export const TradeControls: React.FC = () => {
       setTimeout(() => {
         setOrderStatus("Order Filled")
         setShowCheckmark(true)
-      }, 2000)
+      }, 9000)
     }
   })
 
@@ -49,7 +49,7 @@ export const TradeControls: React.FC = () => {
   const ConfirmationMessage = orderStatus === "Order Filled"
     ? "" : "Awaiting Confirmation"
 
-  const popupIcon = showCheckmark ? <AiFillCheckCircle className="text-green-500 rounded-full " /> : <ImSpinner3 className="text-blue-500 text-sm animate-spin" />;
+  const popupIcon = showCheckmark ? <AiFillCheckCircle className="text-green-400 rounded-full " /> : <ImSpinner3 className="text-blue-500 text-sm animate-spin" />;
 
 
   return (
@@ -147,7 +147,7 @@ export const TradeControls: React.FC = () => {
       <Prices />
       <button
         onClick={handlePopupToggle}
-        className={`flex relative flex-row w-full justify-center content-center items-center ${isBuyClicked
+        className={`flex flex-row w-full justify-center content-center items-center ${isBuyClicked
           ? ' bg-gradient-to-r from-green-500 to-emerald-300'
           : isSellClicked
             ? 'bg-gradient-to-r from-red-400 to-rose-400'
@@ -158,17 +158,17 @@ export const TradeControls: React.FC = () => {
           {isBuyClicked ? 'Long ~3.44845 SOL-PERP' : isSellClicked ? 'Short ~3.44845 SOL-PERP' : ''}
         </div>
         {isPopupVisible && (
-          <div className="flex flex-col w-[calc(100%-20px)] top-[-70px] right-[2px] pb-3 bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
+          <div className="flex flex-col w-[250px] h-[120px] bottom-[20px] right-[68px]  bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
             <div className="flex flex-row px-6 py-4 rounded-md justify-between items-center">
               <div className="flex flex-row items-center gap-x-[5px]">
                 <div>{popupIcon}</div>
-                <p className="text-white text-[13px] font-semibold">{orderStatus}</p>
+                <p className="text-white text-[17px] font-semibold">{orderStatus}</p>
               </div>
-              <div className="text-white text-sm"><AiOutlineClose /></div>
+              <div className="text-white text-[12px]"><AiOutlineClose /></div>
             </div>
-            <div className="w-[100%] flex flex-col justify-start items-center">
-              <h1 className="text-white w-[90%] opacity-80 text-[10px] pl-0">{popupContent}</h1>
-              <h2 className="text-white opacity-80 text-[10px]">{ConfirmationMessage}</h2>
+            <div className="w-[100%] flex flex-col justify-start items-center ">
+              <h1 className="text-white w-[90%] opacity-50 text-[12px] pl-0">{popupContent}</h1>
+              <h2 className="text-white opacity-50 text-[12px]">{ConfirmationMessage}</h2>
             </div>
           </div>
         )}
@@ -180,7 +180,6 @@ export const TradeControls: React.FC = () => {
 
 const Inputs = () => {
 
-  const [orderType, setOrderType] = useState<string>('Market');
   const [selectedOption, setSelectedOption] = useState<string>('Market');
   const [isOpen, setIsOpen] = useState(false);
   const options = [
@@ -193,7 +192,7 @@ const Inputs = () => {
   ];
   const handleChange = ( option: string) => {
     setSelectedOption(option);
-    setIsOpen(false);
+    setIsOpen(true);
   };
 
   return (
