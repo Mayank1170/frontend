@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BiChevronDown } from 'react-icons/bi'
 import { BiChevronUp } from 'react-icons/bi'
 import { RiSearch2Line } from 'react-icons/ri'
