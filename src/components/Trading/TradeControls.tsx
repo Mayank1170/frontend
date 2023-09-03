@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import ArrowRight from "../icons/ArrowRight";
 import { RangeSlider } from "./Slider";
 import { BiChevronDown } from 'react-icons/bi'
@@ -33,9 +33,9 @@ export const TradeControls: React.FC = () => {
     setIsPopupVisible(!isPopupVisible);
   };
 
-  useEffect(()=>{
-    if(isPopupVisible){
-      setTimeout(()=> {
+  useEffect(() => {
+    if (isPopupVisible) {
+      setTimeout(() => {
         setOrderStatus("Order Filled")
         setShowCheckmark(true)
       }, 2000)
@@ -43,13 +43,13 @@ export const TradeControls: React.FC = () => {
   })
 
   const popupContent = orderStatus === "Order Filled"
-  ? "Long 0.7 SOL-PERP with an average fill price $21.659"
-  : "Long 0.75249 SOL-PERP";
-  
-  const ConfirmationMessage = orderStatus=== "Order Filled"
-  ? "" : "Awaiting Confirmation"
+    ? "Long 0.7 SOL-PERP with an average fill price $21.659"
+    : "Long 0.75249 SOL-PERP";
 
-  const popupIcon = showCheckmark ? <AiFillCheckCircle className="text-green-500 rounded-full " /> : <ImSpinner3 className="text-blue-500 text-sm animate-spin"/>;
+  const ConfirmationMessage = orderStatus === "Order Filled"
+    ? "" : "Awaiting Confirmation"
+
+  const popupIcon = showCheckmark ? <AiFillCheckCircle className="text-green-500 rounded-full " /> : <ImSpinner3 className="text-blue-500 text-sm animate-spin" />;
 
 
   return (
@@ -89,58 +89,58 @@ export const TradeControls: React.FC = () => {
           </div>
           <div className="flex flex-row w-full justify-between">
             <button className="flex flex-row gap-x-2 items-center ">
-              <h1 className="text-2xl font-bold text-white opacity-70">+</h1>
+              <h1 className="text-2xl font-bold text-white text-opacity-70">+</h1>
               <h1 className="text-xs font-semibold text-gray-400">Add Cover Orders</h1>
             </button>
             <button className="flex flex-row gap-x-2 items-center">
-              <h1 className="text-2xl font-bold text-white opacity-70">+</h1>
+              <h1 className="text-2xl font-bold text-white text-opacity-70">+</h1>
               <h1 className="text-xs font-semibold text-gray-400">Add Iceberg Orders</h1>
             </button>
           </div>
         </div>
-<div className="space-y-2">
-        <div>
-          <button onClick={() => setIsOpen((prev) => !prev)} className="w-full opacity-40 text-white text-xs font-semibold">
-            <div className="flex flex-row ">Slippage Tolerance (Infinite)   {!isOpen ? (
-              <BiChevronDown
-                className='h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]' />
-            ) : (
-              <BiChevronUp className='h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]' />
-            )}
-            </div>
-            {isOpen && (
-              <div className="flex flex-row gap-x-1 mt-2" onClick={(e) => {
-                e.stopPropagation();
-              }}>
-                <div className="w-full flex flex-row justify-evenly">
-                  <div className="flex justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[30%] h-8 text-white hover:border-2 rounded-sm hover:border-emerald-500 ">
-                    <h1 className="m-0">0</h1>
-                    <h1>%</h1>
-                  </div>
-                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-8  text-white rounded-sm hover:border-2  hover:border-emerald-500">
-                    <h1 className="m-0">0.1 %</h1>
-                  </div>
-                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-8 text-white hover:border-2 rounded-sm hover:border-emerald-500">
-                    <h1 className="m-0">0.5 %</h1>
-                  </div>
-                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-8 text-white hover:border-2 rounded-sm hover:border-emerald-500">
-                    <h1 className="m-0">1 %</h1>
-                  </div>
-                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-8 text-white hover:border-2 rounded-sm hover:border-emerald-500">
-                    <h1 className="m-0">1 %</h1>
+        <div className="space-y-2">
+          <div>
+            <button onClick={() => setIsOpen((prev) => !prev)} className="w-full text-opacity-40 text-white text-xs font-semibold">
+              <div className="flex flex-row ">Slippage Tolerance (Infinite)   {!isOpen ? (
+                <BiChevronDown
+                  className='h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]' />
+              ) : (
+                <BiChevronUp className='h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]' />
+              )}
+              </div>
+              {isOpen && (
+                <div className="flex flex-row gap-x-1 mt-2" onClick={(e) => {
+                  e.stopPropagation();
+                }}>
+                  <div className="w-full flex flex-row justify-evenly">
+                    <div className="flex justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[30%] h-8 text-white hover:border-2 rounded-sm hover:border-emerald-500 ">
+                      <h1 className="m-0">0</h1>
+                      <h1>%</h1>
+                    </div>
+                    <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-8  text-white rounded-sm hover:border-2  hover:border-emerald-500">
+                      <h1 className="m-0">0.1 %</h1>
+                    </div>
+                    <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-8 text-white hover:border-2 rounded-sm hover:border-emerald-500">
+                      <h1 className="m-0">0.5 %</h1>
+                    </div>
+                    <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-8 text-white hover:border-2 rounded-sm hover:border-emerald-500">
+                      <h1 className="m-0">1 %</h1>
+                    </div>
+                    <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-8 text-white hover:border-2 rounded-sm hover:border-emerald-500">
+                      <h1 className="m-0">1 %</h1>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-          </button>
-        </div>
-
-        <div className="flex flex-row justify-between content-center items-center">
-          <h3 className="text-base font-semibold font-redhat">Req. Initial Margin</h3>
-          <div className="flex justify-center items-center bg-black w-28 h-8 text-white border-2 rounded-md border-green-500">
-            <h1 className="m-0">200,000 $</h1>
+              )}
+            </button>
           </div>
-        </div>
+
+          <div className="flex flex-row justify-between content-center items-center">
+            <h3 className="text-base font-semibold font-redhat">Req. Initial Margin</h3>
+            <div className="flex justify-center items-center bg-black w-28 h-8 text-white border-2 rounded-md border-green-500">
+              <h1 className="m-0">200,000 $</h1>
+            </div>
+          </div>
         </div>
       </div>
       <hr className="w-full border-t border-t-white/10 mt-6 mb-6" />
@@ -164,7 +164,7 @@ export const TradeControls: React.FC = () => {
                 <div>{popupIcon}</div>
                 <p className="text-white text-[13px] font-semibold">{orderStatus}</p>
               </div>
-              <div className="text-white text-sm"><AiOutlineClose/></div>
+              <div className="text-white text-sm"><AiOutlineClose /></div>
             </div>
             <div className="w-[100%] flex flex-col justify-start items-center">
               <h1 className="text-white w-[90%] opacity-80 text-[10px] pl-0">{popupContent}</h1>
@@ -179,63 +179,109 @@ export const TradeControls: React.FC = () => {
 };
 
 const Inputs = () => {
-  return (
-    <div className="grid grid-cols-2 grid-rows-2 w-full gap-x-6 gap-y-4 items-end">
 
-      <div id="Order Type" className="flex flex-col gap-y-1 font-redhat">
-        <label htmlFor="order-type" className="opacity-70">
-          Order Type
-        </label>
-        <select
-          name="order-type"
-          id="order-type"
-          className="w-full bg-[#FFFFFF26] rounded px-4 py-2 border border-white/20 "
-        >
-          <option value="market">Market</option>
-          <option value="limit">Limit</option>
-        </select>
-      </div>
-      <div id="price-usd" className="flex flex-col gap-y-1 font-redhat">
-        <label htmlFor="price" className="opacity-70 ">
-          Price
-        </label>
-        <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-full border border-white/20">
-          <input
-            placeholder="16,800"
-            type="string"
-            name="price"
-            id="price"
-            className="flex-1 px-2 bg-transparent w-[4.5rem]"
-          />
-          <span>USD</span>
+  const [orderType, setOrderType] = useState<string>('Market');
+  const [selectedOption, setSelectedOption] = useState<string>('Market');
+  const [isOpen, setIsOpen] = useState(false);
+  const options = [
+    'Market',
+    'Employee',
+    'Stop-Market',
+    'Stop-Limit',
+    'Take-Profit',
+    'Take-Profit-Limit',
+  ];
+  const handleChange = ( option: string) => {
+    setSelectedOption(option);
+    setIsOpen(false);
+  };
+
+  return (
+    <div className="flex flex-col w-full gap-y-4 items-end">
+      <div className="w-full flex flex-row gap-x-5 justify-">
+        <div id="Order Type" className="w-full flex flex-col gap-y-1 font-redhat">
+          <label htmlFor="order-type" className="opacity-70">
+            Order Type
+          </label>
+          <div onClick={() => setIsOpen((prev) => !prev)} className="relative flex flex-col justiffity-between w-full bg-[#FFFFFF26] rounded  py-2 border border-white/20">
+            <div className="flex flex-row justify-between px-2">
+              <div className="flex font-semibold items-center text-[11px]">
+              {selectedOption}
+              </div>
+              {!isOpen ? (
+                <BiChevronDown className="h-[25px] w-[25px]" />
+              ) : (
+                <BiChevronUp className="h-[25px] w-[25px]" />
+              )}
+            </div>
+            {!isOpen ? (
+              <div></div>
+            ) : (
+              <div className="flex flex-col w-full h-fit gap-y-2 absolute top-[50px] bg-neutral-700 bg-opacity-100 items-start pl-3 rounded-md border border-white border-opacity-25">
+                {options.map((option) => (
+                  <div
+                  key={option}
+                  onClick={() => handleChange(option)}
+                    className="w-full text-white/90 text-[12.89px] hover:text-[13px] font-medium hover:text-white cursor-pointer"
+                  >
+                    <div className="h-2"></div>
+                    {option}
+                    <div className="h-2"></div>
+
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+        </div>
+        <div id="price-usd" className="w-[43%] flex flex-col gap-y-1 font-redhat">
+          <label htmlFor="price" className="opacity-70 ">
+            Price
+          </label>
+          <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-full border border-white/20">
+            <input
+              placeholder="16,800"
+              type="string"
+              name="price"
+              id="price"
+              className="flex-1 px-2 bg-transparent w-[4.5rem]"
+            />
+            <span>USD</span>
+          </div>
         </div>
       </div>
-      <div id="quantity-input" className="flex flex-col gap-y-1">
-        <label htmlFor="quantity" className="opacity-70">
-          Quantity
-        </label>
-        <input
-          type="string"
-          name="quantity"
-          id="quantity"
-          className="w-full bg-[#FFFFFF26] rounded px-4 py-2 border border-white/20"
-        />
-      </div>
-      <div id="crypto-input">
-        <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-full border border-white/20 font-redhat">
+      <div className="flex flex-row gap-x-4">
+        <div id="quantity-input" className="flex flex-col gap-y-1">
+          <div >
+            Quantity
+          </div>
           <input
             type="string"
-            name="crypto"
-            id="crypto"
-            className="flex-1 bg-transparent px-2 w-20"
+            name="quantity"
+            id="quantity"
+            className="w-full bg-[#FFFFFF26] rounded px-4 py-2 border border-white/20"
           />
-          <Image
-            src="/images/btc.png"
-            width={24}
-            height={24}
-            alt="bitcoin"
-            className="mr-2"
-          />
+        </div>
+        <div id="crypto-input gap-y-1">
+          <div className="h-[28px]">
+
+          </div>
+          <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-full border border-white/20 font-redhat">
+            <input
+              type="string"
+              name="crypto"
+              id="crypto"
+              className="flex-1 bg-transparent px-2 w-20"
+            />
+            <Image
+              src="/images/btc.png"
+              width={24}
+              height={24}
+              alt="bitcoin"
+              className="mr-2"
+            />
+          </div>
         </div>
       </div>
     </div>
