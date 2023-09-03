@@ -221,15 +221,15 @@ const Inputs = () => {
   };
 
   return (
-    <div className="flex flex-col w-full gap-y-4 items-end">
-      <div className="w-full flex flex-row gap-x-5 justify-">
-        <div id="Order Type" className="w-full flex flex-col gap-y-1 font-redhat">
+    <div className="flex flex-col w-full gap-y-4">
+      <div className="w-full flex flex-row gap-x-3 justify-">
+        <div id="Order Type" className="w-[50%] flex flex-col gap-y-1 font-redhat">
           <label htmlFor="order-type" className="opacity-70">
             Order Type
           </label>
           <div onClick={() => setIsOpen((prev) => !prev)} className="relative flex flex-col justiffity-between w-full bg-[#FFFFFF26] rounded  py-2 border border-white/20">
             <div className="flex flex-row justify-between px-2">
-              <div className="flex font-semibold items-center text-[11px]">
+              <div className="flex font-semibold items-center text-[13px]">
                 {selectedOption}
               </div>
               {!isOpen ? (
@@ -259,7 +259,7 @@ const Inputs = () => {
           </div>
 
         </div>
-        <div id="price-usd" className="w-[43%] flex flex-col gap-y-1 font-redhat">
+        <div id="price-usd" className="w-[50%] flex flex-col gap-y-1 font-redhat">
           <label htmlFor="price" className="opacity-70 ">
             Price
           </label>
@@ -275,8 +275,8 @@ const Inputs = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-row gap-x-4">
-        <div id="quantity-input" className="flex flex-col gap-y-1">
+      <div className="flex flex-row gap-x-3">
+        <div id="quantity-input" className="flex flex-col w-[50%] gap-y-1">
           <div >
             Quantity
           </div>
@@ -287,11 +287,11 @@ const Inputs = () => {
             className="w-full bg-[#FFFFFF26] rounded px-4 py-2 border border-white/20"
           />
         </div>
-        <div id="crypto-input gap-y-1">
-          <div className="h-[28px]">
+        <div id="crypto-input" className="w-[50%]">
+          <div className="h-[28px] w-full">
 
           </div>
-          <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-full border border-white/20 font-redhat">
+          <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-[full] border border-white/20 font-redhat">
             <input
               type="string"
               name="crypto"
