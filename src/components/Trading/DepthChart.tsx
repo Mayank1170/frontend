@@ -17,15 +17,16 @@ export const DepthChart: React.FC = () => {
             backgroundColor: createLinearGradient(ctx, ['rgba(40, 192, 120, 0.6)', 'rgba(40, 192, 120, 0.06)']),
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 0,
-            fill: "start"
+            fill: 'start',
+            yAxisID: 'y1',
           },
           {
             data: [null, null, 0, 22, 25],
             backgroundColor: createLinearGradient(ctx, ['rgba(255, 93, 93, 0.8)', 'rgba(255, 93, 93, 0.06)']),
             borderColor: 'rgba(255, 0, 0, 1)',
             borderWidth: 0,
-            fill: "start"
-            
+            fill: 'start',
+            yAxisID: 'y2', 
           },
         ],
       };
@@ -34,7 +35,6 @@ export const DepthChart: React.FC = () => {
         chartInstanceRef.current.destroy();
       }
       const newChartInstance = new Chart(ctx, {
-        
         type: 'line',
         data: data,
         options: {
@@ -43,16 +43,32 @@ export const DepthChart: React.FC = () => {
           scales: {
             x: {
               beginAtZero: true,
-              
             },
-            y: {
+            y1: {
+              position: 'left',
+              stacked: false,
+              grid: {
+                display: false,
+                color: 'rgba(255,99,132,0.2)',
+              },
+              ticks: {
+                callback: (value, index) => {
+                  return value;
+                },
+              },
+            },
+            y2: {
               position: 'right',
               stacked: false,
               grid: {
                 display: false,
-                color: "rgba(255,99,132,0.2)"
+                color: 'rgba(255,99,132,0.2)',
               },
-              
+              ticks: {
+                callback: (value, index) => {
+                  return value;
+                },
+              },
             },
           },
           plugins: {
@@ -71,9 +87,7 @@ export const DepthChart: React.FC = () => {
         dataset.radius = 0;
       });
 
-      
-
-      newChartInstance.update(); 
+      newChartInstance.update();
 
       chartInstanceRef.current = newChartInstance;
     }
@@ -87,7 +101,7 @@ export const DepthChart: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-full bg-neutral-900  rounded-[10px] border-[0.5px] border-white/20 overflow-hidden">
+    <div className="relative w-full h-full bg-neutral-900 rounded-[10px] border-[0.5px] border-white/20 overflow-hidden">
       <canvas className='absolute top-0 left-0 inset-0 mt-8 w-full h-full' ref={chartRef}></canvas>
     </div>
   );
