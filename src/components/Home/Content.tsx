@@ -156,7 +156,6 @@ const Feature: React.FC<FeatureProps> = ({
           initial={{ opacity: 0, y: "150px" }}
           whileInView={{ opacity: 1, y: "0px" }}
           transition={{ duration: 2, ease: "easeInOut" }}
-          // viewport={{ once: true, root: ref }}
         />
         {floatingImage}
       </div>

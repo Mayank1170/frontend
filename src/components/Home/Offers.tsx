@@ -67,7 +67,7 @@ interface OfferProps {
 const Offer: React.FC<OfferProps> = ({ icon, title }) => {
   return (
     <div
-      className="rounded-[48px] pl-10 pr-[32px] py-9 border-2 border-[#FFFFFF55] backdrop-blur-sm flex items-center gap-x-7 min-w-[400px] max-w-[531px] w-[20vw]"
+      className="rounded-3xl pl-10 pr-[32px] py-9 border-2 border-[#FFFFFF55] backdrop-blur-sm flex items-center gap-x-7 min-w-[400px] max-w-[531px] w-[20vw]"
       style={{
         background:
           "linear-gradient(95.93deg, rgba(255, 255, 255, 0.325) 8.09%, rgba(255, 255, 255, 0.13) 100.01%)",
