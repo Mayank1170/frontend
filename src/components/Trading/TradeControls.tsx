@@ -90,81 +90,79 @@ export const TradeControls: React.FC = () => {
               Sell / Short
             </button>
           </div>
-          <div className="flex flex-col space-y-1">
-          <div className="flex flex-row space-x-4">
-            <div className="flex flex-row gap-x-2 items-center">
-              <div className="text-[14px] font-semibold">Reduce Only</div>
-              <div onClick={() => setToggle1(!toggle1)} className={`flex h-[24px] w-12 cursor-pointer rounded-full border border-black
+          <div className="flex flex-col space-y-3">
+            <div className="flex flex-row justify-between">
+              <div className="flex flex-row gap-x-2 items-center">
+                <div className="text-[14px] font-semibold">Reduce Only</div>
+                <div onClick={() => setToggle1(!toggle1)} className={`flex h-[24px] w-12 cursor-pointer rounded-full border border-black
            ${toggle1 ? "justify-start bg-gray-300/80" : "justify-end bg-[#3db079]"} p-[1px]`}>
-                <motion.div className={`h-5 w-5 rounded-full ${toggle1 ? "bg-white" : "bg-white"}`}
-                  layout transition={{ type: "spring", stiffness: 700, damping: 30 }} />
+                  <motion.div className={`h-5 w-5 rounded-full ${toggle1 ? "bg-white" : "bg-white"}`}
+                    layout transition={{ type: "spring", stiffness: 700, damping: 30 }} />
+                </div>
               </div>
-            </div>
-            <div className="flex flex-row gap-x-2 items-center">
-              <div className="text-[14px] font-semibold">Post</div>
-              <div onClick={() => setToggle2(!toggle2)} className={`flex h-[24px] w-12 cursor-pointer rounded-full border border-black
+              <div className="flex flex-row gap-x-2 items-center">
+                <div className="text-[14px] font-semibold">Post</div>
+                <div onClick={() => setToggle2(!toggle2)} className={`flex h-[24px] w-12 cursor-pointer rounded-full border border-black
            ${toggle2 ? "justify-start bg-gray-300/80" : "justify-end bg-[#3db079]"} p-[1px]`}>
-                <motion.div className={`h-5 w-5 rounded-full ${toggle2 ? "bg-white" : "bg-white"}`}
-                  layout transition={{ type: "spring", stiffness: 700, damping: 30 }} />
+                  <motion.div className={`h-5 w-5 rounded-full ${toggle2 ? "bg-white" : "bg-white"}`}
+                    layout transition={{ type: "spring", stiffness: 700, damping: 30 }} />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex flex-row w-full justify-between">
+                <button className="flex flex-row gap-x-2 items-center ">
+                  <h1 className="text-2xl font-bold text-white text-opacity-70">+</h1>
+                  <h1 className="text-xs font-semibold text-gray-400">Add Cover Orders</h1>
+                </button>
+                <button className="flex flex-row gap-x-2 items-center">
+                  <h1 className="text-2xl font-bold text-white text-opacity-70">+</h1>
+                  <h1 className="text-xs font-semibold text-gray-400">Add Iceberg Orders</h1>
+                </button>
               </div>
             </div>
           </div>
-
-
-          <div className="flex flex-row w-full justify-between">
-            <button className="flex flex-row gap-x-2 items-center ">
-              <h1 className="text-2xl font-bold text-white text-opacity-70">+</h1>
-              <h1 className="text-xs font-semibold text-gray-400">Add Cover Orders</h1>
-            </button>
-            <button className="flex flex-row gap-x-2 items-center">
-              <h1 className="text-2xl font-bold text-white text-opacity-70">+</h1>
-              <h1 className="text-xs font-semibold text-gray-400">Add Iceberg Orders</h1>
-            </button>
-          </div>
-          </div>
-        </div>
-        <div className="space-y-2">
-          <div>
-            <button onClick={() => setIsOpen((prev) => !prev)} className="w-full text-opacity-40 text-white text-xs font-semibold">
-              <div className="flex flex-row ">Slippage Tolerance (Infinite)   {!isOpen ? (
-                <BiChevronDown
-                  className='h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]' />
-              ) : (
-                <BiChevronUp className='h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]' />
-              )}
-              </div>
-              {isOpen && (
-                <div className="flex flex-row gap-x-1 mt-2" onClick={(e) => {
-                  e.stopPropagation();
-                }}>
-                  <div className="w-full flex flex-row justify-evenly">
-                    <div className="flex justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[30%] h-8 text-white hover:border-2 rounded-sm hover:border-emerald-500 ">
-                      <h1 className="m-0">0</h1>
-                      <h1>%</h1>
-                    </div>
-                    <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-8  text-white rounded-sm hover:border-2  hover:border-emerald-500">
-                      <h1 className="m-0">0.1 %</h1>
-                    </div>
-                    <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-8 text-white hover:border-2 rounded-sm hover:border-emerald-500">
-                      <h1 className="m-0">0.5 %</h1>
-                    </div>
-                    <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-8 text-white hover:border-2 rounded-sm hover:border-emerald-500">
-                      <h1 className="m-0">1 %</h1>
-                    </div>
-                    <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-8 text-white hover:border-2 rounded-sm hover:border-emerald-500">
-                      <h1 className="m-0">1 %</h1>
+          <div className="flex flex-col gap-y-3">
+              <button onClick={() => setIsOpen((prev) => !prev)} className="w-full text-opacity-40 text-white text-xs font-semibold">
+                <div className="flex flex-row ">Slippage Tolerance (Infinite)   {!isOpen ? (
+                  <BiChevronDown
+                    className='h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]' />
+                ) : (
+                  <BiChevronUp className='h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]' />
+                )}
+                </div>
+                {isOpen && (
+                  <div className="flex flex-row gap-x-1 mt-2" onClick={(e) => {
+                    e.stopPropagation();
+                  }}>
+                    <div className="w-full flex flex-row justify-evenly">
+                      <div className="flex justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[30%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500 ">
+                        <h1 className="m-0">0</h1>
+                        <h1>%</h1>
+                      </div>
+                      <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7  text-white rounded-sm hover:border-2  hover:border-emerald-500">
+                        <h1 className="m-0">0.1 %</h1>
+                      </div>
+                      <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
+                        <h1 className="m-0">0.5 %</h1>
+                      </div>
+                      <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
+                        <h1 className="m-0">1 %</h1>
+                      </div>
+                      <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
+                        <h1 className="m-0">1 %</h1>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </button>
-          </div>
-
+                )}
+              </button>
           <div className="flex flex-row justify-between content-center items-center">
             <h3 className="text-base font-semibold font-redhat">Req. Initial Margin</h3>
             <div className="flex justify-center items-center bg-black w-28 h-8 text-white border-2 rounded-md border-green-500">
               <h1 className="m-0">200,000 $</h1>
             </div>
+          </div>
           </div>
         </div>
       </div>

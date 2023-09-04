@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { BiChevronDown } from 'react-icons/bi'
 import { BiChevronUp } from 'react-icons/bi'
 import { RiSearch2Line } from 'react-icons/ri'
@@ -24,6 +24,7 @@ export const PricingLevels: React.FC<PricingLevelProps> = ({ onOpenModal }) => {
 
 const GeneralInfo: React.FC = () => {
 
+  const [isOpen, setIsOpen] = useState(false)
   const [openDropdownId, setOpenDropdownId] = useState<number | null>(null);
   const toggleDropdown = (e: number | null) => {
     if (openDropdownId === e) {
@@ -33,7 +34,28 @@ const GeneralInfo: React.FC = () => {
     }
   };
 
-  const [isOpen, setIsOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    const handleDocumentClick = (event: MouseEvent) => {
+      if (isOpen) {
+        handleClickOutside(event);
+      }
+    };
+  
+    document.addEventListener("mousedown", handleDocumentClick);
+  
+    return () => {
+      document.removeEventListener("mousedown", handleDocumentClick);
+    };
+  }, [isOpen]);
+
   return (
     <div className="flex flex-row my-2 relative">
       <button onClick={() => setIsOpen((prev) => !prev)} >
@@ -44,8 +66,9 @@ const GeneralInfo: React.FC = () => {
             <h3 className="2xl:text-[17px] xl:text-[13px] text-[25px] font-redhat "
 
             >SOL-PERP</h3>
-            {openDropdownId === 1 && (
-              <div className="mt-4 w-[360px] justify-between py-2 z-10 bg-[#202020] rounded border border-white border-opacity-30 border-white/20 absolute"  onClick={(e) => {
+            {isOpen && (
+              <div className="mt-4 w-[360px] justify-between py-2 z-10 bg-[#202020] rounded border border-white border-opacity-30 border-white/20 absolute"   ref={dropdownRef}
+             onClick={(e) => {
                 e.stopPropagation();
               }} >
                 <div className="flex flex-row gap-x-2 items-center py-2 px-3">

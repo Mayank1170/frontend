@@ -62,19 +62,6 @@ export const Hero: React.FC = () => {
                 </button>
               </div>
             </div>
-            {/* <button
-              className="z-10 relative px-[25px] py-4 rounded-[18px] group flex mt-auto mb-20 gap-x-4 items-center right-10 top-8"
-              style={{
-                boxShadow: "0px 4px 100px 40px rgba(59, 176, 120, 0.4)",
-                background:
-                  "linear-gradient(95.16deg, #3BB078 0%, #8FBFA8 100%)",
-              }}
-            >
-              <span className="w-[100px] font-bold text-[18px]">
-                Launch app
-              </span>
-              <ArrowRight className="group-hover:translate-x-1 transition-transform duration-150 ease-out" />
-            </button> */}
             <Link  href="/trade" className="flex rounded-2xl bg-[#3db079] halo-effect hover:before:bg-[#3db079] relative px-[25px] py-4 mt-auto mb-20 gap-x-4 right-10 top-14" style={{
               boxShadow: "0px 4px 100px 40px rgba(59, 176, 120, 0.4)",
               background:
