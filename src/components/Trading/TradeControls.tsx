@@ -73,7 +73,7 @@ export const TradeControls: React.FC = () => {
         <Inputs />
       </div>
       <div className="">
-        <div className="space-y-2">
+        <div className="space-y-4">
           <div className="space-x-1.5 flex flex-row bg-zinc-800 rounded-lg p-3 mx-[-13px]">
             <button
               onClick={handleBuyClick}
@@ -90,7 +90,7 @@ export const TradeControls: React.FC = () => {
               Sell / Short
             </button>
           </div>
-          <div className="flex flex-col space-y-3">
+          <div className="flex flex-col space-y-4">
             <div className="flex flex-row justify-between">
               <div className="flex flex-row gap-x-2 items-center">
                 <div className="text-[14px] font-semibold">Reduce Only</div>
@@ -137,9 +137,9 @@ export const TradeControls: React.FC = () => {
                     e.stopPropagation();
                   }}>
                     <div className="w-full flex flex-row justify-evenly">
-                      <div className="flex justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[30%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500 ">
-                        <h1 className="m-0">0</h1>
-                        <h1>%</h1>
+                      <div className="flex flex-row justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[30%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500 ">
+                      <input placeholder="0" className="flex bg-neutral-600 bg-opacity-10 h-7 w-full "/>
+                     <h1 className="m-0">%</h1>
                       </div>
                       <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7  text-white rounded-sm hover:border-2  hover:border-emerald-500">
                         <h1 className="m-0">0.1 %</h1>
