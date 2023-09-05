@@ -14,8 +14,20 @@ const Home: NextPageWithLayout = () => {
       }}
     >
       <Hero />
+      <div className="w-8 h-8 top-[1020px] right-[300px] rounded-full opacity-30 bg-cyan-300 z-80 absolute"></div>
+      <div className="w-9 h-9 top-[990px] right-[50%] rounded-full opacity-20 border-2 border-cyan-300 z-80 absolute"></div>
+      <div className="w-8 h-8 top-[1650px] left-[70px] rounded-full opacity-20 border-2 border-cyan-300 z-80 absolute"></div>
+      <div className="w-8 h-8 top-[1600px] left-[500px] rounded-full opacity-30 bg-cyan-300 z-80 absolute"></div>
+      <div className="w-8 h-8 top-[2000px] left-[43%] rounded-full opacity-20 border-2 border-cyan-300 z-80 absolute"></div>
+      <div className="w-12 h-12 top-[2400px] left-[50px] rounded-full opacity-20 border-2 border-cyan-300 z-80 absolute"></div>
+      <div className="w-8 h-8 top-[2050px] left-[56%] rounded-full opacity-20 border-2 border-cyan-300 z-80 absolute"></div>
+      <div className="w-5 h-5 top-[1950px] right-[450px] rounded-full opacity-30 bg-cyan-300 z-80 absolute"></div>
+      <div className="w-8 h-8 top-[2400px] right-[300px] rounded-full opacity-30 bg-cyan-300 z-80 absolute"></div>
+      <div className="w-5 h-5 top-[2350px] right-[40%] rounded-full opacity-20 border-2 border-cyan-300 z-80 absolute"></div>
+
+
       <div
-        className="bg-[url('/images/content-bg.svg')] relative"
+        className="mt-20 bg-[url('/images/content-bg.svg')] relative"
         style={{
           backgroundSize: "cover",
         }}
