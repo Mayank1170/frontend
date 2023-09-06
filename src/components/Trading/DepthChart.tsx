@@ -19,6 +19,7 @@ export const DepthChart: React.FC = () => {
             borderWidth: 0,
             fill: 'start',
             yAxisID: 'y1',
+            tension: 0.1,
           },
           {
             data: [null, null, 0, 22, 25],
@@ -27,6 +28,7 @@ export const DepthChart: React.FC = () => {
             borderWidth: 0,
             fill: 'start',
             yAxisID: 'y2', 
+            tension: 0.1,
           },
         ],
       };

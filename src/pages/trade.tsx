@@ -1,6 +1,7 @@
 import {
   ChartTwo,
   DepthChart,
+  FundingChart,
   Market,
   PricingLevels,
   Navigator,
@@ -21,7 +22,7 @@ const TradeingPage: NextPageWithLayout = () => {
   const onTabChange = (selectedTab: 'Price' | 'Depth' | 'Funding' | 'Details') => {
     setSelectedTab(selectedTab);
   };
-  
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
 
@@ -41,13 +42,16 @@ const TradeingPage: NextPageWithLayout = () => {
         <div className=""><Navigator /></div>
         <div className="w-full h-full justify-between flex flex-row space-x-4">
           <div className="w-full flex flex-col space-y-4 ">
-            <div className="justify-between hidden xl:inline"><Tabs onTabChange={onTabChange}/></div>
+            <div className="justify-between hidden xl:inline"><Tabs onTabChange={onTabChange} /></div>
             <div className="w-full h-[100%] hidden xl:inline">
               {selectedTab === 'Price' ? (
-                <ChartTwo /> 
+                <ChartTwo />
+              ) : selectedTab === 'Depth' ? (
+                <DepthChart />
               ) : (
-                <DepthChart /> 
-              )}
+                <FundingChart />
+              )
+              }
             </div>
           </div>
           <div className="w-[30%] mt-2 hidden xl:inline"> <TradeValue /></div>
