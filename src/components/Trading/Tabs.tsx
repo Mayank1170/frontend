@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 interface TabsProps {
-  onTabChange: (selectedTab: 'Price' | 'Depth' | 'Funding' | 'Details') => void;
+  onTabChange: (selectedTab: 'Price' | 'Depth' | 'Funding') => void;
 }
 
 export const Tabs: React.FC<TabsProps> = ({ onTabChange }) => {
-  const [activeComponent, setActiveComponent] = useState<'Price' | 'Depth' | 'Funding' | 'Details'>('Price');
+  const [activeComponent, setActiveComponent] = useState<'Price' | 'Depth' | 'Funding'>('Price');
 
-  const handleButtonClick = (componentName: 'Price' | 'Depth' | 'Funding' | 'Details') => {
+  const handleButtonClick = (componentName: 'Price' | 'Depth' | 'Funding') => {
     setActiveComponent(componentName);
     onTabChange(componentName);
   };
@@ -22,11 +22,9 @@ export const Tabs: React.FC<TabsProps> = ({ onTabChange }) => {
         <button  onClick={() => handleButtonClick('Depth')} className={`rounded-lg px-7 py-3.5 font-medium ${activeComponent === 'Depth' ? 'bg-gradient-to-r from-emerald-700 to-emerald-300  text-gray-950' : 'bg-[#1C1C1C] text-white'
           }`}>Depth</button>
 
-        <button className={`rounded-lg px-7 py-3.5 font-medium ${activeComponent === 'Funding' ? 'bg-gradient-to-r from-emerald-700 to-emerald-300  text-gray-950' : 'bg-[#1C1C1C] text-white'
+        <button onClick={() => handleButtonClick('Funding')} className={`rounded-lg px-7 py-3.5 font-medium ${activeComponent === 'Funding' ? 'bg-gradient-to-r from-emerald-700 to-emerald-300  text-gray-950' : 'bg-[#1C1C1C] text-white'
           }`}>Funding</button>
 
-        <button className={`rounded-lg px-7 py-3.5 font-medium ${activeComponent === 'Details' ? 'bg-gradient-to-r from-emerald-700 to-emerald-300  text-gray-950' : 'bg-[#1C1C1C] text-white'
-          }`}>Details</button>
       </div>
       <div className="flex flex-row space-x-2">
         <div className="flex w-10 h-10 text-3xl  bg-[#202020] justify-center items-center rounded-lg border border-white/20">
