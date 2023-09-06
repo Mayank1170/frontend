@@ -4,11 +4,11 @@ import { ChartOptions } from 'chart.js';
 
 export const FundingChart: React.FC = () => {
   const data = {
-    labels: [0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.0,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.0], // Adjusted X-axis labels
+    labels: [0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.0,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.0], 
     datasets: [
       {
         label:'',
-        data: [2, -3, 1, -4, 1, 5,2,2, -3, 1, -4, 1,2, -3, 1, -4, 1, 5, 5, -3, 1,2, -3, 1, -4, 1, 5, -4, 1, 5,2, -3,2,2, -3, 1, -4, 1, 5, -3, 1, -4, 1, 5, 1, -4, 1, 5], // Corresponding Y-axis data
+        data: [2, -3, 1, -4, 1, 5,2,2, -3, 1, -4, 1,2, -3, 1, -4, 1, 5, 5, -3, 1,2, -3, 1, -4, 1, 5, -4, 1, 5,2, -3,2,2, -3, 1, -4, 1, 5, -3, 1, -4, 1, 5, 1, -4, 1, 5], 
         fill: false,
         borderColor: '#ffffff',
         tension: 0.1,
@@ -29,14 +29,14 @@ export const FundingChart: React.FC = () => {
         },
         title: {
           display: false,
-          text: 'X-axis', // Add a label for the x-axis
+          text: 'X-axis',
         },
       },
       y: {
-        min: -15, // Minimum value for the Y-axis
-        max: 15,  // Maximum value for the Y-axis
+        min: -15,
+        max: 15, 
         ticks: {
-          display: false, // Hide y-axis labels
+          display: false,
         },
       },
       
