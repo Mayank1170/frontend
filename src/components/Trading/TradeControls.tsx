@@ -181,7 +181,7 @@ export const TradeControls: React.FC = () => {
           {isBuyClicked ? 'Long ~3.44845 SOL-PERP' : isSellClicked ? 'Short ~3.44845 SOL-PERP' : ''}
         </div>
         {isPopupVisible && (
-          <div className="flex flex-col w-[300px] h-[120px] bottom-[20px] right-[68px]  bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
+          <div className="flex flex-col w-[21%] h-[120px] bottom-[20px] right-[68px]  bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
             <div className="flex flex-row px-6 py-4 rounded-md justify-between items-center">
               <div className="flex flex-row items-center gap-x-[5px]">
                 <div>{popupIcon}</div>
@@ -190,7 +190,7 @@ export const TradeControls: React.FC = () => {
               <div className="text-white text-[12px]"><AiOutlineClose /></div>
             </div>
             <div className="w-[100%] flex flex-col justify-start items-center ">
-              <h1 className="text-white w-[90%] opacity-50 text-[12px] pl-0">{popupContent}</h1>
+              <h1 className="text-white w-[90%] opacity-50 text-[13px] 2xl:text-[16px] 3xl:text-[17px] pl-0">{popupContent}</h1>
               <h2 className="text-white opacity-50 text-[12px]">{ConfirmationMessage}</h2>
             </div>
           </div>
