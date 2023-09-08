@@ -218,6 +218,31 @@ const Inputs = () => {
     setIsOpen(true);
   };
 
+  const [usdValue, setUsdValue] = useState<string>("")
+  const [price, setPrice] = useState<string>("");
+  const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPrice(event.target.value);  
+    calculateUsdValue(event.target.value, quantity);
+
+  }
+  const [quantity, setQuantity] = useState<string>('');
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setQuantity(event.target.value);
+    calculateUsdValue(price, event.target.value);
+  };
+
+  const calculateUsdValue = (priceValue: string, quantityValue: string) => {
+    const priceNumber = parseFloat(priceValue);
+    const quantityNumber = parseFloat(quantityValue);
+    
+    if (!isNaN(priceNumber) && !isNaN(quantityNumber)) {
+      const usd = priceNumber * quantityNumber;
+      setUsdValue(usd.toFixed(2)); 
+    } else {
+      setUsdValue('');
+    }
+  };
+
   return (
     <div className="flex flex-col w-full gap-y-4">
       <div className="w-full flex flex-row gap-x-3 justify-">
@@ -264,6 +289,8 @@ const Inputs = () => {
           <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-full border border-white/20">
             <input
               placeholder="16,800"
+              value={price}
+              onChange={handlePriceChange}
               type="string"
               name="price"
               id="price"
@@ -278,20 +305,11 @@ const Inputs = () => {
           <div >
             Quantity
           </div>
-          <input
-            type="string"
-            name="quantity"
-            id="quantity"
-            className="w-full bg-[#FFFFFF26] rounded px-4 py-2 border border-white/20"
-          />
-        </div>
-        <div id="crypto-input" className="w-[50%]">
-          <div className="h-[28px] w-full">
-
-          </div>
           <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-[full] border border-white/20 font-redhat">
             <input
               type="string"
+              value={quantity}
+              onChange={handleInputChange}
               name="crypto"
               id="crypto"
               className="flex-1 bg-transparent px-2 w-20"
@@ -302,6 +320,21 @@ const Inputs = () => {
               height={24}
               alt="bitcoin"
               className="mr-2"
+            />
+          </div>
+        </div>
+        <div id="crypto-input" className="w-[50%]">
+          <div className="h-[28px] w-full">
+
+          </div>
+          <div className="flex items-center justify-between bg-[#FFFFFF26] rounded px-4 py-[10px] w-[full] border border-white/20 font-redhat">
+           <p>{usdValue}</p>
+            <Image
+              src="/images/usdc.png"
+              width={24}
+              height={24}
+              alt="bitcoin"
+              className="mr-2 h-5"
             />
           </div>
         </div>
