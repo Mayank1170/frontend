@@ -27,16 +27,15 @@ export const Hero: React.FC = () => {
               </div>
 
               <div
-                className="w-[100%]  rounded-[24px] max-w-[800px] py-8 px-8 pr-32 mt-10 relative flex items-center border border-gray-300/30"
+                className="w-[100%]  rounded-[24px] max-w-[800px] py-6 px-8 pr-32 mt-10 relative flex items-center border border-gray-300/30"
                 style={{
                   background:
                     "linear-gradient(92.18deg, rgba(255, 255, 255, 0.182) 0%, rgba(255, 255, 255, 0.13) 100%)",
                 }}
 
               >
-                <p className="text-[20px]">
-                  We build trading infrastructure for the masses
-                </p>
+                <p className="text-[18px]">
+                We are building a Decentralized Exchange to change the<br/>on-chain trading landscape                </p>
                 <button
                   className="group rounded-full p-2 absolute -right-5"
                   style={{

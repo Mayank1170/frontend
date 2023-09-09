@@ -12,7 +12,7 @@ const features: Omit<FeatureProps, "index">[] = [
     ),
     description:
       "We have bootstrapped liquidity across perpetuals and spot markets, supporting trading of diverse range of assets.",
-    image: "/images/features/zero-slippage.png",
+    image: "/images/features/zero-Slippage.png",
     floatingImage: (
       <motion.img
         initial={{ opacity: 0, x: "-50px" }}
@@ -55,7 +55,7 @@ const features: Omit<FeatureProps, "index">[] = [
     ),
     description:
       "Our backstop liquidity market maker(BLMM) and Insurance Fund open up secure yield earning opportunities for retail users. See docs for learn more",
-    image: "/images/features/flexibility.png",
+    image: "/images/features/Opportunity.png",
     floatingImage: (
       <motion.img
         initial={{ opacity: 0, x: "50px" }}
