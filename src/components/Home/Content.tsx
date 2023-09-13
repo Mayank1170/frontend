@@ -13,6 +13,7 @@ const features: Omit<FeatureProps, "index">[] = [
     description:
       "We have bootstrapped liquidity across perpetuals and spot markets, supporting trading of diverse range of assets.",
     image: "/images/features/zero-Slippage.png",
+    btnText: "Trade Now",
     floatingImage: (
       <motion.img
         initial={{ opacity: 0, x: "-50px" }}
@@ -35,6 +36,7 @@ const features: Omit<FeatureProps, "index">[] = [
     description:
       "We care for user assets and use advanced risk management procedures to safeguard assets from exploits at all times.",
     image: "/images/features/liquidity.png",
+    btnText: "Explore our Docs",
     floatingImage: (
       <motion.img
         initial={{ opacity: 0, x: "50px" }}
@@ -56,6 +58,7 @@ const features: Omit<FeatureProps, "index">[] = [
     description:
       "Our backstop liquidity market maker(BLMM) and Insurance Fund open up secure yield earning opportunities for retail users. See docs for learn more",
     image: "/images/features/Opportunity.png",
+    btnText: "Earn Yield",
     floatingImage: (
       <motion.img
         initial={{ opacity: 0, x: "50px" }}
@@ -85,6 +88,7 @@ interface FeatureProps {
   description: string;
   index: number;
   image: string;
+  btnText: string;
   floatingImage?: React.ReactNode;
 }
 
@@ -93,6 +97,7 @@ const Feature: React.FC<FeatureProps> = ({
   description,
   index,
   image,
+  btnText,
   floatingImage,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -143,7 +148,7 @@ const Feature: React.FC<FeatureProps> = ({
             transition={{ duration: 1.5, ease: "easeInOut" }}
             // viewport={{ once: true, root: ref }}
           >
-            Learn More
+            <h1>{btnText}</h1>
           </motion.button>
         </div>
         <motion.img
