@@ -4,7 +4,6 @@ import { BiChevronDown } from 'react-icons/bi'
 import { BiChevronUp } from 'react-icons/bi'
 import { RiSearch2Line } from 'react-icons/ri'
 
-
 interface PricingLevelProps {
   onOpenModal: () => void;
 }
@@ -48,9 +47,9 @@ const GeneralInfo: React.FC = () => {
         handleClickOutside(event);
       }
     };
-  
+
     document.addEventListener("mousedown", handleDocumentClick);
-  
+
     return () => {
       document.removeEventListener("mousedown", handleDocumentClick);
     };
@@ -67,10 +66,10 @@ const GeneralInfo: React.FC = () => {
 
             >SOL-PERP</h3>
             {isOpen && (
-              <div className="mt-4 w-[360px] justify-between py-2 z-10 bg-[#202020] rounded border border-white border-opacity-30 border-white/20 absolute"   ref={dropdownRef}
-             onClick={(e) => {
-                e.stopPropagation();
-              }} >
+              <div className="mt-4 w-[360px] justify-between py-2 z-10 bg-[#202020] rounded border border-white border-opacity-30 border-white/20 absolute" ref={dropdownRef}
+                onClick={(e) => {
+                  e.stopPropagation();
+                }} >
                 <div className="flex flex-row gap-x-2 items-center py-2 px-3">
                   <div className="opacity-40 ">
                     <RiSearch2Line className="w-6 h-6" />
