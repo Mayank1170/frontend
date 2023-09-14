@@ -207,7 +207,6 @@ const Inputs = () => {
   const [isOpen, setIsOpen] = useState(false);
   const options = [
     'Market',
-    'Employee',
     'Stop-Market',
     'Stop-Limit',
     'Take-Profit',
