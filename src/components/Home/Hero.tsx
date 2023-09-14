@@ -22,7 +22,7 @@ export const Hero: React.FC = () => {
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  Exchange<br />Infrastructure <br /> that Scales
+                  Trading<br />Infrastructure <br /> that Scales
                 </h1>
               </div>
 
