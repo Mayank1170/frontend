@@ -187,7 +187,7 @@ export const WalletForm: React.FC = () => {
               <div className="fixed inset-0 z-50 flex flex-col items-center justify-center backdrop-filter backdrop-blur-sm">
                 <div
                   className="w-[799px] h-[421px] relative rounded-2xl ring-teal-500 ring-1 ring-opacity-5"
-                  
+
                   style={{ backgroundImage: "url('/images/modal-bg.png')" }}
                 >
                   <div className="left-[221.50px] top-[49px] absolute justify-start items-center gap-[9px] inline-flex">
@@ -379,19 +379,23 @@ export const WalletForm: React.FC = () => {
                     Some things you can do on SpedX:
                   </p>
                   <ul className="text-[16px] text-white px-8 list-disc">
-                    <li>Start depositing and earn yield</li>
-                    <li>Trade perpetuals and spot assets</li>
+                    <li className="w-[100%]  rounded-[24px] max-w-[800px] py-6 px-8 pr-32 mt-4 relative flex items-center border border-gray-300/30"
+                      style={{
+                        background:
+                          "linear-gradient(92.18deg, rgba(255, 255, 255, 0.182) 0%, rgba(255, 255, 255, 0.13) 100%)",
+                      }} >Start depositing and earn yield</li>
+                    <li className="w-[100%]  rounded-[24px] max-w-[800px] py-6 px-8 pr-32 mt-4 relative flex items-center border border-gray-300/30"
+                      style={{
+                        background:
+                          "linear-gradient(92.18deg, rgba(255, 255, 255, 0.182) 0%, rgba(255, 255, 255, 0.13) 100%)",
+                      }}>Trade perpetuals and spot assets</li>
 
-                    <li>
+                    <li className="w-[100%]  rounded-[24px] max-w-[800px] py-6 px-8 pr-32 mt-4 relative flex items-center border border-gray-300/30"
+                      style={{
+                        background:
+                          "linear-gradient(92.18deg, rgba(255, 255, 255, 0.182) 0%, rgba(255, 255, 255, 0.13) 100%)",
+                      }}>
                       Add liquidity to our market maker and earn risk-free yield
-                    </li>
-                    <li>
-                      Deposit funds into our liquidator client and earn yield on
-                      every liquidation
-                    </li>
-                    <li>
-                      Make the protocol safer by depositing to the Insurance
-                      Fund.
                     </li>
                   </ul>
                 </div>
