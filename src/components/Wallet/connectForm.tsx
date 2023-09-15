@@ -378,7 +378,7 @@ export const WalletForm: React.FC = () => {
                   <p className="text-[20px] mb-2">
                     Some things you can do on SpedX:
                   </p>
-                  <ul className="text-[16px] text-white px-8 list-disc">
+                  <ul className="text-[16px] text-white list-disc">
                     <li className="w-[100%]  rounded-[24px] max-w-[800px] py-6 px-8 pr-32 mt-4 relative flex items-center border border-gray-300/30"
                       style={{
                         background:
