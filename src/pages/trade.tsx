@@ -10,6 +10,8 @@ import {
   Tabs,
   TradeControls,
   ViewMoreModal,
+  InfoTabs,
+  Info
 
 } from "@/components/Trading";
 import { useState } from "react";
@@ -21,6 +23,10 @@ const TradeingPage: NextPageWithLayout = () => {
 
   const onTabChange = (selectedTab: 'Price' | 'Depth' | 'Funding' | 'Details') => {
     setSelectedTab(selectedTab);
+  };
+  const [infoTab, setInfoTabs] = useState<'Positions' | 'Orders' | 'History' | 'Balances'>('Positions');
+  const onInfoTabChange = (infoTab: 'Positions' | 'Orders' | 'History' | 'Balances') => {
+    setInfoTabs(infoTab);
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -53,8 +59,15 @@ const TradeingPage: NextPageWithLayout = () => {
               )
               }
             </div>
+
           </div>
           <div className="w-[30%] mt-2 hidden xl:inline"> <TradeValue /></div>
+        </div>
+        <div>
+          <InfoTabs onInfoTabChange={onInfoTabChange} />
+        </div>
+        <div>
+          <Info/>
         </div>
 
       </div>

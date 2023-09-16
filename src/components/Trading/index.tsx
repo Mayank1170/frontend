@@ -9,3 +9,5 @@ export { DepthChart } from './DepthChart'
 export { FundingChart } from './FundingChart'
 export { ChartTwo } from "./ChartTwo";
 export { Tables } from "./Tables";
+export { InfoTabs } from "./InfoTabs"
+export {Info} from "./Info"
