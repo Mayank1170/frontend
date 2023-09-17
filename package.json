@@ -36,6 +36,7 @@
     "react-select": "^5.7.3",
     "react-slider": "^2.0.5",
     "react-ts-tradingview-widgets": "^1.0.14",
+    "recharts": "^2.8.0",
     "tailwind-scrollbar-hide": "^1.1.7",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4",
