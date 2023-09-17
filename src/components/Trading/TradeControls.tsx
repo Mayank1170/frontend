@@ -2,7 +2,7 @@ import Image from "next/image";
 import { motion } from 'framer-motion'
 import { useState, useEffect, ChangeEvent } from "react";
 import ArrowRight from "../icons/ArrowRight";
-import { RangeSlider } from "./Slider";
+// import { RangeSlider } from "./Slider";`
 import { BiChevronDown } from 'react-icons/bi'
 import { BiChevronUp } from 'react-icons/bi'
 import { ImSpinner3 } from 'react-icons/im'
