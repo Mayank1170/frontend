@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-interface ExampleProps {}
+interface ExampleProps { }
 
 interface DataItem {
   name: string;
@@ -21,44 +21,44 @@ interface DataItem {
 const data: DataItem[] = [
   {
     name: 'Page A',
-    uv: 4000,
-    pv: 2400,
+    uv: 7000,
+    pv: 0,
     amt: 2400,
   },
   {
     name: 'Page B',
-    uv: 3000,
-    pv: 1398,
+    uv: 6000,
+    pv: 2398,
     amt: 2210,
   },
   {
     name: 'Page C',
-    uv: 2000,
-    pv: 9800,
+    uv: 5000,
+    pv: 3800,
     amt: 2290,
   },
   {
     name: 'Page D',
-    uv: 2780,
-    pv: 3908,
+    uv: 4780,
+    pv: 4908,
     amt: 2000,
   },
   {
     name: 'Page E',
-    uv: 1890,
-    pv: 4800,
+    uv: 3890,
+    pv: 5800,
     amt: 2181,
   },
   {
     name: 'Page F',
     uv: 2390,
-    pv: 3800,
+    pv: 6800,
     amt: 2500,
   },
   {
     name: 'Page G',
-    uv: 3490,
-    pv: 4300,
+    uv: 0,
+    pv: 7300,
     amt: 2100,
   },
 ];
@@ -68,31 +68,27 @@ export class Example extends PureComponent<ExampleProps> {
 
   render() {
     return (
-      <div style={{ width: '100%', height:'100%'}} className='flex flex-row'>
+      <div className='w-full h-full flex flex-row bg-neutral-900' id="depthView">
         <ResponsiveContainer width="100%" height='100%'>
           <AreaChart
             data={data}
             syncId="anyId"
-           
           >
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid vertical={false} horizontal={false} />
             <XAxis display={"none"} />
-            <YAxis display={'none'}/>
+            <YAxis display={'none'} />
             <Tooltip />
             <Area type="monotone" dataKey="uv" stroke="" fill="#205F41" />
           </AreaChart>
         </ResponsiveContainer>
         <ResponsiveContainer width="100%" height='100%'>
           <AreaChart
-            width={500}
-            height={200}
             data={data}
             syncId="anyId"
-           
           >
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid vertical={false} horizontal={false} />
             <XAxis display={'none'} />
-            <YAxis display={'none'}/>
+            <YAxis display={'none'} />
             <Tooltip />
             <Area type="monotone" dataKey="pv" stroke="" fill="#FF5D5D" />
           </AreaChart>
