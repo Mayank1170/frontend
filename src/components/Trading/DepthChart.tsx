@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-interface ExampleProps { }
+interface ExampleProps {}
 
 interface DataItem {
   name: string;
@@ -68,31 +68,26 @@ export class Example extends PureComponent<ExampleProps> {
 
   render() {
     return (
-      <div className='w-full h-full flex flex-row bg-neutral-900' id="depthView">
-        <ResponsiveContainer width="100%" height='100%'>
-          <AreaChart
-            data={data}
-            syncId="anyId"
-          >
-            <CartesianGrid vertical={false} horizontal={false} />
-            <XAxis display={"none"} />
-            <YAxis display={'none'} />
-            <Tooltip />
-            <Area type="monotone" dataKey="uv" stroke="" fill="#205F41" />
-          </AreaChart>
-        </ResponsiveContainer>
-        <ResponsiveContainer width="100%" height='100%'>
-          <AreaChart
-            data={data}
-            syncId="anyId"
-          >
-            <CartesianGrid vertical={false} horizontal={false} />
-            <XAxis display={'none'} />
-            <YAxis display={'none'} />
-            <Tooltip />
-            <Area type="monotone" dataKey="pv" stroke="" fill="#FF5D5D" />
-          </AreaChart>
-        </ResponsiveContainer>
+      <div className='w-full h-full flex flex-row bg-neutral-900 ' id="depthView">
+        <div className="w-full h-full p-0">
+          <ResponsiveContainer width="100%" height='100%'>
+            <AreaChart data={data} syncId="anyId">
+              <CartesianGrid vertical={false} horizontal={false} />
+              <Tooltip />
+              <Area type="monotone" dataKey="uv" stroke="" fill="#205F41" />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="w-full p-0">
+          <ResponsiveContainer width="100%" height='100%'>
+            <AreaChart data={data} syncId="anyId">
+              <CartesianGrid vertical={false} horizontal={false} />
+              <YAxis orientation="right" className=''/>
+              <Tooltip />
+              <Area type="monotone" dataKey="pv" stroke="" fill="#FF5D5D" />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     );
   }
