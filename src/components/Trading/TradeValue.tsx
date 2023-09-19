@@ -460,7 +460,7 @@ export const NavLinks: React.FC = () => {
           }`}
         onClick={() => handleButtonClick('recentTrades')}
       >
-        Trade
+        Trades
       </button>
       {activeComponent === 'orderBook' ? <OrderBook /> : <RecentTrades />}
     </div>

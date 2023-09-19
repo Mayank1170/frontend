@@ -33,7 +33,7 @@ export const ChartTwo: React.FC = () => {
     };
 
     function createWidget() {
-      if (document.getElementById('tradingview_8255e') && window.TradingView) {
+      if (document.getElementById('tradingview') && window.TradingView) {
         new window.TradingView.widget({
           autosize: true,
           symbol: 'BINANCE:SOLUSDT',
