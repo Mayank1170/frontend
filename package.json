@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@moongate/moongate-adapter": "^0.0.72",
+    "@moongate/solana-wallet-sdk": "^1.0.6",
+    "@moongate/wallet-wrapper-sdk": "^0.0.69",
     "@solana/wallet-adapter-base": "^0.9.23",
     "@solana/wallet-adapter-react": "^0.15.34",
     "@solana/wallet-adapter-react-ui": "^0.9.33",

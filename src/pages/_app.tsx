@@ -19,6 +19,7 @@ import {
   SolflareWalletAdapter,
   BraveWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
+import { MoongateWalletAdapter } from "@moongate/moongate-adapter";
 
 import { pilatExtended } from "@/utils/fonts";
 import { Red_Hat_Display } from "next/font/google";
@@ -44,6 +45,7 @@ const MyApp: NextComponentType<
       new BraveWalletAdapter(),
       new GlowWalletAdapter(),
       new BackpackWalletAdapter(),
+      new MoongateWalletAdapter(),
     ],
     []
   );
