@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import {
   AreaChart,
   Area,
-  XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
@@ -78,9 +77,10 @@ export class Example extends PureComponent<ExampleProps> {
             </AreaChart>
           </ResponsiveContainer>
         </div>
+        <div className='w-[0.4px] h-full bg-gray-600/40 divide-dotted text-white'></div>
         <div className="w-full p-0">
           <ResponsiveContainer width="100%" height='100%'>
-            <AreaChart data={data} syncId="anyId">
+            <AreaChart data={data} syncId="depthView">
               <CartesianGrid vertical={false} horizontal={false} />
               <YAxis orientation="right" className=''/>
               <Tooltip />

@@ -176,7 +176,7 @@ interface AdditionalInfoProps {
 
 const AdditionalInfo: React.FC<AdditionalInfoProps> = ({ onOpenModal }) => {
   return (
-    <div className="flex h-full items-center xl:mr-0 mr-5 2xl:gap-x-6  justify-end xl:justify-between">
+    <div className="flex h-full items-center xl:mr-0 mr-5 2xl:gap-x-6 justify-end xl:justify-between">
       <div className="flex flex-row"><AdditionalInfoItem value="19.5142" name="Mark Price" /></div>
       <div className="xl:flex  px-2 hidden"><AdditionalInfoItem value="$2.77M" name="24H Volume" /></div>
       <div className="xl:flex  hidden"><AdditionalInfoItem value="$19.1695" name="Index Price" /></div>
@@ -202,7 +202,7 @@ const AdditionalInfoItem: React.FC<AdditionalInfoItemProps> = ({
 }) => {
   return (
     <div className="flex flex-col">
-      <p className="text-white/80  xl:text-[15px] 2xl:text-[18px] text-[25px] font-bold font-redhat">{value}</p>
+      <p className="text-white/80  xl:text-[15px] 2xl:text-[18px] text-[24px] font-bold font-redhat">{value}</p>
       <p className="text-[14px] text-white/40">{name}</p>
     </div>
   );

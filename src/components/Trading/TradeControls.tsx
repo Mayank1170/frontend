@@ -56,10 +56,7 @@ export const TradeControls: React.FC = () => {
 
 
   return (
-    <div
-
-      className=" p-6 bg-[#202020] flex-1 w-[100%] h-[100%] rounded-[10px] border-[0.5px] border-white/20"
-    >
+    <div className=" p-6 bg-[#202020] flex-1 w-[100%] h-[100%] rounded-[10px] border-[0.5px] border-white/20" >
       <div className="mb-6 font-redhat">
         <div className="flex items-center gap-x-4 mb-5">
           <Image
@@ -70,11 +67,7 @@ export const TradeControls: React.FC = () => {
           />
           <h3 className="font-bold text-3xl">Trade</h3>
         </div>
-        <Inputs />
-      </div>
-      <div className="">
-        <div className="space-y-4">
-          <div className="space-x-1.5 flex flex-row bg-zinc-800 rounded-lg p-3 mx-[-13px]">
+        <div className="space-x-1.5 flex flex-row bg-zinc-800 rounded-lg p-3 mx-[-13px] mb-3">
             <button
               onClick={handleBuyClick}
               className={`w-[100%] h-10 ${isBuyClicked ? 'bg-[#39FFA0]/20 border-green-400  text-emerald-500' : 'bg-[#373737] border-zinc-500 text-zinc-500'
@@ -90,6 +83,11 @@ export const TradeControls: React.FC = () => {
               Sell / Short
             </button>
           </div>
+        <Inputs />
+      </div>
+      <div className="">
+        <div className="space-y-4">
+         
           <div className="flex flex-col space-y-4">
             <div className="flex flex-row justify-between">
               <div className="flex flex-row gap-x-2 items-center">
@@ -124,45 +122,45 @@ export const TradeControls: React.FC = () => {
             </div>
           </div>
           <div className="flex flex-col gap-y-3">
-              <button onClick={() => setIsOpen((prev) => !prev)} className="w-full text-opacity-40 text-white text-xs font-semibold">
-                <div className="flex flex-row ">Slippage Tolerance (Infinite)   {!isOpen ? (
-                  <BiChevronDown
-                    className='h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]' />
-                ) : (
-                  <BiChevronUp className='h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]' />
-                )}
-                </div>
-                {isOpen && (
-                  <div className="flex flex-row gap-x-1 mt-2" onClick={(e) => {
-                    e.stopPropagation();
-                  }}>
-                    <div className="w-full flex flex-row justify-evenly">
-                      <div className="flex flex-row justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[30%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500 ">
-                      <input placeholder="0" className="flex bg-neutral-600 bg-opacity-10 h-7 w-full "/>
-                     <h1 className="m-0">%</h1>
-                      </div>
-                      <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7  text-white rounded-sm hover:border-2  hover:border-emerald-500">
-                        <h1 className="m-0">0.1 %</h1>
-                      </div>
-                      <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
-                        <h1 className="m-0">0.5 %</h1>
-                      </div>
-                      <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
-                        <h1 className="m-0">1 %</h1>
-                      </div>
-                      <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
-                        <h1 className="m-0">1 %</h1>
-                      </div>
+            <button onClick={() => setIsOpen((prev) => !prev)} className="w-full text-opacity-40 text-white text-xs font-semibold">
+              <div className="flex flex-row ">Slippage Tolerance (Infinite)   {!isOpen ? (
+                <BiChevronDown
+                  className='h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]' />
+              ) : (
+                <BiChevronUp className='h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]' />
+              )}
+              </div>
+              {isOpen && (
+                <div className="flex flex-row gap-x-1 mt-2" onClick={(e) => {
+                  e.stopPropagation();
+                }}>
+                  <div className="w-full flex flex-row justify-evenly">
+                    <div className="flex flex-row justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[30%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500 ">
+                      <input placeholder="0" className="flex bg-neutral-600 bg-opacity-10 h-7 w-full " />
+                      <h1 className="m-0">%</h1>
+                    </div>
+                    <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7  text-white rounded-sm hover:border-2  hover:border-emerald-500">
+                      <h1 className="m-0">0.1 %</h1>
+                    </div>
+                    <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
+                      <h1 className="m-0">0.5 %</h1>
+                    </div>
+                    <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
+                      <h1 className="m-0">1 %</h1>
+                    </div>
+                    <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
+                      <h1 className="m-0">1 %</h1>
                     </div>
                   </div>
-                )}
-              </button>
-          <div className="flex flex-row justify-between content-center items-center">
-            <h3 className="text-base font-semibold font-redhat">Req. Initial Margin</h3>
-            <div className="flex justify-center items-center bg-black w-28 h-8 text-white border-2 rounded-md border-green-500">
-              <h1 className="m-0">200,000 $</h1>
+                </div>
+              )}
+            </button>
+            <div className="flex flex-row justify-between content-center items-center">
+              <h3 className="text-base font-semibold font-redhat">Req. Initial Margin</h3>
+              <div className="flex justify-center items-center bg-black w-28 h-8 text-white border-2 rounded-md border-green-500">
+                <h1 className="m-0">200,000 $</h1>
+              </div>
             </div>
-          </div>
           </div>
         </div>
       </div>
@@ -220,7 +218,7 @@ const Inputs = () => {
   const [usdValue, setUsdValue] = useState<string>("")
   const [price, setPrice] = useState<string>("");
   const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPrice(event.target.value);  
+    setPrice(event.target.value);
     calculateUsdValue(event.target.value, quantity);
 
   }
@@ -233,10 +231,10 @@ const Inputs = () => {
   const calculateUsdValue = (priceValue: string, quantityValue: string) => {
     const priceNumber = parseFloat(priceValue);
     const quantityNumber = parseFloat(quantityValue);
-    
+
     if (!isNaN(priceNumber) && !isNaN(quantityNumber)) {
       const usd = priceNumber * quantityNumber;
-      setUsdValue(usd.toFixed(2)); 
+      setUsdValue(usd.toFixed(2));
     } else {
       setUsdValue('');
     }
@@ -327,7 +325,7 @@ const Inputs = () => {
 
           </div>
           <div className="flex items-center justify-between bg-[#FFFFFF26] rounded px-4 py-[10px] w-[full] border border-white/20 font-redhat">
-           <p>{usdValue}</p>
+            <p>{usdValue}</p>
             <Image
               src="/images/usdc.png"
               width={24}
