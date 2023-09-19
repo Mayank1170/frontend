@@ -6,38 +6,32 @@ import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import SearchModal from "./SearchModal";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 const Navbar: React.FC = () => {
-
   const [showMyModal, setShowMyModal] = useState(false);
-
 
   const handleSearchClick = () => {
     setShowMyModal(false);
   };
-  const handleOnClose  = () => {
-  setShowMyModal(true)
-  }
+  const handleOnClose = () => {
+    setShowMyModal(true);
+  };
 
   return (
     <div>
-      <nav className="flex items-center justify-between pt-4 px-10 w-screen relative z-10" >
+      <nav className="relative z-10 flex items-center justify-between w-screen px-10 pt-4">
         <div className="flex items-center gap-x-10">
           <Logo />
           <NavLinks />
         </div>
         <div className="flex items-center gap-x-6">
-          <Search
-            onClick={handleOnClose}
-          />
+          <Search onClick={handleOnClose} />
           <Controls />
         </div>
         <SearchModal onClick={handleSearchClick} visible={showMyModal} />
-
       </nav>
-
     </div>
-
   );
 };
 
@@ -118,27 +112,31 @@ const NavLinks: React.FC = () => {
   );
 };
 
-const Search: React.FC<{onClick: ()=> void}> = ({onClick}) => {
-
+const Search: React.FC<{ onClick: () => void }> = ({ onClick }) => {
   return (
     <div
-      className="flex items-center justify-center w-[100%] h-[57px] rounded-lg py-[18px] px-[26px] gap-x-3 cursor-pointer" 
+      className="flex items-center justify-center w-[100%] h-[57px] rounded-lg py-[18px] px-[26px] gap-x-3 cursor-pointer"
       style={{
         background: "rgb(60,60,60)",
       }}
       onClick={onClick}
     >
-     <h1 className="font-redhat font-semibold text-lg text-white">Manage Balances</h1>
+      <h1 className="text-lg font-semibold text-white font-redhat">
+        Manage Balances
+      </h1>
     </div>
   );
 };
 
 const Controls: React.FC = () => {
-  const walletConnected = false;
-  return (
-    walletConnected ? <div className="rounded-2xl grid grid-cols-2 items-center justify-items-center" style={{
-      background: "rgba(217, 217, 217, 0.15)",
-    }}>
+  const { publicKey } = useWallet();
+  return publicKey ? (
+    <div
+      className="grid items-center grid-cols-2 rounded-2xl justify-items-center"
+      style={{
+        background: "rgba(217, 217, 217, 0.15)",
+      }}
+    >
       <Image
         src="/images/icons/bell.svg"
         width={36}
@@ -155,15 +153,16 @@ const Controls: React.FC = () => {
         />
       </div>
     </div>
-      :
-      <div className="flex items-center justify-center h-[57px] rounded-lg cursor-pointer bg-[#3db079] halo-effect hover:before:bg-[#3db079]">
-        <Link href="/connectWallet">
-          <button className="flex px-6 py-4">
-            <div className="text-[16px] font-bold whitespace-nowrap">Connect Wallet</div>
-          </button>
-        </Link>
-      </div>
-
+  ) : (
+    <div className="flex items-center justify-center h-[57px] rounded-lg cursor-pointer bg-[#3db079] halo-effect hover:before:bg-[#3db079]">
+      <Link href="/connectWallet">
+        <button className="flex px-6 py-4">
+          <div className="text-[16px] font-bold whitespace-nowrap">
+            Connect Wallet
+          </div>
+        </button>
+      </Link>
+    </div>
   );
 };
 
