@@ -16,13 +16,13 @@
       <div className="flex flex-row justify-between items-center">
         <div className="flex flex-row  bg-[#1C1C1C] rounded-lg border border-white/20 transition-all">
 
-          <button  onClick={() => handleButtonClick('Price')} className={`rounded-lg px-7 py-3.5  font-medium hover:bg-gray-500 ${activeComponent === 'Price' ? 'bg-gradient-to-r from-emerald-600 to-emerald-300  text-gray-950 ' : 'bg-[#1C1C1C] text-white'
+          <button  onClick={() => handleButtonClick('Price')} className={`rounded-lg px-7 py-3.5  font-medium hover:bg-stone-600 hover:border hover:border-emerald-600 ${activeComponent === 'Price' ? 'bg-gradient-to-r from-emerald-600 to-emerald-300  text-gray-950 ' : 'bg-[#1C1C1C] text-white'
             }`}>Price</button>
 
-          <button  onClick={() => handleButtonClick('Depth')} className={`rounded-lg px-7 py-3.5 font-medium hover:bg-gray-500  ${activeComponent === 'Depth' ? 'bg-gradient-to-r from-emerald-700 to-emerald-300  text-gray-950' : 'bg-[#1C1C1C] text-white'
+          <button  onClick={() => handleButtonClick('Depth')} className={`rounded-lg px-7 py-3.5 font-medium hover:bg-stone-600 hover:border hover:border-emerald-600 ${activeComponent === 'Depth' ? 'bg-gradient-to-r from-emerald-700 to-emerald-300  text-gray-950' : 'bg-[#1C1C1C] text-white'
             }`}>Depth</button>
 
-          <button onClick={() => handleButtonClick('Funding')} className={`rounded-lg px-7 py-3.5 font-medium hover:bg-gray-500 ${activeComponent === 'Funding' ? 'bg-gradient-to-r from-emerald-700 to-emerald-300  text-gray-950' : 'bg-[#1C1C1C] text-white'
+          <button onClick={() => handleButtonClick('Funding')} className={`rounded-lg px-7 py-3.5 font-medium hover:bg-stone-600 hover:border hover:border-emerald-600 ${activeComponent === 'Funding' ? 'bg-gradient-to-r from-emerald-700 to-emerald-300  text-gray-950' : 'bg-[#1C1C1C] text-white'
             }`}>Funding</button>
 
         </div>
