@@ -14,10 +14,7 @@ import { clusterApiUrl } from "@solana/web3.js";
 import { useMemo } from "react";
 import {
   PhantomWalletAdapter,
-  BackpackWalletAdapter,
-  GlowWalletAdapter,
   SolflareWalletAdapter,
-  BraveWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -38,17 +35,10 @@ const MyApp: NextComponentType<
     Component.getLayout ?? ((page: any) => <AppLayout>{page}</AppLayout>);
   const pageComponent = getLayout(<Component {...pageProps} />);
 
-  // const endpoint = useMemo(() => "https://solana-mainnet.rpc.extrnode.com", []);
-  const endpoint = useMemo(() => clusterApiUrl("devnet"), []);
+  const endpoint = useMemo(() => process.env.NEXT_PUBLIC_RPC as string, []);
 
   const wallets = useMemo(
-    () => [
-      new PhantomWalletAdapter(),
-      new SolflareWalletAdapter(),
-      new BraveWalletAdapter(),
-      new GlowWalletAdapter(),
-      new BackpackWalletAdapter(),
-    ],
+    () => [new PhantomWalletAdapter(), new SolflareWalletAdapter()],
     []
   );
 
