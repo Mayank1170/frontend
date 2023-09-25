@@ -90,3 +90,12 @@ export const getMarkPrice = async (manifest: any, mpg: any, product: any) => {
 
   return markPrice;
 };
+
+export const getTRGs = async (manifest: any) => {
+  console.log("efgh");
+  const trgs = await manifest.getTRGsOfWallet(MPG_PUBKEY);
+
+  console.log("existing trgs", trgs);
+
+  return trgs;
+};

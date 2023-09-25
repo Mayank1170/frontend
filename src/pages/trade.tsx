@@ -16,6 +16,7 @@ import {
 import { useState } from "react";
 import { NextPageWithLayout } from "@/types/custom-next";
 import useMarkPrice from "@/hooks/useMarkPrice";
+import useTRGs from "@/hooks/useTRGs";
 
 const TradeingPage: NextPageWithLayout = () => {
   const [selectedTab, setSelectedTab] = useState<
@@ -56,6 +57,9 @@ const TradeingPage: NextPageWithLayout = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  const { trgs } = useTRGs();
+  console.log("trgs", trgs);
 
   return (
     <div className="flex flex-row space-x-4">
