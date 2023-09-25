@@ -7,7 +7,7 @@ const useDexterity = () => {
   const { publicKey, signTransaction, signAllTransactions } = useWallet();
 
   const { data: manifest } = useQuery({
-    queryKey: ["manifest", connection.rpcEndpoint],
+    queryKey: ["manifest", connection.rpcEndpoint, publicKey],
     queryFn: async () =>
       publicKey && signTransaction && signAllTransactions
         ? await getManifestWithWallet(
