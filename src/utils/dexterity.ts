@@ -1,13 +1,32 @@
 import dexterity from "@hxronetwork/dexterity-ts";
-import { PublicKey } from "@solana/web3.js";
+import { PublicKey, Transaction, VersionedTransaction } from "@solana/web3.js";
 
-const MPG_PKG_STR = "4cKB5xKtDpv4xo6ZxyiEvtyX3HgXzyJUS1Y8hAfoNkMT";
+const MPG_PKG_STR = process.env.NEXT_PUBLIC_MPG as string;
 
 const MPG_PUBKEY = new PublicKey(MPG_PKG_STR);
 
 export const getManifest = async (rpc: string) => {
   // @ts-ignore
   const manifest = await dexterity.getManifest(rpc, false); // don't specify wallet
+
+  return manifest;
+};
+
+export const getManifestWithWallet = async (
+  rpc: string,
+  publicKey: PublicKey,
+  signTransaction: <T extends Transaction | VersionedTransaction>(
+    transaction: T
+  ) => Promise<T>,
+  signAllTransactions: <T extends Transaction | VersionedTransaction>(
+    transactions: T[]
+  ) => Promise<T[]>
+) => {
+  const manifest = await dexterity.getManifest(rpc, false, {
+    publicKey,
+    signTransaction,
+    signAllTransactions,
+  });
 
   return manifest;
 };

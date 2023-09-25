@@ -35,15 +35,10 @@ const MyApp: NextComponentType<
     Component.getLayout ?? ((page: any) => <AppLayout>{page}</AppLayout>);
   const pageComponent = getLayout(<Component {...pageProps} />);
 
-  // const endpoint = useMemo(() => "https://solana-mainnet.rpc.extrnode.com", []);
-  const endpoint = useMemo(() => clusterApiUrl("devnet"), []);
+  const endpoint = useMemo(() => process.env.NEXT_PUBLIC_RPC as string, []);
 
   const wallets = useMemo(
-    () => [
-      new PhantomWalletAdapter(),
-      new SolflareWalletAdapter(),
-  
-    ],
+    () => [new PhantomWalletAdapter(), new SolflareWalletAdapter()],
     []
   );
 
