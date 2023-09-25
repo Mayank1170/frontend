@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import {
   AreaChart,
   Area,
@@ -63,33 +63,26 @@ const data: DataItem[] = [
   },
 ];
 
-export class Example extends PureComponent<ExampleProps> {
-  static demoUrl = "https://codesandbox.io/s/synchronized-area-chart-kpg1s";
+export const DepthChart: React.FC<ExampleProps> = () => {
+  return (
+    <div className="w-full h-full flex flex-row bg-neutral-900" id="depthView">
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart data={data} syncId="anyId">
+          <CartesianGrid vertical={false} horizontal={false} />
+          <Tooltip />
+          <Area type="monotone" dataKey="uv" stroke="" fill="#205F41" />
+        </AreaChart>
+      </ResponsiveContainer>
+      <div className="w-[0.4px] h-full bg-gray-600/40 divide-dotted text-white"></div>
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart data={data} syncId="anyId">
+          <CartesianGrid vertical={false} horizontal={false} />
+          <YAxis orientation="right" className="" />
+          <Tooltip />
+          <Area type="monotone" dataKey="pv" stroke="" fill="#FF5D5D" />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div
-        className="w-full h-full flex flex-row bg-neutral-900"
-        id="depthView"
-      >
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={data} syncId="anyId">
-            <CartesianGrid vertical={false} horizontal={false} />
-
-            <Tooltip />
-            <Area type="monotone" dataKey="uv" stroke="" fill="#205F41" />
-          </AreaChart>
-        </ResponsiveContainer>
-        <div className="w-[0.4px] h-full bg-gray-600/40 divide-dotted text-white"></div>
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={data} syncId="anyId">
-            <CartesianGrid vertical={false} horizontal={false} />
-            <YAxis orientation="right" className="" />
-            <Tooltip />
-            <Area type="monotone" dataKey="pv" stroke="" fill="#FF5D5D" />
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
-    );
-  }
-}

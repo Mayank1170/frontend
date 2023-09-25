@@ -1,7 +1,6 @@
 import {
   ChartTwo,
-  // DepthChart,
-  Example,
+  DepthChart,
   FundingChart,
   Market,
   PricingLevels,
@@ -54,10 +53,7 @@ const TradeingPage: NextPageWithLayout = () => {
               {selectedTab === 'Price' ? (
                 <ChartTwo />
               ) : selectedTab === 'Depth' ? (
-                // <DepthChart />
-                // <div className="flex flex-row">
-                <Example />
-                // </div>
+                <DepthChart />
               ) : (
                 <FundingChart />
               )
