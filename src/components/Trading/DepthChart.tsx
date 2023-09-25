@@ -1,3 +1,4 @@
+import useMarkPrice from "@/hooks/useMarkPrice";
 import React from "react";
 import {
   AreaChart,
@@ -65,7 +66,7 @@ const data: DataItem[] = [
 
 export const DepthChart: React.FC<ExampleProps> = () => {
   return (
-    <div className="w-full h-full flex flex-row bg-neutral-900" id="depthView">
+    <div className="flex flex-row w-full h-full bg-neutral-900" id="depthView">
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={data} syncId="anyId">
           <CartesianGrid vertical={false} horizontal={false} />
@@ -85,4 +86,3 @@ export const DepthChart: React.FC<ExampleProps> = () => {
     </div>
   );
 };
-
