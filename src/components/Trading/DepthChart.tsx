@@ -1,3 +1,4 @@
+import useMarkPrice from "@/hooks/useMarkPrice";
 import React, { PureComponent } from "react";
 import {
   AreaChart,
@@ -69,7 +70,7 @@ export class Example extends PureComponent<ExampleProps> {
   render() {
     return (
       <div
-        className="w-full h-full flex flex-row bg-neutral-900"
+        className="flex flex-row w-full h-full bg-neutral-900"
         id="depthView"
       >
         <ResponsiveContainer width="100%" height="100%">

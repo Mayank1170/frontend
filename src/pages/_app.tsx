@@ -19,10 +19,13 @@ import {
   SolflareWalletAdapter,
   BraveWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { pilatExtended } from "@/utils/fonts";
 import { Red_Hat_Display } from "next/font/google";
 import AppLayout from "@/layouts/AppLayout";
+
+const queryClient = new QueryClient();
 
 const redhat = Red_Hat_Display({ subsets: ["latin"] });
 
@@ -52,15 +55,17 @@ const MyApp: NextComponentType<
     <>
       <ConnectionProvider endpoint={endpoint}>
         <WalletProvider wallets={wallets} autoConnect>
-          <style jsx global>
-            {`
-              :root {
-                --redhat-font: ${redhat.style.fontFamily};
-                --pilat-font: ${pilatExtended.style.fontFamily};
-              }
-            `}
-          </style>
-          {pageComponent}
+          <QueryClientProvider client={queryClient}>
+            <style jsx global>
+              {`
+                :root {
+                  --redhat-font: ${redhat.style.fontFamily};
+                  --pilat-font: ${pilatExtended.style.fontFamily};
+                }
+              `}
+            </style>
+            {pageComponent}
+          </QueryClientProvider>
         </WalletProvider>
       </ConnectionProvider>
     </>
