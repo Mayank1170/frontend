@@ -1,7 +1,7 @@
 import { useWallet } from "@solana/wallet-adapter-react";
 import useDexterity from "./useDexterity";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { createTRGFn, getTRGs } from "@/utils/dexterity";
+import { createTRGFn, depositFn, getTRGs } from "@/utils/dexterity";
 
 const useTRGs = () => {
   const { manifest } = useDexterity();
@@ -13,8 +13,6 @@ const useTRGs = () => {
     enabled: !!manifest && !!publicKey && !!manifest.fields.wallet?.publicKey,
   });
 
-  //   const createTrg = useMemo(() => createTRGFn(manifest), [manifest]);
-
   const {
     mutate: createTrg,
     isLoading: creatingTrg,
@@ -25,12 +23,35 @@ const useTRGs = () => {
     mutationFn: async () => await createTRGFn(manifest),
   });
 
+  const {
+    mutate: createDeposit,
+    isLoading: creatingDeposit,
+    isSuccess: createdDeposit,
+    error: createDepositError,
+  } = useMutation({
+    mutationKey: ["createDeposit", publicKey?.toBase58()],
+    mutationFn: async (amount: number) => {
+      if (!trgs) return;
+      if (trgs.length === 0) {
+        const trg = await createTRGFn(manifest);
+
+        await depositFn(manifest, trg.pubkey, amount);
+      } else {
+        await depositFn(manifest, trgs[0].pubkey, amount);
+      }
+    },
+  });
+
   return {
     trgs,
     createTrg,
     creatingTrg,
     createdTrg,
     createTrgError,
+    createDeposit,
+    creatingDeposit,
+    createdDeposit,
+    createDepositError,
   };
 };
 

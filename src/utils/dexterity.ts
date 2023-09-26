@@ -105,3 +105,27 @@ export const createTRGFn = async (manifest: any) => {
 
   return trg;
 };
+
+export const depositFn = async (
+  manifest: any,
+  trgPubkey: PublicKey,
+  amount: number
+) => {
+  const trader = new dexterity.Trader(manifest, trgPubkey);
+  const n = dexterity.Fractional.New(amount, 0);
+
+  await trader.connect(NaN, async () => {
+    console.log(
+      `\nBALANCE: ${Number(trader.getCashBalance()).toLocaleString()} UXDC`
+    );
+  });
+
+  await trader.deposit(n, {
+    onTxSentFn: (sig: any) =>
+      console.log(
+        `\nSUCCESSFULL deposit OF ${amount.toLocaleString()} UXDC\n${
+          sig ? `SIGNATURE: https://solscan.io/tx/${sig}?cluster=devnet` : ""
+        }`
+      ),
+  });
+};

@@ -59,7 +59,7 @@ const TradeingPage: NextPageWithLayout = () => {
   };
 
   const { trgs } = useTRGs();
-  console.log("trgs", trgs);
+  console.log("trgs", trgs && trgs[0].trg.totalDeposited.m.toNumber());
 
   return (
     <div className="flex flex-row space-x-4">
