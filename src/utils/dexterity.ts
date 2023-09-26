@@ -106,8 +106,15 @@ export const createTRGFn = async (manifest: any) => {
   return trg;
 };
 
-export const closeTRGFn = async (manifest: any, trgPubkey: PublicKey) => {
+export const closeTRGFn = async (
+  manifest: any,
+  trgPubkey: PublicKey,
+  trgAmount: number
+) => {
   console.log("closing trg", trgPubkey.toBase58());
+
+  await withdrawFn(manifest, trgPubkey, trgAmount);
+
   const deleteTrgRes = await manifest.closeTrg(MPG_PUBKEY, trgPubkey);
 
   console.log("closed trg", deleteTrgRes);
@@ -123,12 +130,6 @@ export const depositFn = async (
   const trader = new dexterity.Trader(manifest, trgPubkey);
   const n = dexterity.Fractional.New(amount, 0);
 
-  await trader.connect(NaN, async () => {
-    console.log(
-      `\nBALANCE: ${Number(trader.getCashBalance()).toLocaleString()} UXDC`
-    );
-  });
-
   await trader.deposit(n, {
     onTxSentFn: (sig: any) =>
       console.log(
@@ -136,5 +137,38 @@ export const depositFn = async (
           sig ? `SIGNATURE: https://solscan.io/tx/${sig}?cluster=devnet` : ""
         }`
       ),
+  });
+};
+
+export const withdrawFn = async (
+  manifest: any,
+  trgPubkey: PublicKey,
+  amount: number
+) => {
+  const trader = new dexterity.Trader(manifest, trgPubkey);
+  const n = dexterity.Fractional.New(amount, 0);
+
+  await trader.connect(NaN, async () => {
+    console.log(
+      `\nTRG BALANCE before withdraw: ${Number(
+        trader.getCashBalance()
+      ).toLocaleString()} UXDC`
+    );
+  });
+
+  await trader.withdraw(n).then((sig: any) => {
+    console.log(
+      `\nSUCCESSFULL withdraw OF ${amount.toLocaleString()} UXDC\n${
+        sig ? `SIGNATURE: https://solscan.io/tx/${sig}?cluster=devnet` : ""
+      }`
+    );
+  });
+
+  await trader.connect(NaN, async () => {
+    console.log(
+      `\nTRG BALANCE after withdraw: ${Number(
+        trader.getCashBalance()
+      ).toLocaleString()} UXDC`
+    );
   });
 };
