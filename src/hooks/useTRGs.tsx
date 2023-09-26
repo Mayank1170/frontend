@@ -5,6 +5,7 @@ import {
   closeTRGFn,
   createTRGFn,
   depositFn,
+  getTRGBalance,
   getTRGs,
   withdrawFn,
 } from "@/utils/dexterity";
@@ -20,6 +21,16 @@ const useTRGs = () => {
     queryKey: ["trgs", publicKey?.toBase58()],
     queryFn: async () => await getTRGs(manifest),
     enabled: !!manifest && !!publicKey && !!manifest.fields.wallet?.publicKey,
+  });
+
+  const { data: trgBalance } = useQuery({
+    queryKey: ["trgBalance", publicKey?.toBase58()],
+    queryFn: async () => await getTRGBalance(manifest, trgs[0].pubkey),
+    enabled:
+      !!manifest &&
+      !!publicKey &&
+      !!manifest.fields.wallet?.publicKey &&
+      !!trgs,
   });
 
   const {
@@ -60,7 +71,9 @@ const useTRGs = () => {
         await depositFn(manifest, trgs[0].pubkey, amount);
       }
 
-      queryClient.refetchQueries({ queryKey: ["trgs", publicKey?.toBase58()] });
+      queryClient.refetchQueries({
+        queryKey: ["trgBalance", publicKey?.toBase58()],
+      });
     },
   });
 
@@ -76,12 +89,15 @@ const useTRGs = () => {
 
       await withdrawFn(manifest, trgs[0].pubkey, amount);
 
-      queryClient.refetchQueries({ queryKey: ["trgs", publicKey?.toBase58()] });
+      queryClient.refetchQueries({
+        queryKey: ["trgBalance", publicKey?.toBase58()],
+      });
     },
   });
 
   return {
     trgs,
+    trgBalance,
     // create trg
     createTrg,
     creatingTrg,

@@ -59,8 +59,9 @@ const TradeingPage: NextPageWithLayout = () => {
     setIsModalOpen(false);
   };
 
-  const { trgs } = useTRGs();
-  console.log("trgs", trgs && trgs[0].trg.totalDeposited.m.toNumber());
+  const { trgs, trgBalance } = useTRGs();
+  console.log("trgs", trgs);
+  console.log("trgBalance", trgBalance);
 
   return (
     <div className="flex flex-row space-x-4">
