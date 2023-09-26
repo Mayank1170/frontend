@@ -32,10 +32,11 @@ export const TradeControls: React.FC = () => {
   const [showCheckmark, setShowCheckmark] = useState(false);
   const [isPopupVisible, setIsPopupVisible] = useState(false);
 
-  const { createTrg } = useTRGs();
+  const { trgs, closeTrg } = useTRGs();
 
   const handlePopupToggle = async () => {
-    await createTrg();
+    console.log("etrg", trgs);
+    await closeTrg(trgs[0].pubkey);
     setIsPopupVisible(!isPopupVisible);
   };
 

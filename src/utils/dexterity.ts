@@ -106,6 +106,15 @@ export const createTRGFn = async (manifest: any) => {
   return trg;
 };
 
+export const closeTRGFn = async (manifest: any, trgPubkey: PublicKey) => {
+  console.log("closing trg", trgPubkey.toBase58());
+  const deleteTrgRes = await manifest.closeTrg(MPG_PUBKEY, trgPubkey);
+
+  console.log("closed trg", deleteTrgRes);
+
+  return deleteTrgRes;
+};
+
 export const depositFn = async (
   manifest: any,
   trgPubkey: PublicKey,
