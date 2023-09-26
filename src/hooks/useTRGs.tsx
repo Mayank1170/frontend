@@ -1,11 +1,13 @@
 import { useWallet } from "@solana/wallet-adapter-react";
 import useDexterity from "./useDexterity";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createTRGFn, depositFn, getTRGs } from "@/utils/dexterity";
 
 const useTRGs = () => {
   const { manifest } = useDexterity();
   const { publicKey } = useWallet();
+
+  const queryClient = useQueryClient();
 
   const { data: trgs } = useQuery({
     queryKey: ["trgs", publicKey?.toBase58()],
@@ -39,6 +41,8 @@ const useTRGs = () => {
       } else {
         await depositFn(manifest, trgs[0].pubkey, amount);
       }
+
+      queryClient.refetchQueries({ queryKey: ["trgs", publicKey?.toBase58()] });
     },
   });
 
