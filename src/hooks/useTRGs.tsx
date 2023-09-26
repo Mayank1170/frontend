@@ -30,7 +30,8 @@ const useTRGs = () => {
       !!manifest &&
       !!publicKey &&
       !!manifest.fields.wallet?.publicKey &&
-      !!trgs,
+      !!trgs &&
+      trgs.length > 0,
   });
 
   const {
@@ -50,8 +51,18 @@ const useTRGs = () => {
     error: closeTrgError,
   } = useMutation({
     mutationKey: ["coseTrg", publicKey?.toBase58()],
-    mutationFn: async (trgPubkey: PublicKey, trgAmount: number) =>
-      await closeTRGFn(manifest, trgPubkey, trgAmount),
+    mutationFn: async ({
+      trgPubkey,
+      trgAmount,
+    }: {
+      trgPubkey: PublicKey;
+      trgAmount: number;
+    }) => {
+      await closeTRGFn(manifest, trgPubkey, trgAmount);
+      await queryClient.refetchQueries({
+        queryKey: ["trgs", publicKey?.toBase58()],
+      });
+    },
   });
 
   const {
@@ -64,9 +75,13 @@ const useTRGs = () => {
     mutationFn: async (amount: number) => {
       if (!trgs) return;
       if (trgs.length === 0) {
-        const trg = await createTRGFn(manifest);
+        await createTRGFn(manifest);
 
-        await depositFn(manifest, trg.pubkey, amount);
+        await queryClient.refetchQueries({
+          queryKey: ["trgs", publicKey?.toBase58()],
+        });
+
+        await depositFn(manifest, trgs[0].pubkey, amount);
       } else {
         await depositFn(manifest, trgs[0].pubkey, amount);
       }
