@@ -17,6 +17,7 @@ import {
   SolflareWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { pilatExtended } from "@/utils/fonts";
 import { Red_Hat_Display } from "next/font/google";
@@ -56,6 +57,7 @@ const MyApp: NextComponentType<
               `}
             </style>
             {pageComponent}
+            <ReactQueryDevtools />
           </QueryClientProvider>
         </WalletProvider>
       </ConnectionProvider>
