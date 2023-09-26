@@ -113,13 +113,13 @@ export const closeTRGFn = async (
 ) => {
   console.log("closing trg", trgPubkey.toBase58());
 
-  await withdrawFn(manifest, trgPubkey, trgAmount);
+  console.log("trgAmount", trgAmount);
 
-  const deleteTrgRes = await manifest.closeTrg(MPG_PUBKEY, trgPubkey);
+  if (trgAmount > 0) {
+    await withdrawFn(manifest, trgPubkey, trgAmount);
+  }
 
-  console.log("closed trg", deleteTrgRes);
-
-  return deleteTrgRes;
+  await manifest.closeTrg(MPG_PUBKEY, trgPubkey);
 };
 
 export const getTRGBalance = async (manifest: any, trgPubkey: PublicKey) => {
@@ -131,7 +131,7 @@ export const getTRGBalance = async (manifest: any, trgPubkey: PublicKey) => {
     balance = Number(trader.getCashBalance());
   });
 
-  return balance;
+  return balance as unknown as number;
 };
 
 export const depositFn = async (

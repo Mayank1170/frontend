@@ -139,9 +139,9 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
         <button
           className="w-full py-3 mt-12 mb-8 bg-gradient-to-r from-[#3BB078] rounded to-[#59B689] font-redhat"
           onClick={async () => {
-            // await createDeposit(amount);
+            await createDeposit(amount);
 
-            await createWithdrawal(amount);
+            // await createWithdrawal(amount);
           }}
         >
           Confirm Deposite
