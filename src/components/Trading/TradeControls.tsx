@@ -36,7 +36,7 @@ export const TradeControls: React.FC = () => {
 
   const handlePopupToggle = async () => {
     console.log("etrg", trgs);
-    await closeTrg(trgs[0].pubkey);
+    await closeTrg(trgs[0].pubkey, trgs[0].trg.totalDeposited.m.toNumber());
     setIsPopupVisible(!isPopupVisible);
   };
 
