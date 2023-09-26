@@ -122,6 +122,18 @@ export const closeTRGFn = async (
   return deleteTrgRes;
 };
 
+export const getTRGBalance = async (manifest: any, trgPubkey: PublicKey) => {
+  const trader = new dexterity.Trader(manifest, trgPubkey);
+
+  let balance;
+
+  await trader.connect(NaN, async () => {
+    balance = Number(trader.getCashBalance());
+  });
+
+  return balance;
+};
+
 export const depositFn = async (
   manifest: any,
   trgPubkey: PublicKey,
@@ -129,6 +141,8 @@ export const depositFn = async (
 ) => {
   const trader = new dexterity.Trader(manifest, trgPubkey);
   const n = dexterity.Fractional.New(amount, 0);
+
+  await trader.update();
 
   await trader.deposit(n, {
     onTxSentFn: (sig: any) =>
