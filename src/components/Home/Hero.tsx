@@ -13,7 +13,7 @@ export const Hero: React.FC = () => {
           <div className="max-w-[1350px] w-full pt-20 relative z-10 flex justify-between">
             <div className="">
               <div>
-                <h1
+                <p
                   className="text-[62px] font-pilat font-semibold"
                   style={{
                     background:
@@ -22,8 +22,10 @@ export const Hero: React.FC = () => {
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  Trading<br />Infrastructure <br /> that Scales
-                </h1>
+                  Trading
+                  <br />
+                  Infrastructure <br /> that Scales
+                </p>
               </div>
 
               <div
@@ -32,10 +34,12 @@ export const Hero: React.FC = () => {
                   background:
                     "linear-gradient(92.18deg, rgba(255, 255, 255, 0.182) 0%, rgba(255, 255, 255, 0.13) 100%)",
                 }}
-
               >
                 <p className="text-[18px]">
-                We are building a Decentralized Exchange to change the<br/>on-chain trading landscape                </p>
+                  We are building a Decentralized Exchange to change the
+                  <br />
+                  on-chain trading landscape{" "}
+                </p>
                 <button
                   className="group rounded-full p-2 absolute -right-5"
                   style={{
@@ -61,18 +65,22 @@ export const Hero: React.FC = () => {
                 </button>
               </div>
             </div>
-            <Link  href="/trade" className="flex rounded-2xl bg-[#3db079] halo-effect hover:before:bg-[#3db079] relative px-[25px] py-4 mt-auto mb-20 gap-x-4 right-10 top-14" style={{
-              boxShadow: "0px 4px 100px 40px rgba(59, 176, 120, 0.4)",
-              background:
-                "linear-gradient(95.16deg, #3BB078 0%, #8FBFA8 100%)",
-            }}>
+            <Link
+              href="/trade"
+              className="flex rounded-2xl bg-[#3db079] halo-effect hover:before:bg-[#3db079] relative px-[25px] py-4 mt-auto mb-20 gap-x-4 right-10 top-14"
+              style={{
+                boxShadow: "0px 4px 100px 40px rgba(59, 176, 120, 0.4)",
+                background:
+                  "linear-gradient(95.16deg, #3BB078 0%, #8FBFA8 100%)",
+              }}
+            >
               <div>
-
                 <button className="flex px-2 py-1">
-                  <div className="text-[18px] font-bold whitespace-nowrap">Launch App</div>
+                  <div className="text-[18px] font-bold whitespace-nowrap">
+                    Launch App
+                  </div>
                 </button>
               </div>
-
             </Link>
           </div>
 

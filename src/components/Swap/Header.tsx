@@ -3,7 +3,7 @@ import Image from "next/image";
 export const Header = () => (
   <div className="flex w-full justify-between items-center">
     <div className="flex items-center gap-x-2">
-      <h2
+      <p
         style={{
           background:
             "linear-gradient(76.98deg, rgba(76, 255, 255, 0.56) 3.8%, #80FEE3 31.64%, #95FED8 42.63%, #00FFA3 92.69%)",
@@ -13,7 +13,7 @@ export const Header = () => (
         className="font-bold text-[40px]"
       >
         Swap
-      </h2>
+      </p>
       <Image
         src="/images/icons/refresh-circle.svg"
         width={50}

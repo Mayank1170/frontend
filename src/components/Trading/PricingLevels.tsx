@@ -70,9 +70,9 @@ const GeneralInfo: React.FC = () => {
             className="2xl:w-10 w-8 h-8 2xl:h-10 xl:flex hidden"
           />
           <div>
-            <h3 className="2xl:text-[17px] xl:text-[13px] text-[25px] font-redhat ">
+            <p className="2xl:text-[17px] xl:text-[13px] text-[25px] font-redhat ">
               SOL-PERP
-            </h3>
+            </p>
             {isOpen && (
               <div
                 className="mt-4 w-[360px] justify-between py-2 z-10 bg-[#202020] rounded border border-white border-opacity-30 border-white/20 absolute"

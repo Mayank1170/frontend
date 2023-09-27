@@ -182,15 +182,15 @@ const Controls: React.FC = () => {
           className="flex justify-center items-center w-full h-full font-bold"
         >
           {!isOpen ? (
-            <BiChevronDown className="h-[25px] w-[25px]" />
+            <BiChevronDown className="h-[35px] w-[35px]" />
           ) : (
-            <BiChevronUp className="h-[25px] w-[25px]" />
+            <BiChevronUp className="h-[35px] w-[35px]" />
           )}
         </div>
       </div>
       {isOpen && (
         <div
-          className="top-[90px] right-6 w-[318px] justify-between py-2 z-10 bg-[#202020] rounded-xl border border-white border-opacity-30 border-white/20 absolute"
+          className="top-[90px] right-6 w-[318px] justify-between py-2 z-10 bg-[#202020] rounded-lg border border-white border-opacity-30 border-white/20 absolute"
           ref={dropdownRef}
           onClick={(e) => {
             e.stopPropagation();
