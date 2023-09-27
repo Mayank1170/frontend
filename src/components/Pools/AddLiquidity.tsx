@@ -35,7 +35,7 @@ export const AddLiquidty: React.FC = () => {
         }}
       >
         <div className="flex items-center gap-x-2">
-          <h2
+          <p
             style={{
               background:
                 "linear-gradient(76.98deg, rgba(76, 255, 255, 0.56) 3.8%, #80FEE3 31.64%, #95FED8 42.63%, #00FFA3 92.69%)",
@@ -45,7 +45,7 @@ export const AddLiquidty: React.FC = () => {
             className="font-bold text-[40px]"
           >
             Add Liquidity
-          </h2>
+          </p>
         </div>
         <div className="flex flex-col gap-y-4 items-center mt-8 justify-center">
           <SwapItem value={3.4} usdValue={6237.3} symbol={symbolOptions[0]} />

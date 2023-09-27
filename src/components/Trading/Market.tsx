@@ -33,9 +33,7 @@ const marketData: MarketItemProps[] = [
 
 export const Market: React.FC = () => {
   return (
-    <div
-      className="p-8 bg-[#202020] flex-1 w-[100%] h-[100%] rounded-[10px] border-[0.5px] border-white/20 font-redhat"
-    >
+    <div className="p-8 bg-[#202020] flex-1 w-[100%] h-[100%] rounded-[10px] border-[0.5px] border-white/20 font-redhat">
       <div className="flex items-center gap-x-4 mb-5">
         <Image
           src="/images/icons/market.svg"
@@ -43,7 +41,7 @@ export const Market: React.FC = () => {
           width={36}
           alt="trade"
         />
-        <h3 className="font-bold text-2xl">Market</h3>
+        <p className="font-bold text-2xl">Market</p>
       </div>
       <div className="flex h-full flex-col gap-y-4">
         {marketData.map((item, index) => (
@@ -74,7 +72,7 @@ const MarketItem: React.FC<MarketItemProps> = ({
       <div className="flex items-center gap-x-4">
         <Image src={icon} height={48} width={48} alt={id} />
         <div>
-          <h3 className="font-bold text-[20px]">{name}</h3>
+          <p className="font-bold text-[20px]">{name}</p>
           <p className="text-[10px] text-white/80">{id}</p>
         </div>
       </div>

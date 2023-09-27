@@ -30,7 +30,7 @@ const features: Omit<FeatureProps, "index">[] = [
   {
     title: (
       <>
-        Industry-grade  <br /> Risk Management
+        Industry-grade <br /> Risk Management
       </>
     ),
     description:
@@ -47,12 +47,13 @@ const features: Omit<FeatureProps, "index">[] = [
         width={454}
         height={581}
         alt="floating image pools card"
-      />)
+      />
+    ),
   },
   {
     title: (
       <>
-        Yield opportunities <br /> 
+        Yield opportunities <br />
       </>
     ),
     description:
@@ -69,7 +70,8 @@ const features: Omit<FeatureProps, "index">[] = [
         width={500}
         height={500}
         alt="floating image pools card"
-      />)
+      />
+    ),
   },
 ];
 
@@ -134,7 +136,7 @@ const Feature: React.FC<FeatureProps> = ({
             transition={{ duration: 1.5, ease: "easeInOut" }}
             // viewport={{ once: true, root: ref }}
           >
-            <h3 className="font-bold text-[34px] font-pilat">{title}</h3>
+            <p className="font-bold text-[34px] font-pilat">{title}</p>
             <p className="opacity-50">{description}</p>
           </motion.div>
           <motion.button

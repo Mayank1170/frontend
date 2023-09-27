@@ -19,6 +19,7 @@
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
+    "bun": "^1.0.3",
     "chart.js": "^4.4.0",
     "chartjs": "^0.3.24",
     "chartjs-plugin-annotation": "^3.0.1",
