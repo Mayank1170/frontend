@@ -77,11 +77,11 @@ const useTRGs = () => {
       if (trgs.length === 0) {
         await createTRGFn(manifest);
 
-        await queryClient.refetchQueries({
-          queryKey: ["trgs", publicKey?.toBase58()],
-        });
+        const trgsNew = await getTRGs(manifest);
 
-        await depositFn(manifest, trgs[0].pubkey, amount);
+        console.log("trg created for deposit", trgsNew);
+
+        await depositFn(manifest, trgsNew[0].pubkey, amount);
       } else {
         await depositFn(manifest, trgs[0].pubkey, amount);
       }
