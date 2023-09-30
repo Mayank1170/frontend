@@ -560,7 +560,7 @@ const MarketData: React.FC<MarketDataProps> = ({
           opacity: 0.4,
         }}
       ></div>
-      <div className="flex flex-row w-full justify-between px-3 w-[100%] relative">
+      <div className="flex flex-row w-full justify-between px-3 relative">
         <p className="font-redhat w-[33.333333%] text-red-400 text-[12.87px] ">
           {priceValue}
         </p>

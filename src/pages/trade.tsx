@@ -10,7 +10,6 @@ import {
   Tabs,
   TradeControls,
   ViewMoreModal,
-  InfoTabs,
   Info
 
 } from "@/components/Trading";
@@ -62,9 +61,6 @@ const TradeingPage: NextPageWithLayout = () => {
 
           </div>
           <div className="w-[30%] mt-2 hidden xl:inline"> <TradeValue /></div>
-        </div>
-        <div>
-          <InfoTabs onInfoTabChange={onInfoTabChange} />
         </div>
         <div>
           <Info />
