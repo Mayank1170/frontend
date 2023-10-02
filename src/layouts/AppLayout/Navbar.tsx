@@ -6,12 +6,13 @@ import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import SearchModal from "./SearchModal";
-import { useWallet } from "@solana/wallet-adapter-react";
+import { useWallet, useConnection } from "@solana/wallet-adapter-react";
 import { BiChevronDown } from "react-icons/bi";
 import { BiChevronUp } from "react-icons/bi";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiCopy } from "react-icons/bi";
 import { TbDoorEnter } from "react-icons/tb";
+import { useAsyncMemo } from "use-async-memo";
 
 const Navbar: React.FC = () => {
   const [showMyModal, setShowMyModal] = useState(false);
@@ -139,6 +140,8 @@ const Controls: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
+  const { select, wallets, wallet, disconnect } = useWallet();
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -162,24 +165,41 @@ const Controls: React.FC = () => {
     };
   }, [isOpen]);
 
+  const { connection } = useConnection();
+
+  const balance = useAsyncMemo(async () => {
+    if (!publicKey) {
+      return;
+    }
+    return await connection.getBalance(publicKey)/1000000000; // LAMPORTS_PER_SOL;
+  }, [publicKey, connection]);
+
   return publicKey ? (
     <div>
       <div
-        className="w-[150px] h-[55px] flex flex-row items-center rounded-md  border border-white border-opacity-30 border-white/20"
+        className="w-[100px] h-[50px] flex flex-row items-center rounded-md  border border-white border-opacity-30 border-white/20"
         style={{
           background: "rgba(217, 217, 217, 0.15)",
         }}
       >
-        <Image
+        {/* <Image
           src="/images/pfp.png"
           width={68}
           height={68}
           alt="user"
           className="object-cover w-full h-full rounded-md "
-        />
+        /> */}
+        <div className="p-0 w-[50%]">
+          <Image
+            src={wallet?.adapter.icon as string}
+            alt={wallet?.adapter.name as string}
+            width={60}
+            height={60}
+          />
+        </div>
         <div
           onClick={() => setIsOpen((prev) => !prev)}
-          className="flex justify-center items-center w-full h-full font-bold"
+          className="flex justify-center items-center w-[50%] h-[50%] font-bold"
         >
           {!isOpen ? (
             <BiChevronDown className="h-[35px] w-[35px]" />
@@ -219,14 +239,20 @@ const Controls: React.FC = () => {
           </div>
           <div>
             <div className="w-[100%] flex flex-row gap-x-2 px-4 pt-2">
-              <Image
+              {/* <Image
                 src="/images/wallets/phantom.png"
                 width={100}
                 height={100}
                 alt={"Phantom"}
                 className="w-6 h-6 "
+              /> */}
+              <Image
+                src={wallet?.adapter.icon as string}
+                alt={wallet?.adapter.name as string}
+                width={23}
+                height={16}
               />
-              <p>0.23 SOL</p>
+              <p> {balance} SOL</p>
             </div>
             <div className="flex flex-row gap-x-2 px-4 mt-3">
               <BiCopy className="text-xl" />

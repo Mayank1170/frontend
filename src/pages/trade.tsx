@@ -10,7 +10,8 @@ import {
   Tabs,
   TradeControls,
   ViewMoreModal,
-  Info
+  Info,
+  Label,
 
 } from "@/components/Trading";
 import { useState } from "react";
@@ -74,6 +75,7 @@ const TradeingPage: NextPageWithLayout = () => {
       </div>
       <ViewMoreModal isOpen={isModalOpen} onClose={closeModal}>
       </ViewMoreModal>
+      <Label/>
     </div>
 
 

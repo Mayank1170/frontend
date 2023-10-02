@@ -217,8 +217,6 @@ export const TradeControls: React.FC = () => {
           </div>
         </div>
       </div>
-      <hr className="w-full border-t border-t-white/10 mt-6 mb-6" />
-      <Prices />
       <button
         onClick={handlePopupToggle}
         className={`flex flex-row w-full justify-center content-center items-center ${
@@ -260,6 +258,8 @@ export const TradeControls: React.FC = () => {
           </div>
         )}
       </button>
+      <hr className="w-full border-t border-t-white/10 mt-6 mb-6" />
+      <Prices />
     </div>
   );
 };
