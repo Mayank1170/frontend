@@ -11,3 +11,4 @@ export { ChartTwo } from "./ChartTwo";
 export { Tables } from "./Tables";
 export { InfoTabs } from "./InfoTabs"
 export {Info} from "./Info"
+export { Label } from "./Label"
