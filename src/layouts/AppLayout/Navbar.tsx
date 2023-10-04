@@ -13,6 +13,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { BiCopy } from "react-icons/bi";
 import { TbDoorEnter } from "react-icons/tb";
 import { useAsyncMemo } from "use-async-memo";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Navbar: React.FC = () => {
   const [showMyModal, setShowMyModal] = useState(false);
@@ -27,12 +28,25 @@ const Navbar: React.FC = () => {
   return (
     <div>
       <nav className="relative z-10 flex items-center justify-between w-screen px-10 pt-4">
-        <div className="flex items-center gap-x-10">
-          <Logo />
-          <NavLinks />
+        <div className="flex items-center gap-x-5">
+          <div className="xl:flex hidden">
+            <Logo />
+          </div>
+          <div className="text-[30px] xl:hidden">
+            <RxHamburgerMenu />
+          </div>
+          <div className="xl:hidden flex">
+            <Image src="/icon.svg" alt="spedx logo" width={44} height={44} />
+          </div>
+
+          <div className="hidden xl:flex">
+            <NavLinks />
+          </div>
         </div>
         <div className="flex items-center gap-x-6">
-          <Search onClick={handleOnClose} />
+          <div className="hidden xl:flex">
+            <Search onClick={handleOnClose} />
+          </div>
           <Controls />
         </div>
         <SearchModal onClick={handleSearchClick} visible={showMyModal} />
@@ -171,13 +185,13 @@ const Controls: React.FC = () => {
     if (!publicKey) {
       return;
     }
-    return await connection.getBalance(publicKey)/1000000000; // LAMPORTS_PER_SOL;
+    return (await connection.getBalance(publicKey)) / 1000000000; // LAMPORTS_PER_SOL;
   }, [publicKey, connection]);
 
   return publicKey ? (
     <div>
       <div
-        className="w-[100px] h-[50px] flex flex-row items-center rounded-md  border border-white border-opacity-30 border-white/20"
+        className="xl:w-[100px] w-[80px] xl:h-[50px] flex flex-row items-center rounded-md  border border-white border-opacity-30 border-white/20"
         style={{
           background: "rgba(217, 217, 217, 0.15)",
         }}
@@ -239,13 +253,6 @@ const Controls: React.FC = () => {
           </div>
           <div>
             <div className="w-[100%] flex flex-row gap-x-2 px-4 pt-2">
-              {/* <Image
-                src="/images/wallets/phantom.png"
-                width={100}
-                height={100}
-                alt={"Phantom"}
-                className="w-6 h-6 "
-              /> */}
               <Image
                 src={wallet?.adapter.icon as string}
                 alt={wallet?.adapter.name as string}
