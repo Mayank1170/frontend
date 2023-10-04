@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { CgArrowsShrinkV } from "react-icons/cg";
+import { BiChevronDown } from "react-icons/bi";
+import { BiChevronUp } from "react-icons/bi";
 
 const marketValue: MarketDataProps[] = [
   {
@@ -464,6 +467,8 @@ export const NavLinks: React.FC = () => {
     setActiveComponent(componentName);
   };
 
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div>
       <button
@@ -486,6 +491,29 @@ export const NavLinks: React.FC = () => {
       >
         Trades
       </button>
+      <div className="flex flex-row items-center bg-neutral-800 border-[0.5px] border-white/20 border-b-0 justify-between ">
+        <div className="flex flex-row ml-3 items-center gap-x-1 my-1">
+          <CgArrowsShrinkV className="text-lg" />
+          <p className="text-white text-base font-normal font-['Red Hat Display'] ">
+            Grouping
+          </p>
+        </div>
+        <div className="flex mr-3 items-center my-1"  onClick={() => setIsOpen((prev) => !prev)}>
+          <div className="w-fit h-fit px-2 py-1 bg-neutral-700 rounded-md justify-start items-center gap-1 inline-flex">
+            <div className="justify-start items-center gap-1 flex">
+              <div className="text-white text-sm font-normal font-['Red Hat Display']">
+                0.01
+              </div>
+              {!isOpen ? (
+              <BiChevronDown className="h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]" />
+            ) : (
+              <BiChevronUp className="h-[25px] w-[25px]  xl:h-[17px] xl:w-[17px]" />
+            )}
+            </div>
+           
+          </div>
+        </div>
+      </div>
       {activeComponent === "orderBook" ? <OrderBook /> : <RecentTrades />}
     </div>
   );
@@ -493,7 +521,7 @@ export const NavLinks: React.FC = () => {
 
 export const OrderBook: React.FC = () => {
   return (
-    <div className="bg-neutral-800 pt-3 mt-0 w-[100%] border-[0.5px] border-white/20 xl:rounded-b-md xl:rounded-t-[0px] rounded-md border-b-white/20">
+    <div className="bg-neutral-800 mt-0 w-[100%] border-[0.5px] border-white/20 border-t-0 xl:rounded-b-md xl:rounded-t-[0px] rounded-md border-b-white/20">
       <div className="xl:h-[calc(100vh-286px)] h-[calc(100vh-339px)] overflow-y-hidden place-content-evenly	">
         <div className="flex flex-col h-[50%] overflow-scroll scrollbar-hide">
           <div className="sticky z-[1] top-0 flex flex-row justify-between font-redhat px-3 pb-1 items-center bg-neutral-800">

@@ -14,7 +14,7 @@ const ConnectWalletPage: NextPageWithLayout = () => {
           <div className="flex-grow">
             <WalletForm />
           </div>
-          <div className="sm:max-w-[650px] md:max-w-[800px] lg:max-w-[900px] xl:max-w-[2000px]">
+          <div className="hidden xl:flex">
             <Image
               src="/images/trading-reviews.png"
               alt="Trading Reviews"
