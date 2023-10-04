@@ -1,4 +1,8 @@
-import dexterity from "@hxronetwork/dexterity-ts";
+import dexterity, {
+  Manifest,
+  MarkPrice,
+  MarketProductGroup,
+} from "@hxronetwork/dexterity-ts";
 import { PublicKey, Transaction, VersionedTransaction } from "@solana/web3.js";
 
 const MPG_PKG_STR = process.env.NEXT_PUBLIC_MPG as string;
@@ -31,7 +35,7 @@ export const getManifestWithWallet = async (
   return manifest;
 };
 
-export const getMpg = (manifest: any) => {
+export const getMpg = (manifest: Manifest) => {
   if (!manifest) {
     return;
   }
@@ -51,7 +55,7 @@ export const getMpg = (manifest: any) => {
   return desiredMpg;
 };
 
-export const getProduct = (mpg: any, productName: string) => {
+export const getProduct = (mpg: MarketProductGroup, productName: string) => {
   if (!mpg) {
     return;
   }
@@ -69,12 +73,16 @@ export const getProduct = (mpg: any, productName: string) => {
   return desiredProduct;
 };
 
-export const getMarkPrice = async (manifest: any, mpg: any, product: any) => {
+export const getMarkPrice = async (
+  manifest: Manifest,
+  mpg: MarketProductGroup,
+  product: any
+) => {
   const markPriceAccount = manifest.getMarkPricesAccount(MPG_PUBKEY, mpg);
 
   const markPrices = await manifest.getMarkPrices(markPriceAccount);
 
-  const markPricesParsed = markPrices.array.map((markPrice: any) => {
+  const markPricesParsed = markPrices.array.map((markPrice: MarkPrice) => {
     return {
       ...markPrice,
       markPrice: markPrice.markPrice.value.toNumber(),
@@ -91,13 +99,13 @@ export const getMarkPrice = async (manifest: any, mpg: any, product: any) => {
   return markPrice;
 };
 
-export const getTRGs = async (manifest: any) => {
+export const getTRGs = async (manifest: Manifest) => {
   const trgs = await manifest.getTRGsOfWallet(MPG_PUBKEY);
 
   return trgs;
 };
 
-export const createTRGFn = async (manifest: any) => {
+export const createTRGFn = async (manifest: Manifest) => {
   console.log("creating trg");
   const trg = await manifest.createTrg(MPG_PUBKEY);
 
@@ -107,7 +115,7 @@ export const createTRGFn = async (manifest: any) => {
 };
 
 export const closeTRGFn = async (
-  manifest: any,
+  manifest: Manifest,
   trgPubkey: PublicKey,
   trgAmount: number
 ) => {
@@ -122,7 +130,10 @@ export const closeTRGFn = async (
   await manifest.closeTrg(MPG_PUBKEY, trgPubkey);
 };
 
-export const getTRGBalance = async (manifest: any, trgPubkey: PublicKey) => {
+export const getTRGBalance = async (
+  manifest: Manifest,
+  trgPubkey: PublicKey
+) => {
   const trader = new dexterity.Trader(manifest, trgPubkey);
 
   let balance;
@@ -135,7 +146,7 @@ export const getTRGBalance = async (manifest: any, trgPubkey: PublicKey) => {
 };
 
 export const depositFn = async (
-  manifest: any,
+  manifest: Manifest,
   trgPubkey: PublicKey,
   amount: number
 ) => {
@@ -145,7 +156,7 @@ export const depositFn = async (
   await trader.update();
 
   await trader.deposit(n, {
-    onTxSentFn: (sig: any) =>
+    onTxSentFn: (sig: string) =>
       console.log(
         `\nSUCCESSFULL deposit OF ${amount.toLocaleString()} UXDC\n${
           sig ? `SIGNATURE: https://solscan.io/tx/${sig}?cluster=devnet` : ""
@@ -155,7 +166,7 @@ export const depositFn = async (
 };
 
 export const withdrawFn = async (
-  manifest: any,
+  manifest: Manifest,
   trgPubkey: PublicKey,
   amount: number
 ) => {
@@ -185,4 +196,83 @@ export const withdrawFn = async (
       ).toLocaleString()} UXDC`
     );
   });
+};
+
+export const placeLimitOrder = async (
+  manifest: Manifest,
+  type: "buy" | "sell",
+  price: number,
+  size: number,
+  trgPubkey: PublicKey,
+  productName: string
+) => {
+  const trader = new dexterity.Trader(manifest, trgPubkey);
+
+  await trader.update();
+
+  let productIndex: any;
+  for (const [name, { index, product }] of trader.getProducts()) {
+    console.log(name);
+    if (name.trim() === productName.trim()) {
+      productIndex = index;
+      break;
+    }
+  }
+
+  const sizeFractional = dexterity.Fractional.New(size, 0);
+  const priceFractional = dexterity.Fractional.New(price, 0);
+
+  const callbacks = {
+    onGettingBlockHashFn: () => {},
+    onGotBlockHashFn: () => {},
+    onTxSentFn: (sig: any) =>
+      console.log(
+        `\nSUCCESSFULLY PLACED LIMIT ${type.toLocaleUpperCase()} ORDER\nSIGNATURE: https://solscan.io/tx/${sig}?cluster=devnet`
+      ),
+  };
+
+  console.log(
+    "Placing limit order with price:",
+    price,
+    "and size:",
+    size,
+    "type:",
+    type,
+    "product:",
+    productName
+  );
+
+  try {
+    if (type === "buy") {
+      await trader.newOrder(
+        productIndex,
+        true,
+        priceFractional,
+        sizeFractional,
+        false,
+        null,
+        null,
+        null,
+        null,
+        callbacks
+      );
+    }
+
+    if (type === "sell") {
+      await trader.newOrder(
+        productIndex,
+        false,
+        priceFractional,
+        sizeFractional,
+        false,
+        null,
+        null,
+        null,
+        null,
+        callbacks
+      );
+    }
+  } catch (err) {
+    console.error(err);
+  }
 };

@@ -31,16 +31,27 @@ export const TradeControls: React.FC = () => {
   const [orderStatus, setOrderStatus] = useState("Placing market order");
   const [showCheckmark, setShowCheckmark] = useState(false);
   const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [usdValue, setUsdValue] = useState<number>();
+  const [price, setPrice] = useState<number>();
+  const [quantity, setQuantity] = useState<number>();
 
-  const { trgs, trgBalance, closeTrg, createTrg } = useTRGs();
+  const { trgs, trgBalance, closeTrg, createTrg, createLimitOrder } = useTRGs();
 
   const handlePopupToggle = async () => {
     // await createTrg();
     console.log("etrg", trgs);
-    await closeTrg({
-      trgPubkey: trgs[0].pubkey,
-      trgAmount: trgBalance as number,
+    // await closeTrg({
+    //   trgPubkey: trgs![0].pubkey,
+    //   trgAmount: trgBalance as number,
+    // });
+
+    await createLimitOrder({
+      price: price!,
+      size: quantity!,
+      productName: "BTCUSD-PERP     ",
+      type: "buy",
     });
+
     setIsPopupVisible(!isPopupVisible);
   };
 
@@ -103,7 +114,14 @@ export const TradeControls: React.FC = () => {
             Sell / Short
           </button>
         </div>
-        <Inputs />
+        <Inputs
+          price={price}
+          setPrice={setPrice}
+          quantity={quantity}
+          setQuantity={setQuantity}
+          usdValue={usdValue}
+          setUsdValue={setUsdValue}
+        />
       </div>
       <div className="">
         <div className="space-y-4">
@@ -274,7 +292,21 @@ export const TradeControls: React.FC = () => {
   );
 };
 
-const Inputs = () => {
+const Inputs = ({
+  price,
+  setPrice,
+  quantity,
+  setQuantity,
+  usdValue,
+  setUsdValue,
+}: {
+  price: number | undefined;
+  setPrice: (price: number) => void;
+  quantity: number | undefined;
+  setQuantity: (quantity: number) => void;
+  usdValue: number | undefined;
+  setUsdValue: (usdValue: number) => void;
+}) => {
   const [selectedOption, setSelectedOption] = useState<string>("Market");
   const [isOpen, setIsOpen] = useState(false);
   const options = [
@@ -289,27 +321,24 @@ const Inputs = () => {
     setIsOpen(true);
   };
 
-  const [usdValue, setUsdValue] = useState<string>("");
-  const [price, setPrice] = useState<string>("");
   const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPrice(event.target.value);
-    calculateUsdValue(event.target.value, quantity);
+    setPrice(Number(event.target.value));
+    calculateUsdValue(Number(event.target.value), quantity!);
   };
-  const [quantity, setQuantity] = useState<string>("");
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuantity(event.target.value);
-    calculateUsdValue(price, event.target.value);
+    setQuantity(Number(event.target.value));
+    calculateUsdValue(price!, Number(event.target.value));
   };
 
-  const calculateUsdValue = (priceValue: string, quantityValue: string) => {
-    const priceNumber = parseFloat(priceValue);
-    const quantityNumber = parseFloat(quantityValue);
+  const calculateUsdValue = (priceValue: number, quantityValue: number) => {
+    const priceNumber = priceValue;
+    const quantityNumber = quantityValue;
 
     if (!isNaN(priceNumber) && !isNaN(quantityNumber)) {
       const usd = priceNumber * quantityNumber;
-      setUsdValue(usd.toFixed(2));
+      setUsdValue(Number(usd.toFixed(2)));
     } else {
-      setUsdValue("");
+      setUsdValue(0);
     }
   };
 
@@ -368,7 +397,7 @@ const Inputs = () => {
               placeholder="16,800"
               value={price}
               onChange={handlePriceChange}
-              type="string"
+              type="number"
               name="price"
               id="price"
               className="flex-1 px-2 bg-transparent w-[4.5rem]"
@@ -382,7 +411,7 @@ const Inputs = () => {
           <div>Quantity</div>
           <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-[full] border border-white/20 font-redhat">
             <input
-              type="string"
+              type="number"
               value={quantity}
               onChange={handleInputChange}
               name="crypto"

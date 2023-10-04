@@ -15,13 +15,13 @@ const useMarkPrice = (productName: string) => {
 
   const { data: product } = useQuery({
     queryKey: ["product", connection.rpcEndpoint, productName],
-    queryFn: () => getProduct(mpg, productName),
+    queryFn: () => getProduct(mpg!, productName),
     enabled: !!mpg,
   });
 
   const { data: markPrice } = useQuery({
     queryKey: ["markPrice", connection.rpcEndpoint, productName],
-    queryFn: () => getMarkPrice(manifest, mpg, product),
+    queryFn: () => getMarkPrice(manifest!, mpg!, product),
     enabled: !!manifest || !!mpg,
   });
 

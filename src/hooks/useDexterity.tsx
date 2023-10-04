@@ -21,7 +21,7 @@ const useDexterity = () => {
 
   const { data: mpg } = useQuery({
     queryKey: ["mpg", connection.rpcEndpoint],
-    queryFn: () => getMpg(manifest),
+    queryFn: () => getMpg(manifest!),
     enabled: !!manifest,
   });
 

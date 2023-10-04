@@ -7,6 +7,7 @@ import {
   depositFn,
   getTRGBalance,
   getTRGs,
+  placeLimitOrder,
   withdrawFn,
 } from "@/utils/dexterity";
 import { PublicKey } from "@solana/web3.js";
@@ -19,13 +20,13 @@ const useTRGs = () => {
 
   const { data: trgs } = useQuery({
     queryKey: ["trgs", publicKey?.toBase58()],
-    queryFn: async () => await getTRGs(manifest),
+    queryFn: async () => await getTRGs(manifest!),
     enabled: !!manifest && !!publicKey && !!manifest.fields.wallet?.publicKey,
   });
 
   const { data: trgBalance } = useQuery({
     queryKey: ["trgBalance", publicKey?.toBase58()],
-    queryFn: async () => await getTRGBalance(manifest, trgs[0].pubkey),
+    queryFn: async () => await getTRGBalance(manifest!, trgs![0].pubkey),
     enabled:
       !!manifest &&
       !!publicKey &&
@@ -41,7 +42,7 @@ const useTRGs = () => {
     error: createTrgError,
   } = useMutation({
     mutationKey: ["createTrg", publicKey?.toBase58()],
-    mutationFn: async () => await createTRGFn(manifest),
+    mutationFn: async () => await createTRGFn(manifest!),
   });
 
   const {
@@ -58,7 +59,7 @@ const useTRGs = () => {
       trgPubkey: PublicKey;
       trgAmount: number;
     }) => {
-      await closeTRGFn(manifest, trgPubkey, trgAmount);
+      await closeTRGFn(manifest!, trgPubkey, trgAmount);
       await queryClient.refetchQueries({
         queryKey: ["trgs", publicKey?.toBase58()],
       });
@@ -75,15 +76,15 @@ const useTRGs = () => {
     mutationFn: async (amount: number) => {
       if (!trgs) return;
       if (trgs.length === 0) {
-        await createTRGFn(manifest);
+        await createTRGFn(manifest!);
 
-        const trgsNew = await getTRGs(manifest);
+        const trgsNew = await getTRGs(manifest!);
 
         console.log("trg created for deposit", trgsNew);
 
-        await depositFn(manifest, trgsNew[0].pubkey, amount);
+        await depositFn(manifest!, trgsNew[0].pubkey, amount);
       } else {
-        await depositFn(manifest, trgs[0].pubkey, amount);
+        await depositFn(manifest!, trgs[0].pubkey, amount);
       }
 
       queryClient.refetchQueries({
@@ -102,7 +103,41 @@ const useTRGs = () => {
     mutationFn: async (amount: number) => {
       if (!trgs || trgs.length === 0) return;
 
-      await withdrawFn(manifest, trgs[0].pubkey, amount);
+      await withdrawFn(manifest!, trgs[0].pubkey, amount);
+
+      queryClient.refetchQueries({
+        queryKey: ["trgBalance", publicKey?.toBase58()],
+      });
+    },
+  });
+
+  const {
+    mutate: createLimitOrder,
+    isLoading: creatingLimitOrder,
+    isSuccess: createdLimitOrder,
+    error: createLimitOrderError,
+  } = useMutation({
+    mutationKey: ["createLimitOrder", publicKey?.toBase58()],
+    mutationFn: async ({
+      type,
+      price,
+      size,
+      productName,
+    }: {
+      type: "buy" | "sell";
+      price: number;
+      size: number;
+      productName: string;
+    }) => {
+      if (!trgs || trgs.length === 0) return;
+      await placeLimitOrder(
+        manifest!,
+        type,
+        price,
+        size,
+        trgs![0].pubkey,
+        productName
+      );
 
       queryClient.refetchQueries({
         queryKey: ["trgBalance", publicKey?.toBase58()],
@@ -133,6 +168,11 @@ const useTRGs = () => {
     creatingWithdrawal,
     createdWithdrawal,
     createWithdrawalError,
+    // place limit order
+    createLimitOrder,
+    creatingLimitOrder,
+    createdLimitOrder,
+    createLimitOrderError,
   };
 };
 
