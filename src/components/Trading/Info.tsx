@@ -22,7 +22,6 @@ interface InfoItem {
 
 const ActivePositionsContent: React.FC = () => {
   return (
-    <div>
       <div>
         <ul className="flex flex-row justify-between bg-green-900 bg-opacity-20 p-3 items-center border-b-2 border-green-300 rounded-t-lg">
           <li className="w-[25%]">Market</li>
@@ -69,7 +68,6 @@ const ActivePositionsContent: React.FC = () => {
           </ul>
         ))}
       </div>
-    </div>
   );
 };
 
@@ -308,7 +306,7 @@ export const Info: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-y-2">
       <InfoTabs
         onInfoTabChange={(selectedTab) => setSelectedTab(selectedTab)}
       />
