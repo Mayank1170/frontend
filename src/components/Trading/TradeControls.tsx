@@ -90,7 +90,7 @@ export const TradeControls: React.FC = () => {
             width={42}
             alt="trade"
           />
-          <p className="text-3xl font-bold">Trade</p>
+          <h3 className="text-3xl font-bold">Trade</h3>
         </div>
         <div className="space-x-1.5 flex flex-row bg-zinc-800 rounded-lg p-3 mx-[-13px] mb-3">
           <button
@@ -286,8 +286,6 @@ export const TradeControls: React.FC = () => {
           </div>
         )}
       </button>
-      <hr className="w-full mt-6 mb-6 border-t border-t-white/10" />
-      <Prices />
     </div>
   );
 };
