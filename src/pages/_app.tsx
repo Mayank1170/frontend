@@ -14,10 +14,7 @@ import { clusterApiUrl } from "@solana/web3.js";
 import { useMemo } from "react";
 import {
   PhantomWalletAdapter,
-  BackpackWalletAdapter,
-  GlowWalletAdapter,
   SolflareWalletAdapter,
-  BraveWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
 import { MoongateWalletAdapter } from "@moongate/moongate-adapter";
 
@@ -42,9 +39,6 @@ const MyApp: NextComponentType<
     () => [
       new PhantomWalletAdapter(),
       new SolflareWalletAdapter(),
-      new BraveWalletAdapter(),
-      new GlowWalletAdapter(),
-      new BackpackWalletAdapter(),
       new MoongateWalletAdapter(),
     ],
     []
