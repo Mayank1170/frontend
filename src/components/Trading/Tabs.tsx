@@ -10,24 +10,20 @@ interface TabsProps {
 const tabLinks: TabLinks[] = [
   {
     label: "Price",
-    // href: "/trade",
     click: "Price",
   },
   {
     label: "Depth",
-    // href: "/dashboard",
     click: "Depth",
   },
   {
     label: "Funding",
-    // href: "/swap",
     click: "Funding",
   },
 ];
 
 interface TabLinks {
   label: string;
-  // href: string;
   click: string;
 }
 
@@ -60,7 +56,7 @@ export const Tabs: React.FC<TabsProps> = ({ onTabChange }) => {
               }
               key={link.label}
               className={classNames(
-                "w-[105px] h-14 rounded-lg flex items-center justify-center relative z-10 transition-colors duration-200 ease-in-out font-semibold",
+                "w-[105px] h-14 rounded-lg flex items-center justify-center relative  transition-colors duration-200 ease-in-out font-semibold",
                 {
                   "text-black": activeIndex === currentLinkIndex,
                   "text-white": link.click !== currentLink?.click,
