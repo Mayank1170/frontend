@@ -240,16 +240,16 @@ const Controls: React.FC = () => {
             </div>
           </div>
           <div className="flex flex-row justify-between px-3 mt-2 border-b-[0.5px] pb-4 border-zinc-600 ">
-            <div className="w-[140px] h-10 pl-[10px] pr-[10px] bg-neutral-600 bg-opacity-40 rounded-lg justify-center items-center inline-flex">
+            <button className="w-[140px] h-10 pl-[10px] pr-[10px] bg-neutral-600 bg-opacity-40 rounded-lg justify-center items-center inline-flex">
               <div className="text-white text-sm font-normal font-['Red Hat Display']">
                 Add Subaccount
               </div>
-            </div>
-            <div className="w-[140px] h-10 pl-[51px] pr-[53.50px] bg-neutral-600 bg-opacity-40 rounded-lg justify-center items-center inline-flex">
+            </button>
+            <button className="w-[140px] h-10 pl-[51px] pr-[53.50px] bg-neutral-600 bg-opacity-40 rounded-lg justify-center items-center inline-flex">
               <div className="text-white text-sm font-normal font-['Red Hat Display']">
                 Manage
               </div>
-            </div>
+            </button>
           </div>
           <div>
             <div className="w-[100%] flex flex-row gap-x-2 px-4 pt-2">

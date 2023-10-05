@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const Label: React.FC = () => {
   return (
-    <div className="md:flex flex-row justify-between absolute left-0 bottom-0 right-0 bg-black hidden">
+    <div className="md:flex h-[25px] flex-row items-center justify-between absolute left-0 bottom-0 right-0 bg-black hidden">
       <div className="flex flex-row items-center gap-x-2">
         <div className="w-3 h-3 rounded-full bg-emerald-600 "></div>
         <p className="text-[10px] lg:text-[13px]">Operational</p>
@@ -35,12 +35,14 @@ export const Label: React.FC = () => {
             height={16}
             width={20}
             alt="discord"
+            className="hover:cursor-pointer"
           />
           <Image
             src="/images/social/twitter.svg"
             width={16}
             height={20}
             alt="twitter"
+            className="hover:cursor-pointer"
           />
         </div>
       </div>

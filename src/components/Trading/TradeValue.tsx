@@ -644,9 +644,9 @@ const SpreadData: React.FC<SpreadDataProps> = ({
 
 export const RecentTrades: React.FC = () => {
   return (
-    <div className="bg-neutral-800 py-3 mt-0 w-[100%] rounded-md xl:rounded-md xl:rounded-t-[0px] border-[0.5px] border-white/20">
+    <div className="bg-neutral-800  mt-0 w-[100%] rounded-md xl:rounded-md xl:rounded-t-[0px] border-[0.5px] xl:border-t-0 border-white/20">
       <div
-        className="xl:h-[calc(100vh-298px)]  h-[calc(100vh-352px)]  scrollbar-hide"
+        className="xl:h-[calc(100vh-286px)]  h-[calc(100vh-352px)]  scrollbar-hide"
         style={{ overflowY: "scroll", scrollbarWidth: "none" }}
       >
         <div>
@@ -672,7 +672,7 @@ const RecentTradeData: React.FC<MarketDataProps> = ({
   textColor,
 }) => {
   return (
-    <div className="mt-2 w-full rounded-md">
+    <div className=" w-full rounded-md">
       <div className="flex flex-row justify-between px-3">
         <p
           className="font-redhat  w-[33.333333%] text-[12.87px]"
