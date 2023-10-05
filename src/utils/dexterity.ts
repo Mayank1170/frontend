@@ -40,10 +40,11 @@ export const getMpg = (manifest: Manifest) => {
     return;
   }
 
-  let desiredMpg;
-  for (const [pkStr, { pubkey, mpg }] of manifest.fields.mpgs) {
+  let desiredMpg, desiredOrderbooks;
+  for (const [pkStr, { pubkey, mpg, orderbooks }] of manifest.fields.mpgs) {
     if (MPG_PKG_STR === pkStr) {
       desiredMpg = mpg;
+      desiredOrderbooks = orderbooks;
       break;
     }
   }
@@ -52,25 +53,34 @@ export const getMpg = (manifest: Manifest) => {
     process.exit();
   }
 
-  return desiredMpg;
+  return {
+    desiredMpg,
+    desiredOrderbooks,
+  };
 };
 
-export const getProduct = (mpg: MarketProductGroup, productName: string) => {
+export const getProduct = (
+  mpg: MarketProductGroup,
+  productName: string,
+  desiredOrderbooks: any
+) => {
   if (!mpg) {
     return;
   }
 
-  let desiredProduct: any;
+  let desiredProduct: any, desiredMarketState: any;
   for (const [pName, { index, product }] of dexterity.Manifest.GetProductsOfMPG(
     mpg
   )) {
-    if (pName.trim() === productName) {
+    const meta = dexterity.productToMeta(product);
+    if (pName.trim() === productName.trim()) {
       desiredProduct = product.outright.outright;
+      desiredMarketState = desiredOrderbooks.get(meta.orderbook.toBase58());
       break;
     }
   }
 
-  return desiredProduct;
+  return { desiredProduct, desiredMarketState };
 };
 
 export const getMarkPrice = async (
@@ -275,4 +285,30 @@ export const placeLimitOrder = async (
   } catch (err) {
     console.error(err);
   }
+};
+
+export const getOrderbook = async (
+  manifest: Manifest,
+  product: any,
+  marketState: any
+) => {
+  console.log("getting orderbook", product, manifest);
+  const { asks, bids } = await manifest.getBook(product, marketState);
+
+  const totalBids = bids.reduce(
+    (acc: number, bid) => acc + bid.price.toNumber() * bid.quantity.toDecimal(),
+    0
+  );
+
+  const totalAsks = asks.reduce(
+    (acc: number, ask) => acc + ask.price.toNumber() * ask.quantity.toDecimal(),
+    0
+  );
+
+  return {
+    asks,
+    bids,
+    totalAsks,
+    totalBids,
+  };
 };

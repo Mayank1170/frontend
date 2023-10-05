@@ -27,7 +27,8 @@ const useDexterity = () => {
 
   return {
     manifest,
-    mpg,
+    mpg: mpg?.desiredMpg,
+    desiredOrderbooks: mpg?.desiredOrderbooks,
   };
 };
 

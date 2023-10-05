@@ -1,4 +1,4 @@
-import useMarkPrice from "@/hooks/useMarkPrice";
+import useTradeData from "@/hooks/useTradeData";
 import React from "react";
 import {
   AreaChart,

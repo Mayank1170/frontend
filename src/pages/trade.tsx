@@ -15,8 +15,9 @@ import {
 } from "@/components/Trading";
 import { useState } from "react";
 import { NextPageWithLayout } from "@/types/custom-next";
-import useMarkPrice from "@/hooks/useMarkPrice";
+import useTradeData from "@/hooks/useTradeData";
 import useTRGs from "@/hooks/useTRGs";
+import useDexterity from "@/hooks/useDexterity";
 
 const TradeingPage: NextPageWithLayout = () => {
   const [selectedTab, setSelectedTab] = useState<
@@ -61,6 +62,9 @@ const TradeingPage: NextPageWithLayout = () => {
   const { trgs, trgBalance } = useTRGs();
   console.log("trgs", trgs);
   console.log("trgBalance", trgBalance);
+
+  const { orderbookData } = useTradeData("BTCUSD-PERP     ");
+  console.log(orderbookData);
 
   return (
     <div className="flex flex-row space-x-4">
