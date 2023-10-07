@@ -39,7 +39,7 @@ export const Tabs: React.FC<TabsProps> = ({ onTabChange }) => {
   const [links, setLinks] = useState(tabLinks);
   const router = useRouter();
   const currentLink = links.find((link) => link.click === router.pathname);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(1);
   const currentLinkIndex = useMemo(
     () => links.findIndex((link) => link.click === router.pathname),
     [router.pathname, links]
@@ -49,14 +49,14 @@ export const Tabs: React.FC<TabsProps> = ({ onTabChange }) => {
     <div>
       <div className="flex flex-row justify-between items-center">
         <div className="flex bg-[#1C1C1C] rounded-lg border border-white/20 relative">
-          {links.map((link, index) => (
+          {tabLinks.map((link, index) => (
             <div
               onClick={() =>
                 handleButtonClick(link.click as "Price" | "Depth" | "Funding")
               }
               key={link.label}
               className={classNames(
-                "w-[105px] h-14 rounded-lg flex items-center justify-center relative  transition-colors duration-200 ease-in-out font-semibold",
+                "w-[105px] h-14 rounded-lg flex items-center justify-center relative z-10 transition-colors duration-200 ease-in-out font-semibold",
                 {
                   "text-black": activeIndex === currentLinkIndex,
                   "text-white": link.click !== currentLink?.click,
@@ -66,7 +66,7 @@ export const Tabs: React.FC<TabsProps> = ({ onTabChange }) => {
                 setActiveIndex(index);
               }}
               onMouseLeave={() => {
-                setActiveIndex(currentLink ? links.indexOf(currentLink) : 0);
+                setActiveIndex(index);
               }}
             >
               {link.label}

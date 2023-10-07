@@ -21,7 +21,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
     <div
       id="container"
       onClick={handleOnClose}
-      className="fixed inset-0 z-50 bg-[black] bg-opacity-30 backdrop-blur-sm h-full flex justify-center items-center text-black"
+      className="fixed inset-0 z-30 bg-[black] bg-opacity-30 backdrop-blur-sm h-full flex justify-center items-center text-black"
     >
       <div className="bg-[#181818] px-5  border border-white/20 rounded-[10px]">
         <div className="text-white text-xl font-bold px-2 py-7">
