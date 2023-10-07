@@ -2,6 +2,9 @@ import { useState } from "react";
 import { CgArrowsShrinkV } from "react-icons/cg";
 import { BiChevronDown } from "react-icons/bi";
 import { BiChevronUp } from "react-icons/bi";
+import classNames from "classnames";
+import { motion } from "framer-motion";
+
 
 const marketValue: MarketDataProps[] = [
   {
@@ -458,40 +461,83 @@ export const SpreadDataContainer: React.FC = () => {
   );
 };
 
+interface TabLinks{
+  name: string;
+  label: string;
+  click: string;
+}
+const tabLinks: TabLinks[]= [
+  {
+    name: "orderBook",
+    label: "Books",
+    click: "Books",
+  },
+  {
+    name: "recentTrades",
+    label: "Trades",
+    click: "Trades",
+  }
+]
+
 export const NavLinks: React.FC = () => {
   const [activeComponent, setActiveComponent] = useState<
     "orderBook" | "recentTrades"
   >("orderBook");
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
 
-  const handleButtonClick = (componentName: "orderBook" | "recentTrades") => {
+  const handleButtonClick = (componentName: "orderBook" | "recentTrades", index:number) => {
     setActiveComponent(componentName);
+    setActiveIndex(index);
+    setActiveTabIndex(index);
   };
 
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div>
-      <button
-        className={`w-[50%]  font-medium h-[50px] rounded-tl-lg ${
-          activeComponent === "orderBook"
-            ? "bg-[#67B38F] text-gray-950"
-            : "bg-[#202020] text-white"
-        }`}
-        onClick={() => handleButtonClick("orderBook")}
-      >
-        Books
-      </button>
-      <button
-        className={`w-[50%] text-white font-medium h-[50px] rounded-tr-lg ${
-          activeComponent === "recentTrades"
-            ? "bg-[#67B38F] text-gray-950"
-            : "bg-[#202020] text-white"
-        }`}
-        onClick={() => handleButtonClick("recentTrades")}
-      >
-        Trades
-      </button>
-      <div className="flex flex-row items-center bg-neutral-800 border-[0.5px] border-white/20 border-b-0 justify-between ">
+      <div className="flex flex-col w-full items-center ">
+        <div className="flex w-full rounded-t-lg border bg-[#202020] border-white/20 border-b-0 relative">
+          {tabLinks.map((link, index) => (
+            <button
+              onClick={() =>
+                handleButtonClick(
+                  link.click as "orderBook" | "recentTrades" ,
+                  index
+                )
+              }
+              key={link.label}
+              className={classNames(
+                "w-full h-14 rounded-lg flex items-center justify-center relative z-10 transition-colors duration-200 ease-in-out font-semibold",
+                {
+                  "text-black": activeIndex === index,
+                  "text-white": activeComponent !== link.click,
+                  "bg-none":
+                    activeIndex === index,
+                }
+              )}
+              onMouseEnter={() => setActiveIndex(index)}
+              onMouseLeave={() => setActiveIndex(activeTabIndex)}
+            >
+              {link.label}
+            </button>
+          ))}
+          <motion.div
+            id="active-icon"
+            className={classNames("h-full w-[50%]  absolute rounded-t-lg", {
+              "bg-gradient-to-r from-emerald-700 to-emerald-300":
+                activeIndex !== -1,
+            })}
+            animate={{
+              x: `${activeIndex * 100}%`,
+              opacity: activeIndex !== -1 ? 1 : -1,
+            }}
+            transition={{
+              duration: 0.2,
+              ease: "easeOut",
+            }}
+          />
+        </div>
+      <div className="flex flex-row items-center w-full bg-neutral-800 border-[0.5px] border-white/20 border-b-0 justify-between ">
         <div className="flex flex-row ml-3 items-center gap-x-1 my-1">
           <CgArrowsShrinkV className="text-lg" />
           <p className="text-white text-base font-normal font-['Red Hat Display'] ">
@@ -514,7 +560,7 @@ export const NavLinks: React.FC = () => {
           </div>
         </div>
       </div>
-      {activeComponent === "orderBook" ? <OrderBook /> : <RecentTrades />}
+      {activeIndex === 0 ? <OrderBook /> : <RecentTrades />}
     </div>
   );
 };
