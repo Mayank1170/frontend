@@ -235,7 +235,7 @@ export const TradeControls: React.FC = () => {
             : ""}
         </div>
         {isPopupVisible && (
-          <div className="flex flex-col w-[21%] h-[120px] bottom-[20px] right-[68px]  bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
+          <div className="flex flex-col w-[21%] h-[120px] bottom-[30px] right-[68px]  bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
             <div className="flex flex-row px-6 py-4 rounded-md justify-between items-center">
               <div className="flex flex-row items-center gap-x-[5px]">
                 <div>{popupIcon}</div>

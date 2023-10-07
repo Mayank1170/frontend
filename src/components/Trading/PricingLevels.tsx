@@ -75,7 +75,7 @@ const GeneralInfo: React.FC = () => {
             </p>
             {isOpen && (
               <div
-                className="mt-4 w-[360px] justify-between py-2 z-10 bg-[#202020] rounded border border-white border-opacity-30 border-white/20 absolute"
+                className="mt-4 w-[360px] justify-between py-2 z-20 bg-[#202020] rounded border border-white border-opacity-30 border-white/20 absolute"
                 ref={dropdownRef}
                 onClick={(e) => {
                   e.stopPropagation();
