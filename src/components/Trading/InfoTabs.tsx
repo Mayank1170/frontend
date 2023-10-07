@@ -97,7 +97,7 @@ export const InfoTabs: React.FC<TabsProps> = ({ onInfoTabChange }) => {
               {
                 "text-black": activeIndex === index,
                 "text-white": activeComponent !== link.click,
-                "bg-gradient-to-r from-emerald-700 to-emerald-300":
+                "bg-none":
                   activeIndex === index,
               }
             )}
@@ -115,10 +115,10 @@ export const InfoTabs: React.FC<TabsProps> = ({ onInfoTabChange }) => {
           })}
           animate={{
             x: activeIndex * 177,
-            opacity: activeIndex !== -1 ? 0.3 : -1,
+            opacity: activeIndex !== -1 ? 1 : -1,
           }}
           transition={{
-            duration: 0.5,
+            duration: 0.2,
             ease: "easeOut",
           }}
         />
