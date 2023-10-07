@@ -61,7 +61,7 @@ export const Tabs: React.FC<TabsProps> = ({ onTabChange }) => {
                 {
                   "text-black": activeIndex === index,
                   "text-white": activeComponent !== link.click,
-                  "bg-gradient-to-r from-emerald-700 to-emerald-300":
+                  "bg-none":
                     activeIndex === index,
                 }
               )}
@@ -79,7 +79,7 @@ export const Tabs: React.FC<TabsProps> = ({ onTabChange }) => {
             })}
             animate={{
               x: activeIndex * 105,
-              opacity: activeIndex !== -1 ? 0.3 : -1,
+              opacity: activeIndex !== -1 ? 1 : -1,
             }}
             transition={{
               duration: 0.2,
