@@ -27,11 +27,16 @@ interface TabLinks {
 }
 
 export const Tabs: React.FC<TabsProps> = ({ onTabChange }) => {
-  const [activeComponent, setActiveComponent] = useState<"Price" | "Depth" | "Funding">("Price");
+  const [activeComponent, setActiveComponent] = useState<
+    "Price" | "Depth" | "Funding"
+  >("Price");
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
 
-  const handleButtonClick = (componentName: "Price" | "Depth" | "Funding", index: number) => {
+  const handleButtonClick = (
+    componentName: "Price" | "Depth" | "Funding",
+    index: number
+  ) => {
     setActiveComponent(componentName);
     onTabChange(componentName);
     setActiveIndex(index);
@@ -40,37 +45,41 @@ export const Tabs: React.FC<TabsProps> = ({ onTabChange }) => {
 
   return (
     <div>
-      <div className="flex flex-row justify-between items-center">
-        <div className="flex rounded-lg border border-white/20 relative">
+      <div className="flex flex-row justify-between items-center ">
+        <div className="flex rounded-lg border bg-[#202020] border-white/20 relative">
           {tabLinks.map((link, index) => (
-            <div
-              onClick={() => handleButtonClick(link.click as "Price" | "Depth" | "Funding", index)}
+            <button
+              onClick={() =>
+                handleButtonClick(
+                  link.click as "Price" | "Depth" | "Funding",
+                  index
+                )
+              }
               key={link.label}
               className={classNames(
                 "w-[105px] h-14 rounded-lg flex items-center justify-center relative z-10 transition-colors duration-200 ease-in-out font-semibold",
                 {
                   "text-black": activeIndex === index,
                   "text-white": activeComponent !== link.click,
-                  "bg-gradient-to-r from-emerald-700 to-emerald-300": activeIndex === index,
+                  "bg-gradient-to-r from-emerald-700 to-emerald-300":
+                    activeIndex === index,
                 }
               )}
               onMouseEnter={() => setActiveIndex(index)}
               onMouseLeave={() => setActiveIndex(activeTabIndex)}
             >
               {link.label}
-            </div>
+            </button>
           ))}
           <motion.div
             id="active-icon"
-            className={classNames(
-              "h-full w-[105px] absolute rounded-lg",
-              {
-                "bg-gradient-to-r from-emerald-700 to-emerald-300": activeIndex !== 0,
-              }
-            )}
+            className={classNames("h-full w-[105px] absolute rounded-lg", {
+              "bg-gradient-to-r from-emerald-700 to-emerald-300":
+                activeIndex !== -1,
+            })}
             animate={{
               x: activeIndex * 105,
-              opacity: activeIndex !== 0 ? 0.5 : 1, // Updated opacity
+              opacity: activeIndex !== -1 ? 0.3 : -1,
             }}
             transition={{
               duration: 0.2,
