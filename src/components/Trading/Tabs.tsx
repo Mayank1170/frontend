@@ -39,7 +39,7 @@ export const Tabs: React.FC<TabsProps> = ({ onTabChange }) => {
   const [links, setLinks] = useState(tabLinks);
   const router = useRouter();
   const currentLink = links.find((link) => link.click === router.pathname);
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
   const currentLinkIndex = useMemo(
     () => links.findIndex((link) => link.click === router.pathname),
     [router.pathname, links]
