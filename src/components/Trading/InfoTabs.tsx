@@ -75,8 +75,8 @@ export const InfoTabs: React.FC<TabsProps> = ({ onInfoTabChange }) => {
   };
 
   return (
-    <div className="w-full flex flex-row justify-between items-center">
-      <div className="w-full relative flex flex-row bg-[#1C1C1C] rounded-lg border border-white/20 ">
+    // <div className="w-full flex flex-row items-center">
+      <div className="w-full relative flex flex-row bg-[#1C1C1C] rounded-lg border border-white/20 justify-between  ">
         {infoTabLinks.map((link, index) => (
           <button
             onClick={() =>
@@ -109,12 +109,12 @@ export const InfoTabs: React.FC<TabsProps> = ({ onInfoTabChange }) => {
         ))}
         <motion.div
           id="active-icon"
-          className={classNames("h-full w-[170px] absolute rounded-lg", {
+          className={classNames("h-full w-[16.6667%] absolute rounded-lg", {
             "bg-gradient-to-r from-emerald-700 to-emerald-300":
               activeIndex !== -1,
           })}
           animate={{
-            x: activeIndex * 177,
+            x: `${activeIndex * 100}%`,
             opacity: activeIndex !== -1 ? 1 : -1,
           }}
           transition={{
@@ -123,6 +123,6 @@ export const InfoTabs: React.FC<TabsProps> = ({ onInfoTabChange }) => {
           }}
         />
       </div>
-    </div>
+    // </div>
   );
 };
