@@ -496,7 +496,7 @@ export const NavLinks: React.FC = () => {
 
   return (
       <div className="flex flex-col w-full items-center ">
-        <div className="flex w-full rounded-t-lg border bg-[#202020] border-white/20 border-b-0 relative">
+        <div className="flex w-full rounded-t-lg  bg-[#202020] relative">
           {tabLinks.map((link, index) => (
             <button
               onClick={() =>
@@ -507,7 +507,7 @@ export const NavLinks: React.FC = () => {
               }
               key={link.label}
               className={classNames(
-                "w-full h-14 rounded-lg flex items-center justify-center relative z-10 transition-colors duration-200 ease-in-out font-semibold",
+                "w-full h-12 rounded-lg flex items-center justify-center relative z-10 transition-colors duration-200 ease-in-out font-semibold",
                 {
                   "text-black": activeIndex === index,
                   "text-white": activeComponent !== link.click,
