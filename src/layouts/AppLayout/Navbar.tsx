@@ -173,7 +173,7 @@ const Settings: React.FC = () => {
       </div>
       {isOpen && (
         <div
-          className="mt-4 right-[450px] w-[200px] justify-between pt-4 pb-3 z-10 bg-neutral-900 rounded border border-white border-opacity-30 border-white/20 absolute"
+          className="mt-4 xl:right-[450px] sm:right-[250px] right-[100px] w-[200px] justify-between pt-4 pb-3 z-10 bg-neutral-900 rounded border border-white border-opacity-30 border-white/20 absolute"
           ref={dropdownRef}
           onClick={(e) => {
             e.stopPropagation();
