@@ -260,7 +260,7 @@ const AdditionalInfoItem: React.FC<AdditionalInfoItemProps> = ({
 }) => {
   return (
     <div className="flex flex-col">
-      <p className="text-white/80 xl:text-[13px] 2xl:text-[18px] text-[24px] font-bold font-redhat">
+      <p className="text-white/80 xl:text-[13px] 2xl:text-[15px] text-[24px] font-bold font-redhat">
         {value}
       </p>
       <p className="text-[14px] text-white/40">{name}</p>
