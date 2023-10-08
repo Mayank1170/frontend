@@ -44,6 +44,7 @@ const Navbar: React.FC = () => {
           </div>
         </div>
         <div className="flex items-center gap-x-6">
+          <Settings />
           <div className="hidden xl:flex">
             <Search onClick={handleOnClose} />
           </div>
@@ -128,6 +129,94 @@ const NavLinks: React.FC = () => {
           ease: "easeOut",
         }}
       />
+    </div>
+  );
+};
+
+const Settings: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(true);
+      }
+    };
+
+    const handleDocumentClick = (event: MouseEvent) => {
+      if (isOpen) {
+        handleClickOutside(event);
+      }
+    };
+
+    document.addEventListener("mousedown", handleDocumentClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleDocumentClick);
+    };
+  }, [isOpen]);
+  return (
+    <div>
+      <div
+        className="text-gray-300 w-8 h-8 items-center cursor-pointer"
+        onClick={() => setIsOpen((prev) => !prev)}
+      >
+        <Image
+          src="/images/icons/settings2.svg"
+          height={36}
+          width={36}
+          alt="settings"
+        />
+      </div>
+      {isOpen && (
+        <div
+          className="mt-4 right-[450px] w-[200px] justify-between pt-4 pb-3 z-10 bg-neutral-900 rounded border border-white border-opacity-30 border-white/20 absolute"
+          ref={dropdownRef}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <div className="flex flex-col items-start">
+            <button className="flex flex-row justify-between px-2 w-full items-center hover:bg-neutral-700 py-1">
+              <div className="flex flex-row gap-x-2">
+                <Image
+                  src="/images/icons/graph-line.svg"
+                  width={23}
+                  height={23}
+                  alt="Referal icon"
+                />
+                <p>Trade</p>
+              </div>
+              <Image
+                src="/images/icons/chevron-down.svg"
+                width={15}
+                height={15}
+                alt="Trade icon"
+              />
+            </button>
+            <button className="flex flex-row justify-between px-2 w-full items-center hover:bg-neutral-700 py-1">
+              <div className="flex flex-row gap-x-2">
+                <Image
+                  src="/images/icons/invite-line.svg"
+                  width={23}
+                  height={23}
+                  alt="Trade icon"
+                />
+                <p>Referral System</p>
+              </div>
+              <Image
+                src="/images/icons/chevron-down.svg"
+                width={15}
+                height={15}
+                alt="Trade icon"
+              />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
