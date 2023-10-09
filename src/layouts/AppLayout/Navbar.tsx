@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React from "react";
 import Logo from "../../components/icons/Logo";
 import { useMemo, useState, useEffect, useRef } from "react";
 import classNames from "classnames";
@@ -14,6 +15,13 @@ import { BiCopy } from "react-icons/bi";
 import { TbDoorEnter } from "react-icons/tb";
 import { useAsyncMemo } from "use-async-memo";
 import { RxHamburgerMenu } from "react-icons/rx";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import {
+  HamburgerMenuIcon,
+  DotFilledIcon,
+  CheckIcon,
+  ChevronRightIcon,
+} from "@radix-ui/react-icons";
 
 const Navbar: React.FC = () => {
   const [showMyModal, setShowMyModal] = useState(false);
@@ -133,91 +141,111 @@ const NavLinks: React.FC = () => {
   );
 };
 
-const Settings: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(true);
-      }
-    };
+const Settings = () => {
+  const [bookmarksChecked, setBookmarksChecked] = React.useState(true);
+  const [urlsChecked, setUrlsChecked] = React.useState(false);
+  const [person, setPerson] = React.useState("pedro");
 
-    const handleDocumentClick = (event: MouseEvent) => {
-      if (isOpen) {
-        handleClickOutside(event);
-      }
-    };
-
-    document.addEventListener("mousedown", handleDocumentClick);
-
-    return () => {
-      document.removeEventListener("mousedown", handleDocumentClick);
-    };
-  }, [isOpen]);
   return (
-    <div className="relative">
-      <div
-        className="text-gray-300 w-8 h-8 items-center cursor-pointer "
-        onClick={() => setIsOpen((prev) => !prev)}
-      >
-        <Image
-          src="/images/icons/settings2.svg"
-          height={36}
-          width={36}
-          alt="settings"
-        />
-      </div>
-      {isOpen && (
-        <div
-          className="mt-4 right-[10px] w-[200px] justify-between pt-4 pb-3 z-10 bg-neutral-900 rounded border border-white border-opacity-30 border-white/20 absolute"
-          ref={dropdownRef}
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger asChild>
+        <button
+          className=" w-[35px] h-[35px] inline-flex items-center justify-center outline-none "
+          aria-label="Customise options"
         >
-          <div className="flex flex-col items-start">
-            <button className="flex flex-row justify-between px-2 w-full items-center hover:bg-neutral-700 py-1">
-              <div className="flex flex-row gap-x-2">
-                <Image
-                  src="/images/icons/graph-line.svg"
-                  width={23}
-                  height={23}
-                  alt="Referal icon"
-                />
-                <p>Trade</p>
-              </div>
+          <Image
+            src="/images/icons/settings2.svg"
+            height={23}
+            width={23}
+            alt="settings"
+          />
+        </button>
+      </DropdownMenu.Trigger>
+
+      <DropdownMenu.Portal>
+        <DropdownMenu.Content
+          className="min-w-[200px] z-[10] bg-neutral-800 text-white rounded-md py-[10px] pr-[8px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] will-change-[opacity,transform] data-[side=top]:animate-slideDownAndFade data-[side=right]:animate-slideLeftAndFade data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade"
+          sideOffset={5}
+        >
+          <DropdownMenu.Sub>
+            <DropdownMenu.SubTrigger className="hover:bg-neutral-600 group text-[15px] gap-x-2 font-semibold font-['Red Hat Display'] text-violet11 rounded-[3px] my-1 py-4 flex items-center h-[25px] pr-[5px] relative pl-[15px] ">
               <Image
-                src="/images/icons/chevron-down.svg"
-                width={15}
-                height={15}
-                alt="Trade icon"
+                src="/images/icons/graph-line.svg"
+                height={23}
+                width={23}
+                alt="settings"
               />
-            </button>
-            <button className="flex flex-row justify-between px-2 w-full items-center hover:bg-neutral-700 py-1">
-              <div className="flex flex-row gap-x-2">
-                <Image
-                  src="/images/icons/invite-line.svg"
-                  width={23}
-                  height={23}
-                  alt="Trade icon"
-                />
-                <p>Referral System</p>
+              Trade
+              <div className="ml-auto pl-[20px] text-mauve11 group-data-[highlighted]:text-white group-data-[disabled]:text-mauve8">
+                <ChevronRightIcon />
               </div>
+            </DropdownMenu.SubTrigger>
+            <DropdownMenu.Portal>
+              <DropdownMenu.SubContent
+                className="min-w-[220px] z-[10] bg-white rounded-md p-[5px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] will-change-[opacity,transform] data-[side=top]:animate-slideDownAndFade data-[side=right]:animate-slideLeftAndFade data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade"
+                sideOffset={2}
+                alignOffset={-5}
+              >
+                <DropdownMenu.Item className="group text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1">
+                  Save Page As…{" "}
+                  <div className="ml-auto pl-[20px] text-mauve11 group-data-[highlighted]:text-white group-data-[disabled]:text-mauve8">
+                    ⌘+S
+                  </div>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item className="text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1">
+                  Create Shortcut…
+                </DropdownMenu.Item>
+                <DropdownMenu.Item className="text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1">
+                  Name Window…
+                </DropdownMenu.Item>
+                <DropdownMenu.Separator className="h-[1px] bg-violet6 m-[5px]" />
+                <DropdownMenu.Item className="text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1">
+                  Developer Tools
+                </DropdownMenu.Item>
+              </DropdownMenu.SubContent>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Sub>
+          <DropdownMenu.Sub>
+            <DropdownMenu.SubTrigger className="hover:bg-neutral-600 group text-[15px] gap-x-2 font-semibold font-['Red Hat Display'] text-violet11 rounded-[3px] my-1 py-4 flex items-center h-[25px] pr-[5px] relative pl-[15px] ">
               <Image
-                src="/images/icons/chevron-down.svg"
-                width={15}
-                height={15}
-                alt="Trade icon"
+                src="/images/icons/invite-line.svg"
+                height={23}
+                width={23}
+                alt="settings"
               />
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
+              Referral System
+              <div className="ml-auto pl-[20px] text-mauve11 group-data-[highlighted]:text-white group-data-[disabled]:text-mauve8">
+                <ChevronRightIcon />
+              </div>
+            </DropdownMenu.SubTrigger>
+            <DropdownMenu.Portal>
+              <DropdownMenu.SubContent
+                className="min-w-[220px] z-[10] bg-white rounded-md p-[5px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] will-change-[opacity,transform] data-[side=top]:animate-slideDownAndFade data-[side=right]:animate-slideLeftAndFade data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade"
+                sideOffset={2}
+                alignOffset={-5}
+              >
+                <DropdownMenu.Item className="group text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1">
+                  Save Page As…{" "}
+                  <div className="ml-auto pl-[20px] text-mauve11 group-data-[highlighted]:text-white group-data-[disabled]:text-mauve8">
+                    ⌘+S
+                  </div>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item className="text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1">
+                  Create Shortcut…
+                </DropdownMenu.Item>
+                <DropdownMenu.Item className="text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1">
+                  Name Window…
+                </DropdownMenu.Item>
+                <DropdownMenu.Separator className="h-[1px] bg-violet6 m-[5px]" />
+                <DropdownMenu.Item className="text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1">
+                  Developer Tools
+                </DropdownMenu.Item>
+              </DropdownMenu.SubContent>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Sub>
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
+    </DropdownMenu.Root>
   );
 };
 

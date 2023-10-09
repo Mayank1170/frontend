@@ -57,7 +57,7 @@ export const Tabs: React.FC<TabsProps> = ({ onTabChange }) => {
               }
               key={link.label}
               className={classNames(
-                "w-[105px] h-14 rounded-lg flex items-center justify-center relative z-10 transition-colors duration-200 ease-in-out font-semibold",
+                "w-[105px] h-14 rounded-lg flex items-center justify-center relative z-[9] transition-colors duration-200 ease-in-out font-semibold",
                 {
                   "text-black": activeIndex === index,
                   "text-white": activeComponent !== link.click,
