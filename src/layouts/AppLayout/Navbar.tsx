@@ -159,9 +159,9 @@ const Settings: React.FC = () => {
     };
   }, [isOpen]);
   return (
-    <div>
+    <div className="relative">
       <div
-        className="text-gray-300 w-8 h-8 items-center cursor-pointer"
+        className="text-gray-300 w-8 h-8 items-center cursor-pointer "
         onClick={() => setIsOpen((prev) => !prev)}
       >
         <Image
@@ -173,7 +173,7 @@ const Settings: React.FC = () => {
       </div>
       {isOpen && (
         <div
-          className="mt-4 xl:right-[450px] sm:right-[250px] right-[100px] w-[200px] justify-between pt-4 pb-3 z-10 bg-neutral-900 rounded border border-white border-opacity-30 border-white/20 absolute"
+          className="mt-4 right-[10px] w-[200px] justify-between pt-4 pb-3 z-10 bg-neutral-900 rounded border border-white border-opacity-30 border-white/20 absolute"
           ref={dropdownRef}
           onClick={(e) => {
             e.stopPropagation();
