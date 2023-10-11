@@ -1,7 +1,6 @@
 import {
   ChartTwo,
-  // DepthChart,
-  Example,
+  DepthChart,
   FundingChart,
   Market,
   PricingLevels,
@@ -11,8 +10,8 @@ import {
   Tabs,
   TradeControls,
   ViewMoreModal,
-  InfoTabs,
-  Info
+  Info,
+  Label,
 
 } from "@/components/Trading";
 import { useState } from "react";
@@ -25,8 +24,8 @@ const TradeingPage: NextPageWithLayout = () => {
   const onTabChange = (selectedTab: 'Price' | 'Depth' | 'Funding' | 'Details') => {
     setSelectedTab(selectedTab);
   };
-  const [infoTab, setInfoTabs] = useState<'Positions' | 'Orders' | 'History' | 'Balances'>('Positions');
-  const onInfoTabChange = (infoTab: 'Positions' | 'Orders' | 'History' | 'Balances') => {
+  const [infoTab, setInfoTabs] = useState<'Active Positions' | 'Active Orders' | 'Position History' | 'Order History' | 'PnL' | 'Balances'>('Active Positions');
+  const onInfoTabChange = (infoTab: 'Active Positions' | 'Active Orders' | 'Position History' | 'Order History' | 'PnL' | 'Balances') => {
     setInfoTabs(infoTab);
   };
 
@@ -54,10 +53,7 @@ const TradeingPage: NextPageWithLayout = () => {
               {selectedTab === 'Price' ? (
                 <ChartTwo />
               ) : selectedTab === 'Depth' ? (
-                // <DepthChart />
-                // <div className="flex flex-row">
-                <Example/>
-                // </div>
+                <DepthChart />
               ) : (
                 <FundingChart />
               )
@@ -68,20 +64,18 @@ const TradeingPage: NextPageWithLayout = () => {
           <div className="w-[30%] mt-2 hidden xl:inline"> <TradeValue /></div>
         </div>
         <div>
-          <InfoTabs onInfoTabChange={onInfoTabChange} />
-        </div>
-        <div>
-          <Info/>
+          <Info />
         </div>
 
       </div>
       <div className="w-[30%] flex-col space-y-4 hidden xl:inline">
         <div><TradeControls /></div>
-        <div><Market /></div>
+        {/* <div><Market /></div> */}
 
       </div>
       <ViewMoreModal isOpen={isModalOpen} onClose={closeModal}>
       </ViewMoreModal>
+      <Label/>
     </div>
 
 

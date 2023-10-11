@@ -14,7 +14,6 @@ const Home: NextPageWithLayout = () => {
       }}
     >
       <Hero />
-     
 
       <div
         className="mt-20 bg-[url('/images/content-bg.svg')] relative"
@@ -32,9 +31,9 @@ const Home: NextPageWithLayout = () => {
         <Content />
         <div className="w-screen flex flex-col items-center">
           <div className="w-full max-w-[1350px]">
-            <h3 className="text-5xl font-pilat mb-10 max-w-[1200px] w-full">
+            <p className="text-5xl font-pilat mb-10 max-w-[1200px] w-full">
               Product Roadmap
-            </h3>
+            </p>
           </div>
           <Image
             src="/images/spedx-roadmap.png"

@@ -37,7 +37,7 @@ export const SwapItem: React.FC<SwapItemProps> = ({
   return (
     <div className="bg-white/10 rounded-2xl py-4 px-5 flex items-center justify-between w-full">
       <div>
-        <h3 className="text-4xl font-bold">{value}</h3>
+        <p className="text-4xl font-bold">{value}</p>
         <p className="text-white/40 text-[14px] mt-1">${usdValue}</p>
       </div>
       <div className="flex flex-col items-center gap-y-2">
@@ -49,8 +49,7 @@ export const SwapItem: React.FC<SwapItemProps> = ({
         {balance && (
           <p className="text-white/40 text-[14px] font-semibold">
             Balance:
-            {balance}{" "}
-            <span className="text-[#80FEE3]">Max</span>
+            {balance} <span className="text-[#80FEE3]">Max</span>
           </p>
         )}
       </div>

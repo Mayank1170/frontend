@@ -66,7 +66,7 @@ export const Footer: React.FC = () => {
         </div>
         <div id="links" className="grid grid-cols-3">
           <div className="gap-y-3 flex flex-col">
-            <h3 className="text-2xl">Get Started</h3>
+            <p className="text-2xl">Get Started</p>
             <Link href="/" className="opacity-50">
               Product Features
             </Link>
@@ -81,7 +81,7 @@ export const Footer: React.FC = () => {
             </Link>
           </div>
           <div className="gap-y-3 flex flex-col">
-            <h3 className="text-2xl">Solutions</h3>
+            <p className="text-2xl">Solutions</p>
             <Link href="/" className="opacity-50">
               User Onboarding
             </Link>
@@ -96,7 +96,7 @@ export const Footer: React.FC = () => {
             </Link>
           </div>
           <div className="gap-y-3 flex flex-col">
-            <h3 className="text-2xl">Resources</h3>
+            <p className="text-2xl">Resources</p>
             <Link href="/" className="opacity-50">
               Blog
             </Link>

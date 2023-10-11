@@ -20,7 +20,7 @@ const Header: React.FC = () => {
   return (
     <div className="w-full flex justify-between items-center">
       <div>
-        <h3 className="font-bold text-[34px] ">Markets</h3>
+        <p className="font-bold text-[34px] ">Markets</p>
         <p className="text-2xl font-medium text-white/40">
           Discover new assets available to trade on spedX
         </p>

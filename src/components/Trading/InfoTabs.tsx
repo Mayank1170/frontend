@@ -1,39 +1,81 @@
-import { useState } from "react";
+// InfoTabs.tsx
+import React, { useState } from 'react';
 
 interface TabsProps {
-    onInfoTabChange: (selectedTab: 'Positions' | 'Orders' | 'History' | 'Balances') => void;
+  onInfoTabChange: (
+    selectedTab: 'Active Positions' | 'Active Orders' | 'Position History' | 'Order History' | 'PnL' | 'Balances'
+  ) => void;
 }
 
 export const InfoTabs: React.FC<TabsProps> = ({ onInfoTabChange }) => {
-    const [activeComponent, setActiveComponent] = useState<'Positions' | 'Orders' | 'History' | 'Balances'>('Positions');
+  const [activeComponent, setActiveComponent] = useState<'Active Positions' | 'Active Orders' | 'Position History' | 'Order History' | 'PnL' | 'Balances'>(
+    'Active Positions'
+  );
 
-    const handleButtonClick = (componentName: 'Positions' | 'Orders' | 'History' | 'Balances') => {
-        setActiveComponent(componentName);
-        onInfoTabChange(componentName);
-    };
+  const handleButtonClick = (componentName: 'Active Positions' | 'Active Orders' | 'Position History' | 'Order History' | 'PnL' | 'Balances') => {
+    setActiveComponent(componentName);
+    onInfoTabChange(componentName);
+  };
 
-    return (
-        <div className="flex flex-row justify-between items-center">
-            <div className="flex flex-row  bg-[#1C1C1C] rounded-lg border border-white/20 ">
+  return (
+    <div className="flex flex-row justify-between items-center">
+      <div className="flex flex-row bg-[#1C1C1C] rounded-lg border border-white/20 ">
+        <button
+          onClick={() => handleButtonClick('Active Positions')}
+          className={`rounded-lg px-7 py-3.5 font-medium ${
+            activeComponent === 'Active Positions' ? 'bg-gradient-to-r from-emerald-600 to-emerald-300 text-gray-950 ' : 'bg-[#1C1C1C] text-white'
+          }`}
+        >
+          Active Positions
+        </button>
 
-                <button onClick={() => handleButtonClick('Positions')} className={`rounded-lg px-7 py-3.5 font-medium ${activeComponent === 'Positions' ? 'bg-gradient-to-r from-emerald-600 to-emerald-300  text-gray-950 ' : 'bg-[#1C1C1C] text-white'
-                    }`}>Positions</button>
+        <button
+          onClick={() => handleButtonClick('Active Orders')}
+          className={`rounded-lg px-7 py-3.5 font-medium ${
+            activeComponent === 'Active Orders' ? 'bg-gradient-to-r from-emerald-700 to-emerald-300 text-gray-950' : 'bg-[#1C1C1C] text-white'
+          }`}
+        >
+          Active Orders
+        </button>
 
-                <button onClick={() => handleButtonClick('Orders')} className={`rounded-lg px-7 py-3.5 font-medium ${activeComponent === 'Orders' ? 'bg-gradient-to-r from-emerald-700 to-emerald-300  text-gray-950' : 'bg-[#1C1C1C] text-white'
-                    }`}>Orders</button>
+        <button
+          onClick={() => handleButtonClick('Position History')}
+          className={`rounded-lg px-7 py-3.5 font-medium ${
+            activeComponent === 'Position History' ? 'bg-gradient-to-r from-emerald-700 to-emerald-300 text-gray-950' : 'bg-[#1C1C1C] text-white'
+          }`}
+        >
+          Position History
+        </button>
 
-                <button onClick={() => handleButtonClick('History')} className={`rounded-lg px-7 py-3.5 font-medium ${activeComponent === 'History' ? 'bg-gradient-to-r from-emerald-700 to-emerald-300  text-gray-950' : 'bg-[#1C1C1C] text-white'
-                    }`}>History</button>
+        <button
+          onClick={() => handleButtonClick('Order History')}
+          className={`rounded-lg px-7 py-3.5 font-medium ${
+            activeComponent === 'Order History' ? 'bg-gradient-to-r from-emerald-700 to-emerald-300 text-gray-950' : 'bg-[#1C1C1C] text-white'
+          }`}
+        >
+          Order History
+        </button>
 
-                <button onClick={() => handleButtonClick('Balances')} className={`rounded-lg px-7 py-3.5 font-medium ${activeComponent === 'Balances' ? 'bg-gradient-to-r from-emerald-700 to-emerald-300  text-gray-950' : 'bg-[#1C1C1C] text-white'
-                    }`}>Balances</button>
+        <button
+          onClick={() => handleButtonClick('PnL')}
+          className={`rounded-lg px-7 py-3.5 font-medium ${
+            activeComponent === 'PnL' ? 'bg-gradient-to-r from-emerald-700 to-emerald-300 text-gray-950' : 'bg-[#1C1C1C] text-white'
+          }`}
+        >
+          PnL
+        </button>
 
-            </div>
+        <button
+          onClick={() => handleButtonClick('Balances')}
+          className={`rounded-lg px-7 py-3.5 font-medium ${
+            activeComponent === 'Balances' ? 'bg-gradient-to-r from-emerald-700 to-emerald-300 text-gray-950' : 'bg-[#1C1C1C] text-white'
+          }`}
+        >
+          Balances
+        </button>
+      </div>
+    </div>
+  );
+};
 
-
-        </div>
-    )
-}
-
-
-
+// export default InfoTabs;
