@@ -1,4 +1,9 @@
-import { getManifest, getManifestWithWallet, getMpg } from "@/utils/dexterity";
+import {
+  getManifest,
+  getManifestWithWallet,
+  getMpg,
+  getProducts,
+} from "@/utils/dexterity";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { useQuery } from "@tanstack/react-query";
 
@@ -25,10 +30,17 @@ const useDexterity = () => {
     enabled: !!manifest,
   });
 
+  const { data: products } = useQuery({
+    queryKey: ["products", connection.rpcEndpoint],
+    queryFn: () => getProducts(mpg?.desiredMpg!),
+    enabled: !!mpg?.desiredMpg,
+  });
+
   return {
     manifest,
     mpg: mpg?.desiredMpg,
     desiredOrderbooks: mpg?.desiredOrderbooks,
+    products,
   };
 };
 

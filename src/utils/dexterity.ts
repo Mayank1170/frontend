@@ -59,6 +59,27 @@ export const getMpg = (manifest: Manifest) => {
   };
 };
 
+export const getProducts = (mpg: MarketProductGroup) => {
+  if (!mpg) {
+    return;
+  }
+
+  let products: any = {};
+
+  for (const [pName, { index, product }] of dexterity.Manifest.GetProductsOfMPG(
+    mpg
+  )) {
+    const meta = dexterity.productToMeta(product);
+    products[pName] = {
+      index,
+      product,
+      meta,
+    };
+  }
+
+  return products;
+};
+
 export const getProduct = (
   mpg: MarketProductGroup,
   productName: string,

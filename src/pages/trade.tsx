@@ -66,6 +66,10 @@ const TradeingPage: NextPageWithLayout = () => {
   const { orderbookData } = useTradeData("BTCUSD-PERP     ");
   console.log(orderbookData);
 
+  const { products } = useDexterity();
+
+  console.log("products", products);
+
   return (
     <div className="flex flex-row space-x-4">
       <div className="flex flex-col w-full h-full space-y-2">
