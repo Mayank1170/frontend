@@ -18,6 +18,7 @@ import {
 } from "@solana/wallet-adapter-wallets";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { MoongateWalletAdapter } from "@moongate/moongate-adapter";
 
 import { pilatExtended } from "@/utils/fonts";
 import { Red_Hat_Display } from "next/font/google";
@@ -39,7 +40,11 @@ const MyApp: NextComponentType<
   const endpoint = useMemo(() => process.env.NEXT_PUBLIC_RPC as string, []);
 
   const wallets = useMemo(
-    () => [new PhantomWalletAdapter(), new SolflareWalletAdapter()],
+    () => [
+      new PhantomWalletAdapter(),
+      new SolflareWalletAdapter(),
+      new MoongateWalletAdapter(),
+    ],
     []
   );
 
