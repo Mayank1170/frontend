@@ -16,6 +16,7 @@ import {
   PhantomWalletAdapter,
   SolflareWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
+import { MoongateWalletAdapter } from "@moongate/moongate-adapter";
 
 import { pilatExtended } from "@/utils/fonts";
 import { Red_Hat_Display } from "next/font/google";
@@ -38,7 +39,7 @@ const MyApp: NextComponentType<
     () => [
       new PhantomWalletAdapter(),
       new SolflareWalletAdapter(),
-  
+      new MoongateWalletAdapter(),
     ],
     []
   );
