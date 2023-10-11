@@ -21,15 +21,6 @@ export const PricingLevels: React.FC<PricingLevelProps> = ({ onOpenModal }) => {
 
 const GeneralInfo: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // const [openDropdownId, setOpenDropdownId] = useState<number | null>(null);
-  // const toggleDropdown = (e: number | null) => {
-  //   if (openDropdownId === e) {
-  //     setOpenDropdownId(null);
-  //   } else {
-  //     setOpenDropdownId(e);
-  //   }
-  // };
-
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -47,21 +38,15 @@ const GeneralInfo: React.FC = () => {
         handleClickOutside(event);
       }
     };
-
     document.addEventListener("mousedown", handleDocumentClick);
-
     return () => {
       document.removeEventListener("mousedown", handleDocumentClick);
     };
   }, [isOpen]);
-
   return (
     <div className="flex flex-row my-2 relative">
       <button onClick={() => setIsOpen((prev) => !prev)}>
-        <div
-          className="flex flex-row p-3 items-center justify-center rounded gap-2 "
-          // onClick={() => toggleDropdown(1)}
-        >
+        <div className="flex flex-row p-3 items-center justify-center rounded gap-2 ">
           <Image
             src="/images/Solana.png"
             width={100}
@@ -75,7 +60,7 @@ const GeneralInfo: React.FC = () => {
             </p>
             {isOpen && (
               <div
-                className="mt-4 w-[360px] justify-between py-2 z-10 bg-[#202020] rounded border border-white border-opacity-30 border-white/20 absolute"
+                className="mt-4 w-[360px] justify-between py-2 z-20 bg-[#202020] rounded border border-white border-opacity-30 border-white/20 absolute"
                 ref={dropdownRef}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -210,11 +195,9 @@ const GeneralInfo: React.FC = () => {
     </div>
   );
 };
-
 interface AdditionalInfoProps {
-  onOpenModal: () => void; // Prop received from PricingLevels
+  onOpenModal: () => void;
 }
-
 const AdditionalInfo: React.FC<AdditionalInfoProps> = ({ onOpenModal }) => {
   return (
     <div className="flex h-full items-center xl:mr-0 mr-5 2xl:gap-x-6 justify-end xl:justify-between">
@@ -248,19 +231,17 @@ const AdditionalInfo: React.FC<AdditionalInfoProps> = ({ onOpenModal }) => {
     </div>
   );
 };
-
 interface AdditionalInfoItemProps {
   value: string;
   name: string;
 }
-
 const AdditionalInfoItem: React.FC<AdditionalInfoItemProps> = ({
   value,
   name,
 }) => {
   return (
     <div className="flex flex-col">
-      <p className="text-white/80 xl:text-[13px] 2xl:text-[18px] text-[24px] font-bold font-redhat">
+      <p className="text-white/80 xl:text-[13px] 2xl:text-[15px] text-[24px] font-bold font-redhat">
         {value}
       </p>
       <p className="text-[14px] text-white/40">{name}</p>

@@ -22,7 +22,7 @@ export const ViewMoreModal: React.FC<ViewMoreModalProps> = ({
     <div
       id="container"
       onClick={handleOnClose}
-      className="flex flex-col z-10 fixed inset-0 bg-[black] bg-opacity-30 backdrop-blur-sm justify-center items-center"
+      className="flex flex-col z-20 fixed inset-0 bg-[black] bg-opacity-30 backdrop-blur-sm justify-center items-center"
     >
       <div className="bg-[#181818] px-5 lg:w-[50%] h-fit divide-y-2 divide-[#232323] border border-white/20 rounded">
         <div className="my-5 mt-7 px-3 font-redhat font-bold text-[20px]">
