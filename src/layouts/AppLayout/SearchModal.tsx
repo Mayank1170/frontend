@@ -122,7 +122,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
         <div className="flex flex-row text-gray-400 space-x-3 mt-2 mb-5 text-[13px] items-center">
           <h1 className="px-2 border-2 border-gray-400 border-dotted rounded-full ">
             !
-          </p>
+          </h1>
           <p>
             USDC deposites will automatically go towards repaying your borrows
           </p>
