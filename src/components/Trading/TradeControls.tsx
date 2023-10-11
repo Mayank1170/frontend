@@ -8,6 +8,10 @@ import { BiChevronUp } from "react-icons/bi";
 import { ImSpinner3 } from "react-icons/im";
 import { AiOutlineClose } from "react-icons/ai";
 import { AiFillCheckCircle } from "react-icons/ai";
+import * as Accordion from "@radix-ui/react-accordion";
+import { ChevronDownIcon } from "@modulz/radix-icons";
+import s from "./Accordion.module.css";
+export const Collapse = Accordion.Root;
 
 const options = [0, 25, 50, 75, 100];
 
@@ -163,49 +167,37 @@ export const TradeControls: React.FC = () => {
             </div>
           </div>
           <div className="flex flex-col gap-y-3">
-            <button
-              onClick={() => setIsOpen((prev) => !prev)}
-              className="w-full text-opacity-40 text-white text-xs font-semibold"
-            >
-              <div className="flex flex-row ">
-                Slippage Tolerance (Infinite){" "}
-                {!isOpen ? (
-                  <BiChevronDown className="h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]" />
-                ) : (
-                  <BiChevronUp className="h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]" />
-                )}
-              </div>
-              {isOpen && (
-                <div
-                  className="flex flex-row gap-x-1 mt-2"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                  }}
-                >
-                  <div className="w-full flex flex-row justify-evenly">
-                    <div className="flex flex-row justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[30%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500 ">
-                      <input
-                        placeholder="0"
-                        className="flex bg-neutral-600 bg-opacity-10 h-7 w-full "
-                      />
-                      <p className="m-0">%</p>
-                    </div>
-                    <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7  text-white rounded-sm hover:border-2  hover:border-emerald-500">
-                      <p className="m-0">0.1 %</p>
-                    </div>
-                    <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
-                      <p className="m-0">0.5 %</p>
-                    </div>
-                    <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
-                      <p className="m-0">1 %</p>
-                    </div>
-                    <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
-                      <p className="m-0">1 %</p>
-                    </div>
+            <Collapse type="multiple" className={s.Container}>
+              <Accordion.Item value="item-1" className={s.Item}>
+                <Accordion.Header className={s.Header}>
+                  <Accordion.Trigger className={s.Trigger}>
+                    <span> Slippage Tolerance (Infinite)</span>
+                    <ChevronDownIcon aria-hidden className={s.Icon} />
+                  </Accordion.Trigger>
+                </Accordion.Header>
+                <Accordion.Content className={s.Content}>
+                  <div className="flex flex-row justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[30%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500 ">
+                    <input
+                      placeholder="0"
+                      className="flex bg-neutral-600 bg-opacity-10 h-7 w-full "
+                    />
+                    <p className="m-0">%</p>
                   </div>
-                </div>
-              )}
-            </button>
+                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7  text-white rounded-sm hover:border-2  hover:border-emerald-500">
+                    <p className="m-0 text-xs">0.1 %</p>
+                  </div>
+                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
+                    <p className="m-0 text-xs">0.5 %</p>
+                  </div>
+                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
+                    <p className="m-0 text-xs">1 %</p>
+                  </div>
+                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
+                    <p className="m-0 text-xs">1 %</p>
+                  </div>
+                </Accordion.Content>
+              </Accordion.Item>
+            </Collapse>
             <div className="flex flex-row justify-between content-center items-center">
               <p className="text-base font-semibold font-redhat">
                 Req. Initial Margin
@@ -235,7 +227,7 @@ export const TradeControls: React.FC = () => {
             : ""}
         </div>
         {isPopupVisible && (
-          <div className="flex flex-col w-[21%] h-[120px] bottom-[20px] right-[68px]  bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
+          <div className="flex flex-col w-[21%] h-[120px] bottom-[30px] right-[68px]  bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
             <div className="flex flex-row px-6 py-4 rounded-md justify-between items-center">
               <div className="flex flex-row items-center gap-x-[5px]">
                 <div>{popupIcon}</div>

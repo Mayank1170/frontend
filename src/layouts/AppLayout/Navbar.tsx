@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React from "react";
 import Logo from "../../components/icons/Logo";
 import { useMemo, useState, useEffect, useRef } from "react";
 import classNames from "classnames";
@@ -14,6 +15,13 @@ import { BiCopy } from "react-icons/bi";
 import { TbDoorEnter } from "react-icons/tb";
 import { useAsyncMemo } from "use-async-memo";
 import { RxHamburgerMenu } from "react-icons/rx";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import {
+  HamburgerMenuIcon,
+  DotFilledIcon,
+  CheckIcon,
+  ChevronRightIcon,
+} from "@radix-ui/react-icons";
 
 const Navbar: React.FC = () => {
   const [showMyModal, setShowMyModal] = useState(false);
@@ -44,6 +52,7 @@ const Navbar: React.FC = () => {
           </div>
         </div>
         <div className="flex items-center gap-x-6">
+          <Settings />
           <div className="hidden xl:flex">
             <Search onClick={handleOnClose} />
           </div>
@@ -129,6 +138,115 @@ const NavLinks: React.FC = () => {
         }}
       />
     </div>
+  );
+};
+
+const Settings = () => {
+  const [bookmarksChecked, setBookmarksChecked] = React.useState(true);
+  const [urlsChecked, setUrlsChecked] = React.useState(false);
+  const [person, setPerson] = React.useState("pedro");
+
+  return (
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger asChild>
+        <button
+          className=" w-[35px] h-[35px] inline-flex items-center justify-center outline-none "
+          aria-label="Customise options"
+        >
+          <Image
+          src="/images/icons/settings2.svg"
+          height={23}
+          width={23}
+          alt="settings"
+          />
+        </button>
+      </DropdownMenu.Trigger>
+
+      <DropdownMenu.Portal>
+        <DropdownMenu.Content
+          className="min-w-[200px] z-[10] bg-neutral-800 text-white rounded-md py-[10px] pr-[8px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] will-change-[opacity,transform] data-[side=top]:animate-slideDownAndFade data-[side=right]:animate-slideLeftAndFade data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade"
+          sideOffset={5}
+          
+        >
+          <DropdownMenu.Sub>
+          <DropdownMenu.SubTrigger className="hover:bg-neutral-600 group text-[15px] gap-x-2 font-semibold font-['Red Hat Display'] text-violet11 rounded-[3px] my-1 py-4 flex items-center h-[25px] pr-[5px] relative pl-[15px] ">
+            <Image
+          src="/images/icons/graph-line.svg"
+          height={23}
+          width={23}
+          alt="settings"
+          />
+              Trade
+              <div className="ml-auto pl-[20px] text-mauve11 group-data-[highlighted]:text-white group-data-[disabled]:text-mauve8">
+                <ChevronRightIcon />
+              </div>
+            </DropdownMenu.SubTrigger>
+            <DropdownMenu.Portal>
+              <DropdownMenu.SubContent
+                className="min-w-[220px] z-[10] bg-white rounded-md p-[5px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] will-change-[opacity,transform] data-[side=top]:animate-slideDownAndFade data-[side=right]:animate-slideLeftAndFade data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade"
+                sideOffset={2}
+                alignOffset={-5}
+              >
+                <DropdownMenu.Item className="group text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1">
+                  Save Page As…{" "}
+                  <div className="ml-auto pl-[20px] text-mauve11 group-data-[highlighted]:text-white group-data-[disabled]:text-mauve8">
+                    ⌘+S
+                  </div>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item className="text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1">
+                  Create Shortcut…
+                </DropdownMenu.Item>
+                <DropdownMenu.Item className="text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1">
+                  Name Window…
+                </DropdownMenu.Item>
+                <DropdownMenu.Separator className="h-[1px] bg-violet6 m-[5px]" />
+                <DropdownMenu.Item className="text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1">
+                  Developer Tools
+                </DropdownMenu.Item>
+              </DropdownMenu.SubContent>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Sub>
+          <DropdownMenu.Sub>
+            <DropdownMenu.SubTrigger className="hover:bg-neutral-600 group text-[15px] gap-x-2 font-semibold font-['Red Hat Display'] text-violet11 rounded-[3px] my-2 py-4 flex items-center h-[25px] pr-[5px] relative pl-[15px] ">
+            <Image
+          src="/images/icons/invite-line.svg"
+          height={23}
+          width={23}
+          alt="settings"
+          />
+            Referral System 
+              <div className="ml-auto pl-[20px] text-mauve11 group-data-[highlighted]:text-white group-data-[disabled]:text-mauve8">
+                <ChevronRightIcon />
+              </div>
+            </DropdownMenu.SubTrigger>
+            <DropdownMenu.Portal>
+              <DropdownMenu.SubContent
+                className="min-w-[220px] z-[10] bg-white rounded-md p-[5px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] will-change-[opacity,transform] data-[side=top]:animate-slideDownAndFade data-[side=right]:animate-slideLeftAndFade data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade"
+                sideOffset={2}
+                alignOffset={-5}
+              >
+                <DropdownMenu.Item className="group text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1">
+                  Save Page As…{" "}
+                  <div className="ml-auto pl-[20px] text-mauve11 group-data-[highlighted]:text-white group-data-[disabled]:text-mauve8">
+                    ⌘+S
+                  </div>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item className="text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1">
+                  Create Shortcut…
+                </DropdownMenu.Item>
+                <DropdownMenu.Item className="text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1">
+                  Name Window…
+                </DropdownMenu.Item>
+                <DropdownMenu.Separator className="h-[1px] bg-violet6 m-[5px]" />
+                <DropdownMenu.Item className="text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1">
+                  Developer Tools
+                </DropdownMenu.Item>
+              </DropdownMenu.SubContent>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Sub>
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
+    </DropdownMenu.Root>
   );
 };
 

@@ -13,15 +13,15 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
     if (target.id === "container") onClick();
   };
   const [activeComponent, setActiveComponent] = useState<
-    "Deposit" | "Withdraw" | "Borrow"
-  >("Deposit");
+    "deposite" | "Withdraw" | "Borrow"
+  >("deposite");
 
   if (!visible) return null;
   return (
     <div
       id="container"
       onClick={handleOnClose}
-      className="fixed inset-0 z-50 bg-[black] bg-opacity-30 backdrop-blur-sm h-full flex justify-center items-center text-black"
+      className="fixed inset-0 z-[99] bg-[black] bg-opacity-30 backdrop-blur-sm h-full flex justify-center items-center text-black"
     >
       <div className="bg-[#181818] px-5  border border-white/20 rounded-[10px]">
         <div className="text-white text-xl font-bold px-2 py-7">
@@ -30,12 +30,12 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
         <div className="flex flex-row  bg-[#202020] rounded-lg border border-white/20 ">
           <button
             className={`rounded-lg w-64 px-7 py-3.5 font-medium ${
-              activeComponent === "Deposit"
+              activeComponent === "deposite"
                 ? "bg-gradient-to-r from-emerald-600 to-emerald-300  text-gray-950 "
                 : "bg-[#202020] text-white"
             }`}
           >
-            Deposit
+            Deposite
           </button>
 
           <button
@@ -61,16 +61,16 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
         <div className="space-y-4 mb-2">
           <div>
             <p className="text-white text-[16px] pt-3 font-redhat">
-              Deposited assets automatically earn yield through lending
+              depositeed assets automatically earn yield through lending
             </p>
             <div className="flex flex-row text-[16px] text-[#3BB078] space-x-4 font-redhat">
               <p>Learn More</p>
-              <p>Deposite Guides </p>
+              <p>depositee Guides </p>
             </div>
           </div>
           <div className="flex flex-row justify-between text-[14px]">
             <p className="text-[#84AF9B]">Transfer type and Amount</p>
-            <p className="text-gray-300">Deposite APR 0.5724%</p>
+            <p className="text-gray-300">depositee APR 0.5724%</p>
           </div>
         </div>
         <div className="space-y-2">
@@ -115,7 +115,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
             !
           </p>
           <p>
-            USDC deposits will automatically go towards repaying your borrows
+            USDC deposites will automatically go towards repaying your borrows
           </p>
         </div>
         <div className="w-full h-[1px] bg-gray-800"></div>
@@ -128,7 +128,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
           <p className="text-gray-300">$2.00</p>
         </div>
         <button className="w-full py-3 mt-12 mb-8 bg-gradient-to-r from-[#3BB078] rounded to-[#59B689] font-redhat">
-          Confirm Deposite
+          Confirm depositee
         </button>
       </div>
     </div>

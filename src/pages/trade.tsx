@@ -19,7 +19,7 @@ import { NextPageWithLayout } from "@/types/custom-next";
 
 const TradeingPage: NextPageWithLayout = () => {
 
-  const [selectedTab, setSelectedTab] = useState<'Price' | 'Depth' | 'Funding' | 'Details'>('Price');
+  const [selectedTab, setSelectedTab] = useState<"Price" | "Depth" | "Funding" | "Details">("Price");
 
   const onTabChange = (selectedTab: 'Price' | 'Depth' | 'Funding' | 'Details') => {
     setSelectedTab(selectedTab);
