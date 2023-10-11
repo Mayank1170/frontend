@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Image from "next/image";
+import useTRGs from "@/hooks/useTRGs";
 
 interface SearchModalProps {
   visible: boolean;
@@ -16,6 +17,10 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
     "deposite" | "Withdraw" | "Borrow"
   >("deposite");
 
+  const { createDeposit, createWithdrawal } = useTRGs();
+
+  const [amount, setAmount] = useState(0);
+
   if (!visible) return null;
   return (
     <div
@@ -24,7 +29,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
       className="fixed inset-0 z-[99] bg-[black] bg-opacity-30 backdrop-blur-sm h-full flex justify-center items-center text-black"
     >
       <div className="bg-[#181818] px-5  border border-white/20 rounded-[10px]">
-        <div className="text-white text-xl font-bold px-2 py-7">
+        <div className="px-2 text-xl font-bold text-white py-7">
           Manage Balances
         </div>
         <div className="flex flex-row  bg-[#202020] rounded-lg border border-white/20 ">
@@ -58,7 +63,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
             Borrow
           </button>
         </div>
-        <div className="space-y-4 mb-2">
+        <div className="mb-2 space-y-4">
           <div>
             <p className="text-white text-[16px] pt-3 font-redhat">
               depositeed assets automatically earn yield through lending
@@ -85,33 +90,37 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
                   alt={"USDC"}
                 />
                 <div>
-                  <p className="text-lg text-white font-redhat">USDC</p>
+                  <h3 className="text-lg text-white font-redhat">USDC</h3>
                 </div>
               </div>
             </div>
-            <div className="bg-[#2D2C2C] w-full rounded"></div>
+            <input
+              className="bg-[#2D2C2C] w-full rounded"
+              value={amount}
+              onChange={(e) => setAmount(Number(e.target.value))}
+            />
           </div>
           <div className="w-full bg-[#2D2C2C] rounded space-y-3 py-2">
             <div className="flex flex-row justify-between mx-4 text-[14px] text-gray-300">
-              <p className="">Wallet balance</p>
+              <h1 className="">Wallet balance</h1>
               <div className="flex flex-row space-x-3">
-                <p>113.0787 USDC</p>
-                <p className="bg-[#4D4A4A] px-1 rounded">50%</p>
-                <p className="bg-[#4D4A4A] px-1 rounded">Max</p>
+                <h1>113.0787 USDC</h1>
+                <h1 className="bg-[#4D4A4A] px-1 rounded">50%</h1>
+                <h1 className="bg-[#4D4A4A] px-1 rounded">Max</h1>
               </div>
             </div>
             <div className="flex flex-row justify-between mx-4 text-[14px] text-gray-300">
-              <p className="">Wallet balance</p>
+              <h1 className="">Wallet balance</h1>
               <div className="flex flex-row space-x-3">
-                <p>113.0787 USDC</p>
-                <p className="bg-[#4D4A4A] px-1 rounded">50%</p>
-                <p className="bg-[#4D4A4A] px-1 rounded">Max</p>
+                <h1>113.0787 USDC</h1>
+                <h1 className="bg-[#4D4A4A] px-1 rounded">50%</h1>
+                <h1 className="bg-[#4D4A4A] px-1 rounded">Max</h1>
               </div>
             </div>
           </div>
         </div>
         <div className="flex flex-row text-gray-400 space-x-3 mt-2 mb-5 text-[13px] items-center">
-          <p className="border-2 px-2 border-gray-400 border-dotted rounded-full ">
+          <h1 className="px-2 border-2 border-gray-400 border-dotted rounded-full ">
             !
           </p>
           <p>
@@ -120,15 +129,22 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
         </div>
         <div className="w-full h-[1px] bg-gray-800"></div>
         <div className="flex flex-row justify-between text-white text-[13px] mt-3">
-          <p className="text-[#84AF9B] ">Asset Balance</p>
-          <p className="text-gray-300">-0.98 USDC</p>
+          <h1 className="text-[#84AF9B] ">Asset Balance</h1>
+          <h1 className="text-gray-300">-0.98 USDC</h1>
         </div>
         <div className="flex flex-row justify-between text-white text-[13px] mt-2">
-          <p className="text-[#84AF9B] ">NetAccount Balance (USD)</p>
-          <p className="text-gray-300">$2.00</p>
+          <h1 className="text-[#84AF9B] ">NetAccount Balance (USD)</h1>
+          <h1 className="text-gray-300">$2.00</h1>
         </div>
-        <button className="w-full py-3 mt-12 mb-8 bg-gradient-to-r from-[#3BB078] rounded to-[#59B689] font-redhat">
-          Confirm depositee
+        <button
+          className="w-full py-3 mt-12 mb-8 bg-gradient-to-r from-[#3BB078] rounded to-[#59B689] font-redhat"
+          onClick={async () => {
+            await createDeposit(amount);
+
+            // await createWithdrawal(amount);
+          }}
+        >
+          Confirm Deposite
         </button>
       </div>
     </div>
