@@ -9,6 +9,7 @@ import { BiChevronUp } from "react-icons/bi";
 import { ImSpinner3 } from "react-icons/im";
 import { AiOutlineClose } from "react-icons/ai";
 import { AiFillCheckCircle } from "react-icons/ai";
+import useTRGs from "@/hooks/useTRGs";
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "@modulz/radix-icons";
 import s from "./Accordion.module.css";
@@ -35,7 +36,27 @@ export const TradeControls: React.FC = () => {
   const [orderStatus, setOrderStatus] = useState("Placing market order");
   const [showCheckmark, setShowCheckmark] = useState(false);
   const [isPopupVisible, setIsPopupVisible] = useState(false);
-  const handlePopupToggle = () => {
+  const [usdValue, setUsdValue] = useState<number>();
+  const [price, setPrice] = useState<number>();
+  const [quantity, setQuantity] = useState<number>();
+
+  const { trgs, trgBalance, closeTrg, createTrg, createLimitOrder } = useTRGs();
+
+  const handlePopupToggle = async () => {
+    // await createTrg();
+    console.log("etrg", trgs);
+    // await closeTrg({
+    //   trgPubkey: trgs![0].pubkey,
+    //   trgAmount: trgBalance as number,
+    // });
+
+    await createLimitOrder({
+      price: price!,
+      size: quantity!,
+      productName: "BTCUSD-PERP     ",
+      type: "buy",
+    });
+
     setIsPopupVisible(!isPopupVisible);
   };
 
@@ -59,7 +80,7 @@ export const TradeControls: React.FC = () => {
   const popupIcon = showCheckmark ? (
     <AiFillCheckCircle className="text-green-400 rounded-full " />
   ) : (
-    <ImSpinner3 className="text-blue-500 text-sm animate-spin" />
+    <ImSpinner3 className="text-sm text-blue-500 animate-spin" />
   );
   const [toggle1, setToggle1] = useState<boolean>(false);
   const [toggle2, setToggle2] = useState<boolean>(false);
@@ -100,14 +121,14 @@ export const TradeControls: React.FC = () => {
   return (
     <div className=" p-6 bg-[#202020] flex-1 w-[100%] h-[100%] rounded-[10px] border-[0.5px] border-white/20">
       <div className="mb-6 font-redhat">
-        <div className="flex items-center gap-x-4 mb-5">
+        <div className="flex items-center mb-5 gap-x-4">
           <Image
             src="/images/icons/trade.svg"
             height={42}
             width={42}
             alt="trade"
           />
-          <p className="font-bold text-3xl">Trade</p>
+          <h3 className="text-3xl font-bold">Trade</h3>
         </div>
         <div className="space-x-1.5 flex flex-row bg-zinc-800 rounded-lg p-3 mx-[-13px] mb-3">
           <button
@@ -131,13 +152,20 @@ export const TradeControls: React.FC = () => {
             Sell / Short
           </button>
         </div>
-        <Inputs />
+        <Inputs
+          price={price}
+          setPrice={setPrice}
+          quantity={quantity}
+          setQuantity={setQuantity}
+          usdValue={usdValue}
+          setUsdValue={setUsdValue}
+        />
       </div>
       <div className="">
         <div className="space-y-4">
           <div className="flex flex-col space-y-4">
             <div className="flex flex-row justify-between">
-              <div className="flex flex-row gap-x-2 items-center">
+              <div className="flex flex-row items-center gap-x-2">
                 <div className="text-[14px] font-semibold">Reduce Only</div>
                 <div
                   onClick={() => setToggle1(!toggle1)}
@@ -157,7 +185,7 @@ export const TradeControls: React.FC = () => {
                   />
                 </div>
               </div>
-              <div className="flex flex-row gap-x-2 items-center">
+              <div className="flex flex-row items-center gap-x-2">
                 <div className="text-[14px] font-semibold">Post</div>
                 <div
                   onClick={() => setToggle2(!toggle2)}
@@ -180,8 +208,8 @@ export const TradeControls: React.FC = () => {
             </div>
 
             <div>
-              <div className="flex flex-row w-full justify-between">
-                <button className="flex flex-row gap-x-2 items-center ">
+              <div className="flex flex-row justify-between w-full">
+                <button className="flex flex-row items-center gap-x-2 ">
                   <p className="text-2xl font-bold text-white text-opacity-70">
                     +
                   </p>
@@ -189,7 +217,7 @@ export const TradeControls: React.FC = () => {
                     Add Cover Orders
                   </p>
                 </button>
-                <button className="flex flex-row gap-x-2 items-center">
+                <button className="flex flex-row items-center gap-x-2">
                   <p className="text-2xl font-bold text-white text-opacity-70">
                     +
                   </p>
@@ -213,7 +241,7 @@ export const TradeControls: React.FC = () => {
                   <div className="flex flex-row justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[30%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500 ">
                     <input
                       placeholder="0"
-                      className="flex bg-neutral-600 bg-opacity-10 h-7 w-full "
+                      className="flex w-full bg-neutral-600 bg-opacity-10 h-7 "
                     />
                     <p className="m-0">%</p>
                   </div>
@@ -232,11 +260,11 @@ export const TradeControls: React.FC = () => {
                 </Accordion.Content>
               </Accordion.Item>
             </Collapse>
-            <div className="flex flex-row justify-between content-center items-center">
+            <div className="flex flex-row items-center content-center justify-between">
               <p className="text-base font-semibold font-redhat">
                 Req. Initial Margin
               </p>
-              <div className="flex justify-center items-center bg-black w-28 h-8 text-white border-2 rounded-md border-green-500">
+              <div className="flex items-center justify-center h-8 text-white bg-black border-2 border-green-500 rounded-md w-28">
                 <p className="m-0">200,000 $</p>
               </div>
             </div>
@@ -263,16 +291,48 @@ export const TradeControls: React.FC = () => {
         {isPopupVisible && (
           <div>
             <Toaster position="bottom-right" />
+          <div className="flex flex-col w-[21%] h-[120px] bottom-[30px] right-[68px]  bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
+            <div className="flex flex-row items-center justify-between px-6 py-4 rounded-md">
+              <div className="flex flex-row items-center gap-x-[5px]">
+                <div>{popupIcon}</div>
+                <p className="text-white text-[17px] font-semibold">
+                  {orderStatus}
+                </p>
+              </div>
+              <div className="text-white text-[12px]">
+                <AiOutlineClose />
+              </div>
+            </div>
+            <div className="w-[100%] flex flex-col justify-start items-center ">
+              <p className="text-white w-[90%] opacity-50 text-[13px] 2xl:text-[16px] 3xl:text-[17px] pl-0">
+                {popupContent}
+              </p>
+              <p className="text-white opacity-50 text-[12px]">
+                {ConfirmationMessage}
+              </p>
+            </div>
           </div>
         )}
       </button>
-      <hr className="w-full border-t border-t-white/10 mt-6 mb-6" />
-      <Prices />
     </div>
   );
 };
 
-const Inputs = () => {
+const Inputs = ({
+  price,
+  setPrice,
+  quantity,
+  setQuantity,
+  usdValue,
+  setUsdValue,
+}: {
+  price: number | undefined;
+  setPrice: (price: number) => void;
+  quantity: number | undefined;
+  setQuantity: (quantity: number) => void;
+  usdValue: number | undefined;
+  setUsdValue: (usdValue: number) => void;
+}) => {
   const [selectedOption, setSelectedOption] = useState<string>("Market");
   const [isOpen, setIsOpen] = useState(false);
   const options = [
@@ -287,27 +347,24 @@ const Inputs = () => {
     setIsOpen(true);
   };
 
-  const [usdValue, setUsdValue] = useState<string>("");
-  const [price, setPrice] = useState<string>("");
   const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPrice(event.target.value);
-    calculateUsdValue(event.target.value, quantity);
+    setPrice(Number(event.target.value));
+    calculateUsdValue(Number(event.target.value), quantity!);
   };
-  const [quantity, setQuantity] = useState<string>("");
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuantity(event.target.value);
-    calculateUsdValue(price, event.target.value);
+    setQuantity(Number(event.target.value));
+    calculateUsdValue(price!, Number(event.target.value));
   };
 
-  const calculateUsdValue = (priceValue: string, quantityValue: string) => {
-    const priceNumber = parseFloat(priceValue);
-    const quantityNumber = parseFloat(quantityValue);
+  const calculateUsdValue = (priceValue: number, quantityValue: number) => {
+    const priceNumber = priceValue;
+    const quantityNumber = quantityValue;
 
     if (!isNaN(priceNumber) && !isNaN(quantityNumber)) {
       const usd = priceNumber * quantityNumber;
-      setUsdValue(usd.toFixed(2));
+      setUsdValue(Number(usd.toFixed(2)));
     } else {
-      setUsdValue("");
+      setUsdValue(0);
     }
   };
 
@@ -332,6 +389,32 @@ const Inputs = () => {
             </Accordion.Header>
             <Accordion.Content>
               <div className="flex flex-col h-fit gap-y-2 absolute z-[5] bg-neutral-700 bg-opacity-100 items-start mt-3 px-[9px] rounded-md border border-white border-opacity-25">
+      <div className="flex flex-row w-full gap-x-3 justify-">
+        <div
+          id="Order Type"
+          className="w-[50%] flex flex-col gap-y-1 font-redhat"
+        >
+          <label htmlFor="order-type" className="opacity-70">
+            Order Type
+          </label>
+          <div
+            onClick={() => setIsOpen((prev) => !prev)}
+            className="relative flex flex-col justiffity-between w-full bg-[#FFFFFF26] rounded  py-2 border border-white/20"
+          >
+            <div className="flex flex-row justify-between px-2">
+              <div className="flex font-semibold items-center text-[13px]">
+                {selectedOption}
+              </div>
+              {!isOpen ? (
+                <BiChevronDown className="h-[25px] w-[25px]" />
+              ) : (
+                <BiChevronUp className="h-[25px] w-[25px]" />
+              )}
+            </div>
+            {!isOpen ? (
+              <div></div>
+            ) : (
+              <div className="flex flex-col w-full h-fit gap-y-2 absolute top-[50px] bg-neutral-700 bg-opacity-100 items-start pl-3 rounded-md border border-white border-opacity-25">
                 {options.map((option) => (
                   <div
                     key={option}
@@ -359,7 +442,7 @@ const Inputs = () => {
               placeholder="16,800"
               value={price}
               onChange={handlePriceChange}
-              type="string"
+              type="number"
               name="price"
               id="price"
               className="flex-1 px-2 bg-transparent w-[4.5rem]"
@@ -373,12 +456,12 @@ const Inputs = () => {
           <div>Quantity</div>
           <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-[full] border border-white/20 font-redhat">
             <input
-              type="string"
+              type="number"
               value={quantity}
               onChange={handleInputChange}
               name="crypto"
               id="crypto"
-              className="flex-1 bg-transparent px-2 w-20"
+              className="flex-1 w-20 px-2 bg-transparent"
             />
             <Image
               src="/images/btc.png"
@@ -398,7 +481,7 @@ const Inputs = () => {
               width={24}
               height={24}
               alt="bitcoin"
-              className="mr-2 h-5"
+              className="h-5 mr-2"
             />
           </div>
         </div>
@@ -441,7 +524,7 @@ const Leverage: React.FC<LeverageInputProps> = ({
 
 const Prices: React.FC = () => {
   return (
-    <div className="w-full flex flex-col gap-y-4 font-redhat bg-neutral-700 bg-opacity-60 p-3 rounded-lg">
+    <div className="flex flex-col w-full p-3 rounded-lg gap-y-4 font-redhat bg-neutral-700 bg-opacity-60">
       <div className="flex flex-row justify-between gap-x-2">
         <div className="flex flex-col w-[50%]">
           <p className="text-white text-[13px] font-semibold">Initial Margin</p>
@@ -452,7 +535,7 @@ const Prices: React.FC = () => {
           <p className="text-white text-[10px] font-semibold">$ 100K</p>
         </div>
       </div>
-      <div className="flex flex-row w-full justify-between gap-x-2">
+      <div className="flex flex-row justify-between w-full gap-x-2">
         <div className="flex flex-col w-[50%]">
           <p className="text-white text-[13px] font-semibold">
             Est. Entry Price
