@@ -1,14 +1,14 @@
 .Container {
- @apply w-full;
- min-height: 40px; 
+ @apply w-full relative;
+ min-height: 0px;  
 }
 
 .Header {
-  @apply relative pb-2;
+  @apply relative flex flex-col gap-y-1;
 }
   
 .Icon {
-  @apply absolute right-0 w-4 h-4 text-gray-600 duration-300 transform rounded-full hover:bg-gray-200;
+  @apply right-0 w-4 h-4 text-white duration-300 transform ;
 }
 
 .Trigger[data-state="open"] .Icon {
@@ -24,7 +24,7 @@
 }
 
 .Content {
-  @apply relative pt-0 overflow-hidden w-full flex flex-row justify-evenly;
+  @apply relative py-3 overflow-hidden w-full flex flex-row justify-evenly;
 }
 
 .Content[data-state="open"] {
