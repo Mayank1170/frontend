@@ -1,4 +1,5 @@
 import Image from "next/image";
+import toast, { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
 import { useState, useEffect, ChangeEvent } from "react";
 import ArrowRight from "../icons/ArrowRight";
@@ -64,7 +65,7 @@ export const TradeControls: React.FC = () => {
       setTimeout(() => {
         setOrderStatus("Order Filled");
         setShowCheckmark(true);
-      }, 5000);
+      }, 3000);
     }
   });
 
@@ -83,6 +84,39 @@ export const TradeControls: React.FC = () => {
   );
   const [toggle1, setToggle1] = useState<boolean>(false);
   const [toggle2, setToggle2] = useState<boolean>(false);
+
+  toast.custom((t) => (
+    <div
+      className={`${
+        t.visible ? "animate-enter" : "animate-leave"
+      } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+    >
+      <div className="flex flex-col w-[21%] h-[120px] bottom-[30px] right-[68px]  bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
+        <div className="flex flex-row px-6 py-4 rounded-md justify-between items-center">
+          <div className="flex flex-row items-center gap-x-[5px]">
+            <div>{popupIcon}</div>
+            <p className="text-white text-[17px] font-semibold">
+              {orderStatus}
+            </p>
+          </div>
+          <div
+            className="text-white text-[12px]"
+            // onClick={() => toast.dismiss(t.id)}
+          >
+            <AiOutlineClose />
+          </div>
+        </div>
+        <div className="w-[100%] flex flex-col justify-start items-center ">
+          <p className="text-white w-[90%] opacity-50 text-[13px] 2xl:text-[16px] 3xl:text-[17px] pl-0">
+            {popupContent}
+          </p>
+          <p className="text-white opacity-50 text-[12px]">
+            {ConfirmationMessage}
+          </p>
+        </div>
+      </div>
+    </div>
+  ));
 
   return (
     <div className=" p-6 bg-[#202020] flex-1 w-[100%] h-[100%] rounded-[10px] border-[0.5px] border-white/20">
@@ -194,7 +228,7 @@ export const TradeControls: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-y-3">
+          <div className="flex flex-col ">
             <Collapse type="multiple" className={s.Container}>
               <Accordion.Item value="item-1" className={s.Item}>
                 <Accordion.Header className={s.Header}>
@@ -255,6 +289,8 @@ export const TradeControls: React.FC = () => {
             : ""}
         </div>
         {isPopupVisible && (
+          <div>
+            <Toaster position="bottom-right" />
           <div className="flex flex-col w-[21%] h-[120px] bottom-[30px] right-[68px]  bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
             <div className="flex flex-row items-center justify-between px-6 py-4 rounded-md">
               <div className="flex flex-row items-center gap-x-[5px]">
@@ -334,6 +370,25 @@ const Inputs = ({
 
   return (
     <div className="flex flex-col w-full gap-y-4">
+      <div className="w-full flex flex-row gap-x-3 justify-">
+  
+        <Collapse type="multiple" className={s.Container}>
+          <Accordion.Item value="item-1" className={s.Item}>
+            <Accordion.Header className={s.Header}>
+              <label htmlFor="order-type" className="opacity-70">
+                Order Type
+              </label>
+              <Accordion.Trigger className={s.Trigger}>
+                <div className="flex items-center justify-between bg-[#FFFFFF26] rounded px-4 py-[10px] w-full border border-white/20">
+                  <div className="flex font-semibold items-center text-[13px]">
+                    {selectedOption}
+                  </div>
+                  <ChevronDownIcon aria-hidden className={s.Icon} />
+                </div>
+              </Accordion.Trigger>
+            </Accordion.Header>
+            <Accordion.Content>
+              <div className="flex flex-col h-fit gap-y-2 absolute z-[5] bg-neutral-700 bg-opacity-100 items-start mt-3 px-[9px] rounded-md border border-white border-opacity-25">
       <div className="flex flex-row w-full gap-x-3 justify-">
         <div
           id="Order Type"
@@ -372,9 +427,9 @@ const Inputs = ({
                   </div>
                 ))}
               </div>
-            )}
-          </div>
-        </div>
+            </Accordion.Content>
+          </Accordion.Item>
+        </Collapse>
         <div
           id="price-usd"
           className="w-[50%] flex flex-col gap-y-1 font-redhat"

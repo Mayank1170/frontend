@@ -1,5 +1,4 @@
 import { NextPageWithLayout } from "@/types/custom-next";
-
 import { Content, Hero, Footer } from "@/components/Home";
 import Image from "next/image";
 
