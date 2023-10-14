@@ -250,7 +250,7 @@ export const placeLimitOrder = async (
     }
   }
 
-  const sizeFractional = dexterity.Fractional.New(size, 0);
+  const sizeFractional = dexterity.Fractional.New(size * 10 ** 4, 4);
   const priceFractional = dexterity.Fractional.New(price, 0);
 
   const callbacks = {
@@ -332,4 +332,62 @@ export const getOrderbook = async (
     totalAsks,
     totalBids,
   };
+};
+
+export const getAccountInfo = async (
+  manifest: Manifest,
+  trgPubkey: PublicKey
+) => {
+  const trader = new dexterity.Trader(manifest, trgPubkey);
+
+  await trader.update();
+
+  const cashBalance = Number(trader.getExcessInitialMarginWithoutOpenOrders());
+  const openPositionsValue = Number(trader.getPositionValue());
+  const portfolioValue = Number(trader.getPortfolioValue());
+  const initialMarginReq = Number(trader.getRequiredInitialMargin());
+  const maintananceMarginReq = Number(trader.getRequiredMaintenanceMargin());
+  const accountHealth =
+    portfolioValue > initialMarginReq * 2
+      ? "Very Healthy"
+      : portfolioValue > initialMarginReq * 1.5
+      ? "Healthy"
+      : portfolioValue > initialMarginReq
+      ? "Healthy, at risk"
+      : portfolioValue > maintananceMarginReq * 1.5
+      ? "Unhealthy, at risk"
+      : portfolioValue > maintananceMarginReq
+      ? "Very unhealthy, reduce your risk"
+      : "Liquidatable";
+  const allTimePnl = Number(trader.getPnL());
+  const positions = Array.from(trader.getPositions());
+  const accountLeverage = portfolioValue / initialMarginReq;
+
+  return {
+    cashBalance,
+    openPositionsValue,
+    portfolioValue,
+    initialMarginReq,
+    maintananceMarginReq,
+    accountHealth,
+    allTimePnl,
+    positions,
+    accountLeverage,
+  };
+};
+
+export const getOpenOrders = async (
+  manifest: Manifest,
+  trgPubkey: PublicKey,
+  productName: string
+) => {
+  const trader = new dexterity.Trader(manifest, trgPubkey);
+
+  await trader.update();
+
+  const orders = Array.from(
+    await Promise.all(trader.getOpenOrders([productName]))
+  );
+
+  return orders;
 };

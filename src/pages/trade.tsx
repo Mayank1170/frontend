@@ -1,5 +1,6 @@
 import {
   ChartTwo,
+  AccountInfo,
   DepthChart,
   FundingChart,
   Market,
@@ -18,6 +19,8 @@ import { NextPageWithLayout } from "@/types/custom-next";
 import useTradeData from "@/hooks/useTradeData";
 import useTRGs from "@/hooks/useTRGs";
 import useDexterity from "@/hooks/useDexterity";
+import useProducts from "@/hooks/useProducts";
+import useAccountInfo from "@/hooks/useAccountInfo";
 
 const TradeingPage: NextPageWithLayout = () => {
   const [selectedTab, setSelectedTab] = useState<
@@ -63,12 +66,21 @@ const TradeingPage: NextPageWithLayout = () => {
   console.log("trgs", trgs);
   console.log("trgBalance", trgBalance);
 
-  const { orderbookData } = useTradeData("BTCUSD-PERP     ");
+  const { orderbookData } = useTradeData("ETH0D231014     ");
   console.log(orderbookData);
 
   const { products } = useDexterity();
 
   console.log("products", products);
+
+  const { selectedProduct, openOrders } = useProducts();
+
+  console.log("selectedProduct", selectedProduct);
+  console.log("openOrders", openOrders);
+
+  const { accountInfo } = useAccountInfo();
+
+  console.log("accountInfo", accountInfo);
 
   return (
     <div className="flex flex-row space-x-4">
@@ -108,9 +120,11 @@ const TradeingPage: NextPageWithLayout = () => {
         <div>
           <TradeControls />
         </div>
+        <AccountInfo />
+
         {/* <div><Market /></div> */}
       </div>
-      <ViewMoreModal isOpen={isModalOpen} onClose={closeModal}></ViewMoreModal>
+      {/* <ViewMoreModal isOpen={isModalOpen} onClose={closeModal}></ViewMoreModal> */}
       <Label />
     </div>
   );

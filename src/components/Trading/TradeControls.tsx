@@ -3,7 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
 import { useState, useEffect, ChangeEvent } from "react";
 import ArrowRight from "../icons/ArrowRight";
-// import { RangeSlider } from "./Slider";`
+// import { RangeSlider } from "./Slider";
 import { BiChevronDown } from "react-icons/bi";
 import { BiChevronUp } from "react-icons/bi";
 import { ImSpinner3 } from "react-icons/im";
@@ -36,27 +36,7 @@ export const TradeControls: React.FC = () => {
   const [orderStatus, setOrderStatus] = useState("Placing market order");
   const [showCheckmark, setShowCheckmark] = useState(false);
   const [isPopupVisible, setIsPopupVisible] = useState(false);
-  const [usdValue, setUsdValue] = useState<number>();
-  const [price, setPrice] = useState<number>();
-  const [quantity, setQuantity] = useState<number>();
-
-  const { trgs, trgBalance, closeTrg, createTrg, createLimitOrder } = useTRGs();
-
-  const handlePopupToggle = async () => {
-    // await createTrg();
-    console.log("etrg", trgs);
-    // await closeTrg({
-    //   trgPubkey: trgs![0].pubkey,
-    //   trgAmount: trgBalance as number,
-    // });
-
-    await createLimitOrder({
-      price: price!,
-      size: quantity!,
-      productName: "BTCUSD-PERP     ",
-      type: "buy",
-    });
-
+  const handlePopupToggle = () => {
     setIsPopupVisible(!isPopupVisible);
   };
 
@@ -80,7 +60,7 @@ export const TradeControls: React.FC = () => {
   const popupIcon = showCheckmark ? (
     <AiFillCheckCircle className="text-green-400 rounded-full " />
   ) : (
-    <ImSpinner3 className="text-sm text-blue-500 animate-spin" />
+    <ImSpinner3 className="text-blue-500 text-sm animate-spin" />
   );
   const [toggle1, setToggle1] = useState<boolean>(false);
   const [toggle2, setToggle2] = useState<boolean>(false);
@@ -121,14 +101,14 @@ export const TradeControls: React.FC = () => {
   return (
     <div className=" p-6 bg-[#202020] flex-1 w-[100%] h-[100%] rounded-[10px] border-[0.5px] border-white/20">
       <div className="mb-6 font-redhat">
-        <div className="flex items-center mb-5 gap-x-4">
+        <div className="flex items-center gap-x-4 mb-5">
           <Image
             src="/images/icons/trade.svg"
             height={42}
             width={42}
             alt="trade"
           />
-          <h3 className="text-3xl font-bold">Trade</h3>
+          <p className="font-bold text-3xl">Trade</p>
         </div>
         <div className="space-x-1.5 flex flex-row bg-zinc-800 rounded-lg p-3 mx-[-13px] mb-3">
           <button
@@ -153,19 +133,25 @@ export const TradeControls: React.FC = () => {
           </button>
         </div>
         <Inputs
-          price={price}
-          setPrice={setPrice}
-          quantity={quantity}
-          setQuantity={setQuantity}
-          usdValue={usdValue}
-          setUsdValue={setUsdValue}
+          price={""}
+          setPrice={function (price: string): void {
+            throw new Error("Function not implemented.");
+          }}
+          quantity={""}
+          setQuantity={function (quantity: string): void {
+            throw new Error("Function not implemented.");
+          }}
+          usdValue={""}
+          setUsdValue={function (usdValue: string): void {
+            throw new Error("Function not implemented.");
+          }}
         />
       </div>
       <div className="">
         <div className="space-y-4">
           <div className="flex flex-col space-y-4">
             <div className="flex flex-row justify-between">
-              <div className="flex flex-row items-center gap-x-2">
+              <div className="flex flex-row gap-x-2 items-center">
                 <div className="text-[14px] font-semibold">Reduce Only</div>
                 <div
                   onClick={() => setToggle1(!toggle1)}
@@ -185,193 +171,167 @@ export const TradeControls: React.FC = () => {
                   />
                 </div>
               </div>
-              <div className="flex flex-row items-center gap-x-2">
-                <div className="text-[14px] font-semibold">Post</div>
-                <div
-                  onClick={() => setToggle2(!toggle2)}
-                  className={`flex h-[24px] w-12 cursor-pointer rounded-full border border-black
+            </div>
+            <div className="flex flex-row gap-x-2 items-center">
+              <div className="text-[14px] font-semibold">Post</div>
+              <div
+                onClick={() => setToggle2(!toggle2)}
+                className={`flex h-[24px] w-12 cursor-pointer rounded-full border border-black
            ${
              toggle2
                ? "justify-start bg-gray-300/80"
                : "justify-end bg-[#3db079]"
            } p-[1px]`}
-                >
-                  <motion.div
-                    className={`h-5 w-5 rounded-full ${
-                      toggle2 ? "bg-white" : "bg-white"
-                    }`}
-                    layout
-                    transition={{ type: "spring", stiffness: 700, damping: 30 }}
-                  />
-                </div>
+              >
+                <motion.div
+                  className={`h-5 w-5 rounded-full ${
+                    toggle2 ? "bg-white" : "bg-white"
+                  }`}
+                  layout
+                  transition={{ type: "spring", stiffness: 700, damping: 30 }}
+                />
               </div>
             </div>
+          </div>
 
+          <div>
+            <div className="flex flex-row w-full justify-between">
+              <button className="flex flex-row gap-x-2 items-center ">
+                <p className="text-2xl font-bold text-white text-opacity-70">
+                  +
+                </p>
+                <p className="text-xs font-semibold text-gray-400">
+                  Add Cover Orders
+                </p>
+              </button>
+              <button className="flex flex-row gap-x-2 items-center">
+                <p className="text-2xl font-bold text-white text-opacity-70">
+                  +
+                </p>
+                <p className="text-xs font-semibold text-gray-400">
+                  Add Iceberg Orders
+                </p>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col mt-3">
+          <Collapse type="multiple" className={s.Container}>
+            <Accordion.Item value="item-1" className={s.Item}>
+              <Accordion.Header className={s.Header}>
+                <Accordion.Trigger className={s.Trigger}>
+                  <span> Slippage Tolerance (Infinite)</span>
+                  <ChevronDownIcon aria-hidden className={s.Icon} />
+                </Accordion.Trigger>
+              </Accordion.Header>
+              <Accordion.Content className={s.Content}>
+                <div className="flex flex-row justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[30%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500 ">
+                  <input
+                    placeholder="0"
+                    className="flex bg-neutral-600 bg-opacity-10 h-7 w-full "
+                  />
+                  <p className="m-0">%</p>
+                </div>
+                <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7  text-white rounded-sm hover:border-2  hover:border-emerald-500">
+                  <p className="m-0 text-xs">0.1 %</p>
+                </div>
+                <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
+                  <p className="m-0 text-xs">0.5 %</p>
+                </div>
+                <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
+                  <p className="m-0 text-xs">1 %</p>
+                </div>
+                <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
+                  <p className="m-0 text-xs">1 %</p>
+                </div>
+              </Accordion.Content>
+            </Accordion.Item>
+          </Collapse>
+          <div className="flex flex-row justify-between content-center items-center">
+            <p className="text-base font-semibold font-redhat">
+              Req. Initial Margin
+            </p>
+            <div className="flex justify-center items-center bg-black w-28 h-8 text-white border-2 rounded-md border-green-500">
+              <p className="m-0">200,000 $</p>
+            </div>
+          </div>
+          <button
+            onClick={handlePopupToggle}
+            className={`flex flex-row w-full justify-center content-center items-center ${
+              isBuyClicked
+                ? " bg-gradient-to-r from-green-500 to-emerald-300"
+                : isSellClicked
+                ? "bg-gradient-to-r from-red-400 to-rose-400"
+                : ""
+            } p-3 mt-5 rounded-md font-semibold text-black`}
+          >
             <div>
-              <div className="flex flex-row justify-between w-full">
-                <button className="flex flex-row items-center gap-x-2 ">
-                  <p className="text-2xl font-bold text-white text-opacity-70">
-                    +
-                  </p>
-                  <p className="text-xs font-semibold text-gray-400">
-                    Add Cover Orders
-                  </p>
-                </button>
-                <button className="flex flex-row items-center gap-x-2">
-                  <p className="text-2xl font-bold text-white text-opacity-70">
-                    +
-                  </p>
-                  <p className="text-xs font-semibold text-gray-400">
-                    Add Iceberg Orders
-                  </p>
-                </button>
-              </div>
+              {isBuyClicked
+                ? "Long ~3.44845 SOL-PERP"
+                : isSellClicked
+                ? "Short ~3.44845 SOL-PERP"
+                : ""}
             </div>
-          </div>
-          <div className="flex flex-col ">
-            <Collapse type="multiple" className={s.Container}>
-              <Accordion.Item value="item-1" className={s.Item}>
-                <Accordion.Header className={s.Header}>
-                  <Accordion.Trigger className={s.Trigger}>
-                    <span> Slippage Tolerance (Infinite)</span>
-                    <ChevronDownIcon aria-hidden className={s.Icon} />
-                  </Accordion.Trigger>
-                </Accordion.Header>
-                <Accordion.Content className={s.Content}>
-                  <div className="flex flex-row justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[30%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500 ">
-                    <input
-                      placeholder="0"
-                      className="flex w-full bg-neutral-600 bg-opacity-10 h-7 "
-                    />
-                    <p className="m-0">%</p>
-                  </div>
-                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7  text-white rounded-sm hover:border-2  hover:border-emerald-500">
-                    <p className="m-0 text-xs">0.1 %</p>
-                  </div>
-                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
-                    <p className="m-0 text-xs">0.5 %</p>
-                  </div>
-                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
-                    <p className="m-0 text-xs">1 %</p>
-                  </div>
-                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
-                    <p className="m-0 text-xs">1 %</p>
-                  </div>
-                </Accordion.Content>
-              </Accordion.Item>
-            </Collapse>
-            <div className="flex flex-row items-center content-center justify-between">
-              <p className="text-base font-semibold font-redhat">
-                Req. Initial Margin
-              </p>
-              <div className="flex items-center justify-center h-8 text-white bg-black border-2 border-green-500 rounded-md w-28">
-                <p className="m-0">200,000 $</p>
+            {isPopupVisible && (
+              <div>
+                <Toaster position="bottom-right" />
               </div>
-            </div>
-          </div>
+            )}
+          </button>
+          <hr className="w-full border-t border-t-white/10 mt-6 mb-6" />
+          <Prices />
         </div>
       </div>
-      <button
-        onClick={handlePopupToggle}
-        className={`flex flex-row w-full justify-center content-center items-center ${
-          isBuyClicked
-            ? " bg-gradient-to-r from-green-500 to-emerald-300"
-            : isSellClicked
-            ? "bg-gradient-to-r from-red-400 to-rose-400"
-            : ""
-        } p-3 mt-5 rounded-md font-semibold text-black`}
-      >
-        <div>
-          {isBuyClicked
-            ? "Long ~3.44845 SOL-PERP"
-            : isSellClicked
-            ? "Short ~3.44845 SOL-PERP"
-            : ""}
-        </div>
-        {isPopupVisible && (
-          <div>
-            <Toaster position="bottom-right" />
-          <div className="flex flex-col w-[21%] h-[120px] bottom-[30px] right-[68px]  bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
-            <div className="flex flex-row items-center justify-between px-6 py-4 rounded-md">
-              <div className="flex flex-row items-center gap-x-[5px]">
-                <div>{popupIcon}</div>
-                <p className="text-white text-[17px] font-semibold">
-                  {orderStatus}
-                </p>
-              </div>
-              <div className="text-white text-[12px]">
-                <AiOutlineClose />
-              </div>
-            </div>
-            <div className="w-[100%] flex flex-col justify-start items-center ">
-              <p className="text-white w-[90%] opacity-50 text-[13px] 2xl:text-[16px] 3xl:text-[17px] pl-0">
-                {popupContent}
-              </p>
-              <p className="text-white opacity-50 text-[12px]">
-                {ConfirmationMessage}
-              </p>
-            </div>
-          </div>
-        )}
-      </button>
     </div>
   );
 };
+const Inputs: React.FC<{
+  price: string;
+  setPrice: (price: string) => void;
+  quantity: string;
+  setQuantity: (quantity: string) => void;
+  usdValue: string;
+  setUsdValue: (usdValue: string) => void;
+}> = ({ price, setPrice, quantity, setQuantity, usdValue, setUsdValue }) => {
+  const [selectedOption, setSelectedOption] = useState("Limit");
 
-const Inputs = ({
-  price,
-  setPrice,
-  quantity,
-  setQuantity,
-  usdValue,
-  setUsdValue,
-}: {
-  price: number | undefined;
-  setPrice: (price: number) => void;
-  quantity: number | undefined;
-  setQuantity: (quantity: number) => void;
-  usdValue: number | undefined;
-  setUsdValue: (usdValue: number) => void;
-}) => {
-  const [selectedOption, setSelectedOption] = useState<string>("Market");
-  const [isOpen, setIsOpen] = useState(false);
+  const handleChange = (option: string) => {
+    setSelectedOption(option);
+  };
+
+  const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPrice(event.target.value);
+    calculateUsdValue(event.target.value, quantity);
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setQuantity(event.target.value);
+    calculateUsdValue(price, event.target.value);
+  };
+
+  const calculateUsdValue = (priceValue: string, quantityValue: string) => {
+    const priceNumber = parseFloat(priceValue);
+    const quantityNumber = parseFloat(quantityValue);
+
+    if (!isNaN(priceNumber) && !isNaN(quantityNumber)) {
+      const usd = priceNumber * quantityNumber;
+      setUsdValue(usd.toFixed(2));
+    } else {
+      setUsdValue("");
+    }
+  };
+
   const options = [
-    "Market",
+    "Limit",
     "Stop-Market",
     "Stop-Limit",
     "Take-Profit",
     "Take-Profit-Limit",
   ];
-  const handleChange = (option: string) => {
-    setSelectedOption(option);
-    setIsOpen(true);
-  };
-
-  const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPrice(Number(event.target.value));
-    calculateUsdValue(Number(event.target.value), quantity!);
-  };
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuantity(Number(event.target.value));
-    calculateUsdValue(price!, Number(event.target.value));
-  };
-
-  const calculateUsdValue = (priceValue: number, quantityValue: number) => {
-    const priceNumber = priceValue;
-    const quantityNumber = quantityValue;
-
-    if (!isNaN(priceNumber) && !isNaN(quantityNumber)) {
-      const usd = priceNumber * quantityNumber;
-      setUsdValue(Number(usd.toFixed(2)));
-    } else {
-      setUsdValue(0);
-    }
-  };
 
   return (
     <div className="flex flex-col w-full gap-y-4">
       <div className="w-full flex flex-row gap-x-3 justify-">
-  
         <Collapse type="multiple" className={s.Container}>
           <Accordion.Item value="item-1" className={s.Item}>
             <Accordion.Header className={s.Header}>
@@ -379,7 +339,7 @@ const Inputs = ({
                 Order Type
               </label>
               <Accordion.Trigger className={s.Trigger}>
-                <div className="flex items-center justify-between bg-[#FFFFFF26] rounded px-4 py-[10px] w-full border border-white/20">
+                <div className="flex items-center justify-between bg-[#FFFFFF26] rounded px-4 py-[10.7px] w-full border border-white/20">
                   <div className="flex font-semibold items-center text-[13px]">
                     {selectedOption}
                   </div>
@@ -389,32 +349,6 @@ const Inputs = ({
             </Accordion.Header>
             <Accordion.Content>
               <div className="flex flex-col h-fit gap-y-2 absolute z-[5] bg-neutral-700 bg-opacity-100 items-start mt-3 px-[9px] rounded-md border border-white border-opacity-25">
-      <div className="flex flex-row w-full gap-x-3 justify-">
-        <div
-          id="Order Type"
-          className="w-[50%] flex flex-col gap-y-1 font-redhat"
-        >
-          <label htmlFor="order-type" className="opacity-70">
-            Order Type
-          </label>
-          <div
-            onClick={() => setIsOpen((prev) => !prev)}
-            className="relative flex flex-col justiffity-between w-full bg-[#FFFFFF26] rounded  py-2 border border-white/20"
-          >
-            <div className="flex flex-row justify-between px-2">
-              <div className="flex font-semibold items-center text-[13px]">
-                {selectedOption}
-              </div>
-              {!isOpen ? (
-                <BiChevronDown className="h-[25px] w-[25px]" />
-              ) : (
-                <BiChevronUp className="h-[25px] w-[25px]" />
-              )}
-            </div>
-            {!isOpen ? (
-              <div></div>
-            ) : (
-              <div className="flex flex-col w-full h-fit gap-y-2 absolute top-[50px] bg-neutral-700 bg-opacity-100 items-start pl-3 rounded-md border border-white border-opacity-25">
                 {options.map((option) => (
                   <div
                     key={option}
@@ -434,7 +368,7 @@ const Inputs = ({
           id="price-usd"
           className="w-[50%] flex flex-col gap-y-1 font-redhat"
         >
-          <label htmlFor="price" className="opacity-70 ">
+          <label htmlFor="price" className="opacity-70">
             Price
           </label>
           <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-full border border-white/20">
@@ -442,7 +376,7 @@ const Inputs = ({
               placeholder="16,800"
               value={price}
               onChange={handlePriceChange}
-              type="number"
+              type="string"
               name="price"
               id="price"
               className="flex-1 px-2 bg-transparent w-[4.5rem]"
@@ -456,12 +390,12 @@ const Inputs = ({
           <div>Quantity</div>
           <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-[full] border border-white/20 font-redhat">
             <input
-              type="number"
+              type="string"
               value={quantity}
               onChange={handleInputChange}
               name="crypto"
               id="crypto"
-              className="flex-1 w-20 px-2 bg-transparent"
+              className="flex-1 bg-transparent px-2 w-20"
             />
             <Image
               src="/images/btc.png"
@@ -481,7 +415,7 @@ const Inputs = ({
               width={24}
               height={24}
               alt="bitcoin"
-              className="h-5 mr-2"
+              className="mr-2 h-5"
             />
           </div>
         </div>
@@ -524,7 +458,7 @@ const Leverage: React.FC<LeverageInputProps> = ({
 
 const Prices: React.FC = () => {
   return (
-    <div className="flex flex-col w-full p-3 rounded-lg gap-y-4 font-redhat bg-neutral-700 bg-opacity-60">
+    <div className="w-full flex flex-col gap-y-4 font-redhat bg-neutral-700 bg-opacity-60 p-3 rounded-lg">
       <div className="flex flex-row justify-between gap-x-2">
         <div className="flex flex-col w-[50%]">
           <p className="text-white text-[13px] font-semibold">Initial Margin</p>
@@ -535,7 +469,7 @@ const Prices: React.FC = () => {
           <p className="text-white text-[10px] font-semibold">$ 100K</p>
         </div>
       </div>
-      <div className="flex flex-row justify-between w-full gap-x-2">
+      <div className="flex flex-row w-full justify-between gap-x-2">
         <div className="flex flex-col w-[50%]">
           <p className="text-white text-[13px] font-semibold">
             Est. Entry Price
