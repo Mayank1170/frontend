@@ -1,8 +1,16 @@
 import { NextPageWithLayout } from "@/types/custom-next";
 import { Content, Hero, Footer } from "@/components/Home";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const Home: NextPageWithLayout = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push("/trade");
+  });
+
   return (
     <div
       className="font-redhat overflow-x-hidden bg-[#060606] text-white bg-[url('/images/hero-bg.svg')] bg-no-repeat"

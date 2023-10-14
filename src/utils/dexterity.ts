@@ -250,7 +250,7 @@ export const placeLimitOrder = async (
     }
   }
 
-  const sizeFractional = dexterity.Fractional.New(size, 0);
+  const sizeFractional = dexterity.Fractional.New(size * 10 ** 4, 4);
   const priceFractional = dexterity.Fractional.New(price, 0);
 
   const callbacks = {

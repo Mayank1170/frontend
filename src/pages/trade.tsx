@@ -63,7 +63,7 @@ const TradeingPage: NextPageWithLayout = () => {
   console.log("trgs", trgs);
   console.log("trgBalance", trgBalance);
 
-  const { orderbookData } = useTradeData("BTCUSD-PERP     ");
+  const { orderbookData } = useTradeData("ETH0D231014     ");
   console.log(orderbookData);
 
   const { products } = useDexterity();
@@ -110,7 +110,7 @@ const TradeingPage: NextPageWithLayout = () => {
         </div>
         {/* <div><Market /></div> */}
       </div>
-      <ViewMoreModal isOpen={isModalOpen} onClose={closeModal}></ViewMoreModal>
+      {/* <ViewMoreModal isOpen={isModalOpen} onClose={closeModal}></ViewMoreModal> */}
       <Label />
     </div>
   );

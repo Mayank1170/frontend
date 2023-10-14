@@ -53,7 +53,7 @@ export const TradeControls: React.FC = () => {
     await createLimitOrder({
       price: price!,
       size: quantity!,
-      productName: "BTCUSD-PERP     ",
+      productName: "ETH0D231014     ",
       type: "buy",
     });
 
