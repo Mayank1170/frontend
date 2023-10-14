@@ -149,7 +149,7 @@ export const TradeControls: React.FC = () => {
       </div>
       <div className="">
         <div className="space-y-4">
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-row items-center justify-between ">
             <div className="flex flex-row justify-between">
               <div className="flex flex-row gap-x-2 items-center">
                 <div className="text-[14px] font-semibold">Reduce Only</div>
@@ -366,7 +366,7 @@ const Inputs: React.FC<{
         </Collapse>
         <div
           id="price-usd"
-          className="w-[50%] flex flex-col gap-y-1 font-redhat"
+          className="w-full flex flex-col gap-y-1 font-redhat"
         >
           <label htmlFor="price" className="opacity-70">
             Price

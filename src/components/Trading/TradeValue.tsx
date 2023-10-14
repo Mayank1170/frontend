@@ -4,7 +4,8 @@ import { BiChevronDown } from "react-icons/bi";
 import { BiChevronUp } from "react-icons/bi";
 import classNames from "classnames";
 import { motion } from "framer-motion";
-
+import useDexterity from "@/hooks/useDexterity";
+import useTradeData from "@/hooks/useTradeData";
 
 const marketValue: MarketDataProps[] = [
   {
@@ -461,12 +462,12 @@ export const SpreadDataContainer: React.FC = () => {
   );
 };
 
-interface TabLinks{
+interface TabLinks {
   name: string;
   label: string;
   click: string;
 }
-const tabLinks: TabLinks[]= [
+const tabLinks: TabLinks[] = [
   {
     name: "orderBook",
     label: "Books",
@@ -476,8 +477,8 @@ const tabLinks: TabLinks[]= [
     name: "recentTrades",
     label: "Trades",
     click: "Trades",
-  }
-]
+  },
+];
 
 export const NavLinks: React.FC = () => {
   const [activeComponent, setActiveComponent] = useState<
@@ -486,7 +487,10 @@ export const NavLinks: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
 
-  const handleButtonClick = (componentName: "orderBook" | "recentTrades", index:number) => {
+  const handleButtonClick = (
+    componentName: "orderBook" | "recentTrades",
+    index: number
+  ) => {
     setActiveComponent(componentName);
     setActiveIndex(index);
     setActiveTabIndex(index);
@@ -495,48 +499,47 @@ export const NavLinks: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-      <div className="flex flex-col w-full items-center ">
-        <div className="flex w-full rounded-t-lg  bg-[#202020] relative">
-          {tabLinks.map((link, index) => (
-            <button
-              onClick={() =>
-                handleButtonClick(
-                  link.click as "orderBook" | "recentTrades" ,
-                  index
-                )
+    <div className="flex flex-col w-full items-center ">
+      <div className="flex w-full rounded-t-lg  bg-[#202020] relative">
+        {tabLinks.map((link, index) => (
+          <button
+            onClick={() =>
+              handleButtonClick(
+                link.click as "orderBook" | "recentTrades",
+                index
+              )
+            }
+            key={link.label}
+            className={classNames(
+              "w-full h-12 rounded-lg flex items-center justify-center relative z-[9] transition-colors duration-200 ease-in-out font-semibold",
+              {
+                "text-black": activeIndex === index,
+                "text-white": activeComponent !== link.click,
+                "bg-none": activeIndex === index,
               }
-              key={link.label}
-              className={classNames(
-                "w-full h-12 rounded-lg flex items-center justify-center relative z-[9] transition-colors duration-200 ease-in-out font-semibold",
-                {
-                  "text-black": activeIndex === index,
-                  "text-white": activeComponent !== link.click,
-                  "bg-none":
-                    activeIndex === index,
-                }
-              )}
-              onMouseEnter={() => setActiveIndex(index)}
-              onMouseLeave={() => setActiveIndex(activeTabIndex)}
-            >
-              {link.label}
-            </button>
-          ))}
-          <motion.div
-            id="active-icon"
-            className={classNames("h-full w-[50%] absolute rounded-t-lg", {
-              "bg-gradient-to-r from-emerald-700 to-emerald-300":
-                activeIndex !== -1,
-            })}
-            animate={{
-              x: `${activeIndex * 100}%`,
-              opacity: activeIndex !== -1 ? 1 : -1,
-            }}
-            transition={{
-              duration: 0.2,
-              ease: "easeOut",
-            }}
-          />
-        </div>
+            )}
+            onMouseEnter={() => setActiveIndex(index)}
+            onMouseLeave={() => setActiveIndex(activeTabIndex)}
+          >
+            {link.label}
+          </button>
+        ))}
+        <motion.div
+          id="active-icon"
+          className={classNames("h-full w-[50%] absolute rounded-t-lg", {
+            "bg-gradient-to-r from-emerald-700 to-emerald-300":
+              activeIndex !== -1,
+          })}
+          animate={{
+            x: `${activeIndex * 100}%`,
+            opacity: activeIndex !== -1 ? 1 : -1,
+          }}
+          transition={{
+            duration: 0.2,
+            ease: "easeOut",
+          }}
+        />
+      </div>
       <div className="flex flex-row items-center w-full bg-neutral-800 border-[0.5px] border-white/20 border-b-0 justify-between ">
         <div className="flex flex-row ml-3 items-center gap-x-1 my-1">
           <CgArrowsShrinkV className="text-lg" />
@@ -544,19 +547,21 @@ export const NavLinks: React.FC = () => {
             Grouping
           </p>
         </div>
-        <div className="flex mr-3 items-center my-1"  onClick={() => setIsOpen((prev) => !prev)}>
+        <div
+          className="flex mr-3 items-center my-1"
+          onClick={() => setIsOpen((prev) => !prev)}
+        >
           <div className="w-fit h-fit px-2 py-1 bg-neutral-700 rounded-md justify-start items-center gap-1 inline-flex">
             <div className="justify-start items-center gap-1 flex">
               <div className="text-white text-sm font-normal font-['Red Hat Display']">
                 0.01
               </div>
               {!isOpen ? (
-              <BiChevronDown className="h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]" />
-            ) : (
-              <BiChevronUp className="h-[25px] w-[25px]  xl:h-[17px] xl:w-[17px]" />
-            )}
+                <BiChevronDown className="h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]" />
+              ) : (
+                <BiChevronUp className="h-[25px] w-[25px]  xl:h-[17px] xl:w-[17px]" />
+              )}
             </div>
-           
           </div>
         </div>
       </div>
@@ -566,6 +571,8 @@ export const NavLinks: React.FC = () => {
 };
 
 export const OrderBook: React.FC = () => {
+  // const { desiredOrderbooks } = useDexterity();
+  const { orderbookData } = useTradeData("1");
   return (
     <div className="bg-neutral-800 mt-0 w-[100%] border-[0.5px] border-white/20 border-t-0 xl:rounded-b-md xl:rounded-t-[0px] rounded-md border-b-white/20">
       <div className="xl:h-[calc(100vh-286px)] h-[calc(100vh-339px)] overflow-y-hidden place-content-evenly	">
@@ -575,11 +582,10 @@ export const OrderBook: React.FC = () => {
             <p className="text-[15px]">Size (ETH)</p>
             <p className="text-[15px]">Total(ETH)</p>
           </div>
-          <div className="space-y-1 flex flex-col">
-            {marketValue.slice(0, 100).map((item, index) => (
-              <MarketData key={item.id} {...item} />
-            ))}
-          </div>
+          {/* <div className="">
+            {desiredOrderbooks && <p>{JSON.stringify(desiredOrderbooks)}</p>}
+          </div> */}
+          <div>{orderbookData && <p>{JSON.stringify(orderbookData)}</p>}</div>
         </div>
         <div className="flex flex-col h-[50%] overflow-scroll scrollbar-hide">
           <div
