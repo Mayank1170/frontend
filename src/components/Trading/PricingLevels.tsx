@@ -47,8 +47,8 @@ const GeneralInfo: React.FC = () => {
     <div className="flex flex-row my-2 relative">
       <button onClick={() => setIsOpen((prev) => !prev)}>
         <div className="flex flex-row p-3 items-center justify-center rounded gap-2 ">
-          <Image
-            src="/images/Solana.png"
+        <Image
+            src="/images/symbols/eth.png"
             width={100}
             height={100}
             alt={"Solana"}
@@ -56,7 +56,7 @@ const GeneralInfo: React.FC = () => {
           />
           <div>
             <p className="2xl:text-[17px] xl:text-[13px] text-[25px] font-redhat ">
-              SOL-PERP
+             ETH0D231014
             </p>
             {isOpen && (
               <div

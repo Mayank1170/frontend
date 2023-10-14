@@ -6,7 +6,6 @@ import s from "../../components/Trading/Accordion.module.css";
 import * as Accordion from "@radix-ui/react-accordion";
 export const Collapse = Accordion.Root;
 import { motion } from "framer-motion";
-import useTRGs from "@/hooks/useTRGs";
 
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 interface TabsProps {
@@ -76,10 +75,6 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
     setActiveTabIndex(index);
   };
 
-  const { createDeposit, createWithdrawal } = useTRGs();
-
-  const [amount, setAmount] = useState(0);
-
   if (!visible) return null;
   return (
     <div
@@ -89,9 +84,6 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
     >
       <div className="bg-[#181818] px-5 w-[700px] border border-white/20 rounded-[10px]">
         <div className="text-white text-xl font-bold px-2 py-7">
-
-      <div className="bg-[#181818] px-5  border border-white/20 rounded-[10px]">
-        <div className="px-2 text-xl font-bold text-white py-7">
           Manage Balances
         </div>
         <div className="flex flex-row  bg-[#202020] rounded-lg border border-white/20 ">
@@ -169,15 +161,6 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
                   </Accordion.Item>
                 </Collapse>
               </div>
-
-        <div className="mb-2 space-y-4">
-          <div>
-            <p className="text-white text-[16px] pt-3 font-redhat">
-              depositeed assets automatically earn yield through lending
-            </p>
-            <div className="flex flex-row text-[16px] text-[#3BB078] space-x-4 font-redhat">
-              <p>Learn More</p>
-              <p>depositee Guides </p>
             </div>
           )}
 
@@ -236,7 +219,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
                   alt={"USDC"}
                 />
                 <div>
-                  <h3 className="text-lg text-white font-redhat">USDC</h3>
+                  <p className="text-lg text-white font-redhat">USDC</p>
                 </div>
               </div>
             </div>
@@ -246,57 +229,37 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
               id="quantity"
               className="bg-[#2D2C2C] w-full rounded pl-4 text-white/70"
             ></input>
-              className="bg-[#2D2C2C] w-full rounded"
-              value={amount}
-              onChange={(e) => setAmount(Number(e.target.value))}
-            />
           </div>
           <div className="w-full bg-[#2D2C2C] rounded space-y-3 py-2">
             <div className="flex flex-row justify-between mx-4 text-[14px] text-gray-300">
-              <h1 className="">Wallet balance</h1>
+              <p className="">Wallet balance</p>
               <div className="flex flex-row space-x-3">
-                <h1>113.0787 USDC</h1>
-                <h1 className="bg-[#4D4A4A] px-1 rounded">50%</h1>
-                <h1 className="bg-[#4D4A4A] px-1 rounded">Max</h1>
-              </div>
-            </div>
-
-            <div className="flex flex-row justify-between mx-4 text-[14px] text-gray-300">
-              <h1 className="">Wallet balance</h1>
-              <div className="flex flex-row space-x-3">
-                <h1>113.0787 USDC</h1>
-                <h1 className="bg-[#4D4A4A] px-1 rounded">50%</h1>
-                <h1 className="bg-[#4D4A4A] px-1 rounded">Max</h1>
+                <p>113.0787 USDC</p>
+                <p className="bg-[#4D4A4A] px-1 rounded">50%</p>
+                <p className="bg-[#4D4A4A] px-1 rounded">Max</p>
               </div>
             </div>
           </div>
         </div>
         <div className="flex flex-row text-gray-400 space-x-3 mt-2 mb-5 text-[13px] items-center">
-          <h1 className="px-2 border-2 border-gray-400 border-dotted rounded-full ">
+          <p className="border-2 px-2 border-gray-400 border-dotted rounded-full ">
             !
-          </h1>
+          </p>
           <p>
             USDC deposites will automatically go towards repaying your borrows
           </p>
         </div>
         <div className="w-full h-[1px] bg-white/20"></div>
         <div className="flex flex-row justify-between text-white text-[13px] mt-3">
-          <h1 className="text-[#84AF9B] ">Asset Balance</h1>
-          <h1 className="text-gray-300">-0.98 USDC</h1>
+          <p className="text-[#84AF9B] ">Asset Balance</p>
+          <p className="text-gray-300">-0.98 USDC</p>
         </div>
         <div className="flex flex-row justify-between text-white text-[13px] mt-2">
-          <h1 className="text-[#84AF9B] ">NetAccount Balance (USD)</h1>
-          <h1 className="text-gray-300">$2.00</h1>
+          <p className="text-[#84AF9B] ">NetAccount Balance (USD)</p>
+          <p className="text-gray-300">$2.00</p>
         </div>
-        <button
-          className="w-full py-3 mt-12 mb-8 bg-gradient-to-r from-[#3BB078] rounded to-[#59B689] font-redhat"
-          onClick={async () => {
-            await createDeposit(amount);
-
-            // await createWithdrawal(amount);
-          }}
-        >
-          Confirm Deposite
+        <button className="w-full py-3 mt-12 mb-8 bg-gradient-to-r from-[#3BB078] rounded to-[#59B689] font-redhat">
+          Confirm depositee
         </button>
       </div>
     </div>

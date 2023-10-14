@@ -1,5 +1,6 @@
 import {
   ChartTwo,
+  AccountInfo,
   DepthChart,
   FundingChart,
   Market,
@@ -107,6 +108,7 @@ const TradeingPage: NextPageWithLayout = () => {
       <div className="w-[30%] flex-col space-y-4 hidden xl:inline">
         <div>
           <TradeControls />
+          <AccountInfo />
         </div>
         {/* <div><Market /></div> */}
       </div>
