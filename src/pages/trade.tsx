@@ -108,8 +108,9 @@ const TradeingPage: NextPageWithLayout = () => {
       <div className="w-[30%] flex-col space-y-4 hidden xl:inline">
         <div>
           <TradeControls />
-          <AccountInfo />
         </div>
+        <AccountInfo />
+
         {/* <div><Market /></div> */}
       </div>
       {/* <ViewMoreModal isOpen={isModalOpen} onClose={closeModal}></ViewMoreModal> */}

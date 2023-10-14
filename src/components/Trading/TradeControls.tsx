@@ -99,41 +99,53 @@ export const TradeControls: React.FC = () => {
   ));
 
   return (
-    <><div className=" p-6 bg-[#202020] flex-1 w-[100%] h-[100%] rounded-[10px] border-[0.5px] border-white/20">
+    <div className=" p-6 bg-[#202020] flex-1 w-[100%] h-[100%] rounded-[10px] border-[0.5px] border-white/20">
       <div className="mb-6 font-redhat">
         <div className="flex items-center gap-x-4 mb-5">
           <Image
             src="/images/icons/trade.svg"
             height={42}
             width={42}
-            alt="trade" />
+            alt="trade"
+          />
           <p className="font-bold text-3xl">Trade</p>
         </div>
         <div className="space-x-1.5 flex flex-row bg-zinc-800 rounded-lg p-3 mx-[-13px] mb-3">
           <button
             onClick={handleBuyClick}
-            className={`w-[100%] h-10 ${isBuyClicked
+            className={`w-[100%] h-10 ${
+              isBuyClicked
                 ? "bg-[#39FFA0]/20 border-green-400  text-emerald-500"
-                : "bg-[#373737] border-zinc-500 text-zinc-500"} border-2 rounded-md border-green-500 font-redhat font-bold transition-colors duration-300`}
+                : "bg-[#373737] border-zinc-500 text-zinc-500"
+            } border-2 rounded-md border-green-500 font-redhat font-bold transition-colors duration-300`}
           >
             Buy / Long
           </button>
           <button
             onClick={handleSellClick}
-            className={`w-[100%] h-10 ${isSellClicked
+            className={`w-[100%] h-10 ${
+              isSellClicked
                 ? "bg-[#3E2B2B] border-[#FF5D5D] text-red-400"
-                : "bg-[#373737]  border-zinc-500 text-zinc-500"} border-2 rounded-md border-[#FF5D5D]  font-redhat font-bold transition-colors duration-300`}
+                : "bg-[#373737]  border-zinc-500 text-zinc-500"
+            } border-2 rounded-md border-[#FF5D5D]  font-redhat font-bold transition-colors duration-300`}
           >
             Sell / Short
           </button>
         </div>
-        <Inputs price={""} setPrice={function (price: string): void {
-          throw new Error("Function not implemented.");
-        } } quantity={""} setQuantity={function (quantity: string): void {
-          throw new Error("Function not implemented.");
-        } } usdValue={""} setUsdValue={function (usdValue: string): void {
-          throw new Error("Function not implemented.");
-        } } />
+        <Inputs
+          price={""}
+          setPrice={function (price: string): void {
+            throw new Error("Function not implemented.");
+          }}
+          quantity={""}
+          setQuantity={function (quantity: string): void {
+            throw new Error("Function not implemented.");
+          }}
+          usdValue={""}
+          setUsdValue={function (usdValue: string): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
       </div>
       <div className="">
         <div className="space-y-4">
@@ -144,17 +156,20 @@ export const TradeControls: React.FC = () => {
                 <div
                   onClick={() => setToggle1(!toggle1)}
                   className={`flex h-[24px] w-12 cursor-pointer rounded-full border border-black
-           ${toggle1
-                      ? "justify-start bg-gray-300/80"
-                      : "justify-end bg-[#3db079]"} p-[1px]`}
+           ${
+             toggle1
+               ? "justify-start bg-gray-300/80"
+               : "justify-end bg-[#3db079]"
+           } p-[1px]`}
                 >
                   <motion.div
-                    className={`h-5 w-5 rounded-full ${toggle1 ? "bg-white" : "bg-white"}`}
+                    className={`h-5 w-5 rounded-full ${
+                      toggle1 ? "bg-white" : "bg-white"
+                    }`}
                     layout
-                    transition={{ type: "spring", stiffness: 700, damping: 30 }} />
+                    transition={{ type: "spring", stiffness: 700, damping: 30 }}
+                  />
                 </div>
-
-
               </div>
             </div>
             <div className="flex flex-row gap-x-2 items-center">
@@ -162,14 +177,19 @@ export const TradeControls: React.FC = () => {
               <div
                 onClick={() => setToggle2(!toggle2)}
                 className={`flex h-[24px] w-12 cursor-pointer rounded-full border border-black
-           ${toggle2
-                    ? "justify-start bg-gray-300/80"
-                    : "justify-end bg-[#3db079]"} p-[1px]`}
+           ${
+             toggle2
+               ? "justify-start bg-gray-300/80"
+               : "justify-end bg-[#3db079]"
+           } p-[1px]`}
               >
                 <motion.div
-                  className={`h-5 w-5 rounded-full ${toggle2 ? "bg-white" : "bg-white"}`}
+                  className={`h-5 w-5 rounded-full ${
+                    toggle2 ? "bg-white" : "bg-white"
+                  }`}
                   layout
-                  transition={{ type: "spring", stiffness: 700, damping: 30 }} />
+                  transition={{ type: "spring", stiffness: 700, damping: 30 }}
+                />
               </div>
             </div>
           </div>
@@ -195,7 +215,7 @@ export const TradeControls: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col ">
+        <div className="flex flex-col mt-3">
           <Collapse type="multiple" className={s.Container}>
             <Accordion.Item value="item-1" className={s.Item}>
               <Accordion.Header className={s.Header}>
@@ -208,7 +228,8 @@ export const TradeControls: React.FC = () => {
                 <div className="flex flex-row justify-between items-center bg-neutral-600 bg-opacity-70 px-1 w-[30%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500 ">
                   <input
                     placeholder="0"
-                    className="flex bg-neutral-600 bg-opacity-10 h-7 w-full " />
+                    className="flex bg-neutral-600 bg-opacity-10 h-7 w-full "
+                  />
                   <p className="m-0">%</p>
                 </div>
                 <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7  text-white rounded-sm hover:border-2  hover:border-emerald-500">
@@ -234,29 +255,34 @@ export const TradeControls: React.FC = () => {
               <p className="m-0">200,000 $</p>
             </div>
           </div>
+          <button
+            onClick={handlePopupToggle}
+            className={`flex flex-row w-full justify-center content-center items-center ${
+              isBuyClicked
+                ? " bg-gradient-to-r from-green-500 to-emerald-300"
+                : isSellClicked
+                ? "bg-gradient-to-r from-red-400 to-rose-400"
+                : ""
+            } p-3 mt-5 rounded-md font-semibold text-black`}
+          >
+            <div>
+              {isBuyClicked
+                ? "Long ~3.44845 SOL-PERP"
+                : isSellClicked
+                ? "Short ~3.44845 SOL-PERP"
+                : ""}
+            </div>
+            {isPopupVisible && (
+              <div>
+                <Toaster position="bottom-right" />
+              </div>
+            )}
+          </button>
+          <hr className="w-full border-t border-t-white/10 mt-6 mb-6" />
+          <Prices />
         </div>
       </div>
-    </div><button
-      onClick={handlePopupToggle}
-      className={`flex flex-row w-full justify-center content-center items-center ${isBuyClicked
-          ? " bg-gradient-to-r from-green-500 to-emerald-300"
-          : isSellClicked
-            ? "bg-gradient-to-r from-red-400 to-rose-400"
-            : ""} p-3 mt-5 rounded-md font-semibold text-black`}
-    >
-        <div>
-          {isBuyClicked
-            ? "Long ~3.44845 SOL-PERP"
-            : isSellClicked
-              ? "Short ~3.44845 SOL-PERP"
-              : ""}
-        </div>
-        {isPopupVisible && (
-          <div>
-            <Toaster position="bottom-right" />
-          </div>
-        )}
-      </button><hr className="w-full border-t border-t-white/10 mt-6 mb-6" /><Prices /></>
+    </div>
   );
 };
 const Inputs: React.FC<{
@@ -267,7 +293,7 @@ const Inputs: React.FC<{
   usdValue: string;
   setUsdValue: (usdValue: string) => void;
 }> = ({ price, setPrice, quantity, setQuantity, usdValue, setUsdValue }) => {
-  const [selectedOption, setSelectedOption] = useState("Market");
+  const [selectedOption, setSelectedOption] = useState("Limit");
 
   const handleChange = (option: string) => {
     setSelectedOption(option);
@@ -296,7 +322,7 @@ const Inputs: React.FC<{
   };
 
   const options = [
-    "Market",
+    "Limit",
     "Stop-Market",
     "Stop-Limit",
     "Take-Profit",
@@ -313,7 +339,7 @@ const Inputs: React.FC<{
                 Order Type
               </label>
               <Accordion.Trigger className={s.Trigger}>
-                <div className="flex items-center justify-between bg-[#FFFFFF26] rounded px-4 py-[10px] w-full border border-white/20">
+                <div className="flex items-center justify-between bg-[#FFFFFF26] rounded px-4 py-[10.7px] w-full border border-white/20">
                   <div className="flex font-semibold items-center text-[13px]">
                     {selectedOption}
                   </div>
@@ -338,7 +364,10 @@ const Inputs: React.FC<{
             </Accordion.Content>
           </Accordion.Item>
         </Collapse>
-        <div id="price-usd" className="w-[50%] flex flex-col gap-y-1 font-redhat">
+        <div
+          id="price-usd"
+          className="w-[50%] flex flex-col gap-y-1 font-redhat"
+        >
           <label htmlFor="price" className="opacity-70">
             Price
           </label>
@@ -429,7 +458,7 @@ const Leverage: React.FC<LeverageInputProps> = ({
 
 const Prices: React.FC = () => {
   return (
-  <div className="w-full flex flex-col gap-y-4 font-redhat bg-neutral-700 bg-opacity-60 p-3 rounded-lg">
+    <div className="w-full flex flex-col gap-y-4 font-redhat bg-neutral-700 bg-opacity-60 p-3 rounded-lg">
       <div className="flex flex-row justify-between gap-x-2">
         <div className="flex flex-col w-[50%]">
           <p className="text-white text-[13px] font-semibold">Initial Margin</p>
@@ -440,7 +469,7 @@ const Prices: React.FC = () => {
           <p className="text-white text-[10px] font-semibold">$ 100K</p>
         </div>
       </div>
-    <div className="flex flex-row w-full justify-between gap-x-2">
+      <div className="flex flex-row w-full justify-between gap-x-2">
         <div className="flex flex-col w-[50%]">
           <p className="text-white text-[13px] font-semibold">
             Est. Entry Price
