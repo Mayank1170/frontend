@@ -36,6 +36,7 @@
     "eslint": "8.51.0",
     "eslint-config-next": "13.5.4",
     "framer-motion": "^10.16.4",
+    "jotai": "^2.4.3",
     "lightweight-charts": "^4.1.0",
     "lottie-web": "^5.12.2",
     "next": "13.5.4",

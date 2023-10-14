@@ -19,6 +19,8 @@ import { NextPageWithLayout } from "@/types/custom-next";
 import useTradeData from "@/hooks/useTradeData";
 import useTRGs from "@/hooks/useTRGs";
 import useDexterity from "@/hooks/useDexterity";
+import useProducts from "@/hooks/useProducts";
+import useAccountInfo from "@/hooks/useAccountInfo";
 
 const TradeingPage: NextPageWithLayout = () => {
   const [selectedTab, setSelectedTab] = useState<
@@ -70,6 +72,15 @@ const TradeingPage: NextPageWithLayout = () => {
   const { products } = useDexterity();
 
   console.log("products", products);
+
+  const { selectedProduct, openOrders } = useProducts();
+
+  console.log("selectedProduct", selectedProduct);
+  console.log("openOrders", openOrders);
+
+  const { accountInfo } = useAccountInfo();
+
+  console.log("accountInfo", accountInfo);
 
   return (
     <div className="flex flex-row space-x-4">
