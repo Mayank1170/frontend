@@ -570,11 +570,11 @@ export const NavLinks: React.FC = () => {
 };
 
 export const OrderBook: React.FC = () => {
-  const { mpg, markPrice, orderbookData } = useTradeData("Price     ");
-  if (!orderbookData) {
-    return <div>Loading...</div>;
-  }
-  console.log(mpg, markPrice, orderbookData);
+  // const { mpg, markPrice, orderbookData } = useTradeData("Price     ");
+  // if (!orderbookData) {
+  //   return <div>Loading...</div>;
+  // // }
+  // console.log(mpg, markPrice, orderbookData);
 
   return (
     <div className="bg-neutral-800 mt-0 w-[100%] border-[0.5px] border-white/20 border-t-0 xl:rounded-b-md xl:rounded-t-[0px] rounded-md border-b-white/20">
@@ -586,7 +586,7 @@ export const OrderBook: React.FC = () => {
             <p className="text-[15px]">Total(ETH)</p>
           </div>
           <div className="space-y-1 flex flex-col">
-            {orderbookData.asks.slice(0, 100).map((item, index) => (
+            {/* {orderbookData.asks.slice(0, 100).map((item, index) => (
               <MarketData
                 key={index}
                 priceValue={item.price} // Assuming the structure here
@@ -594,6 +594,10 @@ export const OrderBook: React.FC = () => {
                 totalValue={item.total}
                 textColor={item.textColor} // You might not have this; adjust as needed
               />
+            ))} */}
+
+            {marketValue.slice(0, 100).map((item, index) => (
+              <MarketData key={item.id} {...item} />
             ))}
           </div>
         </div>

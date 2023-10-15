@@ -193,11 +193,9 @@ export const depositFn = async (
           sig ? `SIGNATURE: https://solscan.io/tx/${sig}?cluster=devnet` : ""
         }`
       ),
-      
   });
 };
-console.log(PublicKey)
-
+console.log(PublicKey);
 
 export const withdrawFn = async (
   manifest: Manifest,
@@ -253,7 +251,12 @@ export const placeLimitOrder = async (
     }
   }
 
-  const sizeFractional = dexterity.Fractional.New(size * 10 ** 4, 4);
+  const decimals = size.toString().split(".")[1]?.length || 0;
+
+  const sizeFractional = dexterity.Fractional.New(
+    size * 10 ** decimals,
+    decimals
+  );
   const priceFractional = dexterity.Fractional.New(price, 0);
 
   const callbacks = {
