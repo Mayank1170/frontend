@@ -4,7 +4,6 @@ import { BiChevronDown } from "react-icons/bi";
 import { BiChevronUp } from "react-icons/bi";
 import classNames from "classnames";
 import { motion } from "framer-motion";
-import useDexterity from "@/hooks/useDexterity";
 import useTradeData from "@/hooks/useTradeData";
 
 const marketValue: MarketDataProps[] = [
@@ -571,8 +570,12 @@ export const NavLinks: React.FC = () => {
 };
 
 export const OrderBook: React.FC = () => {
-  // const { desiredOrderbooks } = useDexterity();
-  const { orderbookData } = useTradeData("1");
+  const { mpg, markPrice, orderbookData } = useTradeData("Price     ");
+  if (!orderbookData) {
+    return <div>Loading...</div>;
+  }
+  console.log(mpg, markPrice, orderbookData);
+
   return (
     <div className="bg-neutral-800 mt-0 w-[100%] border-[0.5px] border-white/20 border-t-0 xl:rounded-b-md xl:rounded-t-[0px] rounded-md border-b-white/20">
       <div className="xl:h-[calc(100vh-286px)] h-[calc(100vh-339px)] overflow-y-hidden place-content-evenly	">
@@ -582,10 +585,17 @@ export const OrderBook: React.FC = () => {
             <p className="text-[15px]">Size (ETH)</p>
             <p className="text-[15px]">Total(ETH)</p>
           </div>
-          {/* <div className="">
-            {desiredOrderbooks && <p>{JSON.stringify(desiredOrderbooks)}</p>}
-          </div> */}
-          <div>{orderbookData && <p>{JSON.stringify(orderbookData)}</p>}</div>
+          <div className="space-y-1 flex flex-col">
+            {orderbookData.asks.slice(0, 100).map((item, index) => (
+              <MarketData
+                key={index}
+                priceValue={item.price} // Assuming the structure here
+                sizeValue={item.size}
+                totalValue={item.total}
+                textColor={item.textColor} // You might not have this; adjust as needed
+              />
+            ))}
+          </div>
         </div>
         <div className="flex flex-col h-[50%] overflow-scroll scrollbar-hide">
           <div
