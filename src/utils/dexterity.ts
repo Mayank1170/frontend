@@ -193,8 +193,11 @@ export const depositFn = async (
           sig ? `SIGNATURE: https://solscan.io/tx/${sig}?cluster=devnet` : ""
         }`
       ),
+      
   });
 };
+console.log(PublicKey)
+
 
 export const withdrawFn = async (
   manifest: Manifest,
