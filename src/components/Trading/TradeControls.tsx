@@ -44,42 +44,39 @@ export const TradeControls: React.FC = () => {
   const [transactionMessage, setTransactionMessage] = useState<string>("");
 
   const handlePopupToggle = async () => {
-    await createTrg();
+    // await createTrg();
 
     // Wait until trgs is populated
     let attempts = 0;
     while (!trgs || trgs.length === 0) {
-        if (attempts > 10) {
-            console.error("Failed to populate trgs after multiple attempts");
-            return;
-        }
-        await new Promise(res => setTimeout(res, 500)); // Wait for half a second before checking again
-        attempts += 1;
+      if (attempts > 10) {
+        console.error("Failed to populate trgs after multiple attempts");
+        return;
+      }
+      await new Promise((res) => setTimeout(res, 500)); // Wait for half a second before checking again
+      attempts += 1;
     }
 
     if (!trgs || trgs.length === 0) {
-        console.error("trgs array is empty or undefined");
-        return;
+      console.error("trgs array is empty or undefined");
+      return;
     }
 
-    await closeTrg({
-        trgPubkey: trgs[0].pubkey,
-        trgAmount: trgBalance as number,
-    });
+    // await closeTrg({
+    //     trgPubkey: trgs[0].pubkey,
+    //     trgAmount: trgBalance as number,
+    // });
 
     await createLimitOrder({
-        price: price!,
-        size: quantity!,
-        productName: "BTCUSD-PERP",
-        type: "buy",
+      price: price!,
+      size: quantity!,
+      productName: "ETH0D231015",
+      type: "buy",
     });
 
     setTransactionMessage("Transaction got executed");
     setIsPopupVisible(!isPopupVisible);
-};
-
-
-
+  };
 
   useEffect(() => {
     if (isPopupVisible) {

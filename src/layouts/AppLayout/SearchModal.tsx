@@ -90,7 +90,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
     <div
       id="container"
       onClick={handleOnClose}
-      className="fixed inset-0 z-[99] bg-[black] bg-opacity-30 backdrop-blur-sm h-full flex justify-center items-center text-black"
+      className="fixed inset-0 z-50 bg-[black] bg-opacity-30 backdrop-blur-sm h-full flex justify-center items-center text-black"
     >
       <div className="bg-[#181818] px-5  border border-white/20 rounded-[10px]">
         <div className="px-2 text-xl font-bold text-white py-7">
@@ -320,7 +320,13 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
             <button
               className="w-full py-3 mt-12 mb-8 bg-gradient-to-r from-[#3BB078] rounded to-[#59B689] font-redhat"
               onClick={async () => {
-                await createDeposit(amount);
+                if (selectedTab === "Deposit") {
+                  await createDeposit(amount);
+                } else {
+                  await createWithdrawal(amount);
+                }
+
+                // await createDeposit(amount);
 
                 // await createWithdrawal(amount);
               }}
