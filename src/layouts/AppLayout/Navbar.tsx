@@ -22,6 +22,7 @@ import {
   CheckIcon,
   ChevronRightIcon,
 } from "@radix-ui/react-icons";
+import toast from "react-hot-toast";
 
 const Navbar: React.FC = () => {
   const [showMyModal, setShowMyModal] = useState(false);
@@ -154,10 +155,10 @@ const Settings = () => {
           aria-label="Customise options"
         >
           <Image
-          src="/images/icons/settings2.svg"
-          height={23}
-          width={23}
-          alt="settings"
+            src="/images/icons/settings2.svg"
+            height={23}
+            width={23}
+            alt="settings"
           />
         </button>
       </DropdownMenu.Trigger>
@@ -166,16 +167,15 @@ const Settings = () => {
         <DropdownMenu.Content
           className="min-w-[200px] z-[10] bg-neutral-800 text-white rounded-md py-[10px] pr-[8px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] will-change-[opacity,transform] data-[side=top]:animate-slideDownAndFade data-[side=right]:animate-slideLeftAndFade data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade"
           sideOffset={5}
-          
         >
           <DropdownMenu.Sub>
-          <DropdownMenu.SubTrigger className="hover:bg-neutral-600 group text-[15px] gap-x-2 font-semibold font-['Red Hat Display'] text-violet11 rounded-[3px] my-1 py-4 flex items-center h-[25px] pr-[5px] relative pl-[15px] ">
-            <Image
-          src="/images/icons/graph-line.svg"
-          height={23}
-          width={23}
-          alt="settings"
-          />
+            <DropdownMenu.SubTrigger className="hover:bg-neutral-600 group text-[15px] gap-x-2 font-semibold font-['Red Hat Display'] text-violet11 rounded-[3px] my-1 py-4 flex items-center h-[25px] pr-[5px] relative pl-[15px] ">
+              <Image
+                src="/images/icons/graph-line.svg"
+                height={23}
+                width={23}
+                alt="settings"
+              />
               Trade
               <div className="ml-auto pl-[20px] text-mauve11 group-data-[highlighted]:text-white group-data-[disabled]:text-mauve8">
                 <ChevronRightIcon />
@@ -208,13 +208,13 @@ const Settings = () => {
           </DropdownMenu.Sub>
           <DropdownMenu.Sub>
             <DropdownMenu.SubTrigger className="hover:bg-neutral-600 group text-[15px] gap-x-2 font-semibold font-['Red Hat Display'] text-violet11 rounded-[3px] my-2 py-4 flex items-center h-[25px] pr-[5px] relative pl-[15px] ">
-            <Image
-          src="/images/icons/invite-line.svg"
-          height={23}
-          width={23}
-          alt="settings"
-          />
-            Referral System 
+              <Image
+                src="/images/icons/invite-line.svg"
+                height={23}
+                width={23}
+                alt="settings"
+              />
+              Referral System
               <div className="ml-auto pl-[20px] text-mauve11 group-data-[highlighted]:text-white group-data-[disabled]:text-mauve8">
                 <ChevronRightIcon />
               </div>
@@ -267,12 +267,14 @@ const Search: React.FC<{ onClick: () => void }> = ({ onClick }) => {
 };
 
 const Controls: React.FC = () => {
-  const { publicKey } = useWallet();
+  const { publicKey, disconnect } = useWallet();
 
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  const { select, wallets, wallet, disconnect } = useWallet();
+  const { select, wallets, wallet } = useWallet();
+
+  const router = useRouter();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -383,10 +385,17 @@ const Controls: React.FC = () => {
               <BiCopy className="text-xl" />
               <p>Copy Wallet Address</p>
             </div>
-            <div className="flex flex-row gap-x-2 px-4 mt-3">
+            <button
+              className="flex flex-row gap-x-2 px-4 mt-3"
+              onClick={async () => {
+                await disconnect();
+                toast.success("Disconnected");
+                router.push("/connectWallet");
+              }}
+            >
               <TbDoorEnter className="text-xl" />
               <p>Disconnect</p>
-            </div>
+            </button>
           </div>
         </div>
       )}

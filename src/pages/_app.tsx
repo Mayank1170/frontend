@@ -19,6 +19,7 @@ import {
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { MoongateWalletAdapter } from "@moongate/moongate-adapter";
+import { Toaster } from "react-hot-toast";
 
 import { pilatExtended } from "@/utils/fonts";
 import { Red_Hat_Display } from "next/font/google";
@@ -53,6 +54,7 @@ const MyApp: NextComponentType<
       <ConnectionProvider endpoint={endpoint}>
         <WalletProvider wallets={wallets} autoConnect>
           <QueryClientProvider client={queryClient}>
+            <Toaster position="bottom-right" />
             <style jsx global>
               {`
                 :root {
