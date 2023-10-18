@@ -66,7 +66,7 @@ const TradeingPage: NextPageWithLayout = () => {
   console.log("trgs", trgs);
   console.log("trgBalance", trgBalance);
 
-  const { orderbookData } = useTradeData("ETH0D231014     ");
+  const { orderbookData } = useTradeData("ETH0D231017     ");
   console.log(orderbookData);
 
   const { products } = useDexterity();

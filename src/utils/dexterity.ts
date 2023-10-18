@@ -94,9 +94,11 @@ export const getProduct = (
     mpg
   )) {
     const meta = dexterity.productToMeta(product);
+    console.log("productMeta", meta);
     if (pName.trim() === productName.trim()) {
       desiredProduct = product.outright.outright;
       desiredMarketState = desiredOrderbooks.get(meta.orderbook.toBase58());
+      console.log("desiredMarketState", desiredMarketState);
       break;
     }
   }

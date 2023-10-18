@@ -381,10 +381,16 @@ const Controls: React.FC = () => {
               />
               <p> {balance} SOL</p>
             </div>
-            <div className="flex flex-row gap-x-2 px-4 mt-3">
+            <button
+              className="flex flex-row gap-x-2 px-4 mt-3"
+              onClick={() => {
+                navigator.clipboard.writeText(publicKey?.toBase58() as string);
+                toast.success("Copied to clipboard");
+              }}
+            >
               <BiCopy className="text-xl" />
               <p>Copy Wallet Address</p>
-            </div>
+            </button>
             <button
               className="flex flex-row gap-x-2 px-4 mt-3"
               onClick={async () => {
