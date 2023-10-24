@@ -78,22 +78,22 @@ export const TradeControls: React.FC = () => {
     //     trgAmount: trgBalance as number,
     // });
 
-    // await createLimitOrder({
-    //   price: price!,
-    //   size: quantity!,
-    //   productName: selectedProduct!,
-    //   type: "buy",
-    // });
-
-    console.log("markPriceBeforePlacing", markPrice);
-
-    await createMarketOrder({
-      markPrice: markPrice?.markPrice,
-      productName: selectedProduct!,
+    await createLimitOrder({
+      price: price!,
       size: quantity!,
-      slippage: 0.5,
+      productName: selectedProduct!,
       type: "buy",
     });
+
+    // console.log("markPriceBeforePlacing", markPrice);
+
+    // await createMarketOrder({
+    //   markPrice: markPrice?.markPrice,
+    //   productName: selectedProduct!,
+    //   size: quantity!,
+    //   slippage: 0.5,
+    //   type: "buy",
+    // });
 
     setTransactionMessage("Transaction got executed");
     setIsPopupVisible(!isPopupVisible);
