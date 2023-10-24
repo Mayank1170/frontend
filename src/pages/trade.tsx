@@ -62,18 +62,18 @@ const TradeingPage: NextPageWithLayout = () => {
     setIsModalOpen(false);
   };
 
+  const { selectedProduct, openOrders } = useProducts();
+
   const { trgs, trgBalance } = useTRGs();
   console.log("trgs", trgs);
   console.log("trgBalance", trgBalance);
 
-  const { orderbookData } = useTradeData("ETH0D231017     ");
+  const { orderbookData } = useTradeData(selectedProduct!);
   console.log(orderbookData);
 
   const { products } = useDexterity();
 
   console.log("products", products);
-
-  const { selectedProduct, openOrders } = useProducts();
 
   console.log("selectedProduct", selectedProduct);
   console.log("openOrders", openOrders);

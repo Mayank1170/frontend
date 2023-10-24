@@ -12,6 +12,8 @@ import useTRGs from "@/hooks/useTRGs";
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "@modulz/radix-icons";
 import s from "./Accordion.module.css";
+import useProducts from "@/hooks/useProducts";
+import useTradeData from "@/hooks/useTradeData";
 export const Collapse = Accordion.Root;
 
 const options = [0, 25, 50, 75, 100];
@@ -39,7 +41,16 @@ export const TradeControls: React.FC = () => {
   const [price, setPrice] = useState<number>();
   const [quantity, setQuantity] = useState<number>();
 
-  const { trgs, trgBalance, closeTrg, createTrg, createLimitOrder } = useTRGs();
+  const {
+    trgs,
+    trgBalance,
+    closeTrg,
+    createTrg,
+    createLimitOrder,
+    createMarketOrder,
+  } = useTRGs();
+  const { selectedProduct } = useProducts();
+  const { markPrice } = useTradeData(selectedProduct!);
 
   const [transactionMessage, setTransactionMessage] = useState<string>("");
 
@@ -67,10 +78,20 @@ export const TradeControls: React.FC = () => {
     //     trgAmount: trgBalance as number,
     // });
 
-    await createLimitOrder({
-      price: price!,
+    // await createLimitOrder({
+    //   price: price!,
+    //   size: quantity!,
+    //   productName: selectedProduct!,
+    //   type: "buy",
+    // });
+
+    console.log("markPriceBeforePlacing", markPrice);
+
+    await createMarketOrder({
+      markPrice: markPrice?.markPrice,
+      productName: selectedProduct!,
       size: quantity!,
-      productName: "ETH0D231015",
+      slippage: 0.5,
       type: "buy",
     });
 
