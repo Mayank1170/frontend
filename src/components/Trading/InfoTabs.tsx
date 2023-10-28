@@ -93,7 +93,7 @@ export const InfoTabs: React.FC<TabsProps> = ({ onInfoTabChange }) => {
             }
             key={link.label}
             className={classNames(
-              "w-full h-14 rounded-lg flex items-center justify-center relative z-10 transition-colors duration-200 ease-in-out font-semibold",
+              "w-full h-14 rounded-lg flex items-center justify-center relative z-[2] transition-colors duration-200 ease-in-out font-semibold",
               {
                 "text-black": activeIndex === index,
                 "text-white": activeComponent !== link.click,
@@ -109,7 +109,7 @@ export const InfoTabs: React.FC<TabsProps> = ({ onInfoTabChange }) => {
         ))}
         <motion.div
           id="active-icon"
-          className={classNames("h-full w-[16.6667%] absolute rounded-lg", {
+          className={classNames("h-full z-[0] w-[16.6667%] absolute rounded-lg", {
             "bg-gradient-to-r from-emerald-700 to-emerald-300":
               activeIndex !== -1,
           })}

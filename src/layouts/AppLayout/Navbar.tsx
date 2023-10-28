@@ -361,14 +361,14 @@ const Controls: React.FC = () => {
           </div>
           <div className="flex flex-row justify-between px-3 mt-2 border-b-[0.5px] pb-4 border-zinc-600 ">
             <button className="w-[140px] h-10 pl-[10px] pr-[10px] bg-neutral-600 bg-opacity-40 rounded-lg justify-center items-center inline-flex">
-              <div className="text-white text-sm font-normal font-['Red Hat Display']">
+              <p className="text-white text-sm font-normal font-['Red Hat Display']">
                 Add Subaccount
-              </div>
+              </p>
             </button>
             <button className="w-[140px] h-10 pl-[51px] pr-[53.50px] bg-neutral-600 bg-opacity-40 rounded-lg justify-center items-center inline-flex">
-              <div className="text-white text-sm font-normal font-['Red Hat Display']">
+              <p className="text-white text-sm font-normal font-['Red Hat Display']">
                 Manage
-              </div>
+              </p>
             </button>
           </div>
           <div>
@@ -410,9 +410,9 @@ const Controls: React.FC = () => {
     <div className="flex items-center justify-center h-[57px] rounded-lg cursor-pointer bg-[#3db079] halo-effect hover:before:bg-[#3db079]">
       <Link href="/connectWallet">
         <button className="flex px-6 py-4">
-          <div className="text-[16px] font-bold whitespace-nowrap">
+          <p className="text-[16px] font-bold whitespace-nowrap">
             Connect Wallet
-          </div>
+          </p>
         </button>
       </Link>
     </div>

@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { BiChevronUp } from "react-icons/bi";
 import { RiSearch2Line } from "react-icons/ri";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 interface PricingLevelProps {
   onOpenModal: () => void;
@@ -22,7 +23,10 @@ export const PricingLevels: React.FC<PricingLevelProps> = ({ onOpenModal }) => {
 const GeneralInfo: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
-
+  const [selectedOption, setSelectedOption] = useState<string>("ETH0D231014");
+  const handleChange = (option: string) => {
+    setSelectedOption(option);
+  };
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -46,8 +50,8 @@ const GeneralInfo: React.FC = () => {
   return (
     <div className="flex flex-row my-2 relative">
       <button onClick={() => setIsOpen((prev) => !prev)}>
-        <div className="flex flex-row p-3 items-center justify-center rounded gap-2 ">
-        <Image
+        <div className="flex flex-row py-3 px-2 items-center justify-center rounded gap-1 ">
+          <Image
             src="/images/symbols/eth.png"
             width={100}
             height={100}
@@ -55,10 +59,10 @@ const GeneralInfo: React.FC = () => {
             className="2xl:w-10 w-8 h-8 2xl:h-10 xl:flex hidden"
           />
           <div>
-            <p className="2xl:text-[17px] xl:text-[13px] text-[25px] font-redhat ">
+            {/* <p className="2xl:text-[17px] xl:text-[13px] text-[25px] font-redhat ">
              ETH0D231014
-            </p>
-            {isOpen && (
+            </p> */}
+            {/* {isOpen && (
               <div
                 className="mt-4 w-[360px] justify-between py-2 z-20 bg-[#202020] rounded border border-white border-opacity-30 border-white/20 absolute"
                 ref={dropdownRef}
@@ -169,7 +173,133 @@ const GeneralInfo: React.FC = () => {
                   </div>
                 </div>
               </div>
-            )}
+            )} */}
+
+            <DropdownMenu.Root>
+              <DropdownMenu.Trigger className="relative flex flex-col justiffity-between w-full rounded  py-2">
+                <DropdownMenu.Trigger className="flex flex-row justify-between items-center px-2 text-sm py-[2.2px]">
+                  {selectedOption}
+                  {/* <ChevronDownIcon  /> */}
+                </DropdownMenu.Trigger>
+              </DropdownMenu.Trigger>
+              <DropdownMenu.Content className="flex flex-col w-full h-fit gap-y-5 py-2 mt-3 text-sm bg-[#202020] bg-opacity-100 items-start px-2 rounded-md border border-white border-opacity-25 z-[2] cursor-pointer relative left-20">
+                <div className="flex flex-row gap-x-2 items-center py-2 px-3">
+                  <div className="opacity-40 ">
+                    <RiSearch2Line className="w-6 h-6" />
+                  </div>
+                  <div className="text-lg items-center bg-transparent text-white font-semibold">
+                    <input
+                      type="string"
+                      name="quantity"
+                      id="quantity"
+                      placeholder="Search Markets"
+                      className="bg-transparent"
+                    />
+                  </div>
+                </div>
+                <div className="px-4 py-1 w-fit rounded text-md font-semibold bg-white bg-opacity-20 text-white/40 cursor-pointer ">
+                  New Markets
+                </div>
+                <DropdownMenu.Item
+                  onSelect={() => handleChange("ETH0D231014")}
+                  className="flex justify-between w-full"
+                >
+                  <div className="flex gap-x-3 items-center">
+                    <Image
+                      src="/images/symbols/eth.png"
+                      width={100}
+                      height={100}
+                      alt={"solana"}
+                      className="w-4 h-4"
+                    />
+                    <p>ETH0D231014</p>
+                  </div>
+                  <div className="flex flex-row gap-x-2 items-center mr-4">
+                    <p className="text-[14px]">$1.7420</p>
+                    <p className="text-[11px] text-green-400">+2.64</p>
+                  </div>
+                </DropdownMenu.Item>
+                <div className="px-4 py-1 w-fit rounded text-md font-semibold bg-white bg-opacity-20 text-white/40 cursor-pointer ">
+                  All Markets
+                </div>
+                <DropdownMenu.Item
+                  onSelect={() => handleChange("ETH0D231014")}
+                  className="flex justify-between w-full"
+                >
+                  <div className="flex gap-x-3 items-center">
+                    <Image
+                      src="/images/symbols/eth.png"
+                      width={100}
+                      height={100}
+                      alt={"solana"}
+                      className="w-4 h-4"
+                    />
+                    <p>ETH0D231014</p>
+                  </div>{" "}
+                  <div className="flex flex-row gap-x-2 items-center mr-4">
+                    <p className="text-[14px]">$1.7420</p>
+                    <p className="text-[11px] text-green-400">+2.64</p>
+                  </div>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item
+                  onSelect={() => handleChange("ETH0D231014")}
+                  className="flex justify-between w-full"
+                >
+                  <div className="flex gap-x-3 items-center">
+                    <Image
+                      src="/images/symbols/eth.png"
+                      width={100}
+                      height={100}
+                      alt={"solana"}
+                      className="w-4 h-4"
+                    />
+                    <p>ETH0D231014</p>
+                  </div>{" "}
+                  <div className="flex flex-row gap-x-2 items-center mr-4">
+                    <p className="text-[14px]">$1.7420</p>
+                    <p className="text-[11px] text-green-400">+2.64</p>
+                  </div>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item
+                  onSelect={() => handleChange("ETH0D231014")}
+                  className="flex justify-between w-full"
+                >
+                  <div className="flex gap-x-3 items-center">
+                    <Image
+                      src="/images/symbols/eth.png"
+                      width={100}
+                      height={100}
+                      alt={"solana"}
+                      className="w-4 h-4"
+                    />
+                    <p>ETH0D231014</p>
+                  </div>{" "}
+                  <div className="flex flex-row gap-x-2 items-center mr-4">
+                    <p className="text-[14px]">$1.7420</p>
+                    <p className="text-[11px] text-green-400">+2.64</p>
+                  </div>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item
+                  onSelect={() => handleChange("ETH0D231014")}
+                  className="flex justify-between w-full"
+                >
+                  <div className="flex gap-x-3 items-center">
+                    <Image
+                      src="/images/symbols/eth.png"
+                      width={100}
+                      height={100}
+                      alt={"solana"}
+                      className="w-4 h-4"
+                    />
+                    <p>ETH0D231014</p>
+                  </div>{" "}
+                  <div className="flex flex-row gap-x-2 items-center mr-4">
+                    <p className="text-[14px]">$1.7420</p>
+                    <p className="text-[11px] text-green-400">+2.64</p>
+                  </div>
+                </DropdownMenu.Item>
+              </DropdownMenu.Content>
+            </DropdownMenu.Root>
           </div>
           {!isOpen ? (
             <BiChevronDown className="h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]" />

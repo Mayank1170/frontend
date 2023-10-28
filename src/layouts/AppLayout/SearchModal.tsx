@@ -93,9 +93,9 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
       className="fixed inset-0 z-50 bg-[black] bg-opacity-30 backdrop-blur-sm h-full flex justify-center items-center text-black"
     >
       <div className="bg-[#181818] px-5  border border-white/20 rounded-[10px]">
-        <div className="px-2 text-xl font-bold text-white py-7">
+        <p className="px-2 text-xl font-bold text-white py-7">
           Manage Balances
-        </div>
+        </p>
         <div className="flex flex-row  bg-[#202020] rounded-lg border border-white/20 ">
           {tabLinks.map((link, index) => (
             <button
@@ -128,9 +128,9 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
           className="fixed inset-0 z-[99] bg-[black] bg-opacity-30 backdrop-blur-sm h-full flex justify-center items-center text-black"
         >
           <div className="bg-[#181818] px-5 w-[700px] border border-white/20 rounded-[10px]">
-            <div className="px-2 text-xl font-bold text-white py-7">
+            <p className="px-2 text-xl font-bold text-white py-7">
               Manage Balances
-            </div>
+            </p>
             <div className="flex flex-row  bg-[#202020] rounded-lg border border-white/20 ">
               {tabLinks.map((link, index) => (
                 <button
@@ -306,14 +306,10 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
             </div>
             <div className="w-full h-[1px] bg-white/20"></div>
             <div className="flex flex-row justify-between text-white text-[13px] mt-3">
-              {/* <h1 className="text-[#84AF9B] ">Asset Balance</h1>
-          <h1 className="text-gray-300">-0.98 USDC</h1> */}
               <p className="text-[#84AF9B] ">Asset Balance</p>
               <p className="text-gray-300">-0.98 USDC</p>
             </div>
             <div className="flex flex-row justify-between text-white text-[13px] mt-2">
-              {/* <h1 className="text-[#84AF9B] ">NetAccount Balance (USD)</h1>
-          <h1 className="text-gray-300">$2.00</h1> */}
               <p className="text-[#84AF9B] ">NetAccount Balance (USD)</p>
               <p className="text-gray-300">$2.00</p>
             </div>

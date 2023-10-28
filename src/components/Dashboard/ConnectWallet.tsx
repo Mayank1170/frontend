@@ -23,9 +23,9 @@ export const ConnectWallet: React.FC = () => {
           backdropFilter: "blur(2px)",
         }}
       >
-        <div className="text-white/50 mb-8 ">
+        <p className="text-white/50 mb-8 ">
           Connect your Solana wallet to deposit funds and start trading
-        </div>
+        </p>
         <Link href="/connectWallet">
           <button
             className="rounded-xl px-8 py-2"

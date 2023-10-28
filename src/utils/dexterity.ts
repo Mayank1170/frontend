@@ -98,7 +98,9 @@ export const getProduct = (
     if (pName.trim() === productName.trim()) {
       desiredProduct = product.outright.outright;
       desiredMarketState = desiredOrderbooks.get(meta.orderbook.toBase58());
+      const wordsArray = desiredMarketState.asks._bn.words;
       console.log("desiredMarketState", desiredMarketState);
+      console.log("Words",desiredMarketState.asks._bn.words);
       break;
     }
   }
@@ -113,8 +115,9 @@ export const getMarkPrice = async (
 ) => {
   const markPriceAccount = manifest.getMarkPricesAccount(MPG_PUBKEY, mpg);
 
+  // console.log("markPriceAccount", markPriceAccount.toBase58());
   const markPrices = await manifest.getMarkPrices(markPriceAccount);
-
+  // console.log("markPrices", markPrices);
   const markPricesParsed = markPrices.array.map((markPrice: MarkPrice) => {
     return {
       ...markPrice,
@@ -314,6 +317,79 @@ export const placeLimitOrder = async (
   } catch (err) {
     console.error(err);
   }
+};
+
+export const placeMarketOrder = async (
+  manifest: Manifest,
+  type: "buy" | "sell",
+  size: number,
+  trgPubkey: PublicKey,
+  productName: string,
+  markPrice: number,
+  slippage: number
+) => {
+  const trader = new dexterity.Trader(manifest, trgPubkey);
+
+  await trader.update();
+
+  let productIndex: any;
+  for (const [name, { index, product }] of trader.getProducts()) {
+    console.log(name);
+    if (name.trim() === productName.trim()) {
+      productIndex = index;
+      break;
+    }
+  }
+
+  const decimals = size.toString().split(".")[1]?.length || 0;
+
+  const normalizedMarkPrice = markPrice / 10 ** 6;
+
+  const priceFraction = dexterity.Fractional.New(
+    type === "sell"
+      ? normalizedMarkPrice - (normalizedMarkPrice * slippage) / 100
+      : normalizedMarkPrice + (normalizedMarkPrice * slippage) / 100,
+    0
+  );
+  const sizeFractional = dexterity.Fractional.New(
+    size * 10 ** decimals,
+    decimals
+  );
+
+  console.log(
+    "Placing market order with size:",
+    size,
+    "type:",
+    type,
+    "product:",
+    productName,
+    "markPrice:",
+    markPrice,
+    "slippage:",
+    slippage
+  );
+
+  const callbacks = {
+    onGettingBlockHashFn: () => {},
+    onGotBlockHashFn: () => {},
+    onTxSentFn: (sig: any) =>
+      console.log(
+        `\nSUCCESSFULLY PLACED MARKET ${type.toLocaleUpperCase()} ORDER\nSIGNATURE: https://solscan.io/tx/${sig}?cluster=devnet`
+      ),
+  };
+
+  await trader.newOrder(
+    productIndex,
+    type === "buy",
+    priceFraction,
+    sizeFractional,
+    false,
+    null,
+    null,
+    null,
+    null,
+    callbacks
+  );
 };
 
 export const getOrderbook = async (

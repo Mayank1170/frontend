@@ -22,6 +22,8 @@ const useAccountInfo = () => {
       trgs.length > 0,
   });
 
+  console.log("accountInfo:", accountInfo);
+
   return { accountInfo };
 };
 

@@ -8,6 +8,7 @@ import {
   getTRGBalance,
   getTRGs,
   placeLimitOrder,
+  placeMarketOrder,
   withdrawFn,
 } from "@/utils/dexterity";
 import { PublicKey } from "@solana/web3.js";
@@ -144,6 +145,42 @@ const useTRGs = () => {
       });
     },
   });
+  const {
+    mutate: createMarketOrder,
+    isLoading: creatingMarketOrder,
+    isSuccess: createdMarketOrder,
+    error: createMarketOrderError,
+  } = useMutation({
+    mutationKey: ["createMarketOrder", publicKey?.toBase58()],
+    mutationFn: async ({
+      type,
+      size,
+      productName,
+      slippage,
+      markPrice,
+    }: {
+      type: "buy" | "sell";
+      size: number;
+      productName: string;
+      slippage: number;
+      markPrice: number;
+    }) => {
+      if (!trgs || trgs.length === 0) return;
+      await placeMarketOrder(
+        manifest!,
+        type,
+        size,
+        trgs![0].pubkey,
+        productName,
+        markPrice,
+        slippage
+      );
+
+      queryClient.refetchQueries({
+        queryKey: ["trgBalance", publicKey?.toBase58()],
+      });
+    },
+  });
 
   return {
     trgs,
@@ -158,7 +195,7 @@ const useTRGs = () => {
     closingTrg,
     closedTrg,
     closeTrgError,
-    // deposit
+    // deposit placeMarketOrder,
     createDeposit,
     creatingDeposit,
     createdDeposit,
@@ -173,6 +210,11 @@ const useTRGs = () => {
     creatingLimitOrder,
     createdLimitOrder,
     createLimitOrderError,
+      // place market order
+      createMarketOrder,
+      creatingMarketOrder,
+      createdMarketOrder,
+      createMarketOrderError,
   };
 };
 
