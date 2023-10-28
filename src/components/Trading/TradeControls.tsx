@@ -20,7 +20,7 @@ import {
 import { useForm } from "react-hook-form";
 import s from "./Accordion.module.css";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import useProducts from "@/hooks/useProducts";
+// import useProducts from "@/hooks/useProducts";
 import useTradeData from "@/hooks/useTradeData";
 import Button from "@radix-ui/react-accordion";
 import { Market } from "./Market";
