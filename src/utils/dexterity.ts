@@ -114,16 +114,19 @@ export const getMarkPrice = async (
   product: any
 ) => {
   const markPriceAccount = manifest.getMarkPricesAccount(MPG_PUBKEY, mpg);
-
   // console.log("markPriceAccount", markPriceAccount.toBase58());
+  
   const markPrices = await manifest.getMarkPrices(markPriceAccount);
   // console.log("markPrices", markPrices);
+
   const markPricesParsed = markPrices.array.map((markPrice: MarkPrice) => {
     return {
       ...markPrice,
       markPrice: markPrice.markPrice.value.toNumber(),
     };
   });
+
+  // console.log("markPricesParsed", markPricesParsed);
 
   const markPrice = markPricesParsed.find(
     (markPrice: any) =>

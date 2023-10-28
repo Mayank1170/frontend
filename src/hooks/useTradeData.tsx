@@ -20,12 +20,12 @@ const useTradeData = (productName: string) => {
     enabled: !!mpg,
   });
 
-
   const { data: markPrice } = useQuery({
     queryKey: ["markPrice", connection.rpcEndpoint, productName],
     queryFn: () => getMarkPrice(manifest!, mpg!, product?.desiredProduct),
     enabled: manifest && mpg && product?.desiredProduct ? true : false,
     });
+
 
   const { data: orderbookData } = useQuery({
     queryKey: ["orderbookData", connection.rpcEndpoint, productName],
