@@ -150,7 +150,7 @@ const Feature: React.FC<FeatureProps> = ({
             transition={{ duration: 1.5, ease: "easeInOut" }}
             // viewport={{ once: true, root: ref }}
           >
-            <h1>{btnText}</h1>
+            <p>{btnText}</p>
           </motion.button>
         </div>
         <motion.img

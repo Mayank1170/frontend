@@ -76,9 +76,9 @@ export const Hero: React.FC = () => {
             >
               <div>
                 <button className="flex px-2 py-1">
-                  <div className="text-[18px] font-bold whitespace-nowrap">
+                  <p className="text-[18px] font-bold whitespace-nowrap">
                     Launch App
-                  </div>
+                  </p>
                 </button>
               </div>
             </Link>

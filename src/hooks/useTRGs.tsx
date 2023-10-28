@@ -196,7 +196,7 @@ const useTRGs = () => {
     closingTrg,
     closedTrg,
     closeTrgError,
-    // deposit
+    // deposit placeMarketOrder,
     createDeposit,
     creatingDeposit,
     createdDeposit,

@@ -98,7 +98,9 @@ export const getProduct = (
     if (pName.trim() === productName.trim()) {
       desiredProduct = product.outright.outright;
       desiredMarketState = desiredOrderbooks.get(meta.orderbook.toBase58());
+      const wordsArray = desiredMarketState.asks._bn.words;
       console.log("desiredMarketState", desiredMarketState);
+      console.log("Words",desiredMarketState.asks._bn.words);
       break;
     }
   }
@@ -112,11 +114,9 @@ export const getMarkPrice = async (
   product: any
 ) => {
   const markPriceAccount = manifest.getMarkPricesAccount(MPG_PUBKEY, mpg);
-
   // console.log("markPriceAccount", markPriceAccount.toBase58());
-
+  
   const markPrices = await manifest.getMarkPrices(markPriceAccount);
-
   // console.log("markPrices", markPrices);
 
   const markPricesParsed = markPrices.array.map((markPrice: MarkPrice) => {

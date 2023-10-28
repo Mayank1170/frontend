@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { useDebugValue } from "react";
 import { CgArrowsShrinkV } from "react-icons/cg";
 import { BiChevronDown } from "react-icons/bi";
 import { BiChevronUp } from "react-icons/bi";
 import classNames from "classnames";
 import { motion } from "framer-motion";
 import useTradeData from "@/hooks/useTradeData";
+import { PricingLevels } from "./PricingLevels";
+import useProducts from "@/hooks/useProducts";
+import { getProduct } from "@/utils/dexterity";
 
 const marketValue: MarketDataProps[] = [
   {
@@ -417,6 +421,7 @@ const spreadValue: SpreadDataProps[] = [
     textColor: "red",
   },
 ];
+
 export const TradeValue: React.FC = () => {
   return (
     <div>
@@ -552,9 +557,9 @@ export const NavLinks: React.FC = () => {
         >
           <div className="w-fit h-fit px-2 py-1 bg-neutral-700 rounded-md justify-start items-center gap-1 inline-flex">
             <div className="justify-start items-center gap-1 flex">
-              <div className="text-white text-sm font-normal font-['Red Hat Display']">
+              <p className="text-white text-sm font-normal font-['Red Hat Display']">
                 0.01
-              </div>
+              </p>
               {!isOpen ? (
                 <BiChevronDown className="h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]" />
               ) : (
@@ -575,6 +580,15 @@ export const OrderBook: React.FC = () => {
   //   return <div>Loading...</div>;
   // // }
   // console.log(mpg, markPrice, orderbookData);
+
+   const OrderBook = useTradeData("ETH0D231014     ");
+ 
+  const { products,selectedProduct, setSelectedProduct, openOrders} = useProducts()
+
+
+  console.log("orders = ",selectedProduct )
+  console.log("Order Books",OrderBook.mpg?.marketProducts);
+
 
   return (
     <div className="bg-neutral-800 mt-0 w-[100%] border-[0.5px] border-white/20 border-t-0 xl:rounded-b-md xl:rounded-t-[0px] rounded-md border-b-white/20">

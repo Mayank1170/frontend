@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect, ChangeEvent } from "react";
 import ArrowRight from "../icons/ArrowRight";
 // import { RangeSlider } from "./Slider";`
+import toast, { Toaster } from "react-hot-toast";
 import { BiChevronDown } from "react-icons/bi";
 import { BiChevronUp } from "react-icons/bi";
 import { ImSpinner3 } from "react-icons/im";
@@ -10,11 +11,23 @@ import { AiOutlineClose } from "react-icons/ai";
 import { AiFillCheckCircle } from "react-icons/ai";
 import useTRGs from "@/hooks/useTRGs";
 import * as Accordion from "@radix-ui/react-accordion";
-import { ChevronDownIcon } from "@modulz/radix-icons";
+import { getProduct } from "@/utils/dexterity";
+import {
+  CaretDownIcon,
+  CaretUpIcon,
+  ChevronDownIcon,
+} from "@modulz/radix-icons";
+import { useForm } from "react-hook-form";
 import s from "./Accordion.module.css";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+// import useProducts from "@/hooks/useProducts";
+// import useTradeData from "@/hooks/useTradeData";
+import Button from "@radix-ui/react-accordion";
+import { Market } from "./Market";
 import useProducts from "@/hooks/useProducts";
 import useTradeData from "@/hooks/useTradeData";
 export const Collapse = Accordion.Root;
+import useAccountInfo from "@/hooks/useAccountInfo";
 
 const options = [0, 25, 50, 75, 100];
 
@@ -40,7 +53,6 @@ export const TradeControls: React.FC = () => {
   const [usdValue, setUsdValue] = useState<number>();
   const [price, setPrice] = useState<number>();
   const [quantity, setQuantity] = useState<number>();
-
   const {
     trgs,
     trgBalance,
@@ -49,11 +61,16 @@ export const TradeControls: React.FC = () => {
     createLimitOrder,
     createMarketOrder,
   } = useTRGs();
-  const { selectedProduct } = useProducts();
-  const { markPrice } = useTradeData(selectedProduct!);
+
+  // const { selectedProduct } = useProducts();
+  // const { markPrice } = useTradeData(selectedProduct!);
 
   const [transactionMessage, setTransactionMessage] = useState<string>("");
 
+  const { products, selectedProduct, setSelectedProduct, openOrders } =
+    useProducts();
+  console.log("Product name:", selectedProduct);
+  const { markPrice } = useTradeData(selectedProduct!);
   const handlePopupToggle = async () => {
     // await createTrg();
 
@@ -64,7 +81,7 @@ export const TradeControls: React.FC = () => {
         console.error("Failed to populate trgs after multiple attempts");
         return;
       }
-      await new Promise((res) => setTimeout(res, 500)); // Wait for half a second before checking again
+      await new Promise((res) => setTimeout(res, 500));
       attempts += 1;
     }
 
@@ -73,18 +90,16 @@ export const TradeControls: React.FC = () => {
       return;
     }
 
-    // await closeTrg({
-    //     trgPubkey: trgs[0].pubkey,
-    //     trgAmount: trgBalance as number,
-    // });
-
+    if (selectedProduct === null) {
+      console.error("No product selected");
+      return;
+    }
     // await createLimitOrder({
     //   price: price!,
     //   size: quantity!,
     //   productName: selectedProduct!,
     //   type: "buy",
     // });
-
     console.log("markPriceBeforePlacing", markPrice);
 
     await createMarketOrder({
@@ -110,8 +125,8 @@ export const TradeControls: React.FC = () => {
 
   const popupContent =
     orderStatus === "Order Filled"
-      ? "Long 0.7 SOL-PERP with an average fill price $21.659"
-      : "Long 0.75249 SOL-PERP";
+      ? `Long  ${selectedProduct} with an average fill price $21.659`
+      : `${selectedProduct}`;
 
   const ConfirmationMessage =
     orderStatus === "Order Filled" ? "" : "Awaiting Confirmation";
@@ -192,8 +207,8 @@ export const TradeControls: React.FC = () => {
                 </div>
               </div>
               <div className="flex flex-row items-center gap-x-2">
-                <div className="text-[14px] font-semibold">Post</div>
-                <div
+                <p className="text-[14px] font-semibold">Post</p>
+                <p
                   onClick={() => setToggle2(!toggle2)}
                   className={`flex h-[24px] w-12 cursor-pointer rounded-full border border-black
            ${
@@ -209,7 +224,7 @@ export const TradeControls: React.FC = () => {
                     layout
                     transition={{ type: "spring", stiffness: 700, damping: 30 }}
                   />
-                </div>
+                </p>
               </div>
             </div>
 
@@ -234,7 +249,7 @@ export const TradeControls: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-y-3">
+          <div className="flex flex-col gap-y-0">
             <Collapse type="multiple" className={s.Container}>
               <Accordion.Item value="item-1" className={s.Item}>
                 <Accordion.Header className={s.Header}>
@@ -277,47 +292,63 @@ export const TradeControls: React.FC = () => {
           </div>
         </div>
       </div>
-      <button
-        onClick={handlePopupToggle}
-        className={`flex flex-row w-full justify-center content-center items-center ${
-          isBuyClicked
-            ? " bg-gradient-to-r from-green-500 to-emerald-300"
-            : isSellClicked
-            ? "bg-gradient-to-r from-red-400 to-rose-400"
-            : ""
-        } p-3 mt-5 rounded-md font-semibold text-black`}
+      <div
+        onClick={() => {
+          toast.custom((t) => (
+            <div
+              className={`${
+                t.visible ? "animate-enter" : "animate-leave"
+              } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+            >
+              <div className="flex flex-col w-[21%] h-[120px] bottom-[30px] right-[68px]  bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
+                <div className="flex flex-row px-6 py-4 rounded-md justify-between items-center">
+                  <div className="flex flex-row items-center gap-x-[5px]">
+                    <div>{popupIcon}</div>
+                    <p className="text-white text-[17px] font-semibold">
+                      {orderStatus}
+                    </p>
+                  </div>
+                  <button
+                    className="text-white text-[12px]"
+                    // onClick={() => toast.dismiss(t.id)}
+                  >
+                    <AiOutlineClose />
+                  </button>
+                </div>
+                <div className="w-[100%] flex flex-col justify-start items-center ">
+                  <p className="text-white w-[90%] opacity-50 text-[13px] 2xl:text-[16px] 3xl:text-[17px] pl-0">
+                    {popupContent}
+                  </p>
+                  <p className="text-white opacity-50 text-[12px]">
+                    {ConfirmationMessage}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ));
+        }}
       >
-        <div>
-          {isBuyClicked
-            ? "Long ~3.44845 SOL-PERP"
-            : isSellClicked
-            ? "Short ~3.44845 SOL-PERP"
-            : ""}
-        </div>
-        {isPopupVisible && (
-          <div className="flex flex-col w-[21%] h-[120px] bottom-[30px] right-[68px]  bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
-            <div className="flex flex-row items-center justify-between px-6 py-4 rounded-md">
-              <div className="flex flex-row items-center gap-x-[5px]">
-                <div>{popupIcon}</div>
-                <p className="text-white text-[17px] font-semibold">
-                  {orderStatus}
-                </p>
-              </div>
-              <div className="text-white text-[12px]">
-                <AiOutlineClose />
-              </div>
-            </div>
-            <div className="w-[100%] flex flex-col justify-start items-center ">
-              <p className="text-white w-[90%] opacity-50 text-[13px] 2xl:text-[16px] 3xl:text-[17px] pl-0">
-                {popupContent}
-              </p>
-              <p className="text-white opacity-50 text-[12px]">
-                {ConfirmationMessage}
-              </p>
-            </div>
+        <button
+          onClick={handlePopupToggle}
+          className={`flex flex-row w-full justify-center content-center items-center ${
+            isBuyClicked
+              ? " bg-gradient-to-r from-green-500 to-emerald-300"
+              : isSellClicked
+              ? "bg-gradient-to-r from-red-400 to-rose-400"
+              : ""
+          } p-3 mt-5 rounded-md font-semibold text-black`}
+        >
+          <div>
+            {isBuyClicked
+              ? `Long ${selectedProduct}`
+              : isSellClicked
+              ? `Short ${selectedProduct}`
+              : ""}
           </div>
-        )}
-      </button>
+        </button>
+      </div>
+      <hr className="w-full border-t border-t-white/10 mt-6 mb-6" />
+      <Prices />
     </div>
   );
 };
@@ -338,17 +369,13 @@ const Inputs = ({
   setUsdValue: (usdValue: number) => void;
 }) => {
   const [selectedOption, setSelectedOption] = useState<string>("Market");
-  const [isOpen, setIsOpen] = useState(false);
-  const options = [
-    "Market",
-    "Stop-Market",
-    "Stop-Limit",
-    "Take-Profit",
-    "Take-Profit-Limit",
-  ];
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const handleChange = (option: string) => {
     setSelectedOption(option);
-    setIsOpen(true);
+  };
+
+  const handleDropdownToggle = () => {
+    setIsDropdownOpen((prevState) => !prevState);
   };
 
   const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -371,6 +398,10 @@ const Inputs = ({
       setUsdValue(0);
     }
   };
+  console.log("Get Product", getProduct);
+
+  const { register, handleSubmit } = useForm();
+  const [data, setData] = useState("");
 
   return (
     <div className="flex flex-col w-full gap-y-4">
@@ -382,41 +413,39 @@ const Inputs = ({
           <label htmlFor="order-type" className="opacity-70">
             Order Type
           </label>
-          <div
-            onClick={() => setIsOpen((prev) => !prev)}
-            className="relative flex flex-col justiffity-between w-full bg-[#FFFFFF26] rounded  py-2 border border-white/20"
-          >
-            <div className="flex flex-row justify-between px-2">
-              <div className="flex font-semibold items-center text-[13px]">
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger className="relative flex flex-col justify-between w-full bg-[#FFFFFF26] rounded  py-2 border border-white/20">
+              <DropdownMenu.Trigger className="flex flex-row justify-between items-center px-2 text-sm py-[2.2px]">
                 {selectedOption}
-              </div>
-              {!isOpen ? (
-                <BiChevronDown className="h-[25px] w-[25px]" />
-              ) : (
-                <BiChevronUp className="h-[25px] w-[25px]" />
-              )}
-            </div>
-            {!isOpen ? (
-              <div></div>
-            ) : (
-              <div className="flex flex-col w-full h-fit gap-y-2 absolute top-[50px] bg-neutral-700 bg-opacity-100 items-start pl-3 rounded-md border border-white border-opacity-25">
-                {options.map((option) => (
-                  <div
-                    key={option}
-                    onClick={() => handleChange(option)}
-                    className="w-full text-white/90 text-[12.89px] hover:text-[13px] font-medium hover:text-white cursor-pointer"
-                  >
-                    <div className="h-2"></div>
-                    {option}
-                    <div className="h-2"></div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+                <ChevronDownIcon className={s.Icon} />
+              </DropdownMenu.Trigger>
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content className="flex flex-col w-full h-fit gap-y-5 py-2 mt-3 text-sm bg-neutral-700 bg-opacity-100 items-start px-2 rounded-md border border-white border-opacity-25 z-[2] cursor-pointer">
+              <DropdownMenu.Item onSelect={() => handleChange("Market")}>
+                Market
+              </DropdownMenu.Item>
+              <DropdownMenu.Item onSelect={() => handleChange("Limit")}>
+                Limit
+              </DropdownMenu.Item>
+              <DropdownMenu.Item onSelect={() => handleChange("Stop-Market")}>
+                Stop-Market
+              </DropdownMenu.Item>
+              <DropdownMenu.Item onSelect={() => handleChange("Stop-Limit")}>
+                Stop-Limit
+              </DropdownMenu.Item>
+              <DropdownMenu.Item onSelect={() => handleChange("Take-Profit")}>
+                Take-Profit
+              </DropdownMenu.Item>
+              <DropdownMenu.Item
+                onSelect={() => handleChange("Take-Profit-Limit")}
+              >
+                Take-Profit-Limit
+              </DropdownMenu.Item>
+            </DropdownMenu.Content>
+          </DropdownMenu.Root>
         </div>
-        <div
-          id="price-usd"
+        <form
+          onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}
           className="w-[50%] flex flex-col gap-y-1 font-redhat"
         >
           <label htmlFor="price" className="opacity-70 ">
@@ -424,24 +453,30 @@ const Inputs = ({
           </label>
           <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-full border border-white/20">
             <input
-              placeholder="16,800"
               value={price}
               onChange={handlePriceChange}
-              type="number"
+              type="text"
               name="price"
               id="price"
+              placeholder="16,800"
               className="flex-1 px-2 bg-transparent w-[4.5rem]"
             />
             <span>USD</span>
           </div>
-        </div>
+        </form>
       </div>
       <div className="flex flex-row gap-x-3">
-        <div id="quantity-input" className="flex flex-col w-[50%] gap-y-1">
-          <div>Quantity</div>
-          <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-[full] border border-white/20 font-redhat">
+        <form
+          onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}
+          className="w-[50%] flex flex-col gap-y-1 font-redhat"
+        >
+          <label htmlFor="price" className="opacity-70 ">
+            Quantity
+          </label>
+          <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-full border border-white/20">
             <input
-              type="number"
+              {...register("0.005")}
+              type="text"
               value={quantity}
               onChange={handleInputChange}
               name="crypto"
@@ -454,19 +489,19 @@ const Inputs = ({
               height={24}
               alt="bitcoin"
               className="mr-2"
-            />
+            />{" "}
           </div>
-        </div>
+        </form>
         <div id="crypto-input" className="w-[50%]">
           <div className="h-[28px] w-full"></div>
-          <div className="flex items-center justify-between bg-[#FFFFFF26] rounded px-4 py-[10px] w-[full] border border-white/20 font-redhat">
+          <div className="flex items-center justify-between bg-[#FFFFFF26] rounded px-4 py-2 w-[full] border border-white/20 font-redhat">
             <p>{usdValue}</p>
             <Image
               src="/images/usdc.png"
               width={24}
               height={24}
               alt="bitcoin"
-              className="h-5 mr-2"
+              className="h-6 w-6 mr-2"
             />
           </div>
         </div>
@@ -508,12 +543,16 @@ const Leverage: React.FC<LeverageInputProps> = ({
 };
 
 const Prices: React.FC = () => {
+  const tradeInfo = useAccountInfo();
+
   return (
     <div className="flex flex-col w-full p-3 rounded-lg gap-y-4 font-redhat bg-neutral-700 bg-opacity-60">
       <div className="flex flex-row justify-between gap-x-2">
         <div className="flex flex-col w-[50%]">
           <p className="text-white text-[13px] font-semibold">Initial Margin</p>
-          <p className="text-white text-[10px] font-semibold">$ 200K</p>
+          <p className="text-white text-[10px] font-semibold">
+            {tradeInfo.accountInfo?.initialMarginReq}
+          </p>
         </div>
         <div className="flex flex-col w-[50%]">
           <p className="text-white text-[13px] font-semibold">Margin</p>
