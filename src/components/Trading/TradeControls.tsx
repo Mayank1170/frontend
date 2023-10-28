@@ -17,6 +17,7 @@ import {
   CaretUpIcon,
   ChevronDownIcon,
 } from "@modulz/radix-icons";
+import { useForm } from "react-hook-form";
 import s from "./Accordion.module.css";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import useProducts from "@/hooks/useProducts";
@@ -287,59 +288,60 @@ export const TradeControls: React.FC = () => {
           </div>
         </div>
       </div>
-      <div onClick={()=>{
-        toast.custom((t) => (
-          <div
-            className={`${
-              t.visible ? "animate-enter" : "animate-leave"
-            } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
-          >
-            <div className="flex flex-col w-[21%] h-[120px] bottom-[30px] right-[68px]  bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
-              <div className="flex flex-row px-6 py-4 rounded-md justify-between items-center">
-                <div className="flex flex-row items-center gap-x-[5px]">
-                  <div>{popupIcon}</div>
-                  <p className="text-white text-[17px] font-semibold">
-                    {orderStatus}
+      <div
+        onClick={() => {
+          toast.custom((t) => (
+            <div
+              className={`${
+                t.visible ? "animate-enter" : "animate-leave"
+              } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+            >
+              <div className="flex flex-col w-[21%] h-[120px] bottom-[30px] right-[68px]  bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
+                <div className="flex flex-row px-6 py-4 rounded-md justify-between items-center">
+                  <div className="flex flex-row items-center gap-x-[5px]">
+                    <div>{popupIcon}</div>
+                    <p className="text-white text-[17px] font-semibold">
+                      {orderStatus}
+                    </p>
+                  </div>
+                  <button
+                    className="text-white text-[12px]"
+                    // onClick={() => toast.dismiss(t.id)}
+                  >
+                    <AiOutlineClose />
+                  </button>
+                </div>
+                <div className="w-[100%] flex flex-col justify-start items-center ">
+                  <p className="text-white w-[90%] opacity-50 text-[13px] 2xl:text-[16px] 3xl:text-[17px] pl-0">
+                    {popupContent}
+                  </p>
+                  <p className="text-white opacity-50 text-[12px]">
+                    {ConfirmationMessage}
                   </p>
                 </div>
-                <button
-                  className="text-white text-[12px]"
-                  // onClick={() => toast.dismiss(t.id)}
-                >
-                  <AiOutlineClose />
-                </button>
-              </div>
-              <div className="w-[100%] flex flex-col justify-start items-center ">
-                <p className="text-white w-[90%] opacity-50 text-[13px] 2xl:text-[16px] 3xl:text-[17px] pl-0">
-                  {popupContent}
-                </p>
-                <p className="text-white opacity-50 text-[12px]">
-                  {ConfirmationMessage}
-                </p>
               </div>
             </div>
-          </div>
-        ));
-      }}>
-      <button
-        onClick={handlePopupToggle}
-        className={`flex flex-row w-full justify-center content-center items-center ${
-          isBuyClicked
-            ? " bg-gradient-to-r from-green-500 to-emerald-300"
-            : isSellClicked
-            ? "bg-gradient-to-r from-red-400 to-rose-400"
-            : ""
-        } p-3 mt-5 rounded-md font-semibold text-black`}
+          ));
+        }}
       >
-        <div>
-          {isBuyClicked
-            ? `Long ${selectedProduct}`
-            : isSellClicked
-            ? `Short ${selectedProduct}`
-            : ""}
-        </div>
-       
-      </button>
+        <button
+          onClick={handlePopupToggle}
+          className={`flex flex-row w-full justify-center content-center items-center ${
+            isBuyClicked
+              ? " bg-gradient-to-r from-green-500 to-emerald-300"
+              : isSellClicked
+              ? "bg-gradient-to-r from-red-400 to-rose-400"
+              : ""
+          } p-3 mt-5 rounded-md font-semibold text-black`}
+        >
+          <div>
+            {isBuyClicked
+              ? `Long ${selectedProduct}`
+              : isSellClicked
+              ? `Short ${selectedProduct}`
+              : ""}
+          </div>
+        </button>
       </div>
       <hr className="w-full border-t border-t-white/10 mt-6 mb-6" />
       <Prices />
@@ -392,8 +394,10 @@ const Inputs = ({
       setUsdValue(0);
     }
   };
-console.log("Get Product",getProduct);
+  console.log("Get Product", getProduct);
 
+  const { register, handleSubmit } = useForm();
+  const [data, setData] = useState("");
 
   return (
     <div className="flex flex-col w-full gap-y-4">
@@ -436,8 +440,8 @@ console.log("Get Product",getProduct);
             </DropdownMenu.Content>
           </DropdownMenu.Root>
         </div>
-        <div
-          id="price-usd"
+        <form
+          onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}
           className="w-[50%] flex flex-col gap-y-1 font-redhat"
         >
           <label htmlFor="price" className="opacity-70 ">
@@ -445,23 +449,29 @@ console.log("Get Product",getProduct);
           </label>
           <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-full border border-white/20">
             <input
-              placeholder="16,800"
               value={price}
               onChange={handlePriceChange}
               type="text"
               name="price"
               id="price"
+              placeholder="16,800"
               className="flex-1 px-2 bg-transparent w-[4.5rem]"
             />
             <span>USD</span>
           </div>
-        </div>
+        </form>
       </div>
       <div className="flex flex-row gap-x-3">
-        <div id="quantity-input" className="flex flex-col w-[50%] gap-y-1">
-          <p>Quantity</p>
-          <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-[full] border border-white/20 font-redhat">
+        <form
+          onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}
+          className="w-[50%] flex flex-col gap-y-1 font-redhat"
+        >
+          <label htmlFor="price" className="opacity-70 ">
+            Quantity
+          </label>
+          <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-full border border-white/20">
             <input
+              {...register("0.005")}
               type="text"
               value={quantity}
               onChange={handleInputChange}
@@ -475,19 +485,19 @@ console.log("Get Product",getProduct);
               height={24}
               alt="bitcoin"
               className="mr-2"
-            />
+            />{" "}
           </div>
-        </div>
+        </form>
         <div id="crypto-input" className="w-[50%]">
           <div className="h-[28px] w-full"></div>
-          <div className="flex items-center justify-between bg-[#FFFFFF26] rounded px-4 py-[10px] w-[full] border border-white/20 font-redhat">
+          <div className="flex items-center justify-between bg-[#FFFFFF26] rounded px-4 py-2 w-[full] border border-white/20 font-redhat">
             <p>{usdValue}</p>
             <Image
               src="/images/usdc.png"
               width={24}
               height={24}
               alt="bitcoin"
-              className="h-5 mr-2"
+              className="h-6 w-6 mr-2"
             />
           </div>
         </div>
@@ -529,7 +539,6 @@ const Leverage: React.FC<LeverageInputProps> = ({
 };
 
 const Prices: React.FC = () => {
-  
   const tradeInfo = useAccountInfo();
 
   return (
@@ -537,7 +546,9 @@ const Prices: React.FC = () => {
       <div className="flex flex-row justify-between gap-x-2">
         <div className="flex flex-col w-[50%]">
           <p className="text-white text-[13px] font-semibold">Initial Margin</p>
-          <p className="text-white text-[10px] font-semibold">{tradeInfo.accountInfo?.initialMarginReq}</p>
+          <p className="text-white text-[10px] font-semibold">
+            {tradeInfo.accountInfo?.initialMarginReq}
+          </p>
         </div>
         <div className="flex flex-col w-[50%]">
           <p className="text-white text-[13px] font-semibold">Margin</p>
