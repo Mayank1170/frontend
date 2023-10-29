@@ -59,128 +59,12 @@ const GeneralInfo: React.FC = () => {
             className="2xl:w-10 w-8 h-8 2xl:h-10 xl:flex hidden"
           />
           <div>
-            {/* <p className="2xl:text-[17px] xl:text-[13px] text-[25px] font-redhat ">
-             ETH0D231014
-            </p> */}
-            {/* {isOpen && (
-              <div
-                className="mt-4 w-[360px] justify-between py-2 z-20 bg-[#202020] rounded border border-white border-opacity-30 border-white/20 absolute"
-                ref={dropdownRef}
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-              >
-                <div className="flex flex-row gap-x-2 items-center py-2 px-3">
-                  <div className="opacity-40 ">
-                    <RiSearch2Line className="w-6 h-6" />
-                  </div>
-                  <div className="text-lg items-center bg-transparent text-white font-semibold">
-                    <input
-                      type="string"
-                      name="quantity"
-                      id="quantity"
-                      placeholder="Seacrh Markets"
-                      className="bg-transparent"
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-col justify-center gap-y-8 ml-5">
-                  <div className="px-4 py-1 w-fit rounded text-md font-semibold bg-white bg-opacity-20 text-white/40 cursor-pointer ">
-                    New Markets
-                  </div>
-                  <div className="flex flex-row items-center justify-between gap-x-2 w-full">
-                    <div className="flex flex-row items-center gap-x-2">
-                      <Image
-                        src="/images/Solana.png"
-                        width={100}
-                        height={100}
-                        alt={"solana"}
-                        className="w-4 h-4"
-                      />
-                      <div>Sol-PERP</div>
-                    </div>
-                    <div className="flex flex-row gap-x-2 items-center mr-4">
-                      <p className="text-[14px]">$1.7420</p>
-                      <p className="text-[11px] text-green-400">+2.64</p>
-                    </div>
-                  </div>
-                  <div className="px-4 py-1 w-fit rounded text-md font-semibold bg-white bg-opacity-20 text-white/40 cursor-pointer ">
-                    All Markets
-                  </div>
-                  <div className="flex flex-row items-center justify-between gap-x-2 w-full">
-                    <div className="flex flex-row items-center gap-x-2">
-                      <Image
-                        src="/images/Solana.png"
-                        width={100}
-                        height={100}
-                        alt={"solana"}
-                        className="w-4 h-4"
-                      />
-                      <div>Sol-PERP</div>
-                    </div>
-                    <div className="flex flex-row gap-x-2 items-center mr-4">
-                      <p className="text-[14px]">$1.7420</p>
-                      <p className="text-[11px] text-green-400">+2.64</p>
-                    </div>
-                  </div>{" "}
-                  <div className="flex flex-row items-center justify-between gap-x-2 w-full">
-                    <div className="flex flex-row items-center gap-x-2">
-                      <Image
-                        src="/images/Solana.png"
-                        width={100}
-                        height={100}
-                        alt={"solana"}
-                        className="w-4 h-4"
-                      />
-                      <div>Sol-PERP</div>
-                    </div>
-                    <div className="flex flex-row gap-x-2 items-center mr-4">
-                      <p className="text-[14px]">$1.7420</p>
-                      <p className="text-[11px] text-green-400">+2.64</p>
-                    </div>
-                  </div>{" "}
-                  <div className="flex flex-row items-center justify-between gap-x-2 w-full">
-                    <div className="flex flex-row items-center gap-x-2">
-                      <Image
-                        src="/images/Solana.png"
-                        width={100}
-                        height={100}
-                        alt={"solana"}
-                        className="w-4 h-4"
-                      />
-                      <div>Sol-PERP</div>
-                    </div>
-                    <div className="flex flex-row gap-x-2 items-center mr-4">
-                      <p className="text-[14px]">$1.7420</p>
-                      <p className="text-[11px] text-green-400">+2.64</p>
-                    </div>
-                  </div>{" "}
-                  <div className="flex flex-row items-center justify-between gap-x-2 w-full">
-                    <div className="flex flex-row items-center gap-x-2">
-                      <Image
-                        src="/images/Solana.png"
-                        width={100}
-                        height={100}
-                        alt={"solana"}
-                        className="w-4 h-4"
-                      />
-                      <div>Sol-PERP</div>
-                    </div>
-                    <div className="flex flex-row gap-x-2 items-center mr-4">
-                      <p className="text-[14px]">$1.7420</p>
-                      <p className="text-[11px] text-green-400">+2.64</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )} */}
-
             <DropdownMenu.Root>
-              <DropdownMenu.Trigger className="relative flex flex-col justiffity-between w-full rounded  py-2">
+              <DropdownMenu.Trigger className="relative flex flex-row justify-between items-center w-full rounded  py-2">
                 <DropdownMenu.Trigger className="flex flex-row justify-between items-center px-2 text-sm py-[2.2px]">
                   {selectedOption}
-                  {/* <ChevronDownIcon  /> */}
                 </DropdownMenu.Trigger>
+                <BiChevronDown className="h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]" />
               </DropdownMenu.Trigger>
               <DropdownMenu.Content className="flex flex-col w-full h-fit gap-y-5 py-2 mt-3 text-sm bg-[#202020] bg-opacity-100 items-start px-2 rounded-md border border-white border-opacity-25 z-[2] cursor-pointer relative left-20">
                 <div className="flex flex-row gap-x-2 items-center py-2 px-3">
@@ -301,11 +185,6 @@ const GeneralInfo: React.FC = () => {
               </DropdownMenu.Content>
             </DropdownMenu.Root>
           </div>
-          {!isOpen ? (
-            <BiChevronDown className="h-[25px] w-[25px] xl:h-[17px] xl:w-[17px]" />
-          ) : (
-            <BiChevronUp className="h-[25px] w-[25px]  xl:h-[17px] xl:w-[17px]" />
-          )}
         </div>
       </button>
       <div className="xl:flex hidden 2xl:gap-x-5 gap-x-3 my-4">

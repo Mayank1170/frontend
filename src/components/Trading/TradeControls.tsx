@@ -294,9 +294,9 @@ export const TradeControls: React.FC = () => {
             <div
               className={`${
                 t.visible ? "animate-enter" : "animate-leave"
-              } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+              } w-[20%] shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
             >
-              <div className="flex flex-col w-[21%] h-[120px] bottom-[30px] right-[68px]  bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20 absolute">
+              <div className="flex flex-col w-full h-[120px] bottom-[30px] right-[68px]  bg-[black] bg-opacity-30  backdrop-blur-[30px] rounded-lg border border-white border-opacity-30 border-white/20">
                 <div className="flex flex-row px-6 py-4 rounded-md justify-between items-center">
                   <div className="flex flex-row items-center gap-x-[5px]">
                     <div>{popupIcon}</div>
@@ -306,13 +306,13 @@ export const TradeControls: React.FC = () => {
                   </div>
                   <button
                     className="text-white text-[12px]"
-                    // onClick={() => toast.dismiss(t.id)}
+                    onClick={() => toast.dismiss(t.id)}
                   >
                     <AiOutlineClose />
                   </button>
                 </div>
-                <div className="w-[100%] flex flex-col justify-start items-center ">
-                  <p className="text-white w-[90%] opacity-50 text-[13px] 2xl:text-[16px] 3xl:text-[17px] pl-0">
+                <div className="w-[100%] flex flex-col justify-center items-center ">
+                  <p className="flex text-white w-[90%] justify-center items-center opacity-50 text-[13px] 2xl:text-[16px] 3xl:text-[17px] pl-0">
                     {popupContent}
                   </p>
                   <p className="text-white opacity-50 text-[12px]">
@@ -411,12 +411,12 @@ const Inputs = ({
           </label>
           <DropdownMenu.Root>
             <DropdownMenu.Trigger className="relative flex flex-col justify-between w-full bg-[#FFFFFF26] rounded  py-2 border border-white/20">
-              <DropdownMenu.Trigger className="flex flex-row justify-between items-center px-2 text-sm py-[2.2px]">
+              <DropdownMenu.Trigger className="flex flex-row justify-between items-center px-2 text-sm py-[2.2px] w-full">
                 {selectedOption}
                 <ChevronDownIcon className={s.Icon} />
               </DropdownMenu.Trigger>
             </DropdownMenu.Trigger>
-            <DropdownMenu.Content className="flex flex-col w-full h-fit gap-y-5 py-2 mt-3 text-sm bg-neutral-700 bg-opacity-100 items-start px-2 rounded-md border border-white border-opacity-25 z-[2] cursor-pointer">
+            <DropdownMenu.Content className="flex flex-col h-fit gap-y-5 py-2 mt-3 text-sm bg-neutral-700 bg-opacity-100 items-start px-2 rounded-md border border-white border-opacity-25 z-[2] cursor-pointer">
               <DropdownMenu.Item onSelect={() => handleChange("Market")}>
                 Market
               </DropdownMenu.Item>
@@ -451,11 +451,12 @@ const Inputs = ({
             <input
               value={price}
               onChange={handlePriceChange}
-              type="text"
+              type="number"
               name="price"
               id="price"
               placeholder="16,800"
               className="flex-1 px-2 bg-transparent w-[4.5rem]"
+              style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }}
             />
             <span>USD</span>
           </div>
@@ -472,12 +473,13 @@ const Inputs = ({
           <div className="flex items-center justify-center bg-[#FFFFFF26] rounded px-4 py-2 w-full border border-white/20">
             <input
               {...register("0.005")}
-              type="text"
+              type="number"
               value={quantity}
               onChange={handleInputChange}
               name="crypto"
               id="crypto"
               className="flex-1 w-20 px-2 bg-transparent"
+              style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }}
             />
             <Image
               src="/images/btc.png"
