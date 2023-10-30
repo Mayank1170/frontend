@@ -145,6 +145,7 @@ const useTRGs = () => {
       });
     },
   });
+
   const {
     mutate: createMarketOrder,
     isLoading: creatingMarketOrder,
@@ -210,11 +211,11 @@ const useTRGs = () => {
     creatingLimitOrder,
     createdLimitOrder,
     createLimitOrderError,
-      // place market order
-      createMarketOrder,
-      creatingMarketOrder,
-      createdMarketOrder,
-      createMarketOrderError,
+    // place market order
+    createMarketOrder,
+    creatingMarketOrder,
+    createdMarketOrder,
+    createMarketOrderError,
   };
 };
 

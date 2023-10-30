@@ -20,10 +20,12 @@ import {
 import { useForm } from "react-hook-form";
 import s from "./Accordion.module.css";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import useProducts from "@/hooks/useProducts";
-import useTradeData from "@/hooks/useTradeData";
+// import useProducts from "@/hooks/useProducts";
+// import useTradeData from "@/hooks/useTradeData";
 import Button from "@radix-ui/react-accordion";
 import { Market } from "./Market";
+import useProducts from "@/hooks/useProducts";
+import useTradeData from "@/hooks/useTradeData";
 export const Collapse = Accordion.Root;
 import useAccountInfo from "@/hooks/useAccountInfo";
 
@@ -60,6 +62,9 @@ export const TradeControls: React.FC = () => {
     createMarketOrder,
   } = useTRGs();
 
+  // const { selectedProduct } = useProducts();
+  // const { markPrice } = useTradeData(selectedProduct!);
+
   const [transactionMessage, setTransactionMessage] = useState<string>("");
 
   const { products, selectedProduct, setSelectedProduct, openOrders } =
@@ -95,7 +100,6 @@ export const TradeControls: React.FC = () => {
     //   productName: selectedProduct!,
     //   type: "buy",
     // });
-
     console.log("markPriceBeforePlacing", markPrice);
 
     await createMarketOrder({
