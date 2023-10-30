@@ -320,7 +320,7 @@ const Controls: React.FC = () => {
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Content
-        className=" w-[318px] justify-between py-2 z-10 bg-[#202020] rounded-lg border border-white border-opacity-30 border-white/20"
+        className=" w-[318px] justify-between py-2 z-10 bg-[#202020] rounded-lg border border-white border-opacity-30 border-white/20 mt-[8px] mr-[10px]"
         ref={dropdownRef}
         onClick={(e) => {
           e.stopPropagation();
