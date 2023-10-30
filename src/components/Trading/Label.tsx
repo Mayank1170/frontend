@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const Label: React.FC = () => {
   return (
-    <div className="md:flex h-[25px] flex-row items-center justify-between absolute left-0 bottom-0 right-0 bg-black hidden">
+    <div className="md:flex z-[2] h-[25px] flex-row items-center justify-between absolute left-0 bottom-0 right-0 bg-black hidden">
       <div className="flex flex-row items-center gap-x-2">
         <div className="w-3 h-3 rounded-full bg-emerald-600 "></div>
         <p className="text-[10px] lg:text-[13px]">Operational</p>

@@ -365,15 +365,9 @@ const Inputs = ({
   setUsdValue: (usdValue: number) => void;
 }) => {
   const [selectedOption, setSelectedOption] = useState<string>("Market");
-  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const handleChange = (option: string) => {
     setSelectedOption(option);
   };
-
-  const handleDropdownToggle = () => {
-    setIsDropdownOpen((prevState) => !prevState);
-  };
-
   const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(Number(event.target.value));
     calculateUsdValue(Number(event.target.value), quantity!);
@@ -493,7 +487,7 @@ const Inputs = ({
         <div id="crypto-input" className="w-[50%]">
           <div className="h-[28px] w-full"></div>
           <div className="flex items-center justify-between bg-[#FFFFFF26] rounded px-4 py-2 w-[full] border border-white/20 font-redhat">
-            <p>{usdValue}</p>
+            <p className="">{usdValue}</p>
             <Image
               src="/images/usdc.png"
               width={24}

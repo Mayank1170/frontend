@@ -143,9 +143,6 @@ const NavLinks: React.FC = () => {
 };
 
 const Settings = () => {
-  const [bookmarksChecked, setBookmarksChecked] = React.useState(true);
-  const [urlsChecked, setUrlsChecked] = React.useState(false);
-  const [person, setPerson] = React.useState("pedro");
 
   return (
     <DropdownMenu.Root>
@@ -161,6 +158,7 @@ const Settings = () => {
             alt="settings"
           />
         </button>
+
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Portal>
@@ -316,13 +314,6 @@ const Controls: React.FC = () => {
           background: "rgba(217, 217, 217, 0.15)",
         }}
       >
-        {/* <Image
-          src="/images/pfp.png"
-          width={68}
-          height={68}
-          alt="user"
-          className="object-cover w-full h-full rounded-md "
-        /> */}
         <div className="p-0 w-[50%]">
           <Image
             src={wallet?.adapter.icon as string}

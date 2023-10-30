@@ -6,6 +6,7 @@ import * as Accordion from "@radix-ui/react-accordion";
 import { motion } from "framer-motion";
 import useTRGs from "@/hooks/useTRGs";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 export const Collapse = Accordion.Root;
 
@@ -48,18 +49,9 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
     "Deposit" | "Withdraw" | "Borrow"
   >("Deposit");
   const [selectedOption, setSelectedOption] = useState<string>("Main Account");
-  const options = [
-    "Main Account",
-    "Account 2",
-    "Account 3",
-    "Account 4",
-    "Account 5",
-  ];
-
   const handleChange = (option: string) => {
     setSelectedOption(option);
   };
-
   const [selectedTab, setSelectedTab] = useState<
     "Deposit" | "Withdraw" | "Borrow"
   >("Deposit");
@@ -174,85 +166,54 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
                 }}
               />
             </div>
-            <div className="space-y-4 mb-2">
+            <div className="space-y-2 mb-2">
               {selectedTab === "Deposit" && (
-                <div className="flex flex-col gap-y-4">
+                <div
+                  className="flex flex-col gap-y-4 mt-2
+                .."
+                >
                   <div className="w-full">
                     <p className="text-[#84AF9B]">Deposit to</p>
-                    <Collapse type="multiple" className={s.Container}>
-                      <Accordion.Item value="item-1" className={s.Item}>
-                        <Accordion.Header className={s.Header}>
-                          <Accordion.Trigger className={s.Trigger}>
-                            <div className="flex items-center justify-between bg-[#FFFFFF26] rounded px-2 py-[10px] w-full border border-white/20">
-                              <div className="flex font-semibold items-center text-white/90 text-[15px]">
-                                {selectedOption}
-                              </div>
-                              <ChevronDownIcon aria-hidden className={s.Icon} />
-                            </div>
-                          </Accordion.Trigger>
-                        </Accordion.Header>
-                        <Accordion.Content>
-                          <div className="flex flex-col w-full h-fit gap-y-2 absolute z-[10] bg-neutral-700 bg-opacity-100 items-start mt-3 px-[9px] rounded-md border border-white border-opacity-25">
-                            {options.map((option) => (
-                              <div
-                                key={option}
-                                onClick={() => handleChange(option)}
-                                className="w-full text-white/90 text-[12.89px] hover:text-[13px] font-medium hover:text-white cursor-pointer"
-                              >
-                                <div className="h-2"></div>
-                                {option}
-                                <div className="h-2"></div>
-                              </div>
-                            ))}
-                          </div>
-                        </Accordion.Content>
-                      </Accordion.Item>
-                    </Collapse>
                   </div>
                 </div>
               )}
               {selectedTab === "Withdraw" && (
                 <div>
-                  <div className="flex flex-col gap-y-4">
+                  <div className="mt-2">
                     <div className="w-full">
                       <p className="text-[#84AF9B]">Withdraw from</p>
-                      <Collapse type="multiple" className={s.Container}>
-                        <Accordion.Item value="item-1" className={s.Item}>
-                          <Accordion.Header className={s.Header}>
-                            <Accordion.Trigger className={s.Trigger}>
-                              <div className="flex items-center justify-between bg-[#FFFFFF26] rounded px-2 py-[10px] w-full border border-white/20">
-                                <div className="flex font-semibold items-center text-white/90 text-[15px]">
-                                  {selectedOption}
-                                </div>
-                                <ChevronDownIcon
-                                  aria-hidden
-                                  className={s.Icon}
-                                />
-                              </div>
-                            </Accordion.Trigger>
-                          </Accordion.Header>
-                          <Accordion.Content>
-                            <div className="flex flex-col w-full h-fit gap-y-2 absolute z-[10] bg-neutral-700 bg-opacity-100 items-start mt-3 px-[9px] rounded-md border border-white border-opacity-25">
-                              {options.map((option) => (
-                                <div
-                                  key={option}
-                                  onClick={() => handleChange(option)}
-                                  className="w-full text-white/90 text-[12.89px] hover:text-[13px] font-medium hover:text-white cursor-pointer"
-                                >
-                                  <div className="h-2"></div>
-                                  {option}
-                                  <div className="h-2"></div>
-                                </div>
-                              ))}
-                            </div>
-                          </Accordion.Content>
-                        </Accordion.Item>
-                      </Collapse>
                     </div>
                   </div>{" "}
                 </div>
               )}
-
+              <DropdownMenu.Root>
+                <DropdownMenu.Trigger className="flex flex-col justify-between w-full bg-[#FFFFFF26] rounded  py-2 border border-white/20">
+                  <DropdownMenu.Trigger className="w-full flex font-semibold justify-between items-center text-white/90 text-[15px] px-3">
+                    {selectedOption}
+                    <ChevronDownIcon className={s.Icon} />
+                  </DropdownMenu.Trigger>
+                </DropdownMenu.Trigger>
+                <DropdownMenu.Content className="flex flex-col w-[100%] h-fit gap-y-5 py-2 mt-1 text-sm text-white/70 bg-neutral-700 bg-opacity-100 items-start px-2 rounded-md border border-white border-opacity-25 cursor-pointer">
+                  <DropdownMenu.Item
+                    onSelect={() => handleChange("Main Account")}
+                    className="border-none"
+                  >
+                    Main Account
+                  </DropdownMenu.Item>
+                  <DropdownMenu.Item onSelect={() => handleChange("Account 2")}>
+                    Account 2
+                  </DropdownMenu.Item>
+                  <DropdownMenu.Item onSelect={() => handleChange("Account 3")}>
+                    Account 3
+                  </DropdownMenu.Item>
+                  <DropdownMenu.Item onSelect={() => handleChange("Account 4")}>
+                    Account 4
+                  </DropdownMenu.Item>
+                  <DropdownMenu.Item onSelect={() => handleChange("Account 5")}>
+                    Account 5
+                  </DropdownMenu.Item>
+                </DropdownMenu.Content>
+              </DropdownMenu.Root>
               {selectedTab === "Borrow" && (
                 <div>{/* Content for Borrow tab */}</div>
               )}
