@@ -143,7 +143,6 @@ const NavLinks: React.FC = () => {
 };
 
 const Settings = () => {
-
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
@@ -158,7 +157,6 @@ const Settings = () => {
             alt="settings"
           />
         </button>
-
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Portal>
@@ -307,96 +305,81 @@ const Controls: React.FC = () => {
   }, [publicKey, connection]);
 
   return publicKey ? (
-    <div>
-      <div
-        className="xl:w-[100px] w-[80px] xl:h-[50px] flex flex-row items-center rounded-md  border border-white border-opacity-30 border-white/20"
-        style={{
-          background: "rgba(217, 217, 217, 0.15)",
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger className="xl:w-[100px] w-[80px] xl:h-[50px] flex flex-row items-center rounded-md  border border-white border-opacity-30 border-white/20">
+        <Image
+          src={wallet?.adapter.icon as string}
+          alt={wallet?.adapter.name as string}
+          width={60}
+          height={60}
+          className="w-[50%]"
+        />
+        <DropdownMenu.Trigger className="flex justify-center items-center w-[50%] h-[50%] font-bold">
+          <BiChevronDown className="h-[35px] w-[35px]" />
+        </DropdownMenu.Trigger>
+      </DropdownMenu.Trigger>
+
+      <DropdownMenu.Content
+        className=" w-[318px] justify-between py-2 z-10 bg-[#202020] rounded-lg border border-white border-opacity-30 border-white/20"
+        ref={dropdownRef}
+        onClick={(e) => {
+          e.stopPropagation();
         }}
       >
-        <div className="p-0 w-[50%]">
+        <DropdownMenu.Item className="flex flex-row items-center justify-between px-4 mt-1">
+          <p>Main Account</p>
+          <DropdownMenu.Item className="flex flex-row justify-between items-center text-center gap-x-1 text-green-600 text-2xl">
+            <AiOutlineHeart />
+            <p className="text-green-600 font-semibold text-[20px]">90%</p>
+          </DropdownMenu.Item>
+        </DropdownMenu.Item>
+        <DropdownMenu.Item className="flex flex-row justify-between px-3 mt-2 border-b-[0.5px] pb-4 border-zinc-600 ">
+          <button className="w-[140px] h-10 pl-[10px] pr-[10px] bg-neutral-600 bg-opacity-40 rounded-lg justify-center items-center inline-flex">
+            {" "}
+            <p className="text-white text-sm font-normal font-['Red Hat Display']">
+              Add Subaccount{" "}
+            </p>{" "}
+          </button>
+          <button className="w-[140px] h-10 pl-[51px] pr-[53.50px] bg-neutral-600 bg-opacity-40 rounded-lg justify-center items-center inline-flex">
+            <p className="text-white text-sm font-normal font-['Red Hat Display']">
+              Manage
+            </p>
+          </button>
+        </DropdownMenu.Item>
+        <DropdownMenu.Item className="w-[100%] flex flex-row gap-x-2 px-4 pt-2">
           <Image
             src={wallet?.adapter.icon as string}
             alt={wallet?.adapter.name as string}
-            width={60}
-            height={60}
+            width={23}
+            height={16}
           />
-        </div>
-        <div
-          onClick={() => setIsOpen((prev) => !prev)}
-          className="flex justify-center items-center w-[50%] h-[50%] font-bold"
-        >
-          {!isOpen ? (
-            <BiChevronDown className="h-[35px] w-[35px]" />
-          ) : (
-            <BiChevronUp className="h-[35px] w-[35px]" />
-          )}
-        </div>
-      </div>
-      {isOpen && (
-        <div
-          className="top-[90px] right-6 w-[318px] justify-between py-2 z-10 bg-[#202020] rounded-lg border border-white border-opacity-30 border-white/20 absolute"
-          ref={dropdownRef}
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-        >
-          <div className="flex flex-row items-center justify-between px-4 mt-1">
-            <p>Main Account</p>
-            <div className="flex flex-row justify-between text-center gap-x-1">
-              <div className="text-green-600 text-2xl">
-                <AiOutlineHeart />
-              </div>
-              <p className="text-green-600 font-semibold">90%</p>
-            </div>
-          </div>
-          <div className="flex flex-row justify-between px-3 mt-2 border-b-[0.5px] pb-4 border-zinc-600 ">
-            <button className="w-[140px] h-10 pl-[10px] pr-[10px] bg-neutral-600 bg-opacity-40 rounded-lg justify-center items-center inline-flex">
-              <p className="text-white text-sm font-normal font-['Red Hat Display']">
-                Add Subaccount
-              </p>
-            </button>
-            <button className="w-[140px] h-10 pl-[51px] pr-[53.50px] bg-neutral-600 bg-opacity-40 rounded-lg justify-center items-center inline-flex">
-              <p className="text-white text-sm font-normal font-['Red Hat Display']">
-                Manage
-              </p>
-            </button>
-          </div>
-          <div>
-            <div className="w-[100%] flex flex-row gap-x-2 px-4 pt-2">
-              <Image
-                src={wallet?.adapter.icon as string}
-                alt={wallet?.adapter.name as string}
-                width={23}
-                height={16}
-              />
-              <p> {balance} SOL</p>
-            </div>
-            <button
-              className="flex flex-row gap-x-2 px-4 mt-3"
-              onClick={() => {
-                navigator.clipboard.writeText(publicKey?.toBase58() as string);
-                toast.success("Copied to clipboard");
-              }}
-            >
-              <BiCopy className="text-xl" />
-              <p>Copy Wallet Address</p>
-            </button>
-            <button
-              className="flex flex-row gap-x-2 px-4 mt-3"
-              onClick={async () => {
-                await disconnect();
-                toast.success("Disconnected");
-                router.push("/connectWallet");
-              }}
-            >
-              <TbDoorEnter className="text-xl" />
-              <p>Disconnect</p>
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
+          <p> {balance} SOL</p>
+        </DropdownMenu.Item>
+        <DropdownMenu.Item>
+          <button
+            className="flex flex-row gap-x-2 px-4 mt-3"
+            onClick={() => {
+              navigator.clipboard.writeText(publicKey?.toBase58() as string);
+              toast.success("Copied to clipboard");
+            }}
+          >
+            <BiCopy className="text-xl" />
+            <p>Copy Wallet Address</p>
+          </button>
+          <button
+            className="flex flex-row gap-x-2 px-4 mt-3"
+            onClick={async () => {
+              await disconnect();
+              toast.success("Disconnected");
+              router.push("/connectWallet");
+            }}
+          >
+            <TbDoorEnter className="text-xl" />
+            <p>Disconnect</p>
+          </button>
+        </DropdownMenu.Item>
+      </DropdownMenu.Content>
+    </DropdownMenu.Root>
   ) : (
     <div className="flex items-center justify-center h-[57px] rounded-lg cursor-pointer bg-[#3db079] halo-effect hover:before:bg-[#3db079]">
       <Link href="/connectWallet">
