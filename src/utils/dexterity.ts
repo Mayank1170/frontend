@@ -104,7 +104,6 @@ export const getProduct = (
       break;
     }
   }
-
   return { desiredProduct, desiredMarketState };
 };
 

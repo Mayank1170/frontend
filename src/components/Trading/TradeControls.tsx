@@ -152,27 +152,45 @@ export const TradeControls: React.FC = () => {
           <h3 className="text-3xl font-bold">Trade</h3>
         </div>
         <div className="space-x-1.5 flex flex-row bg-zinc-800 rounded-lg p-3 mx-[-13px] mb-3">
-          <button
-            onClick={handleBuyClick}
-            className={`w-[100%] h-10 ${
-              isBuyClicked
-                ? "bg-[#39FFA0]/20 border-green-400  text-emerald-500"
-                : "bg-[#373737] border-zinc-500 text-zinc-500"
-            } border-2 rounded-md border-green-500 font-redhat font-bold transition-colors duration-300`}
+          <label
+            className={`flex w-[100%] h-10 
+    ${
+      isBuyClicked
+        ? "bg-[#39FFA0]/20 border-green-400 text-emerald-500"
+        : "bg-[#373737] border-zinc-500 text-zinc-500"
+    } 
+    border-2 rounded-md border-green-500 font-redhat font-bold transition-colors duration-300 items-center justify-center`}
           >
+            <input
+              type="radio"
+              name="tradeType"
+              onClick={handleBuyClick}
+              className="hidden"
+              defaultChecked={isBuyClicked}
+            />
             Buy / Long
-          </button>
-          <button
-            onClick={handleSellClick}
-            className={`w-[100%] h-10 ${
-              isSellClicked
-                ? "bg-[#3E2B2B] border-[#FF5D5D] text-red-400"
-                : "bg-[#373737]  border-zinc-500 text-zinc-500"
-            } border-2 rounded-md border-[#FF5D5D]  font-redhat font-bold transition-colors duration-300`}
+          </label>
+
+          <label
+            className={`flex w-[100%] h-10 
+    ${
+      isSellClicked
+        ? "bg-[#3E2B2B] border-[#FF5D5D] text-red-400"
+        : "bg-[#373737] border-zinc-500 text-zinc-500"
+    } 
+    border-2 rounded-md border-[#FF5D5D]  font-redhat font-bold transition-colors duration-300 items-center justify-center`}
           >
+            <input
+              type="radio"
+              name="tradeType"
+              onClick={handleSellClick}
+              className="hidden"
+              defaultChecked={isSellClicked}
+            />
             Sell / Short
-          </button>
+          </label>
         </div>
+
         <Inputs
           price={price}
           setPrice={setPrice}
@@ -266,7 +284,7 @@ export const TradeControls: React.FC = () => {
                     />
                     <p className="m-0">%</p>
                   </div>
-                  <button className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7  text-white rounded-sm hover:border-2  hover:border-emerald-500">
+                  <button className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7  text-white rounded-sm hover:border-2  hover:border-emerald-500 z">
                     <p className="m-0 text-xs">0.1 %</p>
                   </button>
                   <button className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
@@ -408,15 +426,21 @@ const Inputs = ({
             Order Type
           </label>
           <DropdownMenu.Root>
-              <DropdownMenu.Trigger className="flex flex-row justify-between bg-[#FFFFFF26] rounded border border-white/20 items-center px-2 text-sm py-[10.2px] w-full">
-                {selectedOption}
-                <ChevronDownIcon className={s.Icon} />
+            <DropdownMenu.Trigger className="flex flex-row justify-between bg-[#FFFFFF26] rounded border border-white/20 items-center px-2 text-sm py-[10.2px] w-full">
+              {selectedOption}
+              <ChevronDownIcon className={s.Icon} />
             </DropdownMenu.Trigger>
             <DropdownMenu.Content className="flex flex-col w-full h-fit gap-y-5 py-2 mt-3 mr-[50px] text-sm bg-neutral-700 bg-opacity-100 items-start px-2 rounded-md border border-white border-opacity-25 z-[2] cursor-pointer">
-              <DropdownMenu.Item onSelect={() => handleChange("Market")}>
+              <DropdownMenu.Item
+                onSelect={() => handleChange("Market")}
+                className="w-full"
+              >
                 Market
               </DropdownMenu.Item>
-              <DropdownMenu.Item onSelect={() => handleChange("Limit")}>
+              <DropdownMenu.Item
+                onSelect={() => handleChange("Limit")}
+                className="w-full"
+              >
                 Limit
               </DropdownMenu.Item>
             </DropdownMenu.Content>
@@ -438,7 +462,7 @@ const Inputs = ({
               id="price"
               placeholder="16,800"
               className="flex-1 px-2 bg-transparent w-[4.5rem]"
-              style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }}
+              style={{ WebkitAppearance: "none", MozAppearance: "textfield" }}
             />
             <span>USD</span>
           </div>
@@ -461,7 +485,7 @@ const Inputs = ({
               name="crypto"
               id="crypto"
               className="flex-1 w-20 px-2 bg-transparent"
-              style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }}
+              style={{ WebkitAppearance: "none", MozAppearance: "textfield" }}
             />
             <Image
               src="/images/btc.png"
