@@ -193,7 +193,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ visible, onClick }) => {
                     <ChevronDownIcon className={s.Icon} />
                   </DropdownMenu.Trigger>
                 </DropdownMenu.Trigger>
-                <DropdownMenu.Content className="flex flex-col w-[100%] h-fit gap-y-5 py-2 mt-1 text-sm text-white/70 bg-neutral-700 bg-opacity-100 items-start px-2 rounded-md border border-white border-opacity-25 cursor-pointer">
+                <DropdownMenu.Content className="flex flex-col w-[655px] h-fit gap-y-5 py-2 mt-1 text-sm text-white/70 bg-neutral-700 bg-opacity-100 items-start px-2 rounded-md border border-white border-opacity-25 cursor-pointer">
                   <DropdownMenu.Item
                     onSelect={() => handleChange("Main Account")}
                     className="border-none"

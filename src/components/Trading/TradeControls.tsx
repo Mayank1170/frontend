@@ -266,18 +266,18 @@ export const TradeControls: React.FC = () => {
                     />
                     <p className="m-0">%</p>
                   </div>
-                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7  text-white rounded-sm hover:border-2  hover:border-emerald-500">
+                  <button className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7  text-white rounded-sm hover:border-2  hover:border-emerald-500">
                     <p className="m-0 text-xs">0.1 %</p>
-                  </div>
-                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
+                  </button>
+                  <button className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[20%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
                     <p className="m-0 text-xs">0.5 %</p>
-                  </div>
-                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
+                  </button>
+                  <button className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
                     <p className="m-0 text-xs">1 %</p>
-                  </div>
-                  <div className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
+                  </button>
+                  <button className="flex justify-center items-center  bg-neutral-600 bg-opacity-70 w-[10%] h-7 text-white hover:border-2 rounded-sm hover:border-emerald-500">
                     <p className="m-0 text-xs">1 %</p>
-                  </div>
+                  </button>
                 </Accordion.Content>
               </Accordion.Item>
             </Collapse>
@@ -408,32 +408,16 @@ const Inputs = ({
             Order Type
           </label>
           <DropdownMenu.Root>
-            <DropdownMenu.Trigger className="relative flex flex-col justify-between w-full bg-[#FFFFFF26] rounded  py-2 border border-white/20">
-              <DropdownMenu.Trigger className="flex flex-row justify-between items-center px-2 text-sm py-[2.2px] w-full">
+              <DropdownMenu.Trigger className="flex flex-row justify-between bg-[#FFFFFF26] rounded border border-white/20 items-center px-2 text-sm py-[10.2px] w-full">
                 {selectedOption}
                 <ChevronDownIcon className={s.Icon} />
-              </DropdownMenu.Trigger>
             </DropdownMenu.Trigger>
-            <DropdownMenu.Content className="flex flex-col h-fit gap-y-5 py-2 mt-3 text-sm bg-neutral-700 bg-opacity-100 items-start px-2 rounded-md border border-white border-opacity-25 z-[2] cursor-pointer">
+            <DropdownMenu.Content className="flex flex-col w-full h-fit gap-y-5 py-2 mt-3 mr-[50px] text-sm bg-neutral-700 bg-opacity-100 items-start px-2 rounded-md border border-white border-opacity-25 z-[2] cursor-pointer">
               <DropdownMenu.Item onSelect={() => handleChange("Market")}>
                 Market
               </DropdownMenu.Item>
               <DropdownMenu.Item onSelect={() => handleChange("Limit")}>
                 Limit
-              </DropdownMenu.Item>
-              <DropdownMenu.Item onSelect={() => handleChange("Stop-Market")}>
-                Stop-Market
-              </DropdownMenu.Item>
-              <DropdownMenu.Item onSelect={() => handleChange("Stop-Limit")}>
-                Stop-Limit
-              </DropdownMenu.Item>
-              <DropdownMenu.Item onSelect={() => handleChange("Take-Profit")}>
-                Take-Profit
-              </DropdownMenu.Item>
-              <DropdownMenu.Item
-                onSelect={() => handleChange("Take-Profit-Limit")}
-              >
-                Take-Profit-Limit
               </DropdownMenu.Item>
             </DropdownMenu.Content>
           </DropdownMenu.Root>

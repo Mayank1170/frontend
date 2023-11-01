@@ -582,7 +582,8 @@ export const OrderBook: React.FC = () => {
   // console.log(mpg, markPrice, orderbookData);
 
    const OrderBook = useTradeData("ETH0D231014     ");
- 
+   
+   
   const { products,selectedProduct, setSelectedProduct, openOrders} = useProducts()
 
 
